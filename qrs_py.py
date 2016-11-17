@@ -15,7 +15,7 @@ def set_xrf():
 xrf = set_xrf()
 
 
-class Qrs:
+class ConnectQlik:
     """
     Instantiates the Qlik Repository Service Class
     """
