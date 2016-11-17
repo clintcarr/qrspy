@@ -575,12 +575,12 @@ class Qrs:
         # requests.post('http://localhost:4570/certificatesetup', data = data)
 
 
-qrs = Qrs("qs2.qliklocal.net:4242", ('/home/clint/Documents/Ubuntu/client.pem',
+#qrs = Qrs("qs2.qliklocal.net:4242", ('/home/clint/Documents/Ubuntu/client.pem',
                                      '/home/clint/Documents/Ubuntu/client_key.pem'),
           r'/home/clint/Documents/Ubuntu/root.pem')
 
 
-a = qrs.get_app('stream.name eq', 'Monitoring Apps')
+#a = qrs.get_app('stream.name eq', 'Monitoring Apps')
 
-print a
+#print a
 # qrs.register_node('zzz', 'qs4.qliklocal.net',True,True, False, False)
