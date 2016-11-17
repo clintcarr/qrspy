@@ -576,8 +576,8 @@ class Qrs:
 
 
 #qrs = Qrs("qs2.qliklocal.net:4242", ('/home/clint/Documents/Ubuntu/client.pem',
-                                     '/home/clint/Documents/Ubuntu/client_key.pem'),
-          r'/home/clint/Documents/Ubuntu/root.pem')
+#                                     '/home/clint/Documents/Ubuntu/client_key.pem'),
+#          r'/home/clint/Documents/Ubuntu/root.pem')
 
 
 #a = qrs.get_app('stream.name eq', 'Monitoring Apps')
