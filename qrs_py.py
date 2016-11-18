@@ -63,7 +63,7 @@ class ConnectQlik:
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
         print response.text
 
-    def get_data_conn(self):
+    def get_dataconnection(self):
         """
         Gets data connections from Qlik Sense
         """
@@ -307,10 +307,11 @@ class ConnectQlik:
         resp = json.loads(response.text)
         return resp['value']
 
-    def export_app(self, appid, filename):
+    def export_app(self, appid, filepath, filename):
         """
         Exports the Qlik Sense application
         :param appid: The application id name to export
+        :param filepath: The path to the file
         :param filename: The path and filename to export the application to
         :usage: export_app(r'8dadc1f4-6c70-4708-9ad7-8eda34da0106', r'c:\\some\folder\\app.qvf')
         """
@@ -318,10 +319,13 @@ class ConnectQlik:
         endpoint = 'qrs/download/app/%s/%s/%s' % (appid, ticket, filename)
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
+
         if response.status_code == 200:
-            with open(filename, 'wb') as f:
+            with open(filepath+filename, 'wb') as f:
                 for chunk in response.iter_content(1024):
                     f.write(chunk)
+
+
         print 'Application: %s written to path: %s' % (appid, filename)
 
     def get_extension(self):
@@ -521,7 +525,7 @@ class ConnectQlik:
 
     def get_emptyserverconfigurationcontainer(self):
         """
-        Creates an empty server configuration container
+        Creates anf empty server configuration container
         """
         endpoint = 'qrs/servernodeconfiguration/container'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
@@ -573,3 +577,4 @@ class ConnectQlik:
         data = {'__pwd': pwd}
         print data
         # requests.post('http://localhost:4570/certificatesetup', data = data)
+
