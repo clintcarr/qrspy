@@ -65,7 +65,9 @@ class ConnectQlik:
 
     def get_dataconnection(self, param, value):
         """
-        Gets data connections from Qlik Sense
+        Gets the data connections from the Qlik Sense Server
+        :param param: Filter detail, Enter None for no filter
+        :param value: Value of the filter
         """
         if param is None:
             endpoint = 'qrs/dataconnection'
@@ -76,7 +78,8 @@ class ConnectQlik:
             endpoint = "qrs/dataconnection?filter=%s '%s'" % (param, value)
             response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
-            return response.text
+            dataconnection = json.loads(response.text)
+            return dataconnection
 
     def get_users(self):
         """
@@ -88,7 +91,7 @@ class ConnectQlik:
         print response.text
 
     @staticmethod
-    def jsonfieldnames(self, filename):
+    def jsonfieldnames(filename):
         """
         Returns the header row of the file to create the structure of the json file
         :param filename: Path and filename of the text or csv file to be imported
@@ -198,10 +201,10 @@ class ConnectQlik:
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
             data = response.text
             jresp = json.loads(data)
-            appsdict = {}
+            apps = {}
             for x in range(0, len(jresp)):
-                appsdict[jresp[x]['id']] = jresp[x]['name']
-            return appsdict
+                apps[jresp[x]['id']] = jresp[x]['name']
+            return apps
 
     def get_app_count(self):
         """
@@ -325,13 +328,10 @@ class ConnectQlik:
         endpoint = 'qrs/download/app/%s/%s/%s' % (appid, ticket, filename)
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-
         if response.status_code == 200:
             with open(filepath+filename, 'wb') as f:
                 for chunk in response.iter_content(1024):
                     f.write(chunk)
-
-
         print 'Application: %s written to path: %s' % (appid, filename)
 
     def get_extension(self):
@@ -387,7 +387,7 @@ class ConnectQlik:
         """
 
         endpoint = 'qrs/app/%s/copy?name=%s' % (appid, name)
-        response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+        requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                  headers=self.headers(), verify=self.root, cert=self.certificate)
 
     def publish_app(self, appid, stream, name):
@@ -559,6 +559,30 @@ class ConnectQlik:
         print jdata["configuration"]["id"]
         return jdata["configuration"]["id"]
 
+    def add_dataconnection(self, username, password, name, connectionstring, conntype):
+        """
+        Adds a data connection to Qlik Sense
+        :param username: The user the data connection will connect using
+        :param password: The password of the user to connect
+        :param name: The name of the data connection
+        :param connectionstring: The connection string
+        :param conntype: The type of connection
+        :return:
+        """
+        endpoint = 'qrs/dataconnection/'
+        data = {
+            "username": username,
+            "password": password,
+            "name": name,
+            "connectionstring": connectionstring,
+            "type": conntype
+        }
+        response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                            headers = self.headers(),json = data, verify = self.root, cert = self.certificate)
+
+        print response.status_code
+        print response.text
+
 #incomplete
     def register_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
         """
@@ -583,4 +607,3 @@ class ConnectQlik:
         data = {'__pwd': pwd}
         print data
         # requests.post('http://localhost:4570/certificatesetup', data = data)
-
