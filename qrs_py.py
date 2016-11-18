@@ -63,14 +63,20 @@ class ConnectQlik:
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
         print response.text
 
-    def get_dataconnection(self):
+    def get_dataconnection(self, param, value):
         """
         Gets data connections from Qlik Sense
         """
-        endpoint = 'qrs/dataconnection'
-        response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        if param is None:
+            endpoint = 'qrs/dataconnection'
+            response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                    headers=self.headers(), verify=self.root, cert=self.certificate)
+            print response.text
+        else:
+            endpoint = "qrs/dataconnection?filter=%s '%s'" % (param, value)
+            response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                                    headers=self.headers(), verify=self.root, cert=self.certificate)
+            return response.text
 
     def get_users(self):
         """
