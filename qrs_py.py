@@ -602,6 +602,7 @@ class ConnectQlik:
                                                                                           printingenabled)
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
+
         a = response.text
         pwd = a[1:-1]
         print pwd
