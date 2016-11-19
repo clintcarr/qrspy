@@ -11,7 +11,6 @@ def set_xrf():
     characters = string.ascii_letters + string.digits
     return ''.join(random.sample(characters, 16))
 
-
 xrf = set_xrf()
 
 
