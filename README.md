@@ -33,6 +33,6 @@ for file in files os.listdir('/home/user/Documents/export'):
 
   if file.endswith('.qvf'):
 
-       qs4.import_app((os.path.splitext(file)[0]), '/home/user/Documents/export/%s' % file)
+   qs4.import_app((os.path.splitext(file)[0]), '/home/user/Documents/export/%s' % file)
 
 
