@@ -11,6 +11,7 @@ def set_xrf():
     characters = string.ascii_letters + string.digits
     return ''.join(random.sample(characters, 16))
 
+
 xrf = set_xrf()
 
 
@@ -608,3 +609,11 @@ class ConnectQlik:
         data = {'__pwd': pwd}
         print data
         # requests.post('http://localhost:4570/certificatesetup', data = data)
+
+
+if __name__ == '__main__':
+    qrs = ConnectQlik('qs2.qliklocal.net:4242', ('/home/clint/Documents/Ubuntu/qs2/client.pem',
+                                      '/home/clint/Documents/Ubuntu/qs2/client_key.pem'),
+           '/home/clint/Documents/Ubuntu/qs2/root.pem')
+    qrs.get_servicestate()
+    qrs.get_about()
