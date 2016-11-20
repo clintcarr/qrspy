@@ -11,7 +11,6 @@ def set_xrf():
     characters = string.ascii_letters + string.digits
     return ''.join(random.sample(characters, 16))
 
-
 xrf = set_xrf()
 
 
@@ -48,11 +47,11 @@ class ConnectQlik:
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
         if response.text == 0:
-            print 'Initializing'
+            print ('Initializing')
         elif response.text == 1:
-            print 'Certificates not installed'
+            print ('Certificates not installed')
         else:
-            print 'Running'
+            print ('Running')
 
     def get_about(self):
         """
@@ -61,7 +60,7 @@ class ConnectQlik:
         endpoint = 'qrs/about'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def get_dataconnection(self, param, value):
         """
@@ -73,7 +72,7 @@ class ConnectQlik:
             endpoint = 'qrs/dataconnection'
             response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
-            print response.text
+            print (response.text)
         else:
             endpoint = "qrs/dataconnection?filter=%s '%s'" % (param, value)
             response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
@@ -88,7 +87,7 @@ class ConnectQlik:
         endpoint = 'qrs/user'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     @staticmethod
     def jsonfieldnames(filename):
@@ -143,7 +142,7 @@ class ConnectQlik:
         with open(self.concsvjson(filename), 'rb') as users:
             response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                      headers=self.headers(), data=users, verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def get_license(self):
         """
@@ -153,7 +152,7 @@ class ConnectQlik:
         endpoint = 'qrs/license'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
         data = response.text
         resp = json.loads(data)
         return resp['id']
@@ -174,7 +173,7 @@ class ConnectQlik:
         }
         response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                  headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def remove_license(self):
         """
@@ -195,7 +194,7 @@ class ConnectQlik:
             endpoint = 'qrs/app'
             response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
-            print response.text
+            print (response.text)
         else:
             endpoint = "qrs/app?filter=%s '%s'" % (param, value)
             response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
@@ -214,7 +213,7 @@ class ConnectQlik:
         endpoint = 'qrs/app/count'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def import_app(self, name, filename):
         """
@@ -233,7 +232,7 @@ class ConnectQlik:
         with open(filename, 'rb') as app:
             response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                      headers=headers, data=app, verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def get_customproperty(self):
         """
@@ -242,7 +241,7 @@ class ConnectQlik:
         endpoint = 'qrs/custompropertydefinition'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def get_tag(self):
         """
@@ -251,7 +250,7 @@ class ConnectQlik:
         endpoint = 'qrs/tag'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def import_tag(self, filename):
         """
@@ -266,7 +265,7 @@ class ConnectQlik:
         with open(self.concsvjson(filename), 'rb') as tags:
             response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                      headers=self.headers(), data=tags, verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def get_task(self):
         """
@@ -275,7 +274,7 @@ class ConnectQlik:
         endpoint = 'qrs/task'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def start_task(self, taskid):
         """
@@ -286,7 +285,7 @@ class ConnectQlik:
         endpoint = 'qrs/task/%s/start' % taskid
         response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                  headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.status_code
+        print (response.status_code)
 
     def get_rule(self):
         """
@@ -295,7 +294,7 @@ class ConnectQlik:
         endpoint = 'qrs/systemrule'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def get_userdirectory(self):
         """
@@ -304,7 +303,7 @@ class ConnectQlik:
         endpoint = 'qrs/userdirectory'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def get_exportappticket(self, appid):
         """
@@ -333,7 +332,7 @@ class ConnectQlik:
             with open(filepath + filename, 'wb') as f:
                 for chunk in response.iter_content(1024):
                     f.write(chunk)
-        print 'Application: %s written to path: %s' % (appid, filename)
+        print ('Application: %s written to path: %s') % (appid, filename)
 
     def get_extension(self):
         """
@@ -342,7 +341,7 @@ class ConnectQlik:
         endpoint = 'qrs/extension'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def import_extension(self, filename):
         """
@@ -354,7 +353,7 @@ class ConnectQlik:
         with open(filename, 'rb') as extension:
             response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                      headers=self.headers(), data=extension, verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def import_customproperty(self, filename):
         """
@@ -402,7 +401,7 @@ class ConnectQlik:
         endpoint = 'qrs/app/%s/publish?stream=%s&name=%s' % (appid, streamid, name)
         response = requests.put('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.status_code
+        print (response.status_code)
 
     def remove_app(self, appid):
         """
@@ -424,7 +423,7 @@ class ConnectQlik:
             endpoint = 'qrs/stream'
             response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
-            print response.text
+            print (response.text)
         else:
             endpoint = "qrs/stream?filter=%s '%s'" % (param, value)
             response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
@@ -443,7 +442,7 @@ class ConnectQlik:
         endpoint = 'qrs/stream'
         response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                  headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def get_qliknode(self):
         """
@@ -452,7 +451,7 @@ class ConnectQlik:
         endpoint = 'qrs/servernodeconfiguration'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def remove_stream(self, id):
         """
@@ -462,7 +461,7 @@ class ConnectQlik:
         endpoint = 'qrs/stream/%s' % id
         response = requests.delete('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                    headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.status_code
+        print (response.status_code)
 
     def remove_tag(self, id):
         """
@@ -472,7 +471,7 @@ class ConnectQlik:
         endpoint = 'qrs/tag/%s' % id
         response = requests.delete('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                    headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.status_code
+        print (response.status_code)
 
     def remove_customproperty(self, id):
         """
@@ -482,7 +481,7 @@ class ConnectQlik:
         endpoint = 'qrs/custompropertydefinition/%s' % id
         response = requests.delete('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                    headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.status_code
+        print (response.status_code)
 
     def sync_userdirectory(self, id):
         """
@@ -493,7 +492,7 @@ class ConnectQlik:
         udid = '["%s"]' % id
         response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                  headers=self.headers(), data=udid, verify=self.root, cert=self.certificate)
-        print response.status_code
+        print (response.status_code)
 
     def get_engineservice(self, id):
         """
@@ -503,7 +502,7 @@ class ConnectQlik:
         endpoint = 'qrs/engineservice/%s' % id
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def export_certificates(self, machinename, certificatepassword, includesecret, exportformat):
         """
@@ -519,7 +518,7 @@ class ConnectQlik:
         response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                  headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
         if 200 <= response.status_code < 300:
-            print 'Certificates exported'
+            print ('Certificates exported')
 
     def get_serverconfig(self):
         """
@@ -528,7 +527,7 @@ class ConnectQlik:
         endpoint = 'qrs/servernodeconfiguration/local'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def get_emptyserverconfigurationcontainer(self):
         """
@@ -537,7 +536,7 @@ class ConnectQlik:
         endpoint = 'qrs/servernodeconfiguration/container'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print response.text
+        print (response.text)
 
     def add_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
         """
@@ -557,7 +556,7 @@ class ConnectQlik:
                                   headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
         data = container.text
         jdata = json.loads(data)
-        print jdata["configuration"]["id"]
+        print (jdata["configuration"]["id"])
         return jdata["configuration"]["id"]
 
     def add_dataconnection(self, username, password, name, connectionstring, conntype):
@@ -581,8 +580,8 @@ class ConnectQlik:
         response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                  headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
 
-        print response.status_code
-        print response.text
+        print (response.status_code)
+        print (response.text)
 
     # incomplete
     def register_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
@@ -605,9 +604,9 @@ class ConnectQlik:
 
         a = response.text
         pwd = a[1:-1]
-        print pwd
+        print (pwd)
         data = {'__pwd': pwd}
-        print data
+        print (data)
         # requests.post('http://localhost:4570/certificatesetup', data = data)
 
 
