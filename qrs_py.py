@@ -11,7 +11,6 @@ def set_xrf():
     characters = string.ascii_letters + string.digits
     return ''.join(random.sample(characters, 16))
 
-
 xrf = set_xrf()
 
 
@@ -102,7 +101,8 @@ class ConnectQlik:
                 jsonfieldnames.append(row)
         return jsonfieldnames[0]
 
-    def csvrowcount(self, filename):
+    @staticmethod
+    def csvrowcount(filename):
         """
         Returns the count of rows minus the header of the file
         :param filename: Path and filename of the text or csv file to be imported
@@ -329,7 +329,7 @@ class ConnectQlik:
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
         if response.status_code == 200:
-            with open(filepath+filename, 'wb') as f:
+            with open(filepath + filename, 'wb') as f:
                 for chunk in response.iter_content(1024):
                     f.write(chunk)
         print 'Application: %s written to path: %s' % (appid, filename)
@@ -388,7 +388,7 @@ class ConnectQlik:
 
         endpoint = 'qrs/app/%s/copy?name=%s' % (appid, name)
         requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
-                                 headers=self.headers(), verify=self.root, cert=self.certificate)
+                      headers=self.headers(), verify=self.root, cert=self.certificate)
 
     def publish_app(self, appid, stream, name):
         """
@@ -397,7 +397,7 @@ class ConnectQlik:
         :param stream: Stream name to publish the application to
         :param name: Name of application once published
         """
-        streamid = self.get_stream(stream)
+        streamid = self.get_stream('name eq', stream)
         endpoint = 'qrs/app/%s/publish?stream=%s&name=%s' % (appid, streamid, name)
         response = requests.put('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
@@ -578,12 +578,12 @@ class ConnectQlik:
             "type": conntype
         }
         response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                            headers = self.headers(),json = data, verify = self.root, cert = self.certificate)
+                                 headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
 
         print response.status_code
         print response.text
 
-# incomplete
+    # incomplete
     def register_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
         """
         Not working currently
@@ -601,18 +601,10 @@ class ConnectQlik:
                                                                                           printingenabled)
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
+
         a = response.text
         pwd = a[1:-1]
         print pwd
         data = {'__pwd': pwd}
         print data
         # requests.post('http://localhost:4570/certificatesetup', data = data)
-
-if __name__ == "__main__":
-    qrs = ConnectQlik('qs2.qliklocal.net:4242', ('/home/clint/Documents/Ubuntu/qs2/client.pem',
-                                                 '/home/clint/Documents/Ubuntu/qs2/client_key.pem'),
-                      '/home/clint/Documents/Ubuntu/qs2/root.pem')
-    print 'Server is: ',
-    qrs.get_servicestate()
-    print 'Server details: ',
-    qrs.get_about()
