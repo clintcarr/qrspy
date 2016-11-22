@@ -194,7 +194,13 @@ class ConnectQlik:
             endpoint = 'qrs/app'
             response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
-            print (response.text)
+            data = response.text
+            jresp = json.loads(data)
+            apps = {}
+            for x in range (0, len(jresp)):
+                apps[jresp[x]['id']] = jresp[x]['name']
+            return apps
+            #print (response.text)
         else:
             endpoint = "qrs/app?filter=%s '%s'" % (param, value)
             response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
@@ -332,7 +338,7 @@ class ConnectQlik:
             with open(filepath + filename, 'wb') as f:
                 for chunk in response.iter_content(1024):
                     f.write(chunk)
-        print ('Application: %s written to path: %s') % (appid, filename)
+        print ('Application: %s written to path: %s' % (appid, filename))
 
     def get_extension(self):
         """
@@ -611,8 +617,13 @@ class ConnectQlik:
 
 
 if __name__ == '__main__':
-    qrs = ConnectQlik('qs2.qliklocal.net:4242', ('/home/clint/Documents/Ubuntu/qs2/client.pem',
-                                      '/home/clint/Documents/Ubuntu/qs2/client_key.pem'),
-           '/home/clint/Documents/Ubuntu/qs2/root.pem')
-    qrs.get_servicestate()
+    qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:\certs\qs2.qliklocal.net\client.pem',
+                                      'C:\certs\qs2.qliklocal.net\client_key.pem'),
+           'C:\certs\qs2.qliklocal.net/root.pem')
+    print ('Server is: '), qrs.get_servicestate()
     qrs.get_about()
+    apps = qrs.get_app(None, None)
+    print (apps)
+
+
+#ConnectQlik('qs2.qliklocal.net:4242', ('C:\certs\qs2.qliklocal.net\client.pem','C:\certs\qs2.qliklocal.net\client_key.pem'),'C:\certs\qs2.qliklocal.net/root.pem')
