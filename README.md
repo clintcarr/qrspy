@@ -18,7 +18,7 @@ qs2 = qrs_py.ConnectQlik('qs2.qliklocal.net:4242', ('/home/user/Documents/certs/
 
 apps = qs2.get_app('stream.name eq', 'QlikStream1')
 
-for k, v in apps.iteritems():
+for k, v in apps.items():
 
   qs2.export_app(k, '/home/user/Documents/export/', r'%s.qvf' % v)
   
