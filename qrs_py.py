@@ -200,7 +200,6 @@ class ConnectQlik:
             for x in range (0, len(jresp)):
                 apps[jresp[x]['id']] = jresp[x]['name']
             return apps
-            #print (response.text)
         else:
             endpoint = "qrs/app?filter=%s '%s'" % (param, value)
             response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
@@ -622,8 +621,4 @@ if __name__ == '__main__':
            'C:\certs\qs2.qliklocal.net/root.pem')
     print ('Server is: '), qrs.get_servicestate()
     qrs.get_about()
-    apps = qrs.get_app(None, None)
-    print (apps)
-
-
-#ConnectQlik('qs2.qliklocal.net:4242', ('C:\certs\qs2.qliklocal.net\client.pem','C:\certs\qs2.qliklocal.net\client_key.pem'),'C:\certs\qs2.qliklocal.net/root.pem')
+    
