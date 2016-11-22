@@ -589,6 +589,16 @@ class ConnectQlik:
         print (response.status_code)
         print (response.text)
 
+    def ping_proxy(self):
+        server = self.server
+        qps = server[:server.index(':')]
+        endpoint = '/qps/user'
+        try:
+            response = requests.get('https://%s/%s/' % (qps, endpoint), verify=self.root, cert=self.certificate)
+            print ('QPS status code: %s' %response)
+        except requests.exceptions.RequestException as e:
+            print ('Qlik Sense Proxy down')
+   
     # incomplete
     def register_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
         """
@@ -620,5 +630,7 @@ if __name__ == '__main__':
     qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:\certs\qs2.qliklocal.net\client.pem',
                                       'C:\certs\qs2.qliklocal.net\client_key.pem'),
            'C:\certs\qs2.qliklocal.net/root.pem')
-    print ('Server is: '), qrs.get_servicestate()
+    print ('Server is: ')
+    print (qrs.get_servicestate())
     qrs.get_about()
+    qrs.ping_proxy()
