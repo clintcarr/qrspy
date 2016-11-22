@@ -4,6 +4,7 @@ import csv
 import random
 import string
 
+
 requests.packages.urllib3.disable_warnings()
 
 
@@ -445,7 +446,7 @@ class ConnectQlik:
         """
         data = {"name": name}
         endpoint = 'qrs/stream'
-        response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+        response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                  headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
         print (response.text)
 
@@ -621,4 +622,3 @@ if __name__ == '__main__':
            'C:\certs\qs2.qliklocal.net/root.pem')
     print ('Server is: '), qrs.get_servicestate()
     qrs.get_about()
-    
