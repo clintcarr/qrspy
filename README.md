@@ -46,7 +46,7 @@ stream = qrs.get_stream('Name eq', 'QlikStream1')
 ## export certificates
 - parameter1 = computer name
 - parameter2 = password secret file
-- parameter3 = include private key
+- parameter3 = include private key (True, False)
 - parameter4 = certificate type (Windows, PEM)
 ```
 qrs.export_certificates('PC1', 's', True, 'Windows')
