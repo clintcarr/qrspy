@@ -51,3 +51,12 @@ stream = qrs.get_stream('Name eq', 'QlikStream1')
 ```
 qrs.export_certificates('PC1', 's', True, 'Windows')
 ```
+
+## set the server license
+- parameter1 = control number
+- parameter2 = serial number
+- parameter3 = name
+- parameter4 = organization
+```
+qrs.set_license(11111, 123456789, 'Foo', 'Bar')
+```
