@@ -1,9 +1,4 @@
-import requests
-import json
-import csv
-import random
-import string
-
+import requests , json, csv, random, string
 
 requests.packages.urllib3.disable_warnings()
 
@@ -81,14 +76,28 @@ class ConnectQlik:
             dataconnection = json.loads(response.text)
             return dataconnection
 
-    def get_users(self):
+    def get_user(self, param, value):
         """
         Gets the users from Qlik Sense
         """
-        endpoint = 'qrs/user'
-        response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                headers=self.headers(), verify=self.root, cert=self.certificate)
-        print (response.text)
+        if param is None:
+            endpoint = 'qrs/user'
+            response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                    headers=self.headers(), verify=self.root, cert=self.certificate)
+            print (response.text)
+        else:
+            endpoint = "qrs/user?filter=%s '%s'" % (param, value)
+            response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                                    headers=self.headers(), verify=self.root, cert=self.certificate)
+            print (response.text)
+
+    def delete_user(self, id):
+
+        endpoint = 'qrs/user/%s' % id
+        response = requests.delete('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                    headers=self.headers(), verify=self.root, cert=self.certificate)
+
+        print (response.text)    
 
     @staticmethod
     def jsonfieldnames(filename):
@@ -97,7 +106,7 @@ class ConnectQlik:
         :param filename: Path and filename of the text or csv file to be imported
         """
         jsonfieldnames = []
-        with open(filename, 'rb') as f:
+        with open(filename, 'rt') as f:
             for row in csv.reader(f, delimiter=','):
                 jsonfieldnames.append(row)
         return jsonfieldnames[0]
@@ -109,7 +118,7 @@ class ConnectQlik:
         :param filename: Path and filename of the text or csv file to be imported
         """
         rowcount = 0
-        with open(filename, 'rb') as f:
+        with open(filename, 'rt') as f:
             for row in f:
                 rowcount += 1
         return rowcount - 1
@@ -122,7 +131,7 @@ class ConnectQlik:
         jsonfieldnames = self.jsonfieldnames(filename)
         csv_file = filename
         json_file = csv_file.split(".")[0] + ".json"
-        with open(csv_file, 'rb') as f:
+        with open(csv_file, 'rt') as f:
             next(f)
             csv_reader = csv.DictReader(f, jsonfieldnames)
             with open(json_file, 'w') as jf:
@@ -396,18 +405,18 @@ class ConnectQlik:
         requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                       headers=self.headers(), verify=self.root, cert=self.certificate)
 
-    def publish_app(self, appid, stream, name):
+    def publish_app(self, appid, streamid, name):
         """
         Publishes the Qlik Sense application to the selected stream with the name
         :param appid: ID of the application to publish
         :param stream: Stream name to publish the application to
         :param name: Name of application once published
         """
-        streamid = self.get_stream('name eq', stream)
         endpoint = 'qrs/app/%s/publish?stream=%s&name=%s' % (appid, streamid, name)
         response = requests.put('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
         print (response.status_code)
+        print (response.text)
 
     def remove_app(self, appid):
         """
@@ -430,6 +439,12 @@ class ConnectQlik:
             response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
             print (response.text)
+            data = response.text
+            jresp = json.loads(data)
+            streams = {}
+            for x in range (0, len(jresp)):
+                streams[jresp[x]['id']] = jresp[x]['name']
+            return streams
         else:
             endpoint = "qrs/stream?filter=%s '%s'" % (param, value)
             response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
@@ -596,7 +611,7 @@ class ConnectQlik:
         try:
             response = requests.get('https://%s/%s/' % (qps, endpoint), verify=self.root, cert=self.certificate)
             print ('QPS status code: %s' %response)
-        except requests.exceptions.RequestException as e:
+        except requests.exceptions.RequestException as exception:
             print ('Qlik Sense Proxy down')
    
     # incomplete
@@ -631,6 +646,8 @@ if __name__ == '__main__':
                                       'C:\certs\qs2.qliklocal.net\client_key.pem'),
            'C:\certs\qs2.qliklocal.net/root.pem')
     print ('Server is: ')
-    print (qrs.get_servicestate())
+    qrs.get_servicestate()
+    print ('Server details: ')
     qrs.get_about()
     qrs.ping_proxy()
+

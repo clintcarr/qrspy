@@ -60,3 +60,12 @@ qrs.export_certificates('PC1', 's', True, 'Windows')
 ```
 qrs.set_license(11111, 123456789, 'Foo', 'Bar')
 ```
+
+## import users from a text file
+- import file format
+userId,userDirectory,name
+humpty, fairytales, humpty dumpty
+puss, fairytales, puss in boots
+```
+qrs.import_users(r'c:\\dev\\csv\\users.txt')
+```
