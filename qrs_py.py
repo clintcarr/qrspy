@@ -1,4 +1,8 @@
-import requests , json, csv, random, string
+import requests
+import json
+import csv
+import random
+import string
 
 requests.packages.urllib3.disable_warnings()
 
@@ -40,8 +44,11 @@ class ConnectQlik:
         Gets the service state of the QRS
         """
         endpoint = 'qrs/servicestate'
-        response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                headers=self.headers(), verify=self.root, cert=self.certificate)
+        response = requests.get('https://%s/%s?xrfkey=%s' % 
+                                (self.server, endpoint, xrf),
+                                headers=self.headers(), 
+                                verify=self.root, 
+                                cert=self.certificate)
         if response.text == 0:
             print ('Initializing')
         elif response.text == 1:
