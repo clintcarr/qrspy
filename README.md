@@ -3,14 +3,20 @@ Python wrapper for Qlik Sense Repository Service.
 
 # Instructions
 1. ensure requests is installed (pip install requests)
-2. launch python
-3. import qrs_py
+2. export the qlik sense certificates in PEM format to a local folder
+3. launch python
+4. import qrs_py
 
 #Examples
 
 ## Instantiate the ConnectQlik class
+### Linux
 ```
 qs2 = qrs_py.ConnectQlik('qs2.qliklocal.net:4242', ('/home/user/Documents/certs/qs2/client.pem', '/home/user/Documents/certs/qs2/client_key.pem'), '/home/user/Documents/certs/qs2/root.pem')
+```
+### Windows
+```
+qs2 = qrs_py.ConnectQlik('qs2.qliklocal.net:4242', ('c:/certs/qs2/client.pem', 'c:/certs/qs2/client_key.pem'), 'c:/certs/qs2/root.pem')
 ```
 ## export apps in a stream
 - parameter1 = appid

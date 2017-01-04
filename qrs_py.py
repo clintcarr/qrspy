@@ -654,7 +654,6 @@ class ConnectQlik:
         print (data)
         # requests.post('http://localhost:4570/certificatesetup', data = data)
 
-
 if __name__ == '__main__':
     qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:/certs/qs2.qliklocal.net/client.pem',
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
