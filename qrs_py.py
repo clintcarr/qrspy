@@ -611,6 +611,13 @@ class ConnectQlik:
         print (response.status_code)
         print (response.text)
 
+    def migrate_app(self, appid):
+        
+        endpoint = 'qrs/app/%s/migrate' % appid  
+        response = requests.put('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                headers=self.headers(), verify=self.root, cert=self.certificate)
+        print (response.status_code) 
+
     def ping_proxy(self):
         server = self.server
         qps = server[:server.index(':')]
@@ -649,12 +656,11 @@ class ConnectQlik:
 
 
 if __name__ == '__main__':
-    qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:\certs\qs2.qliklocal.net\client.pem',
-                                      'C:\certs\qs2.qliklocal.net\client_key.pem'),
-           'C:\certs\qs2.qliklocal.net/root.pem')
+    qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:/certs/qs2.qliklocal.net/client.pem',
+                                      'C:/certs/qs2.qliklocal.net/client_key.pem'),
+           'C:/certs/qs2.qliklocal.net/root.pem')
     print ('Server is: ')
     qrs.get_servicestate()
     print ('Server details: ')
     qrs.get_about()
     qrs.ping_proxy()
-
