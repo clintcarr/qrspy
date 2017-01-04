@@ -4,6 +4,7 @@ import csv
 import random
 import string
 
+
 requests.packages.urllib3.disable_warnings()
 
 
@@ -663,8 +664,5 @@ if __name__ == '__main__':
     qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:/certs/qs2.qliklocal.net/client.pem',
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
            'C:/certs/qs2.qliklocal.net/root.pem')
-    print ('Server is: ')
-    qrs.get_servicestate()
-    print ('Server details: ')
     qrs.get_about()
     qrs.ping_proxy()
