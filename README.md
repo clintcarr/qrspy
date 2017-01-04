@@ -43,6 +43,14 @@ stream = qrs.get_stream('Name eq', 'QlikStream1')
         qrs.publish_app(k, stream, 'Milas New App')
 ```
 
+## migrate applications
+- parameter1 = appid
+```
+apps = qrs.get_app(None, None)
+for k, v in apps.items():
+	qrs.migrate_app(k)
+```
+
 ## export certificates
 - parameter1 = computer name
 - parameter2 = password secret file
