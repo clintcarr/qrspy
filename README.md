@@ -44,7 +44,7 @@ for file in files os.listdir('/home/user/Documents/export'):
 - parameter3 = new application name 
 ```
 stream = qrs.get_stream('Name eq', 'QlikStream1')
-    app = qrs.get_app('Name eq', 'ddo')
+app = qrs.get_app('Name eq', 'ddo')
     for k,v in app.items():
         qrs.publish_app(k, stream, 'Milas New App')
 ```

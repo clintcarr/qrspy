@@ -612,7 +612,12 @@ class ConnectQlik:
         print (response.text)
 
     def migrate_app(self, appid):
-        
+        """
+        This process is usually automatically performed after upgrades, however if the automated process fails this function
+        can be used.
+        :parap appid: ID of the application to migrate
+        :return: HTTP status code
+        """
         endpoint = 'qrs/app/%s/migrate' % appid  
         response = requests.put('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
