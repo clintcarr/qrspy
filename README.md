@@ -33,7 +33,8 @@ for k, v in apps.items():
 - parameter2 = path to the file
 ```
 import os
-for file in files os.listdir('/home/user/Documents/export'):
+dir = os.listdir('/home/user/Documents/export')
+for file in dir:
   if file.endswith('.qvf'):
       qs4.import_app((os.path.splitext(file)[0]), '/home/user/Documents/export/%s' % file)
 ```
@@ -104,4 +105,14 @@ x = qrs.get_useraccesstype(None)
 j = json.loads(x)
 for i in range(len(j)):
     qrs.delete_useraccesstype (j[i]['id'])
+```
+
+## import several extensions (in this example Idevio Maps)
+- parameter1 = extension path
+```
+import os
+dir = os.listdir('C:\\Dev\\IdevioMaps-QSS-Extensions-5.7.4\\')
+for file in dir:
+    if file.endswith('.zip'):
+        qrs.import_extension('c:\\Dev\\IdevioMaps-QSS-Extensions-5.7.4\\'+file)
 ```
