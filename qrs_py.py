@@ -688,38 +688,35 @@ class ConnectQlik:
         print (response.text)
    
     # incomplete
-    def register_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
-        """
-        Not working currently
-        :param name:
-        :param hostname:
-        :param engineenabled:
-        :param proxyenabled:
-        :param schedulerenabled:
-        :param printingenabled:
-        :return:
-        """
-        endpoint = 'qrs/certificatedistribution/distributecertificate/%s' % self.add_node(name, hostname, engineenabled,
-                                                                                          proxyenabled,
-                                                                                          schedulerenabled,
-                                                                                          printingenabled)
-        response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                headers=self.headers(), verify=self.root, cert=self.certificate)
+    # def register_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
+    #     """
+    #     Not working currently
+    #     :param name:
+    #     :param hostname:
+    #     :param engineenabled:
+    #     :param proxyenabled:
+    #     :param schedulerenabled:
+    #     :param printingenabled:
+    #     :return:
+    #     """
+    #     endpoint = 'qrs/certificatedistribution/distributecertificate/%s' % self.add_node(name, hostname, engineenabled,
+    #                                                                                       proxyenabled,
+    #                                                                                       schedulerenabled,
+    #                                                                                       printingenabled)
+    #     response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+    #                             headers=self.headers(), verify=self.root, cert=self.certificate)
 
-        a = response.text
-        pwd = a[1:-1]
-        print (pwd)
-        data = {'__pwd': pwd}
-        print (data)
-        # requests.post('http://localhost:4570/certificatesetup', data = data)
+    #     a = response.text
+    #     pwd = a[1:-1]
+    #     print (pwd)
+    #     data = {'__pwd': pwd}
+    #     print (data)
+    #     # requests.post('http://localhost:4570/certificatesetup', data = data)
 
 if __name__ == '__main__':
     qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:/certs/qs2.qliklocal.net/client.pem',
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
            'C:/certs/qs2.qliklocal.net/root.pem')
-    print ('Qlik Sense Enterprise: ', end=' ')
     qrs.get_about()
     qrs.ping_proxy()
-
-    qrs.get_lef(9999000000001069, 57486, 'Qlik', 'Qlik')
 
