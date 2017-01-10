@@ -616,7 +616,7 @@ class ConnectQlik:
         """
         This process is usually automatically performed after upgrades, however if the automated process fails this function
         can be used.
-        :parap appid: ID of the application to migrate
+        :param appid: ID of the application to migrate
         :return: HTTP status code
         """
         endpoint = 'qrs/app/%s/migrate' % appid  
@@ -625,6 +625,11 @@ class ConnectQlik:
         print (response.status_code) 
 
     def ping_proxy(self):
+        """
+        This function uses the QPS API to ping the anonymous endpoint /qps/user.  This allows the user 
+        to know whether the Qlik Sense Proxy is operational.
+        :return: HTTP status code
+        """
         server = self.server
         qps = server[:server.index(':')]
         endpoint = '/qps/user'
@@ -633,6 +638,28 @@ class ConnectQlik:
             print ('QPS status code: %s' %response)
         except requests.exceptions.RequestException as exception:
             print ('Qlik Sense Proxy down')
+
+    def get_useraccesstype(self, id):
+        """
+        Displays the user access information (tokens).
+        :param id: The ID of the user access
+        :return: JSON object describing the user access token
+        """
+        endpoint = 'qrs/license/useraccesstype/%s' % id
+        response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                headers=self.headers(), verify=self.root, cert=self.certificate)
+        print (response.text)
+
+    def delete_useraccesstype(self, id):
+        """
+        Deletes the user access type (sets allocated to Quarantined)
+        :param id: The ID of the user access
+        :return: JSON object
+        """
+        endpoint = 'qrs/license/useraccesstype/%s' % id
+        response = requests.delete('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                headers=self.headers(), verify=self.root, cert=self.certificate)
+        print (response.text)
    
     # incomplete
     def register_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
@@ -664,5 +691,7 @@ if __name__ == '__main__':
     qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:/certs/qs2.qliklocal.net/client.pem',
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
            'C:/certs/qs2.qliklocal.net/root.pem')
+    print ('Qlik Sense Enterprise: ', end=' ')
     qrs.get_about()
     qrs.ping_proxy()
+
