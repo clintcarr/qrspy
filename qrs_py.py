@@ -178,23 +178,46 @@ class ConnectQlik:
         except TypeError:
             print ('Server not licensed')
 
-    def set_license(self, control, serial, name, organization):
+    def get_lef(self, serial, control, user, organization):
+        """
+        Gets Qlik Sense LEF information from the Qlik Server (requires web access)
+        """
+        endpoint = 'qrs/license/download?serial=%s&control=%s&user=%s&org=%s' % (serial, control, user, organization)
+        response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                                headers=self.headers(), verify=self.root, cert=self.certificate)
+        print (response.text)
+
+    def set_license(self, control, serial, name, organization, lef):
         """
         Licenses Qlik Sense Server
         :param control: License control number
         :param serial: License serial number
         :param name: License name
         :param organization: License organization
+        :lef: Set to None if server is internet connected else format as this
+        lef = "line1\{r}\{n}line2\{r}\{n}line3\{r}\{n}line4\{r}\{n}line5\{r}\{n}line6\{r}\{n}line7" (remove {})
         """
-        endpoint = 'qrs/license?control=%s' % control
-        data = {
-            "serial": serial,
-            "name": name,
-            "organization": organization
-        }
-        response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
-                                 headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
-        print (response.text)
+        if lef is None:
+            endpoint = 'qrs/license?control=%s' % control
+            data = {
+                "serial": serial,
+                "name": name,
+                "organization": organization
+            }
+            response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                                     headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
+            print (response.text)
+        else:
+            endpoint = 'qrs/license?control=%s' % control
+            data = {
+                "serial": serial,
+                "name": name,
+                "organization": organization,
+                "lef": lef
+            }
+            response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                                     headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
+            print (response.text)
 
     def delete_license(self):
         """
@@ -697,5 +720,4 @@ if __name__ == '__main__':
     print ('Qlik Sense Enterprise: ', end=' ')
     qrs.get_about()
     qrs.ping_proxy()
-    
 
