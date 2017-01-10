@@ -167,13 +167,16 @@ class ConnectQlik:
         Gets the Qlik Sense Server license details and returns the ID
         :return: License ID
         """
-        endpoint = 'qrs/license'
-        response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                headers=self.headers(), verify=self.root, cert=self.certificate)
-        print (response.text)
-        data = response.text
-        resp = json.loads(data)
-        return resp['id']
+        try:
+            endpoint = 'qrs/license'
+            response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                    headers=self.headers(), verify=self.root, cert=self.certificate)
+            print (response.text)
+            data = response.text
+            resp = json.loads(data)
+            return resp['id']
+        except TypeError:
+            print ('Server not licensed')
 
     def set_license(self, control, serial, name, organization):
         """
@@ -694,4 +697,5 @@ if __name__ == '__main__':
     print ('Qlik Sense Enterprise: ', end=' ')
     qrs.get_about()
     qrs.ping_proxy()
+    
 
