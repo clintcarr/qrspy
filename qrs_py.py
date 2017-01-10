@@ -76,7 +76,7 @@ class ConnectQlik:
             endpoint = 'qrs/dataconnection'
             response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
-            print (response.text)
+            return (response.text)
         else:
             endpoint = "qrs/dataconnection?filter=%s '%s'" % (param, value)
             response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
@@ -87,17 +87,20 @@ class ConnectQlik:
     def get_user(self, param, value):
         """
         Gets the users from Qlik Sense
+        :param param: Filter detail, Enter None fo no filter
+        :param value: Value of the filter
+        :return: The list of users
         """
         if param is None:
             endpoint = 'qrs/user'
             response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
-            print (response.text)
+            return (response.text)
         else:
             endpoint = "qrs/user?filter=%s '%s'" % (param, value)
             response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
-            print (response.text)
+            return (response.text)
 
     def delete_user(self, id):
 
@@ -299,7 +302,7 @@ class ConnectQlik:
         endpoint = 'qrs/tag'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print (response.text)
+        return (response.text)
 
     def import_tag(self, filename):
         """
@@ -323,7 +326,7 @@ class ConnectQlik:
         endpoint = 'qrs/task'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print (response.text)
+        return (response.text)
 
     def start_task(self, taskid):
         """
@@ -343,7 +346,7 @@ class ConnectQlik:
         endpoint = 'qrs/systemrule'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print (response.text)
+        return (response.text)
 
     def get_userdirectory(self):
         """
@@ -352,7 +355,7 @@ class ConnectQlik:
         endpoint = 'qrs/userdirectory'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print (response.text)
+        return (response.text)
 
     def get_exportappticket(self, appid):
         """
@@ -390,7 +393,7 @@ class ConnectQlik:
         endpoint = 'qrs/extension'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        print (response.text)
+        return (response.text)
 
     def import_extension(self, filename):
         """
@@ -674,16 +677,13 @@ class ConnectQlik:
         if id is None: 
             endpoint = 'qrs/license/useraccesstype'
             response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                    headers=self.headers(), verify=self.root, cert=self.certificate)
-            
-
-    
+                                    headers=self.headers(), verify=self.root, cert=self.certificate)  
             return (response.text)
         else:
             endpoint = 'qrs/license/useraccesstype/%s' % id
             response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
-            print (response.text)
+            return (response.text)
 
     def delete_useraccesstype(self, id):
         """
