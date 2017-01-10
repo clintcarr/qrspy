@@ -196,7 +196,7 @@ class ConnectQlik:
                                  headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
         print (response.text)
 
-    def remove_license(self):
+    def delete_license(self):
         """
         Deletes the license from Qlik Sense Server
         """
@@ -429,7 +429,7 @@ class ConnectQlik:
         print (response.status_code)
         print (response.text)
 
-    def remove_app(self, appid):
+    def delete_app(self, appid):
         """
         Deletes a Qlik Sense application
         :param appid: Name of the application to delete
@@ -485,7 +485,7 @@ class ConnectQlik:
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
         print (response.text)
 
-    def remove_stream(self, id):
+    def delete_stream(self, id):
         """
         Removes a Stream from the server, applications become unpublished
         :param id: ID of the stream to delete
@@ -495,7 +495,7 @@ class ConnectQlik:
                                    headers=self.headers(), verify=self.root, cert=self.certificate)
         print (response.status_code)
 
-    def remove_tag(self, id):
+    def delete_tag(self, id):
         """
         Removes a tag
         :param id: ID of the tag to delete
@@ -505,7 +505,7 @@ class ConnectQlik:
                                    headers=self.headers(), verify=self.root, cert=self.certificate)
         print (response.status_code)
 
-    def remove_customproperty(self, id):
+    def delete_customproperty(self, id):
         """
         Removes a custom property
         :param id: id of the custom property to delete
