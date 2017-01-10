@@ -671,10 +671,19 @@ class ConnectQlik:
         :param id: The ID of the user access
         :return: JSON object describing the user access token
         """
-        endpoint = 'qrs/license/useraccesstype/%s' % id
-        response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                headers=self.headers(), verify=self.root, cert=self.certificate)
-        print (response.text)
+        if id is None: 
+            endpoint = 'qrs/license/useraccesstype'
+            response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                    headers=self.headers(), verify=self.root, cert=self.certificate)
+            
+
+    
+            return (response.text)
+        else:
+            endpoint = 'qrs/license/useraccesstype/%s' % id
+            response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                    headers=self.headers(), verify=self.root, cert=self.certificate)
+            print (response.text)
 
     def delete_useraccesstype(self, id):
         """
@@ -718,5 +727,5 @@ if __name__ == '__main__':
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
            'C:/certs/qs2.qliklocal.net/root.pem')
     qrs.get_about()
-    qrs.ping_proxy()
+    qrs.ping_proxy() 
 

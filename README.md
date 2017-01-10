@@ -87,3 +87,21 @@ puss, fairytales, puss in boots
 ```
 qrs.import_users(r'c:\\dev\\csv\\users.txt')
 ```
+
+## get users id for all users that have user access tokens
+- parameter1 = id (set to None for all)
+```
+x = qrs.get_useraccesstype(None)
+j = json.loads(x)
+for i in range(len(j)):
+    print (j[i]['id'])
+```
+
+## delete all user access tokens
+- parameter1 = id
+```
+x = qrs.get_useraccesstype(None)
+j = json.loads(x)
+for i in range(len(j)):
+    qrs.delete_useraccesstype (j[i]['id'])
+```
