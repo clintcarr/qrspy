@@ -721,3 +721,5 @@ if __name__ == '__main__':
     qrs.get_about()
     qrs.ping_proxy()
 
+    qrs.get_lef(9999000000001069, 57486, 'Qlik', 'Qlik')
+

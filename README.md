@@ -71,8 +71,12 @@ qrs.export_certificates('PC1', 's', True, 'Windows')
 - parameter2 = serial number
 - parameter3 = name
 - parameter4 = organization
+- parameter5 = lef
+The lef is optional, if the server has internet connectivity set parameter5 to None.  Otherwise use the following format
+"serial\r\nLine1;;;\r\nQlik Sense Enterprise;;;\r\nProductLevel info\r\nToken info;;\r\ntimelimit\r\ncode"
+
 ```
-qrs.set_license(11111, 123456789, 'Foo', 'Bar')
+qrs.set_license(11111, 123456789, 'Foo', 'Bar', None)
 ```
 
 ## import users from a text file
