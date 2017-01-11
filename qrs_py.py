@@ -95,12 +95,16 @@ class ConnectQlik:
             endpoint = 'qrs/user'
             response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
-            return (response.text)
+            data = response.text
+            jresp = json.loads(data)
+            return (jresp)
         else:
             endpoint = "qrs/user?filter=%s '%s'" % (param, value)
             response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
-            return (response.text)
+            data = response.text
+            jresp = json.loads(data)
+            return (jresp)
 
     def delete_user(self, id):
 
@@ -754,4 +758,6 @@ if __name__ == '__main__':
     if qrs.ping_proxy() == 200:
         qrs.get_about()
 
+
+    
     
