@@ -739,9 +739,19 @@ class ConnectQlik:
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
         print (response.status_code)
 
+    def get_apiendpoints(self, method):
+        endpoint = 'qrs/about/api/description?extended=true&method=%s&format=JSON' % method
+        response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                                headers=self.headers(), verify=self.root, cert=self.certificate)
+        data = response.text
+        jresp = data
+        return (data)
+
 if __name__ == '__main__':
     qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:/certs/qs2.qliklocal.net/client.pem',
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
            'C:/certs/qs2.qliklocal.net/root.pem')
     if qrs.ping_proxy() == 200:
         qrs.get_about()
+
+    

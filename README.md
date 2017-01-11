@@ -12,12 +12,20 @@ Python wrapper for Qlik Sense Repository Service.
 ## Instantiate the ConnectQlik class
 ### Linux
 ```
-qs2 = qrs_py.ConnectQlik('qs2.qliklocal.net:4242', ('/home/user/Documents/certs/qs2/client.pem', '/home/user/Documents/certs/qs2/client_key.pem'), '/home/user/Documents/certs/qs2/root.pem')
+qrs = qrs_py.ConnectQlik('qs2.qliklocal.net:4242', ('/home/user/Documents/certs/qs2/client.pem', '/home/user/Documents/certs/qs2/client_key.pem'), '/home/user/Documents/certs/qs2/root.pem')
 ```
 ### Windows
 ```
-qs2 = qrs_py.ConnectQlik('qs2.qliklocal.net:4242', ('c:/certs/qs2/client.pem', 'c:/certs/qs2/client_key.pem'), 'c:/certs/qs2/root.pem')
+qrs = qrs_py.ConnectQlik('qs2.qliklocal.net:4242', ('c:/certs/qs2/client.pem', 'c:/certs/qs2/client_key.pem'), 'c:/certs/qs2/root.pem')
 ```
+## display a list of QRS API endpoints by method
+- parameter1 = method
+```
+method = ['get', 'put', 'post, delete']
+    for i in method:
+        qrs.get_apiendpoints(i)
+```
+
 ## export apps in a stream
 - parameter1 = appid
 - parameter2 = path to export to
