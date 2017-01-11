@@ -126,3 +126,34 @@ for file in dir:
     if file.endswith('.zip'):
         qrs.import_extension('c:\\Dev\\IdevioMaps-QSS-Extensions-5.7.4\\'+file)
 ```
+
+## get personal sheets
+- parameter1 = objId (None for all)
+```
+appobj = qrs.get_appobject(None)
+```
+
+## publish personal sheet called 'Test Sheet'
+```
+appobj = qrs.get_appobject(None)
+    for i in range(len(appobj)):
+        if appobj[i]['name'] == 'Test Sheet':
+            qrs.publish_appobject(appobj[i]['id'])
+```            
+
+## unpublish sheet called 'Test Sheet'
+```
+appobj = qrs.get_appobject(None)
+    for i in range(len(appobj)):
+        if appobj[i]['name'] == 'Test Sheet':
+            qrs.unpublish_appobject(o[i]['id'])
+            qrs.delete_appobject(o[i]['id'])
+```
+
+## delete appobject called 'Test Sheet'
+```
+appobj = qrs.get_appobject(None)
+    for i in range(len(appobj)):
+        if appobj[i]['name'] == 'Test Sheet':
+            qrs.delete_appobject(o[i]['id'])
+```

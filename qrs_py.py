@@ -653,7 +653,7 @@ class ConnectQlik:
         endpoint = '/qps/user'
         try:
             response = requests.get('https://%s/%s/' % (qps, endpoint), verify=self.root, cert=self.certificate)
-            print ('QPS status code: %s' %response)
+            return (response.status_code)
         except requests.exceptions.RequestException as exception:
             print ('Qlik Sense Proxy down')
 
@@ -684,11 +684,64 @@ class ConnectQlik:
         response = requests.delete('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
         print (response.text)
+
+    def get_appobject(self, objid):
+        """
+        Gets app objects from Qlik Sense Server
+        :param: objid: The objectID of the application object (None for all)
+        :return: Returns app objects
+        """
+        if objid is None:
+            endpoint = 'qrs/app/object'
+            response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                    headers=self.headers(), verify=self.root, cert=self.certificate)
+            data = response.text
+            jresp = json.loads(data)
+            return (jresp)
+        else:
+            endpoint = 'qrs/app/object/%s' % objid
+            response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                    headers=self.headers(), verify=self.root, cert=self.certificate)
+            data = response.text
+            jresp = json.loads(data)
+            return (jresp)
    
+    def publish_appobject(self, objid):
+        """
+        Publishes an app object to community sheets
+        :param: objid: The objectID of the application object
+        :return: HTTP Status Code
+        """
+        endpoint = 'qrs/app/object/%s/publish' % objid
+        response = requests.put('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                headers=self.headers(), verify=self.root, cert=self.certificate)
+        print (response.status_code)
+
+    def unpublish_appobject(self, objid):
+        """
+        Unpublishes an app object from community sheets
+        :param: objid: The objectID of the application object
+        :return: HTTP Status Code
+        """
+        endpoint = 'qrs/app/object/%s/unpublish' % objid
+        response = requests.put('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                headers=self.headers(), verify=self.root, cert=self.certificate)
+        print (response.status_code)
+
+    def delete_appobject(self, objid):
+        """
+        Deletes an app object from Qlik Sense Server
+        :param: objid: The objectID of the application object
+        :return: HTTP Status Code
+        """
+        endpoint = 'qrs/app/object/%s' % objid
+        response = requests.delete('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                headers=self.headers(), verify=self.root, cert=self.certificate)
+        print (response.status_code)
+
 if __name__ == '__main__':
     qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:/certs/qs2.qliklocal.net/client.pem',
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
            'C:/certs/qs2.qliklocal.net/root.pem')
-    qrs.get_about()
-    qrs.ping_proxy() 
-
+    if qrs.ping_proxy() == 200:
+        qrs.get_about()
