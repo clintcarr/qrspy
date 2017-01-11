@@ -353,7 +353,9 @@ class ConnectQlik:
         endpoint = 'qrs/userdirectory'
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        return (response.text)
+        data = response.text
+        jresp = json.loads(data)
+        return (jresp)
 
     def get_exportappticket(self, appid):
         """
@@ -757,7 +759,4 @@ if __name__ == '__main__':
            'C:/certs/qs2.qliklocal.net/root.pem')
     if qrs.ping_proxy() == 200:
         qrs.get_about()
-
-
-    
-    
+  
