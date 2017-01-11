@@ -23,10 +23,18 @@ qs2 = qrs_py.ConnectQlik('qs2.qliklocal.net:4242', ('c:/certs/qs2/client.pem', '
 - parameter2 = path to export to
 - parameter3 = app name
 ```
-apps = qs2.get_app('stream.name eq', 'QlikStream1')
-for k, v in apps.items():
-    qs2.export_app(k, '/home/user/Documents/export/', r'%s.qvf' % v)
+apps = qrs.get_app('stream.name eq', 'Monitoring Apps')
+    for i in range(len(apps)):
+        qrs.export_app(apps[i]['id'], 'c:/dev/export/', r'%s.qvf' % apps[i]['name'])
 ```  
+
+## get a list of applications that are not published to a stream
+```
+apps = qrs.get_app(None, None)
+    for i in range(len(apps)):
+        if apps[i]['stream'] is None:
+            print (apps[i]['id'] + ' ' + apps[i]['name'])
+```
 
 ## import the apps in a folder into a server
 - parameter1 = name of the application
@@ -44,18 +52,20 @@ for file in dir:
 - parameter2 = streamid
 - parameter3 = new application name 
 ```
-stream = qrs.get_stream('Name eq', 'QlikStream1')
-app = qrs.get_app('Name eq', 'ddo')
-    for k,v in app.items():
-        qrs.publish_app(k, stream, 'Milas New App')
+apps = qrs.get_app('Name eq', 'MapIdevio')
+appid = apps[0]['id']
+stream = qrs.get_stream('Name eq', 'NewStream')
+streamid = stream[0]['id']
+
+qrs.publish_app(appid, streamid, 'MapsPub')
 ```
 
 ## migrate applications
 - parameter1 = appid
 ```
 apps = qrs.get_app(None, None)
-for k, v in apps.items():
-	qrs.migrate_app(k)
+    for i in range(len(apps)):
+        qrs.migrate_app(apps[0]['id'])
 ```
 
 ## export certificates

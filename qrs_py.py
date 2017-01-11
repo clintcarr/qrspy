@@ -243,20 +243,14 @@ class ConnectQlik:
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
             data = response.text
             jresp = json.loads(data)
-            apps = {}
-            for x in range (0, len(jresp)):
-                apps[jresp[x]['id']] = jresp[x]['name']
-            return apps
+            return (jresp)
         else:
             endpoint = "qrs/app?filter=%s '%s'" % (param, value)
             response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
             data = response.text
             jresp = json.loads(data)
-            apps = {}
-            for x in range(0, len(jresp)):
-                apps[jresp[x]['id']] = jresp[x]['name']
-            return apps
+            return (jresp)
 
     def get_app_count(self):
         """
@@ -475,21 +469,16 @@ class ConnectQlik:
             endpoint = 'qrs/stream'
             response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
-            print (response.text)
             data = response.text
             jresp = json.loads(data)
-            streams = {}
-            for x in range (0, len(jresp)):
-                streams[jresp[x]['id']] = jresp[x]['name']
-            return streams
+            return (jresp)
         else:
             endpoint = "qrs/stream?filter=%s '%s'" % (param, value)
             response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                     headers=self.headers(), verify=self.root, cert=self.certificate)
             data = response.text
             jresp = json.loads(data)
-            resp = jresp[0]
-            return resp["id"]
+            return (jresp)
 
     def add_stream(self, name):
         """
@@ -696,32 +685,6 @@ class ConnectQlik:
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
         print (response.text)
    
-    # incomplete
-    # def register_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
-    #     """
-    #     Not working currently
-    #     :param name:
-    #     :param hostname:
-    #     :param engineenabled:
-    #     :param proxyenabled:
-    #     :param schedulerenabled:
-    #     :param printingenabled:
-    #     :return:
-    #     """
-    #     endpoint = 'qrs/certificatedistribution/distributecertificate/%s' % self.add_node(name, hostname, engineenabled,
-    #                                                                                       proxyenabled,
-    #                                                                                       schedulerenabled,
-    #                                                                                       printingenabled)
-    #     response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-    #                             headers=self.headers(), verify=self.root, cert=self.certificate)
-
-    #     a = response.text
-    #     pwd = a[1:-1]
-    #     print (pwd)
-    #     data = {'__pwd': pwd}
-    #     print (data)
-    #     # requests.post('http://localhost:4570/certificatesetup', data = data)
-
 if __name__ == '__main__':
     qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:/certs/qs2.qliklocal.net/client.pem',
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
