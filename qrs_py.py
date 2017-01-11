@@ -374,7 +374,7 @@ class ConnectQlik:
         :param appid: The application id name to export
         :param filepath: The path to the file
         :param filename: The path and filename to export the application to
-        :usage: export_app(r'8dadc1f4-6c70-4708-9ad7-8eda34da0106', r'c:\\some\folder\\app.qvf')
+        :usage: export_app(r'8dadc1f4-6c70-4708-9ad7-8eda34da0106', r'c:\\some\folder\\', 'app.qvf')
         """
         ticket = self.get_exportappticket(appid)
         endpoint = 'qrs/download/app/%s/%s/%s' % (appid, ticket, filename)
@@ -384,7 +384,8 @@ class ConnectQlik:
             with open(filepath + filename, 'wb') as f:
                 for chunk in response.iter_content(1024):
                     f.write(chunk)
-        return ('Application: %s written to path: %s' % (appid, filename))
+        print (response.status_code)
+        print ('Application: %s written to path: %s' % (appid, filepath))
 
     def get_extension(self):
         """
@@ -758,4 +759,4 @@ if __name__ == '__main__':
            'C:/certs/qs2.qliklocal.net/root.pem')
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
-  
+
