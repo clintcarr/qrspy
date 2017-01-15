@@ -44,12 +44,13 @@ class ConnectQlik:
         """
         Gets the service state of the QRS
         """
-        endpoint = 'qrs/servicestate'
+        endpoint = 'qrs/servicestatus'
         response = requests.get('https://%s/%s?xrfkey=%s' % 
                                 (self.server, endpoint, xrf),
                                 headers=self.headers(), 
                                 verify=self.root, 
                                 cert=self.certificate)
+        return (response.text)
         if response.text == 0:
             return ('Initializing')
         elif response.text == 1:
@@ -760,3 +761,4 @@ if __name__ == '__main__':
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
 
+    x = print(qrs.get_servicestate())
