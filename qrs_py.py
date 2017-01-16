@@ -40,24 +40,6 @@ class ConnectQlik:
             "Content-Type": "application/json"
         }
 
-    def get_servicestate(self):
-        """
-        Gets the service state of the QRS
-        """
-        endpoint = 'qrs/servicestatus'
-        response = requests.get('https://%s/%s?xrfkey=%s' % 
-                                (self.server, endpoint, xrf),
-                                headers=self.headers(), 
-                                verify=self.root, 
-                                cert=self.certificate)
-        return (response.text)
-        if response.text == 0:
-            return ('Initializing')
-        elif response.text == 1:
-            return ('Certificates not installed')
-        else:
-            return ('Running')
-
     def get_about(self):
         """
         Gets Qlik Sense Server information
@@ -751,8 +733,8 @@ class ConnectQlik:
         response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=self.headers(), verify=self.root, cert=self.certificate)
         data = response.text
-        jresp = data
-        return (data)
+        jresp = json.loads(data)
+        return (jresp)
 
 if __name__ == '__main__':
     qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:/certs/qs2.qliklocal.net/client.pem',
@@ -761,4 +743,4 @@ if __name__ == '__main__':
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
 
-    x = print(qrs.get_servicestate())
+        print (qrs.get_apiendpoints('get'))
