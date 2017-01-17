@@ -50,6 +50,18 @@ class ConnectQlik:
                 rowcount += 1
         return rowcount - 1
 
+    @staticmethod
+    def jsonfieldnames(filename):
+        """
+        Returns the header row of the file to create the structure of the json file
+        :param filename: Path and filename of the text or csv file to be imported
+        """
+        jsonfieldnames = []
+        with open(filename, 'rt') as f:
+            for row in csv.reader(f, delimiter=','):
+                jsonfieldnames.append(row)
+        return jsonfieldnames[0]
+
     def concsvjson(self, filename):
         """
         Converts the text or csv file to a JSON file and returns the path and name of the file
@@ -97,15 +109,29 @@ class ConnectQlik:
                                             headers=self.headers(), verify=self.root, cert=self.certificate)
             return (response.text)
 
-    def post(self, endpoint):
+    def post(self, endpoint, data):
         if '?' in endpoint:
-            response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
-                                            headers=self.headers(), data=self.data, verify=self.root, cert=self.certificate)
-            return (response.text)
+            if data is None:
+                response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                                                headers=self.headers(), 
+                                                verify=self.root, cert=self.certificate)
+                return (response.text)
+            else:
+                response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                                                headers=self.headers(), data=data, 
+                                                verify=self.root, cert=self.certificate)
+                return (response.text)
         else:
-            response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                            headers=self.headers(), data=self.data, verify=self.root, cert=self.certificate)
-            return (response.text)
+            if data is None:
+                response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                                headers=self.headers(), 
+                                                verify=self.root, cert=self.certificate)
+                return (response.text)
+            else:
+                response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                                headers=self.headers(), data=data, 
+                                                verify=self.root, cert=self.certificate)
+                return (response.text)
 
     def get_about(self):
         return (self.get('qrs/about', None, None))
@@ -215,52 +241,43 @@ class ConnectQlik:
     def unpublish_appobject(self, objid):
         return self.put('qrs/app/object/%s/unpublish' % objid)
 
-    def import_users(self, filename):
-        """
-        Posts users from file into Qlik Sense
-        :param filename: Path and filename to txt or csv file containing users
-        :example import_users(r'c:\\some\\folder\\file.txt')
-        """
-        if self.csvrowcount(filename) == 1:
-            endpoint = 'qrs/user'
-        else:
-            endpoint = 'qrs/user/many'
-        with open(self.concsvjson(filename), 'rb') as users:
-            response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                     headers=self.headers(), data=users, verify=self.root, cert=self.certificate)
-        return (response.text)
-
     def set_license(self, control, serial, name, organization, lef):
-        """
-        Licenses Qlik Sense Server
-        :param control: License control number
-        :param serial: License serial number
-        :param name: License name
-        :param organization: License organization
-        :lef: Set to None if server is internet connected else format as this
-        lef = "line1\{r}\{n}line2\{r}\{n}line3\{r}\{n}line4\{r}\{n}line5\{r}\{n}line6\{r}\{n}line7" (remove {})
-        """
         if lef is None:
-            endpoint = 'qrs/license?control=%s' % control
-            data = {
+            license = {
                 "serial": serial,
                 "name": name,
                 "organization": organization
             }
-            response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
-                                     headers=self.headers(), data=json.dumps(data), verify=self.root, cert=self.certificate)
-            return (response.text)
+            data = json.dumps(license)
+            return self.post('qrs/license?control=%s' % control, data)
         else:
-            endpoint = 'qrs/license?control=%s' % control
-            data = {
+            license = {
                 "serial": serial,
                 "name": name,
                 "organization": organization,
                 "lef": lef
             }
-            response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
-                                     headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
-            return (response.text)
+            data = json.dumps(license)
+            return self.post('qrs/license?control=%s' % control, data)
+
+    def import_users(self, filename):
+        if self.csvrowcount(filename) == 1:
+            with open(self.concsvjson(filename), 'rb') as users:
+                return self.post('qrs/user', users)
+        else:
+            with open(self.concsvjson(filename), 'rb') as users:
+                return self.post('qrs/user/many', users)
+
+    def import_tag(self, filename):
+        if self.csvrowcount(filename) == 1:
+            with open(self.concsvjson(filename), 'rb') as tags:
+                return self.post('qrs/tag', tags)
+        else:
+            with open(self.concsvjson(filename), 'rb') as tags:
+                return self.post('qrs/tag/many', tags)
+
+    def start_task(self, taskid):
+        return self.post('qrs/task/%s/start' % taskid, None)
 
     def import_app(self, name, filename):
         """
@@ -280,32 +297,6 @@ class ConnectQlik:
             response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                      headers=headers, data=app, verify=self.root, cert=self.certificate)
         return (response.text)
-
-    def import_tag(self, filename):
-        """
-        Imports Tags from a text or csv file
-        :param filename: The path and filename of the text or csv file
-        :usage import_tag(r'c:\\some\\folder\\file.txt')
-        """
-        if self.csvrowcount(filename) == 1:
-            endpoint = 'qrs/tag'
-        else:
-            endpoint = 'qrs/tag/many'
-        with open(self.concsvjson(filename), 'rb') as tags:
-            response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                     headers=self.headers(), data=tags, verify=self.root, cert=self.certificate)
-        return (response.text)
-
-    def start_task(self, taskid):
-        """
-        Start a task (for example, a reload task), identified by {id}, so that it runs on a Qlik
-                                                                Sense Scheduler Service (QSS).
-        :param taskid: id of the task
-        """
-        endpoint = 'qrs/task/%s/start' % taskid
-        response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                 headers=self.headers(), verify=self.root, cert=self.certificate)
-        return (response.status_code)
 
     def export_app(self, appid, filepath, filename):
         """
@@ -482,7 +473,11 @@ if __name__ == '__main__':
         print(qrs.get_about())
 
         #qrs.delete_license()
-        print(qrs.set_license(57486, 9999000000001069, 'Qlik', 'Qlik', None))
+        #print(qrs.set_license(57486, 9999000000001069, 'Qlik', 'Qlik', None))
 
-        print (qrs.get_license())
+        #qrs.import_users('c:\\dev\\csv\\users.txt')
+        #qrs.import_tag('c:\\dev\\csv\\tag.txt')
+
+        print(qrs.start_task('3d8eb3d2-edba-4da9-9a9f-f9e315e9cc1e'))
+        
         
