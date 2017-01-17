@@ -13,6 +13,11 @@ def set_xrf():
 
 xrf = set_xrf()
 
+headers = {"X-Qlik-XrfKey": xrf,
+            "Accept": "application/json",
+            "X-Qlik-User": "UserDirectory=Internal;UserID=sa_repository",
+            "Content-Type": "application/json"}
+
 class ConnectQlik:
     """
     Instantiates the Qlik Repository Service Class
@@ -28,16 +33,7 @@ class ConnectQlik:
         self.server = server
         self.certificate = certificate
         self.root = root
-
-    @staticmethod
-    def headers():
-        return {
-            "X-Qlik-XrfKey": xrf,
-            "Accept": "application/json",
-            "X-Qlik-User": "UserDirectory=Internal;UserID=sa_repository",
-            "Content-Type": "application/json"
-        }
-
+    
     @staticmethod
     def csvrowcount(filename):
         """
@@ -82,11 +78,11 @@ class ConnectQlik:
         if filterparam is None:
             if '?' in endpoint:
                 response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
-                                        headers=self.headers(), verify=self.root, cert=self.certificate)
+                                        headers=headers, verify=self.root, cert=self.certificate)
                 return (response.text)
             else:
                 response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                        headers=self.headers(), verify=self.root, cert=self.certificate)
+                                        headers=headers, verify=self.root, cert=self.certificate)
                 return (response.text)
         else:
             response = requests.get("https://%s/%s?filter=%s '%s'&xrfkey=%s" % 
@@ -96,40 +92,40 @@ class ConnectQlik:
 
     def delete(self, endpoint):
         response = requests.delete('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                        headers=self.headers(), verify=self.root, cert=self.certificate)
+                                        headers=headers, verify=self.root, cert=self.certificate)
         return (response.text)
 
     def put(self, endpoint):
         if '?' in endpoint:
             response = requests.put('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
-                                            headers=self.headers(), verify=self.root, cert=self.certificate)
+                                            headers=headers, verify=self.root, cert=self.certificate)
             return (response.text)
         else:
             response = requests.put('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                            headers=self.headers(), verify=self.root, cert=self.certificate)
+                                            headers=headers, verify=self.root, cert=self.certificate)
             return (response.text)
 
     def post(self, endpoint, data):
         if '?' in endpoint:
             if data is None:
                 response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
-                                                headers=self.headers(), 
+                                                headers=headers, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.text)
             else:
                 response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
-                                                headers=self.headers(), data=data, 
+                                                headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.text)
         else:
             if data is None:
                 response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                                headers=self.headers(), 
+                                                headers=headers, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.text)
             else:
                 response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                                headers=self.headers(), data=data, 
+                                                headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.text)
 
@@ -407,4 +403,5 @@ if __name__ == '__main__':
            'C:/certs/qs2.qliklocal.net/root.pem')
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
+
 
