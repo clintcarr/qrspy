@@ -279,6 +279,49 @@ class ConnectQlik:
     def start_task(self, taskid):
         return self.post('qrs/task/%s/start' % taskid, None)
 
+    def import_extension(self, filename):
+        with open(filename, 'rb') as extension:
+            return self.post('qrs/extension/upload', extension)
+
+    def copy_app(self, appid, name):
+        return self.post('qrs/app/%s/copy?name=%s' % (appid, name), None)
+
+    def new_stream(self, name):
+        stream = {'name': name}
+        data = json.dumps(stream)
+        return self.post('qrs/stream', data)
+
+    def sync_userdirectory(self, userdirectoryid):
+        udid = '["%s"]' % userdirectoryid
+        return self.post('qrs/userdirectoryconnector/syncuserdirectories', udid)
+
+    def export_certificates(self, machinename, certificatepassword, includesecret, exportformat):
+        certificateinfo = {"machineNames": [machinename], "certificatePassword": certificatepassword,
+                            "includeSecretsKey": includesecret, "ExportFormat": exportformat}
+        data = json.dumps(certificateinfo)
+        return self.post('qrs/certificatedistribution/exportcertificates', data)
+
+    def new_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
+        nodedata = {"configuration": {"name": name, "hostName": hostname, "engineEnabled": engineenabled,
+                                  "proxyEnabled": proxyenabled, "schedulerEnabled": schedulerenabled,
+                                  "printingEnabled": printingenabled}}
+        data = json.dumps(nodedata)
+        return self.post('qrs/servernodeconfiguration/container', data)
+        # data = container.text
+        # jdata = json.loads(data)
+        # return jdata["configuration"]["id"]
+
+    def new_dataconnection(self, username, password, name, connectionstring, conntype):
+        dataconnection = {
+                            "username": username,
+                            "password": password,
+                            "name": name,
+                            "connectionstring": connectionstring,
+                            "type": conntype
+                        }
+        data = json.dumps(dataconnection)
+        return self.post('qrs/dataconnection', data)
+  
     def import_app(self, name, filename):
         """
         Imports a binary QVF Qlik Sense application to Qlik Sense Server
@@ -317,18 +360,6 @@ class ConnectQlik:
         print (response.status_code)
         print ('Application: %s written to path: %s' % (appid, filepath))
 
-    def import_extension(self, filename):
-        """
-        Imports the extension to Qlik Sense
-        :param filename: The path and filename of the extension (make sure its a zip archive)
-        :usage: import_extension(r'c:\\some\folder\\file.zip')
-        """
-        endpoint = 'qrs/extension/upload'
-        with open(filename, 'rb') as extension:
-            response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                     headers=self.headers(), data=extension, verify=self.root, cert=self.certificate)
-        return (response.text)
-
     def import_customproperty(self, filename):
         """
         Imports custom properties into Qlik Sense
@@ -355,101 +386,6 @@ class ConnectQlik:
 
         return (response.text)
 
-    def copy_app(self, name, appid):
-        """
-        Copies an application within Qlik Ssnese
-        :param name: Name of the new application
-        :param appid: ID of the Qlik Sense application to copy
-        """
-
-        endpoint = 'qrs/app/%s/copy?name=%s' % (appid, name)
-        response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
-                      headers=self.headers(), verify=self.root, cert=self.certificate)
-        return (response.text)
-
-    
-        return (response.text)
-
-    def add_stream(self, name):
-        """
-        Adds a new Stream to the Qlik Sense server
-        :param name: The name of the new Stream
-        """
-        data = {"name": name}
-        endpoint = 'qrs/stream'
-        response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                 headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
-        return (response.text)
-
-    def sync_userdirectory(self, id):
-        """
-        Synchronises the user directory specified by the id
-        :param id: id of the user directory
-        """
-        endpoint = 'qrs/userdirectoryconnector/syncuserdirectories'
-        udid = '["%s"]' % id
-        response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                 headers=self.headers(), data=udid, verify=self.root, cert=self.certificate)
-        return (response.status_code)
-
-    def export_certificates(self, machinename, certificatepassword, includesecret, exportformat):
-        """
-        Exports certificates from the Central Node - saved to C:\ProgramData\Qlik\Sense\Repository\Exported Certificates
-        :param machinename: Computername to link to the certificates
-        :param certificatepassword: Password to secure certificate private key
-        :param includesecret: Include private key (True, False)
-        :param exportformat: Format of export (Windows, Pem)
-        """
-        data = {"machineNames": [machinename], "certificatePassword": certificatepassword,
-                "includeSecretsKey": includesecret, "ExportFormat": exportformat}
-        endpoint = 'qrs/certificatedistribution/exportcertificates'
-        response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                 headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
-        if 200 <= response.status_code < 300:
-            return ('Certificates exported')
-
-    def add_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
-        """
-        Adds a node to an existing Qlik Sense site
-        :param name: The name of the node
-        :param hostname: server hostname / FQDN
-        :param engineenabled: Booleen value for whether new node has an engine
-        :param proxyenabled: Booleen value for whether new node has an proxy
-        :param schedulerenabled: Booleen value for whether new node has an schedulder
-        :param printingenabled: Booleen value for whether new node has printing
-        """
-        endpoint = 'qrs/servernodeconfiguration/container'
-        data = {"configuration": {"name": name, "hostName": hostname, "engineEnabled": engineenabled,
-                                  "proxyEnabled": proxyenabled, "schedulerEnabled": schedulerenabled,
-                                  "printingEnabled": printingenabled}}
-        container = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                  headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
-        data = container.text
-        jdata = json.loads(data)
-        return jdata["configuration"]["id"]
-
-    def add_dataconnection(self, username, password, name, connectionstring, conntype):
-        """
-        Adds a data connection to Qlik Sense
-        :param username: The user the data connection will connect using
-        :param password: The password of the user to connect
-        :param name: The name of the data connection
-        :param connectionstring: The connection string
-        :param conntype: The type of connection
-        :return:
-        """
-        endpoint = 'qrs/dataconnection/'
-        data = {
-            "username": username,
-            "password": password,
-            "name": name,
-            "connectionstring": connectionstring,
-            "type": conntype
-        }
-        response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                 headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
-        return (response.text)
-
     def ping_proxy(self):
         """
         This function uses the QPS API to ping the anonymous endpoint /qps/user.  This allows the user 
@@ -472,12 +408,3 @@ if __name__ == '__main__':
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
 
-        #qrs.delete_license()
-        #print(qrs.set_license(57486, 9999000000001069, 'Qlik', 'Qlik', None))
-
-        #qrs.import_users('c:\\dev\\csv\\users.txt')
-        #qrs.import_tag('c:\\dev\\csv\\tag.txt')
-
-        print(qrs.start_task('3d8eb3d2-edba-4da9-9a9f-f9e315e9cc1e'))
-        
-        
