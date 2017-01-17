@@ -97,6 +97,16 @@ class ConnectQlik:
                                             headers=self.headers(), verify=self.root, cert=self.certificate)
             return (response.text)
 
+    def post(self, endpoint):
+        if '?' in endpoint:
+            response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                                            headers=self.headers(), data=self.data, verify=self.root, cert=self.certificate)
+            return (response.text)
+        else:
+            response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                            headers=self.headers(), data=self.data, verify=self.root, cert=self.certificate)
+            return (response.text)
+
     def get_about(self):
         return (self.get('qrs/about', None, None))
 
@@ -171,7 +181,8 @@ class ConnectQlik:
          return self.delete('qrs/user/%s' % userid)
 
     def delete_license(self):
-        licenseid = self.get_license()
+        license = self.get_license()
+        licenseid = license['id']
         return self.delete('qrs/license/%s' % licenseid)
 
     def delete_app(self, appid):
@@ -237,7 +248,7 @@ class ConnectQlik:
                 "organization": organization
             }
             response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
-                                     headers=self.headers(), json=data, verify=self.root, cert=self.certificate)
+                                     headers=self.headers(), data=json.dumps(data), verify=self.root, cert=self.certificate)
             return (response.text)
         else:
             endpoint = 'qrs/license?control=%s' % control
@@ -470,3 +481,8 @@ if __name__ == '__main__':
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
 
+        #qrs.delete_license()
+        print(qrs.set_license(57486, 9999000000001069, 'Qlik', 'Qlik', None))
+
+        print (qrs.get_license())
+        
