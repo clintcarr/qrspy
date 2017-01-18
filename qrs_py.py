@@ -203,7 +203,6 @@ class ConnectQlik:
         return (json.loads(self.get('qrs/servernodeconfiguration/local', None, None))) 
 
     def get_emptyserverconfigurationcontainer(self):
-        endpoint = 'qrs/servernodeconfiguration/container'
         return (json.loads(self.get('qrs/servernodeconfiguration/local', None, None))) 
 
     def delete_user(self, userid):
