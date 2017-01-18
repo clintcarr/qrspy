@@ -162,7 +162,7 @@ class ConnectQlik:
         return (response.status_code)
 
     def get_about(self, filterparam=None, filtervalue=None):
-        return (self.get('qrs/about'))
+        return (json.loads(self.get('qrs/about')))
 
     def get_app(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/app', filterparam, filtervalue)))
@@ -198,7 +198,7 @@ class ConnectQlik:
     def get_securityrule(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/systemrule', filterparam, filtervalue)))
 
-    def get_securityrule(self, filterparam=None, filtervalue=None):
+    def get_userdirectory(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/userdirectory', filterparam, filtervalue)))
 
     def get_exportappticket(self, appid, filterparam=None, filtervalue=None):
@@ -247,7 +247,7 @@ class ConnectQlik:
     def delete_tag(self, tagid):
         return self.delete('qrs/tag/%s' % tagid)
 
-    def delete_stream(self, custompropertyid):
+    def delete_customproperty(self, custompropertyid):
         return self.delete('qrs/custompropertydefinition/%s' % custompropertyid)
 
     def delete_useraccesstype(self, useraccessid):
@@ -405,8 +405,3 @@ if __name__ == '__main__':
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
 
-
-
-
-
-      
