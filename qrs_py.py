@@ -85,16 +85,16 @@ class ConnectQlik:
             if '?' in endpoint:
                 response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
-                return (response.text)
+                return (response.content)
             else:
                 response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
-                return (response.text)
+                return (response.content)
         else:
             response = requests.get("https://%s/%s?filter=%s '%s'&xrfkey=%s" % 
                 (self.server, endpoint, filterparam, filtervalue, xrf), 
                 headers=headers, verify=self.root, cert=self.certificate)
-            return (response.text)
+            return (response.content)
 
     def delete(self, endpoint):
         """
@@ -378,7 +378,7 @@ class ConnectQlik:
             data = json.dumps(properties)
             return self.post('qrs/custompropertydefinition/many', data)
 
-    def export_app(self, appid, filepath, filename):
+    def download_app(self, appid, filepath, filename):
         """
         Exports the Qlik Sense application
         :param appid: The application id name to export
@@ -388,14 +388,9 @@ class ConnectQlik:
         """
         exportticket = self.get_exportappticket(appid)
         ticket = (exportticket['value'])
-        endpoint = 'qrs/download/app/%s/%s/%s' % (appid, ticket, filename)
-        response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                headers=headers, verify=self.root, cert=self.certificate)
-        if response.status_code == 200:
-            with open(filepath + filename, 'wb') as f:
-                for chunk in response.iter_content(1024):
-                    f.write(chunk)
-        print ('Application: %s written to path: %s' % (appid, filepath))
+        with open(filepath + filename, 'wb') as file:
+            file.write(self.get('qrs/download/app/%s/%s/%s' % (appid, ticket, filename), None, None))
+        return ('Application: %s written to %s' % (filename, filepath))
 
     def ping_proxy(self):
         try:
