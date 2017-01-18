@@ -378,7 +378,7 @@ class ConnectQlik:
             data = json.dumps(properties)
             return self.post('qrs/custompropertydefinition/many', data)
 
-    def download_app(self, appid, filepath, filename):
+    def export_app(self, appid, filepath, filename):
         """
         Exports the Qlik Sense application
         :param appid: The application id name to export
