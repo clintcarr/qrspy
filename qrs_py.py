@@ -350,9 +350,9 @@ class ConnectQlik:
          :usage: import_customproperty(r'c:\\some\\folder\\file.txt')
          '''
         with open(filename) as customproperties:
-            data = json.loads(customproperties.read())
-            a = json.dumps(data)
-            return self.post('qrs/custompropertydefinition/many', a)
+            properties = json.loads(customproperties.read())
+            data = json.dumps(properties)
+            return self.post('qrs/custompropertydefinition/many', data)
 
     def export_app(self, appid, filepath, filename):
         """
