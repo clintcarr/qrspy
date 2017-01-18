@@ -87,7 +87,7 @@ class ConnectQlik:
         else:
             response = requests.get("https://%s/%s?filter=%s '%s'&xrfkey=%s" % 
                 (self.server, endpoint, filterparam, filtervalue, xrf), 
-                headers=self.headers(), verify=self.root, cert=self.certificate)
+                headers=headers, verify=self.root, cert=self.certificate)
             return (response.text)
 
     def delete(self, endpoint):
@@ -128,6 +128,13 @@ class ConnectQlik:
                                                 headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.text)
+
+    def get_qps(self, endpoint):
+        server = self.server
+        qps = server[:server.index(':')]
+        response = requests.get('https://%s/%s?xrfkey=%s' % (qps, endpoint, xrf),
+                                        headers=headers, verify=self.root, cert=self.certificate)
+        return (response.status_code)
 
     def get_about(self):
         return (self.get('qrs/about', None, None))
@@ -170,8 +177,8 @@ class ConnectQlik:
         return (json.loads(self.get('qrs/userdirectory', filterparam, filtervalue)))
 
     def get_exportappticket(self, appid):
-        response = (json.loads(self.get('qrs/app/%s/export' % appid, None, None))) 
-        return response['value']
+        response = (json.loads(self.get('qrs/app/%s/export' % appid, None, None)))
+        return response
 
     def get_extension(self, filterparam, filtervalue):
         return (json.loads(self.get('qrs/extension', filterparam, filtervalue)))
@@ -319,23 +326,33 @@ class ConnectQlik:
         return self.post('qrs/dataconnection', data)
   
     def import_app(self, name, filename):
-        """
-        Imports a binary QVF Qlik Sense application to Qlik Sense Server
-        :param name: The name of the application that will be displayed in Qlik Sense
-        :param filename: The path and filename for the QVF file
-        """
-        endpoint = 'qrs/app/upload?name=%s' % name
-        headers = {
-            "X-Qlik-XrfKey": xrf,
-            "Accept": "application/json",
-            "X-Qlik-User": "UserDirectory=Internal;UserID=sa_repository",
-            "Content-Type": "application/vnd.qlik.sense.app",
-            "Connection": "Keep-Alive"
-        }
+        headers["Content-Type"] = "application/vnd.qlik.sense.app"
+        headers["Connection"] = "Keep-Alive"
         with open(filename, 'rb') as app:
-            response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
-                                     headers=headers, data=app, verify=self.root, cert=self.certificate)
-        return (response.text)
+            return self.post('qrs/app/upload?name=%s' % name, app)
+
+    def import_customproperty(self, filename):
+        '''
+         Imports custom properties into Qlik Sense
+         :param filename: Path and filename to JSON file
+         "App","ContentLibrary","DataConnection","EngineService","Extension","ProxyService","ReloadTask",
+         "RepositoryService","SchedulerService","ServerNodeConfiguration","Stream","User","UserSyncTask",
+         "VirtualProxyConfig"
+         {
+             "name": "FOO",
+             "valueType": "BAR",
+             "choiceValues":
+                 ["FOO",
+                 "BAR"],
+             "objectTypes":
+                 ["App",
+                  "RepositoryService"]}
+         :usage: import_customproperty(r'c:\\some\\folder\\file.txt')
+         '''
+        with open(filename) as customproperties:
+            data = json.loads(customproperties.read())
+            a = json.dumps(data)
+            return self.post('qrs/custompropertydefinition/many', a)
 
     def export_app(self, appid, filepath, filename):
         """
@@ -345,55 +362,20 @@ class ConnectQlik:
         :param filename: The path and filename to export the application to
         :usage: export_app(r'8dadc1f4-6c70-4708-9ad7-8eda34da0106', r'c:\\some\folder\\', 'app.qvf')
         """
-        ticket = self.get_exportappticket(appid)
+        exportticket = self.get_exportappticket(appid)
+        ticket = (exportticket['value'])
         endpoint = 'qrs/download/app/%s/%s/%s' % (appid, ticket, filename)
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                headers=self.headers(), verify=self.root, cert=self.certificate)
+                                headers=headers, verify=self.root, cert=self.certificate)
         if response.status_code == 200:
             with open(filepath + filename, 'wb') as f:
                 for chunk in response.iter_content(1024):
                     f.write(chunk)
-        print (response.status_code)
         print ('Application: %s written to path: %s' % (appid, filepath))
 
-    def import_customproperty(self, filename):
-        """
-        Imports custom properties into Qlik Sense
-        :param filename: Path and filename to JSON file
-        "App","ContentLibrary","DataConnection","EngineService","Extension","ProxyService","ReloadTask",
-        "RepositoryService","SchedulerService","ServerNodeConfiguration","Stream","User","UserSyncTask",
-        "VirtualProxyConfig"
-        {
-            "name": "FOO",
-            "valueType": "BAR",
-            "choiceValues":
-                ["FOO",
-                "BAR"],
-            "objectTypes":
-                ["App",
-                 "RepositoryService"]}
-        :usage: import_customproperty(r'c:\\some\\folder\\file.txt')
-        """
-        endpoint = 'qrs/custompropertydefinition/many'
-        with open(filename) as customproperties:
-            cpjson = json.loads(customproperties.read())
-            response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                          headers=self.headers(), json=cpjson, verify=self.root, cert=self.certificate)
-
-        return (response.text)
-
     def ping_proxy(self):
-        """
-        This function uses the QPS API to ping the anonymous endpoint /qps/user.  This allows the user 
-        to know whether the Qlik Sense Proxy is operational.
-        :return: HTTP status code
-        """
-        server = self.server
-        qps = server[:server.index(':')]
-        endpoint = '/qps/user'
         try:
-            response = requests.get('https://%s/%s/' % (qps, endpoint), verify=self.root, cert=self.certificate)
-            return (response.status_code)
+            return (self.get_qps('qps/user'))
         except requests.exceptions.RequestException as exception:
             return ('Qlik Sense Proxy down')
 
@@ -404,4 +386,8 @@ if __name__ == '__main__':
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
 
+        a = qrs.get_app('Name eq', 'Operations Monitor')
+        b = a[0]['id']
+        print (b)
 
+        qrs.export_app(b, 'c:\\dev\\', 'OpMon1.qvf')
