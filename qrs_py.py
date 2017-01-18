@@ -303,14 +303,14 @@ class ConnectQlik:
             with open(self.concsvjson(filename), 'rb') as tags:
                 return self.post('qrs/tag/many', tags)
 
-    def start_task(self, taskid, data=None):
+    def start_task(self, taskid):
         return self.post('qrs/task/%s/start' % taskid)
 
     def import_extension(self, filename):
         with open(filename, 'rb') as extension:
             return self.post('qrs/extension/upload', extension)
 
-    def copy_app(self, appid, name, data=None):
+    def copy_app(self, appid, name):
         return self.post('qrs/app/%s/copy?name=%s' % (appid, name))
 
     def new_stream(self, name):
@@ -404,4 +404,9 @@ if __name__ == '__main__':
            'C:/certs/qs2.qliklocal.net/root.pem')
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
+
+
+
+
+
       
