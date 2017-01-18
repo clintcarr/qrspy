@@ -75,6 +75,12 @@ class ConnectQlik:
         return json_file
 
     def get(self,endpoint,filterparam, filtervalue):
+        """
+        Function that performs GET method to Qlik Repository Service endpoints
+        :param endpoint: API endpoint path
+        :param filterparam: Filter for endpoint, use None for no filtering
+        :param filtervalue: Value to filter on, use None for no filtering
+        """
         if filterparam is None:
             if '?' in endpoint:
                 response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
@@ -91,11 +97,19 @@ class ConnectQlik:
             return (response.text)
 
     def delete(self, endpoint):
+        """
+        Function that performs DELETE method to Qlik Repository Service endpoints
+        :param endpoint: API endpoint path
+        """
         response = requests.delete('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
         return (response.text)
 
     def put(self, endpoint):
+        """
+        Function that performs PUT method to Qlik Repository Service endpoints
+        :param endpoint: API endpoint path
+        """
         if '?' in endpoint:
             response = requests.put('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
@@ -106,6 +120,11 @@ class ConnectQlik:
             return (response.text)
 
     def post(self, endpoint, data):
+        """
+        Function that performs POST method to Qlik Repository Service endpoints
+        :param endpoint: API endpoint path
+        :param data: Data that is posted as either JSON encoded or not.
+        """
         if '?' in endpoint:
             if data is None:
                 response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
@@ -130,6 +149,12 @@ class ConnectQlik:
                 return (response.text)
 
     def get_qps(self, endpoint):
+        """
+        Function that performs GET method to Qlik Proxy Service endpoints
+        :param endpoint: API endpoint path
+        :param filterparam: Filter for endpoint, use None for no filtering
+        :param filtervalue: Value to filter on, use None for no filtering
+        """
         server = self.server
         qps = server[:server.index(':')]
         response = requests.get('https://%s/%s?xrfkey=%s' % (qps, endpoint, xrf),
