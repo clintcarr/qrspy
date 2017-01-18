@@ -74,7 +74,7 @@ class ConnectQlik:
                 jf.write(data)
         return json_file
 
-    def get(self,endpoint,filterparam, filtervalue):
+    def get(self,endpoint,filterparam=None, filtervalue=None):
         """
         Function that performs GET method to Qlik Repository Service endpoints
         :param endpoint: API endpoint path
@@ -161,74 +161,74 @@ class ConnectQlik:
                                         headers=headers, verify=self.root, cert=self.certificate)
         return (response.status_code)
 
-    def get_about(self):
-        return (self.get('qrs/about', None, None))
+    def get_about(self, filterparam=None, filtervalue=None):
+        return (self.get('qrs/about'))
 
-    def get_app(self, filterparam, filtervalue):
+    def get_app(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/app', filterparam, filtervalue)))
 
-    def get_dataconnection(self, filterparam, filtervalue):
+    def get_dataconnection(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/dataconnection', filterparam, filtervalue)))
 
-    def get_user(self, filterparam, filtervalue):
+    def get_user(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/user', filterparam, filtervalue)))
 
-    def get_license(self):
+    def get_license(self, filterparam=None, filtervalue=None):
         try:
-            return (json.loads(self.get('qrs/license', None, None)))
+            return (json.loads(self.get('qrs/license')))
         except TypeError:
             return ('Server not licensed')
 
-    def get_lef(self, serial, control, user, organization):
+    def get_lef(self, serial, control, user, organization, filterparam=None, filtervalue=None):
         return self.get('qrs/license/download?serial=%s&control=%s&user=%s&org=%s' % 
-            (serial, control, user, organization), None, None)
+            (serial, control, user, organization))
     
-    def get_appcount(self):
-        return (json.loads(self.get('qrs/app/count', None, None)))        
+    def get_appcount(self, filterparam=None, filtervalue=None):
+        return (json.loads(self.get('qrs/app/count')))        
 
-    def get_customproperty(self, filterparam, filtervalue):
+    def get_customproperty(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/custompropertydefinition', filterparam, filtervalue)))
 
-    def get_tag(self, filterparam, filtervalue):
+    def get_tag(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/tag', filterparam, filtervalue)))
     
-    def get_task(self, filterparam, filtervalue):
+    def get_task(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/task', filterparam, filtervalue)))
 
-    def get_securityrule(self, filterparam, filtervalue):
+    def get_securityrule(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/systemrule', filterparam, filtervalue)))
 
-    def get_securityrule(self, filterparam, filtervalue):
+    def get_securityrule(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/userdirectory', filterparam, filtervalue)))
 
-    def get_exportappticket(self, appid):
-        response = (json.loads(self.get('qrs/app/%s/export' % appid, None, None)))
+    def get_exportappticket(self, appid, filterparam=None, filtervalue=None):
+        response = (json.loads(self.get('qrs/app/%s/export' % appid)))
         return response
 
-    def get_extension(self, filterparam, filtervalue):
+    def get_extension(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/extension', filterparam, filtervalue)))
 
-    def get_stream(self, filterparam, filtervalue):
+    def get_stream(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/stream', filterparam, filtervalue)))
 
-    def get_servernode(self, filterparam, filtervalue):
+    def get_servernode(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/servernodeconfiguration', filterparam, filtervalue)))
 
-    def get_useraccesstype(self, filterparam, filtervalue):
+    def get_useraccesstype(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/license/useraccesstype', filterparam, filtervalue)))
 
-    def get_appobject(self, filterparam, filtervalue):
+    def get_appobject(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/app/object', filterparam, filtervalue)))
 
-    def get_apidescription(self, method):
+    def get_apidescription(self, method, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/about/api/description?extended=true&method=%s&format=JSON' 
-            % method, None, None)))
+            % method)))
 
-    def get_serverconfig(self):
-        return (json.loads(self.get('qrs/servernodeconfiguration/local', None, None))) 
+    def get_serverconfig(self, filterparam=None, filtervalue=None):
+        return (json.loads(self.get('qrs/servernodeconfiguration/local'))) 
 
-    def get_emptyserverconfigurationcontainer(self):
-        return (json.loads(self.get('qrs/servernodeconfiguration/local', None, None))) 
+    def get_emptyserverconfigurationcontainer(self, filterparam=None, filtervalue=None):
+        return (json.loads(self.get('qrs/servernodeconfiguration/local'))) 
 
     def delete_user(self, userid):
          return self.delete('qrs/user/%s' % userid)
@@ -404,3 +404,4 @@ if __name__ == '__main__':
            'C:/certs/qs2.qliklocal.net/root.pem')
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
+      

@@ -38,7 +38,7 @@ apps = qrs.get_app('stream.name eq', 'Monitoring Apps')
 
 ## get a list of applications that are not published to a stream
 ```
-apps = qrs.get_app(None, None)
+apps = qrs.get_app()
     for i in range(len(apps)):
         if apps[i]['stream'] is None:
             print (apps[i]['id'] + ' ' + apps[i]['name'])
@@ -71,7 +71,7 @@ qrs.publish_app(appid, streamid, 'MapsPub')
 ## migrate applications
 - parameter1 = appid
 ```
-apps = qrs.get_app(None, None)
+apps = qrs.get_app()
     for i in range(len(apps)):
         qrs.migrate_app(apps[0]['id'])
 ```
@@ -110,19 +110,17 @@ qrs.import_users(r'c:\\dev\\csv\\users.txt')
 ## get users id for all users that have user access tokens
 - parameter1 = id (set to None for all)
 ```
-x = qrs.get_useraccesstype(None)
-j = json.loads(x)
-for i in range(len(j)):
-    print (j[i]['id'])
+x = qrs.get_useraccesstype()
+        for i in range(len(x)):
+        print (x[i]['id'])
 ```
 
 ## delete all user access tokens
 - parameter1 = id
 ```
-x = qrs.get_useraccesstype(None)
-j = json.loads(x)
-for i in range(len(j)):
-    qrs.delete_useraccesstype (j[i]['id'])
+x = qrs.get_useraccesstype()
+for i in range(len(x)):
+    qrs.delete_useraccesstype (x[i]['id'])
 ```
 
 ## import several extensions (in this example Idevio Maps)
@@ -136,14 +134,14 @@ for file in dir:
 ```
 
 ## get personal sheets
-- parameter1 = objId (None for all)
+- parameter1 = objId (leave empty for all)
 ```
-appobj = qrs.get_appobject(None)
+appobj = qrs.get_appobject()
 ```
 
 ## publish personal sheet called 'Test Sheet'
 ```
-appobj = qrs.get_appobject(None)
+appobj = qrs.get_appobject()
     for i in range(len(appobj)):
         if appobj[i]['name'] == 'Test Sheet':
             qrs.publish_appobject(appobj[i]['id'])
@@ -151,7 +149,7 @@ appobj = qrs.get_appobject(None)
 
 ## unpublish sheet called 'Test Sheet'
 ```
-appobj = qrs.get_appobject(None)
+appobj = qrs.get_appobject()
     for i in range(len(appobj)):
         if appobj[i]['name'] == 'Test Sheet':
             qrs.unpublish_appobject(o[i]['id'])
@@ -160,7 +158,7 @@ appobj = qrs.get_appobject(None)
 
 ## delete appobject called 'Test Sheet'
 ```
-appobj = qrs.get_appobject(None)
+appobj = qrs.get_appobject()
     for i in range(len(appobj)):
         if appobj[i]['name'] == 'Test Sheet':
             qrs.delete_appobject(o[i]['id'])
