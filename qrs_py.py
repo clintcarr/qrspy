@@ -119,7 +119,7 @@ class ConnectQlik:
                                             headers=headers, verify=self.root, cert=self.certificate)
             return (response.text)
 
-    def post(self, endpoint, data):
+    def post(self, endpoint, data=None):
         """
         Function that performs POST method to Qlik Repository Service endpoints
         :param endpoint: API endpoint path
@@ -303,15 +303,15 @@ class ConnectQlik:
             with open(self.concsvjson(filename), 'rb') as tags:
                 return self.post('qrs/tag/many', tags)
 
-    def start_task(self, taskid):
-        return self.post('qrs/task/%s/start' % taskid, None)
+    def start_task(self, taskid, data=None):
+        return self.post('qrs/task/%s/start' % taskid)
 
     def import_extension(self, filename):
         with open(filename, 'rb') as extension:
             return self.post('qrs/extension/upload', extension)
 
-    def copy_app(self, appid, name):
-        return self.post('qrs/app/%s/copy?name=%s' % (appid, name), None)
+    def copy_app(self, appid, name, data=None):
+        return self.post('qrs/app/%s/copy?name=%s' % (appid, name))
 
     def new_stream(self, name):
         stream = {'name': name}
