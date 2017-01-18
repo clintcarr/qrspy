@@ -367,11 +367,12 @@ class ConnectQlik:
         endpoint = 'qrs/download/app/%s/%s/%s' % (appid, ticket, filename)
         response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
                                 headers=headers, verify=self.root, cert=self.certificate)
-        if response.status_code == 200:
-            with open(filepath + filename, 'wb') as f:
-                for chunk in response.iter_content(1024):
-                    f.write(chunk)
-        print ('Application: %s written to path: %s' % (appid, filepath))
+        print (response)
+        # if response.status_code == 200:
+        #     with open(filepath + filename, 'wb') as f:
+        #         for chunk in response.iter_content(1024):
+        #             f.write(chunk)
+        # print ('Application: %s written to path: %s' % (appid, filepath))
 
     def ping_proxy(self):
         try:
