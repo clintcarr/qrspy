@@ -389,7 +389,7 @@ class ConnectQlik:
         exportticket = self.get_exportappticket(appid)
         ticket = (exportticket['value'])
         with open(filepath + filename, 'wb') as file:
-            file.write(self.get('qrs/download/app/%s/%s/%s' % (appid, ticket, filename), None, None))
+            file.write(self.get('qrs/download/app/%s/%s/%s' % (appid, ticket, filename)))
         return ('Application: %s written to %s' % (filename, filepath))
 
     def ping_proxy(self):
