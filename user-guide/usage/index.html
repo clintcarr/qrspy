@@ -86,6 +86,8 @@
                 
                     <li><a class="toctree-l4" href="#get-a-list-of-applications-that-are-not-published-to-a-stream">get a list of applications that are not published to a stream</a></li>
                 
+                    <li><a class="toctree-l4" href="#get-a-list-of-published-applications">get a list of published applications</a></li>
+                
                     <li><a class="toctree-l4" href="#import-the-apps-in-a-folder-into-a-server">import the apps in a folder into a server</a></li>
                 
                     <li><a class="toctree-l4" href="#publish-an-application-to-a-stream">publish an application to a stream</a></li>
@@ -520,9 +522,15 @@
 
 <h2 id="get-a-list-of-applications-that-are-not-published-to-a-stream">get a list of applications that are not published to a stream</h2>
 <pre><code>apps = qrs.get_app()
-    for i in range(len(apps)):
-        if apps[i]['stream'] is None:
-            print (apps[i]['id'] + ' ' + apps[i]['name'])
+for i in range(len(apps)):
+    if apps[i]['stream'] is None:
+        print (apps[i]['id'] + ' ' + apps[i]['name'])
+</code></pre>
+
+<h2 id="get-a-list-of-published-applications">get a list of published applications</h2>
+<pre><code>apps = qrs.get_app('stream.name ne', None)
+for i in range(len(apps)):
+    print (apps[i]['id'] + ' ' + apps[i]['name'])
 </code></pre>
 
 <h2 id="import-the-apps-in-a-folder-into-a-server">import the apps in a folder into a server</h2>
