@@ -22,12 +22,12 @@
         },
         {
             "location": "/user-guide/connecting/",
-            "text": "Connecting to Qlik Sense Server\n\n\n\n\nFrom Powershell or Command Line run Python\n\n\nImport qrspy\n\nImport qrspy\n\n\nInstantiate the class qrs_py\n\n\n\n\nqrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem')",
+            "text": "Connecting to Qlik Sense Server\n\n\n\n\nFrom Powershell or Command Line run Python\n\n\nImport qrspy\n\nImport qrspy\n\n\nInstantiate the class qrspy\n\n\n\n\nqrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem')",
             "title": "Connecting to Qlik Sense"
         },
         {
             "location": "/user-guide/connecting/#connecting-to-qlik-sense-server",
-            "text": "From Powershell or Command Line run Python  Import qrspy Import qrspy  Instantiate the class qrs_py   qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem')",
+            "text": "From Powershell or Command Line run Python  Import qrspy Import qrspy  Instantiate the class qrspy   qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem')",
             "title": "Connecting to Qlik Sense Server"
         },
         {
