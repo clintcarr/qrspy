@@ -31,6 +31,121 @@
             "title": "Connecting to Qlik Sense Server"
         },
         {
+            "location": "/user-guide/usage/",
+            "text": "qrspy (Qlik Sense Repository Python)\n\n\nPython wrapper for Qlik Sense Repository Service.\n\n\nInstructions\n\n\n\n\nensure requests is installed (pip install requests)\n\n\nexport the qlik sense certificates in PEM format to a local folder\n\n\nlaunch python\n\n\nimport qrspy\n\n\n\n\nExamples\n\n\nInstantiate the ConnectQlik class\n\n\nLinux\n\n\nqrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242', ('/home/user/Documents/certs/qs2/client.pem', '/home/user/Documents/certs/qs2/client_key.pem'), '/home/user/Documents/certs/qs2/root.pem')\n\n\n\n\nWindows\n\n\nqrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242', ('c:/certs/qs2/client.pem', 'c:/certs/qs2/client_key.pem'), 'c:/certs/qs2/root.pem')\n\n\n\n\ndisplay a list of QRS API endpoints by method\n\n\n\n\nparameter1 = method\n\n\n\n\nmethod = ['get', 'put', 'post, delete']\n    for i in method:\n        qrs.get_apiendpoints(i)\n\n\n\n\nexport apps in a stream\n\n\n\n\nparameter1 = appid\n\n\nparameter2 = path to export to\n\n\nparameter3 = app name\n\n\n\n\napps = qrs.get_app('stream.name eq', 'Monitoring Apps')\n    for i in range(len(apps)):\n        qrs.export_app(apps[i]['id'], 'c:/dev/export/', r'%s.qvf' % apps[i]['name'])\n\n\n\n\nget a list of applications that are not published to a stream\n\n\napps = qrs.get_app()\n    for i in range(len(apps)):\n        if apps[i]['stream'] is None:\n            print (apps[i]['id'] + ' ' + apps[i]['name'])\n\n\n\n\nimport the apps in a folder into a server\n\n\n\n\nparameter1 = name of the application\n\n\nparameter2 = path to the file\n\n\n\n\nimport os\ndir = os.listdir('/home/user/Documents/export')\nfor file in dir:\n  if file.endswith('.qvf'):\n      qs4.import_app((os.path.splitext(file)[0]), '/home/user/Documents/export/%s' % file)\n\n\n\n\npublish an application to a stream\n\n\n\n\nparameter1 = appid\n\n\nparameter2 = streamid\n\n\nparameter3 = new application name \n\n\n\n\napps = qrs.get_app('Name eq', 'MapIdevio')\nappid = apps[0]['id']\nstream = qrs.get_stream('Name eq', 'NewStream')\nstreamid = stream[0]['id']\n\nqrs.publish_app(appid, streamid, 'MapsPub')\n\n\n\n\nmigrate applications\n\n\n\n\nparameter1 = appid\n\n\n\n\napps = qrs.get_app()\n    for i in range(len(apps)):\n        qrs.migrate_app(apps[0]['id'])\n\n\n\n\nexport certificates\n\n\n\n\nparameter1 = computer name\n\n\nparameter2 = password secret file\n\n\nparameter3 = include private key (True, False)\n\n\nparameter4 = certificate type (Windows, PEM)\n\n\n\n\nqrs.export_certificates('PC1', 's', True, 'Windows')\n\n\n\n\nset the server license\n\n\n\n\nparameter1 = control number\n\n\nparameter2 = serial number\n\n\nparameter3 = name\n\n\nparameter4 = organization\n\n\nparameter5 = lef\nThe lef is optional, if the server has internet connectivity set parameter5 to None.  Otherwise use the following format\n\"serial\\r\\nLine1;;;\\r\\nQlik Sense Enterprise;;;\\r\\nProductLevel info\\r\\nToken info;;\\r\\ntimelimit\\r\\ncode\"\n\n\n\n\nqrs.set_license(11111, 123456789, 'Foo', 'Bar', None)\n\n\n\n\nimport users from a text file\n\n\n\n\nimport file format\nuserId,userDirectory,name\nhumpty, fairytales, humpty dumpty\npuss, fairytales, puss in boots\n\n\n\n\nqrs.import_users(r'c:\\\\dev\\\\csv\\\\users.txt')\n\n\n\n\nget users id for all users that have user access tokens\n\n\n\n\nparameter1 = id (set to None for all)\n\n\n\n\nx = qrs.get_useraccesstype()\n        for i in range(len(x)):\n        print (x[i]['id'])\n\n\n\n\ndelete all user access tokens\n\n\n\n\nparameter1 = id\n\n\n\n\nx = qrs.get_useraccesstype()\nfor i in range(len(x)):\n    qrs.delete_useraccesstype (x[i]['id'])\n\n\n\n\nimport several extensions (in this example Idevio Maps)\n\n\n\n\nparameter1 = extension path\n\n\n\n\nimport os\ndir = os.listdir('C:\\\\Dev\\\\IdevioMaps-QSS-Extensions-5.7.4\\\\')\nfor file in dir:\n    if file.endswith('.zip'):\n        qrs.import_extension('c:\\\\Dev\\\\IdevioMaps-QSS-Extensions-5.7.4\\\\'+file)\n\n\n\n\nget personal sheets\n\n\n\n\nparameter1 = objId (leave empty for all)\n\n\n\n\nappobj = qrs.get_appobject()\n\n\n\n\npublish personal sheet called 'Test Sheet'\n\n\nappobj = qrs.get_appobject()\n    for i in range(len(appobj)):\n        if appobj[i]['name'] == 'Test Sheet':\n            qrs.publish_appobject(appobj[i]['id'])\n\n\n\n\nunpublish sheet called 'Test Sheet'\n\n\nappobj = qrs.get_appobject()\n    for i in range(len(appobj)):\n        if appobj[i]['name'] == 'Test Sheet':\n            qrs.unpublish_appobject(o[i]['id'])\n            qrs.delete_appobject(o[i]['id'])\n\n\n\n\ndelete appobject called 'Test Sheet'\n\n\nappobj = qrs.get_appobject()\n    for i in range(len(appobj)):\n        if appobj[i]['name'] == 'Test Sheet':\n            qrs.delete_appobject(o[i]['id'])",
+            "title": "Examples"
+        },
+        {
+            "location": "/user-guide/usage/#qrspy-qlik-sense-repository-python",
+            "text": "Python wrapper for Qlik Sense Repository Service.",
+            "title": "qrspy (Qlik Sense Repository Python)"
+        },
+        {
+            "location": "/user-guide/usage/#instructions",
+            "text": "ensure requests is installed (pip install requests)  export the qlik sense certificates in PEM format to a local folder  launch python  import qrspy",
+            "title": "Instructions"
+        },
+        {
+            "location": "/user-guide/usage/#examples",
+            "text": "",
+            "title": "Examples"
+        },
+        {
+            "location": "/user-guide/usage/#instantiate-the-connectqlik-class",
+            "text": "",
+            "title": "Instantiate the ConnectQlik class"
+        },
+        {
+            "location": "/user-guide/usage/#linux",
+            "text": "qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242', ('/home/user/Documents/certs/qs2/client.pem', '/home/user/Documents/certs/qs2/client_key.pem'), '/home/user/Documents/certs/qs2/root.pem')",
+            "title": "Linux"
+        },
+        {
+            "location": "/user-guide/usage/#windows",
+            "text": "qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242', ('c:/certs/qs2/client.pem', 'c:/certs/qs2/client_key.pem'), 'c:/certs/qs2/root.pem')",
+            "title": "Windows"
+        },
+        {
+            "location": "/user-guide/usage/#display-a-list-of-qrs-api-endpoints-by-method",
+            "text": "parameter1 = method   method = ['get', 'put', 'post, delete']\n    for i in method:\n        qrs.get_apiendpoints(i)",
+            "title": "display a list of QRS API endpoints by method"
+        },
+        {
+            "location": "/user-guide/usage/#export-apps-in-a-stream",
+            "text": "parameter1 = appid  parameter2 = path to export to  parameter3 = app name   apps = qrs.get_app('stream.name eq', 'Monitoring Apps')\n    for i in range(len(apps)):\n        qrs.export_app(apps[i]['id'], 'c:/dev/export/', r'%s.qvf' % apps[i]['name'])",
+            "title": "export apps in a stream"
+        },
+        {
+            "location": "/user-guide/usage/#get-a-list-of-applications-that-are-not-published-to-a-stream",
+            "text": "apps = qrs.get_app()\n    for i in range(len(apps)):\n        if apps[i]['stream'] is None:\n            print (apps[i]['id'] + ' ' + apps[i]['name'])",
+            "title": "get a list of applications that are not published to a stream"
+        },
+        {
+            "location": "/user-guide/usage/#import-the-apps-in-a-folder-into-a-server",
+            "text": "parameter1 = name of the application  parameter2 = path to the file   import os\ndir = os.listdir('/home/user/Documents/export')\nfor file in dir:\n  if file.endswith('.qvf'):\n      qs4.import_app((os.path.splitext(file)[0]), '/home/user/Documents/export/%s' % file)",
+            "title": "import the apps in a folder into a server"
+        },
+        {
+            "location": "/user-guide/usage/#publish-an-application-to-a-stream",
+            "text": "parameter1 = appid  parameter2 = streamid  parameter3 = new application name    apps = qrs.get_app('Name eq', 'MapIdevio')\nappid = apps[0]['id']\nstream = qrs.get_stream('Name eq', 'NewStream')\nstreamid = stream[0]['id']\n\nqrs.publish_app(appid, streamid, 'MapsPub')",
+            "title": "publish an application to a stream"
+        },
+        {
+            "location": "/user-guide/usage/#migrate-applications",
+            "text": "parameter1 = appid   apps = qrs.get_app()\n    for i in range(len(apps)):\n        qrs.migrate_app(apps[0]['id'])",
+            "title": "migrate applications"
+        },
+        {
+            "location": "/user-guide/usage/#export-certificates",
+            "text": "parameter1 = computer name  parameter2 = password secret file  parameter3 = include private key (True, False)  parameter4 = certificate type (Windows, PEM)   qrs.export_certificates('PC1', 's', True, 'Windows')",
+            "title": "export certificates"
+        },
+        {
+            "location": "/user-guide/usage/#set-the-server-license",
+            "text": "parameter1 = control number  parameter2 = serial number  parameter3 = name  parameter4 = organization  parameter5 = lef\nThe lef is optional, if the server has internet connectivity set parameter5 to None.  Otherwise use the following format\n\"serial\\r\\nLine1;;;\\r\\nQlik Sense Enterprise;;;\\r\\nProductLevel info\\r\\nToken info;;\\r\\ntimelimit\\r\\ncode\"   qrs.set_license(11111, 123456789, 'Foo', 'Bar', None)",
+            "title": "set the server license"
+        },
+        {
+            "location": "/user-guide/usage/#import-users-from-a-text-file",
+            "text": "import file format\nuserId,userDirectory,name\nhumpty, fairytales, humpty dumpty\npuss, fairytales, puss in boots   qrs.import_users(r'c:\\\\dev\\\\csv\\\\users.txt')",
+            "title": "import users from a text file"
+        },
+        {
+            "location": "/user-guide/usage/#get-users-id-for-all-users-that-have-user-access-tokens",
+            "text": "parameter1 = id (set to None for all)   x = qrs.get_useraccesstype()\n        for i in range(len(x)):\n        print (x[i]['id'])",
+            "title": "get users id for all users that have user access tokens"
+        },
+        {
+            "location": "/user-guide/usage/#delete-all-user-access-tokens",
+            "text": "parameter1 = id   x = qrs.get_useraccesstype()\nfor i in range(len(x)):\n    qrs.delete_useraccesstype (x[i]['id'])",
+            "title": "delete all user access tokens"
+        },
+        {
+            "location": "/user-guide/usage/#import-several-extensions-in-this-example-idevio-maps",
+            "text": "parameter1 = extension path   import os\ndir = os.listdir('C:\\\\Dev\\\\IdevioMaps-QSS-Extensions-5.7.4\\\\')\nfor file in dir:\n    if file.endswith('.zip'):\n        qrs.import_extension('c:\\\\Dev\\\\IdevioMaps-QSS-Extensions-5.7.4\\\\'+file)",
+            "title": "import several extensions (in this example Idevio Maps)"
+        },
+        {
+            "location": "/user-guide/usage/#get-personal-sheets",
+            "text": "parameter1 = objId (leave empty for all)   appobj = qrs.get_appobject()",
+            "title": "get personal sheets"
+        },
+        {
+            "location": "/user-guide/usage/#publish-personal-sheet-called-test-sheet",
+            "text": "appobj = qrs.get_appobject()\n    for i in range(len(appobj)):\n        if appobj[i]['name'] == 'Test Sheet':\n            qrs.publish_appobject(appobj[i]['id'])",
+            "title": "publish personal sheet called 'Test Sheet'"
+        },
+        {
+            "location": "/user-guide/usage/#unpublish-sheet-called-test-sheet",
+            "text": "appobj = qrs.get_appobject()\n    for i in range(len(appobj)):\n        if appobj[i]['name'] == 'Test Sheet':\n            qrs.unpublish_appobject(o[i]['id'])\n            qrs.delete_appobject(o[i]['id'])",
+            "title": "unpublish sheet called 'Test Sheet'"
+        },
+        {
+            "location": "/user-guide/usage/#delete-appobject-called-test-sheet",
+            "text": "appobj = qrs.get_appobject()\n    for i in range(len(appobj)):\n        if appobj[i]['name'] == 'Test Sheet':\n            qrs.delete_appobject(o[i]['id'])",
+            "title": "delete appobject called 'Test Sheet'"
+        },
+        {
             "location": "/user-guide/filter/",
             "text": "Filtering GET requests\n\n\nBy default all GET requests return all the information pertaining to the API Endpoint.\n\n\nQRSpy supports the use of filtering on most GET functions.\n\n\nThe following format should be used.\n\n\nExamples\n\n\nqrs.get_app('Name eq', 'Operations Monitor')\n\n\nFormat\n\n\n[property] [operator] [value]\n\n\nOperators\n\n\n\n\n\n\n\n\noperator\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\neq\n\n\nequal\n\n\n\n\n\n\nne\n\n\nNot equal\n\n\n\n\n\n\ngt\n\n\nGreater than\n\n\n\n\n\n\nge\n\n\nGreater than or equal\n\n\n\n\n\n\nlt\n\n\nLess than\n\n\n\n\n\n\nle\n\n\nLess than or equal\n\n\n\n\n\n\nsw\n\n\nStarts with\n\n\n\n\n\n\new\n\n\nEnds with\n\n\n\n\n\n\nso\n\n\nSubstring of",
             "title": "Filtering"

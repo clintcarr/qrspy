@@ -24,6 +24,12 @@
     </url>
         
     <url>
+     <loc>/user-guide/usage/</loc>
+     <lastmod>2017-01-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc></loc>
      <lastmod></lastmod>
      <changefreq>daily</changefreq>
