@@ -16,7 +16,7 @@ qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242', ('/home/user/Documents/certs/q
 ```
 ### Windows
 ```
-qrs = qrs_py.ConnectQlik('qs2.qliklocal.net:4242', ('c:/certs/qs2/client.pem', 'c:/certs/qs2/client_key.pem'), 'c:/certs/qs2/root.pem')
+qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242', ('c:/certs/qs2/client.pem', 'c:/certs/qs2/client_key.pem'), 'c:/certs/qs2/root.pem')
 ```
 ## display a list of QRS API endpoints by method
 - parameter1 = method
