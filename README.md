@@ -1,4 +1,4 @@
-# qlik-qsr-python
+# qrspy (Qlik Sense Repository Python)
 Python wrapper for Qlik Sense Repository Service.
 
 # Instructions
