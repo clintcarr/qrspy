@@ -356,36 +356,12 @@ class ConnectQlik:
             return self.post('qrs/app/upload?name=%s' % name, app)
 
     def import_customproperty(self, filename):
-        '''
-         Imports custom properties into Qlik Sense
-         :param filename: Path and filename to JSON file
-         "App","ContentLibrary","DataConnection","EngineService","Extension","ProxyService","ReloadTask",
-         "RepositoryService","SchedulerService","ServerNodeConfiguration","Stream","User","UserSyncTask",
-         "VirtualProxyConfig"
-         {
-             "name": "FOO",
-             "valueType": "BAR",
-             "choiceValues":
-                 ["FOO",
-                 "BAR"],
-             "objectTypes":
-                 ["App",
-                  "RepositoryService"]}
-         :usage: import_customproperty(r'c:\\some\\folder\\file.txt')
-         '''
         with open(filename) as customproperties:
             properties = json.loads(customproperties.read())
             data = json.dumps(properties)
             return self.post('qrs/custompropertydefinition/many', data)
 
     def export_app(self, appid, filepath, filename):
-        """
-        Exports the Qlik Sense application
-        :param appid: The application id name to export
-        :param filepath: The path to the file
-        :param filename: The path and filename to export the application to
-        :usage: export_app(r'8dadc1f4-6c70-4708-9ad7-8eda34da0106', r'c:\\some\folder\\', 'app.qvf')
-        """
         exportticket = self.get_exportappticket(appid)
         ticket = (exportticket['value'])
         with open(filepath + filename, 'wb') as file:
