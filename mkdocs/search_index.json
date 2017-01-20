@@ -1,0 +1,1129 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "Welcome to QSRpy\n\n\nQSRpy is a Python built wrapper for the Qlik Sense Repository Service API.\n\n\nThe Qlik Sense Repository Service (QRS) contains all data and configuration information for a Qlik Sense site. The data is normally added and updated using the Qlik Management Console (QMC) or a Qlik Sense client, but it is also possible to communicate directly with the QRS using its API.\n\n\nTo access the project go here: https://github.com/clintcarr/qlik-qsr-python\n\n\n\n\n\n\n\n\nPre-requisite\n\n\nSource\n\n\n\n\n\n\n\n\n\n\nPython3\n\n\nhttps://www.python.org/\n\n\n\n\n\n\nRequests\n\n\nhttp://docs.python-requests.org/en/master/\n\n\n\n\n\n\nQlik Sense Certificates\n\n\nExport Certificates from QMC",
+            "title": "Home"
+        },
+        {
+            "location": "/#welcome-to-qsrpy",
+            "text": "QSRpy is a Python built wrapper for the Qlik Sense Repository Service API.  The Qlik Sense Repository Service (QRS) contains all data and configuration information for a Qlik Sense site. The data is normally added and updated using the Qlik Management Console (QMC) or a Qlik Sense client, but it is also possible to communicate directly with the QRS using its API.  To access the project go here: https://github.com/clintcarr/qlik-qsr-python     Pre-requisite  Source      Python3  https://www.python.org/    Requests  http://docs.python-requests.org/en/master/    Qlik Sense Certificates  Export Certificates from QMC",
+            "title": "Welcome to QSRpy"
+        },
+        {
+            "location": "/user-guide/summary/",
+            "text": "Summary\n\n\nThe functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.\n\n\nThe following table outlines the currently supported processes.\n\n\n\n\n\n\n\n\nGET\n\n\nPUT\n\n\nPOST\n\n\nDELETE\n\n\n\n\n\n\n\n\n\n\nget_about\n\n\npublish_app\n\n\nset_license\n\n\ndelete_user\n\n\n\n\n\n\nget_app\n\n\nmigrate_app\n\n\nimport_users\n\n\ndelete_license\n\n\n\n\n\n\nget_dataconnection\n\n\npublish_appobject\n\n\nimport_tag\n\n\ndelete_app\n\n\n\n\n\n\nget_user\n\n\nunpublish_appobject\n\n\nstart_task\n\n\ndelete_stream\n\n\n\n\n\n\nget_license\n\n\n\n\nimport_extension\n\n\ndelete_tag\n\n\n\n\n\n\nget_lef\n\n\n\n\ncopy_app\n\n\ndelete_customproperty\n\n\n\n\n\n\nget_appcount\n\n\n\n\nnew_stream\n\n\ndelete_useraccesstype\n\n\n\n\n\n\nget_customproperty\n\n\n\n\nsync_userdirectory\n\n\ndelete_appobject\n\n\n\n\n\n\nget_tag\n\n\n\n\nexport_certificates\n\n\n\n\n\n\n\n\nget_task\n\n\n\n\nnew_dataconnection\n\n\n\n\n\n\n\n\nget_securityrule\n\n\n\n\nimport_app\n\n\n\n\n\n\n\n\nget_userdirectory\n\n\n\n\nimport_customproperty\n\n\n\n\n\n\n\n\nget_extension\n\n\n\n\n\n\n\n\n\n\n\n\nget_stream\n\n\n\n\n\n\n\n\n\n\n\n\nget_servernode\n\n\n\n\n\n\n\n\n\n\n\n\nget_useraccesstype\n\n\n\n\n\n\n\n\n\n\n\n\nget_appobject\n\n\n\n\n\n\n\n\n\n\n\n\nget_apidescription\n\n\n\n\n\n\n\n\n\n\n\n\nexport_app",
+            "title": "Summary"
+        },
+        {
+            "location": "/user-guide/summary/#summary",
+            "text": "The functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.  The following table outlines the currently supported processes.     GET  PUT  POST  DELETE      get_about  publish_app  set_license  delete_user    get_app  migrate_app  import_users  delete_license    get_dataconnection  publish_appobject  import_tag  delete_app    get_user  unpublish_appobject  start_task  delete_stream    get_license   import_extension  delete_tag    get_lef   copy_app  delete_customproperty    get_appcount   new_stream  delete_useraccesstype    get_customproperty   sync_userdirectory  delete_appobject    get_tag   export_certificates     get_task   new_dataconnection     get_securityrule   import_app     get_userdirectory   import_customproperty     get_extension       get_stream       get_servernode       get_useraccesstype       get_appobject       get_apidescription       export_app",
+            "title": "Summary"
+        },
+        {
+            "location": "/user-guide/connecting/",
+            "text": "Connecting to Qlik Sense Server\n\n\n\n\nFrom Powershell or Command Line run Python\n\n\nImport QSR_py\n\nImport QSR_py\n\n\nInstantiate the class qrs_py\n\n\n\n\nqrs = qrs_py.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem')",
+            "title": "Connecting to Qlik Sense"
+        },
+        {
+            "location": "/user-guide/connecting/#connecting-to-qlik-sense-server",
+            "text": "From Powershell or Command Line run Python  Import QSR_py Import QSR_py  Instantiate the class qrs_py   qrs = qrs_py.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem')",
+            "title": "Connecting to Qlik Sense Server"
+        },
+        {
+            "location": "/user-guide/get_about/",
+            "text": "Description\n\n\nReturns information on the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/about\n\n\nUsage\n\n\nqrs.get_about()\n\n\n\n\nReturns\n\n\n{'buildVersion': '12.14.0.0', 'buildDate': '9/20/2013 10:09:00 AM', 'databaseProvider': 'Devart.Data.PostgreSql', 'nodeType': 1, 'sharedPersistence': True, 'requiresBootstrap': False, 'schemaPath': 'About'}",
+            "title": "get about"
+        },
+        {
+            "location": "/user-guide/get_about/#description",
+            "text": "Returns information on the Qlik Sense Server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_about/#endpoint",
+            "text": "/qrs/about",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_about/#usage",
+            "text": "qrs.get_about()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_about/#returns",
+            "text": "{'buildVersion': '12.14.0.0', 'buildDate': '9/20/2013 10:09:00 AM', 'databaseProvider': 'Devart.Data.PostgreSql', 'nodeType': 1, 'sharedPersistence': True, 'requiresBootstrap': False, 'schemaPath': 'About'}",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_app/",
+            "text": "Description\n\n\nReturns the list of applications on the server\n\n\nEndpoint\n\n\n/qrs/app\n\n\nUsage\n\n\nqrs.get_app()\n\n\n\n\nReturns\n\n\n[{'id': '8882427d-de1f-4d1a-a30f-4d8bb99258fc', 'name': 'License Monitor', 'appId': '', 'publishTime': '2017-01-18T21:41:25.689Z', 'published': True, 'stream': {'id': 'a70ca8a5-1d59-4cc9-b5fa-6e207978dcaf', 'name': 'Monitoring apps', 'privileges': None}, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': 'bbba08d3-42a8-42aa-8fe8-6660eb4edeed', 'name': 'Operations Monitor', 'appId': '', 'publishTime': '2017-01-18T21:41:38.860Z', 'published': True, 'stream': {'id': 'a70ca8a5-1d59-4cc9-b5fa-6e207978dcaf', 'name': 'Monitoring apps', 'privileges': None}, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': '3ca17181-0cad-4769-a037-b79c4664bd2c', 'name': 'Contentx', 'appId': '', 'publishTime': '2017-01-19T03:46:31.277Z', 'published': True, 'stream': {'id': 'aaec8d41-5201-43ab-809f-3063750dfafd', 'name': 'Everyone', 'privileges': None}, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': '00ee092c-3bf0-4818-b3bd-61fe45846d00', 'name': 'SampleApp', 'appId': '', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'stream': None, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': 'ef1dd8f6-0638-41e5-a473-ce939e708cd8', 'name': 'Sales Dashboard', 'appId': '', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'stream': None, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': '899c4d4f-d8f9-4b2f-b100-274df7387a5e', 'name': '100m', 'appId': '', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'stream': None, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}]",
+            "title": "get app"
+        },
+        {
+            "location": "/user-guide/get_app/#description",
+            "text": "Returns the list of applications on the server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_app/#endpoint",
+            "text": "/qrs/app",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_app/#usage",
+            "text": "qrs.get_app()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_app/#returns",
+            "text": "[{'id': '8882427d-de1f-4d1a-a30f-4d8bb99258fc', 'name': 'License Monitor', 'appId': '', 'publishTime': '2017-01-18T21:41:25.689Z', 'published': True, 'stream': {'id': 'a70ca8a5-1d59-4cc9-b5fa-6e207978dcaf', 'name': 'Monitoring apps', 'privileges': None}, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': 'bbba08d3-42a8-42aa-8fe8-6660eb4edeed', 'name': 'Operations Monitor', 'appId': '', 'publishTime': '2017-01-18T21:41:38.860Z', 'published': True, 'stream': {'id': 'a70ca8a5-1d59-4cc9-b5fa-6e207978dcaf', 'name': 'Monitoring apps', 'privileges': None}, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': '3ca17181-0cad-4769-a037-b79c4664bd2c', 'name': 'Contentx', 'appId': '', 'publishTime': '2017-01-19T03:46:31.277Z', 'published': True, 'stream': {'id': 'aaec8d41-5201-43ab-809f-3063750dfafd', 'name': 'Everyone', 'privileges': None}, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': '00ee092c-3bf0-4818-b3bd-61fe45846d00', 'name': 'SampleApp', 'appId': '', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'stream': None, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': 'ef1dd8f6-0638-41e5-a473-ce939e708cd8', 'name': 'Sales Dashboard', 'appId': '', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'stream': None, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': '899c4d4f-d8f9-4b2f-b100-274df7387a5e', 'name': '100m', 'appId': '', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'stream': None, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_appcount/",
+            "text": "Description\n\n\nReturns a count of the applications on the server\n\n\nEndpoint\n\n\n/qrs/app/count\n\n\nUsage\n\n\nqrs.get_appcount()\n\n\n\n\nReturns\n\n\n{'value': 6}",
+            "title": "get appcount"
+        },
+        {
+            "location": "/user-guide/get_appcount/#description",
+            "text": "Returns a count of the applications on the server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_appcount/#endpoint",
+            "text": "/qrs/app/count",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_appcount/#usage",
+            "text": "qrs.get_appcount()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_appcount/#returns",
+            "text": "{'value': 6}",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_dataconnection/",
+            "text": "Description\n\n\nReturns the data connections from the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/dataconnection\n\n\nUsage\n\n\nqrs.get_dataconnection()\n\n\n\n\nReturns\n\n\n[{'id': 'eedec08b-4717-468e-9b19-4353273ee1fc', 'name': 'qvd', 'connectionstring': 'd:\\\\Scalability Tests\\\\QVD\\\\', 'type': 'folder', 'engineObjectId': 'eedec08b-4717-468e-9b19-4353273ee1fc', 'username': '', 'password': '', 'logOn': 0, 'architecture': 0, 'privileges': None}, {'id': 'c682b800-bbdd-45e0-a26e-329db38471f3', 'name': 'ValueAdd', 'connectionstring': 'd:\\\\Scalability Tests\\\\Apps\\\\ValueAddedData\\\\', 'type': 'folder', 'engineObjectId': 'c682b800-bbdd-45e0-a26e-329db38471f3', 'username': '', 'password': '', 'logOn': 0, 'architecture': 0, 'privileges': None}, {'id': '4065146f-a3e8-4ef7-a6f7-2d8429dd2aff', 'name': 'qrs_task', 'connectionstring': 'CUSTOM CONNECT TO \"provider=QvRestConnector.exe;url=https://localhost/qrs/task/full;timeout=180;method=GET;autoDetectResponseType=true;keyGenerationStrategy=0;useWindowsAuthentication=true;forceAuthenticationType=false;useCertificate=No;certificateStoreLocation=CurrentUser;certificateStoreName=My;queryParameters=xrfkey%20000000000000000;queryHeaders=X-Qlik-XrfKey%20000000000000000",
+            "title": "get dataconnection"
+        },
+        {
+            "location": "/user-guide/get_dataconnection/#description",
+            "text": "Returns the data connections from the Qlik Sense Server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_dataconnection/#endpoint",
+            "text": "/qrs/dataconnection",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_dataconnection/#usage",
+            "text": "qrs.get_dataconnection()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_dataconnection/#returns",
+            "text": "[{'id': 'eedec08b-4717-468e-9b19-4353273ee1fc', 'name': 'qvd', 'connectionstring': 'd:\\\\Scalability Tests\\\\QVD\\\\', 'type': 'folder', 'engineObjectId': 'eedec08b-4717-468e-9b19-4353273ee1fc', 'username': '', 'password': '', 'logOn': 0, 'architecture': 0, 'privileges': None}, {'id': 'c682b800-bbdd-45e0-a26e-329db38471f3', 'name': 'ValueAdd', 'connectionstring': 'd:\\\\Scalability Tests\\\\Apps\\\\ValueAddedData\\\\', 'type': 'folder', 'engineObjectId': 'c682b800-bbdd-45e0-a26e-329db38471f3', 'username': '', 'password': '', 'logOn': 0, 'architecture': 0, 'privileges': None}, {'id': '4065146f-a3e8-4ef7-a6f7-2d8429dd2aff', 'name': 'qrs_task', 'connectionstring': 'CUSTOM CONNECT TO \"provider=QvRestConnector.exe;url=https://localhost/qrs/task/full;timeout=180;method=GET;autoDetectResponseType=true;keyGenerationStrategy=0;useWindowsAuthentication=true;forceAuthenticationType=false;useCertificate=No;certificateStoreLocation=CurrentUser;certificateStoreName=My;queryParameters=xrfkey%20000000000000000;queryHeaders=X-Qlik-XrfKey%20000000000000000",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_lef/",
+            "text": "Description\n\n\nReturns the lef information from the supplied license details.  Requires internet access.\n\n\nEndpoint\n\n\nqrs/license/download?serial=%{serial}&control={control}}&user={user}}&org={organization}\n\n\nUsage\n\n\nqrs.get_lef()\n\n\n\n\nReturns\n\n\nXXXXX\n\nInternal Qlik License 2017;;;\n\nQlik Sense Enterprise;;;\n\nPRODUCTLEVEL;50;;2018-01-30\n\nTOKENS;XXX;;\n\nTIMELIMIT;;;XXX\n\nXXX",
+            "title": "get lef"
+        },
+        {
+            "location": "/user-guide/get_lef/#description",
+            "text": "Returns the lef information from the supplied license details.  Requires internet access.",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_lef/#endpoint",
+            "text": "qrs/license/download?serial=%{serial}&control={control}}&user={user}}&org={organization}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_lef/#usage",
+            "text": "qrs.get_lef()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_lef/#returns",
+            "text": "XXXXX\n\nInternal Qlik License 2017;;;\n\nQlik Sense Enterprise;;;\n\nPRODUCTLEVEL;50;;2018-01-30\n\nTOKENS;XXX;;\n\nTIMELIMIT;;;XXX\n\nXXX",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_license/",
+            "text": "Description\n\n\nReturns the license that is configured on the server\n\n\nEndpoint\n\n\n/qrs/license\n\n\nUsage\n\n\nqrs.get_license()\n\n\n\n\nReturns\n\n\n{'id': 'c517fae1-adbb-4848-b404-1d8a8d3748ad', 'createdDate': '2017-01-18T21:42:01.955Z', 'modifiedDate': '2017-01-18T21:42:01.955Z', 'modifiedByUserName': 'QLIKLOCAL\\\\administrator', 'lef': 'XXX\\r\\nInternal Qlik License 2017;;;\\r\\nQlik Sense Enterprise;;;\\r\\nPRODUCTLEVEL;50;;2018-01-30\\r\\nTOKENS;XXX;;\\r\\nTIMELIMIT;;;XXX-01-30\\r\\XXX', 'serial': 'XXX', 'check': '1100275618', 'name': 'Qlik', 'organization': 'Qlik', 'product': 2, 'numberOfCores': -1, 'isExpired': False, 'expiredReason': '', 'isBlacklisted': False, 'isInvalid': False, 'privileges': None, 'impactSecurityAccess': False, 'schemaPath': 'License'}",
+            "title": "get license"
+        },
+        {
+            "location": "/user-guide/get_license/#description",
+            "text": "Returns the license that is configured on the server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_license/#endpoint",
+            "text": "/qrs/license",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_license/#usage",
+            "text": "qrs.get_license()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_license/#returns",
+            "text": "{'id': 'c517fae1-adbb-4848-b404-1d8a8d3748ad', 'createdDate': '2017-01-18T21:42:01.955Z', 'modifiedDate': '2017-01-18T21:42:01.955Z', 'modifiedByUserName': 'QLIKLOCAL\\\\administrator', 'lef': 'XXX\\r\\nInternal Qlik License 2017;;;\\r\\nQlik Sense Enterprise;;;\\r\\nPRODUCTLEVEL;50;;2018-01-30\\r\\nTOKENS;XXX;;\\r\\nTIMELIMIT;;;XXX-01-30\\r\\XXX', 'serial': 'XXX', 'check': '1100275618', 'name': 'Qlik', 'organization': 'Qlik', 'product': 2, 'numberOfCores': -1, 'isExpired': False, 'expiredReason': '', 'isBlacklisted': False, 'isInvalid': False, 'privileges': None, 'impactSecurityAccess': False, 'schemaPath': 'License'}",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_user/",
+            "text": "Description\n\n\nReturns information on the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/user\n\n\nUsage\n\n\nqrs.get_user()\n\n\n\n\nReturns\n\n\n[{'id': '28ec6c2f-0a4a-432c-9349-8e9fa643f9a1', 'userId': 'sa_converter', 'userDirectory': 'INTERNAL', 'name': 'sa_converter', 'privileges': None}, {'id': '3f31c076-a60f-438a-b0d4-c16370f5d367', 'userId': 'sa_hub', 'userDirectory': 'INTERNAL', 'name': 'sa_hub', 'privileges': None}, {'id': '424b0fe2-9e61-4ed5-9613-8fc314e2b840', 'userId': 'sa_api', 'userDirectory': 'INTERNAL', 'name': 'sa_api', 'privileges': None}, {'id': '44a51447-54d9-4f7a-be8b-9b92f5ec3bc1', 'userId': 'sa_proxy', 'userDirectory': 'INTERNAL', 'name': 'sa_proxy', 'privileges': None}, {'id': '5b1efea7-f03a-48fb-b54b-4055f1056ac8', 'userId': 'sa_qlikview', 'userDirectory': 'INTERNAL', 'name': 'sa_qlikview', 'privileges': None}, {'id': '5db92ecf-00a1-4510-ab9c-8870fa57a82f', 'userId': 'sa_scheduler', 'userDirectory': 'INTERNAL', 'name': 'sa_scheduler', 'privileges': None}, {'id': '74bd3579-8f51-4f7a-bfbb-21d4b9368d7f', 'userId': 'sa_reporting', 'userDirectory': 'INTERNAL', 'name': 'sa_reporting', 'privileges': None}, {'id': '9615d134-06de-4184-8f20-ea63ddeeb73f', 'userId': 'sa_repository', 'userDirectory': 'INTERNAL', 'name': 'sa_repository', 'privileges': None}, {'id': 'cc8cc42e-fca3-408d-ae00-aa19d66b71f0', 'userId': 'sa_printing', 'userDirectory': 'INTERNAL', 'name': 'sa_printing', 'privileges': None}, {'id': 'dbdcd493-4281-430e-8223-625a40a8cf6d', 'userId': 'sa_engine', 'userDirectory': 'INTERNAL', 'name': 'sa_engine', 'privileges': None}, {'id': '3797cd0e-a0fe-4bc1-8409-94f3a7af7a63', 'userId': 'administrator', 'userDirectory': 'QLIKLOCAL', 'name': 'Administrator', 'privileges': None}, {'id': '725a3fc3-c6fe-4048-a55f-d7b80b233564', 'userId': 'dev1', 'userDirectory': 'QLIKLOCAL', 'name': 'dev1', 'privileges': None}, {'id': '4423be9a-70d6-43b2-92b7-65b6ec1a9961', 'userId': 'clint', 'userDirectory': 'SURFACECC', 'name': 'clint', 'privileges': None}, {'id': 'a1eea94c-156a-4852-ab2b-8c5c71364d3e', 'userId': 'qservice', 'userDirectory': 'QLIKLOCAL', 'name': 'qservice', 'privileges': None}]",
+            "title": "get user"
+        },
+        {
+            "location": "/user-guide/get_user/#description",
+            "text": "Returns information on the Qlik Sense Server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_user/#endpoint",
+            "text": "/qrs/user",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_user/#usage",
+            "text": "qrs.get_user()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_user/#returns",
+            "text": "[{'id': '28ec6c2f-0a4a-432c-9349-8e9fa643f9a1', 'userId': 'sa_converter', 'userDirectory': 'INTERNAL', 'name': 'sa_converter', 'privileges': None}, {'id': '3f31c076-a60f-438a-b0d4-c16370f5d367', 'userId': 'sa_hub', 'userDirectory': 'INTERNAL', 'name': 'sa_hub', 'privileges': None}, {'id': '424b0fe2-9e61-4ed5-9613-8fc314e2b840', 'userId': 'sa_api', 'userDirectory': 'INTERNAL', 'name': 'sa_api', 'privileges': None}, {'id': '44a51447-54d9-4f7a-be8b-9b92f5ec3bc1', 'userId': 'sa_proxy', 'userDirectory': 'INTERNAL', 'name': 'sa_proxy', 'privileges': None}, {'id': '5b1efea7-f03a-48fb-b54b-4055f1056ac8', 'userId': 'sa_qlikview', 'userDirectory': 'INTERNAL', 'name': 'sa_qlikview', 'privileges': None}, {'id': '5db92ecf-00a1-4510-ab9c-8870fa57a82f', 'userId': 'sa_scheduler', 'userDirectory': 'INTERNAL', 'name': 'sa_scheduler', 'privileges': None}, {'id': '74bd3579-8f51-4f7a-bfbb-21d4b9368d7f', 'userId': 'sa_reporting', 'userDirectory': 'INTERNAL', 'name': 'sa_reporting', 'privileges': None}, {'id': '9615d134-06de-4184-8f20-ea63ddeeb73f', 'userId': 'sa_repository', 'userDirectory': 'INTERNAL', 'name': 'sa_repository', 'privileges': None}, {'id': 'cc8cc42e-fca3-408d-ae00-aa19d66b71f0', 'userId': 'sa_printing', 'userDirectory': 'INTERNAL', 'name': 'sa_printing', 'privileges': None}, {'id': 'dbdcd493-4281-430e-8223-625a40a8cf6d', 'userId': 'sa_engine', 'userDirectory': 'INTERNAL', 'name': 'sa_engine', 'privileges': None}, {'id': '3797cd0e-a0fe-4bc1-8409-94f3a7af7a63', 'userId': 'administrator', 'userDirectory': 'QLIKLOCAL', 'name': 'Administrator', 'privileges': None}, {'id': '725a3fc3-c6fe-4048-a55f-d7b80b233564', 'userId': 'dev1', 'userDirectory': 'QLIKLOCAL', 'name': 'dev1', 'privileges': None}, {'id': '4423be9a-70d6-43b2-92b7-65b6ec1a9961', 'userId': 'clint', 'userDirectory': 'SURFACECC', 'name': 'clint', 'privileges': None}, {'id': 'a1eea94c-156a-4852-ab2b-8c5c71364d3e', 'userId': 'qservice', 'userDirectory': 'QLIKLOCAL', 'name': 'qservice', 'privileges': None}]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_customproperty/",
+            "text": "Description\n\n\nReturns the custom properties from the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/custompropertydefinition\n\n\nUsage\n\n\nqrs.qrs_customproperty()\n\n\n\n\nReturns\n\n\n[]",
+            "title": "get customproperty"
+        },
+        {
+            "location": "/user-guide/get_customproperty/#description",
+            "text": "Returns the custom properties from the Qlik Sense Server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_customproperty/#endpoint",
+            "text": "/qrs/custompropertydefinition",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_customproperty/#usage",
+            "text": "qrs.qrs_customproperty()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_customproperty/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_tag/",
+            "text": "Description\n\n\nReturns the tags on the server\n\n\nEndpoint\n\n\n/qrs/tag\n\n\nUsage\n\n\nqrs.get_tag()\n\n\n\n\nReturns\n\n\n[]",
+            "title": "get tag"
+        },
+        {
+            "location": "/user-guide/get_tag/#description",
+            "text": "Returns the tags on the server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_tag/#endpoint",
+            "text": "/qrs/tag",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_tag/#usage",
+            "text": "qrs.get_tag()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_tag/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_task/",
+            "text": "Description\n\n\nReturns the tasks\n\n\nEndpoint\n\n\n/qrs/task\n\n\nUsage\n\n\nqrs.get_task()\n\n\n\n\nReturns\n\n\n[{'id': '96e580be-8d71-4bbb-8a7f-0609633e4ebc', 'operational': {'id': 'f6fe824b-271b-4980-ad27-e6751ec953fc', 'lastExecutionResult': {'id': '9c100694-6369-4eb7-8537-3dc2e62ed4ef', 'executingNodeName': '', 'status': 7, 'startTime': '2017-01-20T01:46:27.831Z', 'stopTime': '2017-01-20T01:47:17.615Z', 'duration': 49784, 'fileReferenceID': '2030ee32-cd06-4bb6-8960-37320c7eb68a', 'scriptLogAvailable': False, 'details': [{'id': 'e8e2dd10-3930-46ca-babf-5afcde9e0886', 'detailsType': 2, 'message': 'Changing task state to Triggered', 'detailCreatedDate': '2017-01-20T01:46:28.645Z', 'privileges': None}, {'id': 'e2db88ed-4b81-404c-8964-a3b2ca2a569d', 'detailsType': 2, 'message': 'Trying to start task. Sending task to slave-node qs2.qliklocal.net', 'detailCreatedDate': '2017-01-20T01:46:28.869Z', 'privileges': None}, {'id': 'b695ead8-4d6a-42fd-a79d-0313b3db9e5b', 'detailsType': 2, 'message': 'Changing task state",
+            "title": "get task"
+        },
+        {
+            "location": "/user-guide/get_task/#description",
+            "text": "Returns the tasks",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_task/#endpoint",
+            "text": "/qrs/task",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_task/#usage",
+            "text": "qrs.get_task()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_task/#returns",
+            "text": "[{'id': '96e580be-8d71-4bbb-8a7f-0609633e4ebc', 'operational': {'id': 'f6fe824b-271b-4980-ad27-e6751ec953fc', 'lastExecutionResult': {'id': '9c100694-6369-4eb7-8537-3dc2e62ed4ef', 'executingNodeName': '', 'status': 7, 'startTime': '2017-01-20T01:46:27.831Z', 'stopTime': '2017-01-20T01:47:17.615Z', 'duration': 49784, 'fileReferenceID': '2030ee32-cd06-4bb6-8960-37320c7eb68a', 'scriptLogAvailable': False, 'details': [{'id': 'e8e2dd10-3930-46ca-babf-5afcde9e0886', 'detailsType': 2, 'message': 'Changing task state to Triggered', 'detailCreatedDate': '2017-01-20T01:46:28.645Z', 'privileges': None}, {'id': 'e2db88ed-4b81-404c-8964-a3b2ca2a569d', 'detailsType': 2, 'message': 'Trying to start task. Sending task to slave-node qs2.qliklocal.net', 'detailCreatedDate': '2017-01-20T01:46:28.869Z', 'privileges': None}, {'id': 'b695ead8-4d6a-42fd-a79d-0313b3db9e5b', 'detailsType': 2, 'message': 'Changing task state",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_securityrule/",
+            "text": "Description\n\n\nReturns the rules\n\n\nEndpoint\n\n\n/qrs/systemrule\n\n\nUsage\n\n\nqrs.get_securityrule()\n\n\n\n\nReturns\n\n\n[{'id': '087cfb97-2d1f-4d74-9500-b180fa0bd4ec', 'category': 'Security', 'type': 'Default', 'name': 'StreamEveryoneAnonymous', 'rule': 'user.IsAnonymous()', 'resourceFilter': 'Stream_aaec8d41-5201-43ab-809f-3063750dfafd', 'actions': 2, 'comment': 'The default stream called Everyone should be visible for anonymous users', 'disabled': False, 'privileges': None}, {'id': '0911753c-58c2-4088-a82b-c0a71ac37956', 'category': 'Security', 'type': 'Default', 'name': 'SecurityAdminServerNodeConfiguration', 'rule': 'user.roles = \"SecurityAdmin\"', 'resourceFilter': 'ServerNodeConfiguration_*', 'actio",
+            "title": "get securityrule"
+        },
+        {
+            "location": "/user-guide/get_securityrule/#description",
+            "text": "Returns the rules",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_securityrule/#endpoint",
+            "text": "/qrs/systemrule",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_securityrule/#usage",
+            "text": "qrs.get_securityrule()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_securityrule/#returns",
+            "text": "[{'id': '087cfb97-2d1f-4d74-9500-b180fa0bd4ec', 'category': 'Security', 'type': 'Default', 'name': 'StreamEveryoneAnonymous', 'rule': 'user.IsAnonymous()', 'resourceFilter': 'Stream_aaec8d41-5201-43ab-809f-3063750dfafd', 'actions': 2, 'comment': 'The default stream called Everyone should be visible for anonymous users', 'disabled': False, 'privileges': None}, {'id': '0911753c-58c2-4088-a82b-c0a71ac37956', 'category': 'Security', 'type': 'Default', 'name': 'SecurityAdminServerNodeConfiguration', 'rule': 'user.roles = \"SecurityAdmin\"', 'resourceFilter': 'ServerNodeConfiguration_*', 'actio",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_userdirectory/",
+            "text": "Description\n\n\nReturns the user directories on the server\n\n\nEndpoint\n\n\n/qrs/userdirectory\n\n\nUsage\n\n\nqrs.get_userdirectory()\n\n\n\n\nReturns\n\n\n[{'id': 'ce208cb0-ba39-4320-963c-457255cd2d38', 'name': 'qliklocal', 'type': 'Repository.UserDirectoryConnectors.LDAP.ActiveDirectory', 'privileges': None}]",
+            "title": "get userdirectory"
+        },
+        {
+            "location": "/user-guide/get_userdirectory/#description",
+            "text": "Returns the user directories on the server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_userdirectory/#endpoint",
+            "text": "/qrs/userdirectory",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_userdirectory/#usage",
+            "text": "qrs.get_userdirectory()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_userdirectory/#returns",
+            "text": "[{'id': 'ce208cb0-ba39-4320-963c-457255cd2d38', 'name': 'qliklocal', 'type': 'Repository.UserDirectoryConnectors.LDAP.ActiveDirectory', 'privileges': None}]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_extension/",
+            "text": "Description\n\n\nReturns the extensions on the server\n\n\nEndpoint\n\n\n/qrs/extension\n\n\nUsage\n\n\nqrs.get_extension()\n\n\n\n\nReturns\n\n\n[{'id': '011b5fd4-43c2-491d-b137-80a5957b900f', 'name': 'basic-mashup-template', 'privileges': None}]",
+            "title": "get extension"
+        },
+        {
+            "location": "/user-guide/get_extension/#description",
+            "text": "Returns the extensions on the server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_extension/#endpoint",
+            "text": "/qrs/extension",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_extension/#usage",
+            "text": "qrs.get_extension()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_extension/#returns",
+            "text": "[{'id': '011b5fd4-43c2-491d-b137-80a5957b900f', 'name': 'basic-mashup-template', 'privileges': None}]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_stream/",
+            "text": "Description\n\n\nReturns the streams on the server\n\n\nEndpoint\n\n\n/qrs/stream\n\n\nUsage\n\n\nqrs.get_stream()\n\n\n\n\nReturns\n\n\n[{'id': 'a70ca8a5-1d59-4cc9-b5fa-6e207978dcaf', 'name': 'Monitoring apps', 'privileges': None}, {'id': 'aaec8d41-5201-43ab-809f-3063750dfafd', 'name': 'Everyone', 'privileges': None}]",
+            "title": "get stream"
+        },
+        {
+            "location": "/user-guide/get_stream/#description",
+            "text": "Returns the streams on the server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_stream/#endpoint",
+            "text": "/qrs/stream",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_stream/#usage",
+            "text": "qrs.get_stream()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_stream/#returns",
+            "text": "[{'id': 'a70ca8a5-1d59-4cc9-b5fa-6e207978dcaf', 'name': 'Monitoring apps', 'privileges': None}, {'id': 'aaec8d41-5201-43ab-809f-3063750dfafd', 'name': 'Everyone', 'privileges': None}]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_servernode/",
+            "text": "Description\n\n\nReturns the server node configuration\n\n\nEndpoint\n\n\n/qrs/servernodeconfiguration\n\n\nUsage\n\n\nqrs.get_servernode()\n\n\n\n\nReturns\n\n\n[{'id': 'f1b18c53-825c-429a-a119-84e0ef717fff', 'name': 'Central', 'hostName': 'qs2.qliklocal.net', 'temporaryfilepath': 'C:\\\\Users\\\\qservice.QLIKLOCAL\\\\AppData\\\\Local\\\\Temp\\\\', 'serviceCluster': {'id': '1f8c6d7e-70a0-4f4b-bbf7-b6062666f23d', 'name': 'ServiceCluster', 'privileges': None}, 'privileges': None}]",
+            "title": "get servernode"
+        },
+        {
+            "location": "/user-guide/get_servernode/#description",
+            "text": "Returns the server node configuration",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_servernode/#endpoint",
+            "text": "/qrs/servernodeconfiguration",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_servernode/#usage",
+            "text": "qrs.get_servernode()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_servernode/#returns",
+            "text": "[{'id': 'f1b18c53-825c-429a-a119-84e0ef717fff', 'name': 'Central', 'hostName': 'qs2.qliklocal.net', 'temporaryfilepath': 'C:\\\\Users\\\\qservice.QLIKLOCAL\\\\AppData\\\\Local\\\\Temp\\\\', 'serviceCluster': {'id': '1f8c6d7e-70a0-4f4b-bbf7-b6062666f23d', 'name': 'ServiceCluster', 'privileges': None}, 'privileges': None}]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_useraccesstype/",
+            "text": "Description\n\n\nReturns a list of users with a user access type token\n\n\nEndpoint\n\n\n/qrs/license/useraccesstype\n\n\nUsage\n\n\nqrs.get_useraccesstype()\n\n\n\n\nReturns\n\n\n[{'id': '5ef788e3-63ff-4aaf-b769-416f5b9da695', 'privileges': None}, {'id': 'f22d9856-45af-431c-8082-2d91e7469fb2', 'privileges': None}]",
+            "title": "get useraccesstype"
+        },
+        {
+            "location": "/user-guide/get_useraccesstype/#description",
+            "text": "Returns a list of users with a user access type token",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_useraccesstype/#endpoint",
+            "text": "/qrs/license/useraccesstype",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_useraccesstype/#usage",
+            "text": "qrs.get_useraccesstype()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_useraccesstype/#returns",
+            "text": "[{'id': '5ef788e3-63ff-4aaf-b769-416f5b9da695', 'privileges': None}, {'id': 'f22d9856-45af-431c-8082-2d91e7469fb2', 'privileges': None}]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_appobject/",
+            "text": "Description\n\n\nReturns the application objects on the server (Sheets etc)\n\n\nEndpoint\n\n\n/qrs/app/object\n\n\nUsage\n\n\nqrs.get_appobject()\n\n\n\n\nReturns\n\n\n[{'id': 'd912d981-386a-4a12-a1d9-c29a328c26f3', 'engineObjectType': '', 'description': '', 'objectType': 'GenericVariableEntry', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'name': '', 'engineObjectId': '715f7f03-687d-4c13-b8b5-da55827ae2fa', 'contentHash': \"FJA.B-ZK,P$I1/OW#3&KY6K!8%7/%9Q)(UI'=YJ'PU^\", 'privileges': None}, {'id': '08d19e2c-25a0-4fd3-a272-d594f1aebfa0', 'engineObjectType': '', 'description': '', 'objectType': 'dimension', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'name': 'Context', 'engineObjectId': 'afc42dfc-6800-44cd-b8f3-3d4bdc452a96', 'contentHash': 'I/6\"EOJR+P7/$1\\'.?T+@3[;/D`;IZ\"#%,_Q0J!-S6O,', 'privileges': None}, {'id': 'a03292eb-7d48-4126-894c-d5175b6aad96', 'engineObjectType': '', 'description': '', 'objectType': 'dimension', 'publishTime': '1753-01-01T00:00:00",
+            "title": "get appobject"
+        },
+        {
+            "location": "/user-guide/get_appobject/#description",
+            "text": "Returns the application objects on the server (Sheets etc)",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_appobject/#endpoint",
+            "text": "/qrs/app/object",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_appobject/#usage",
+            "text": "qrs.get_appobject()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_appobject/#returns",
+            "text": "[{'id': 'd912d981-386a-4a12-a1d9-c29a328c26f3', 'engineObjectType': '', 'description': '', 'objectType': 'GenericVariableEntry', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'name': '', 'engineObjectId': '715f7f03-687d-4c13-b8b5-da55827ae2fa', 'contentHash': \"FJA.B-ZK,P$I1/OW#3&KY6K!8%7/%9Q)(UI'=YJ'PU^\", 'privileges': None}, {'id': '08d19e2c-25a0-4fd3-a272-d594f1aebfa0', 'engineObjectType': '', 'description': '', 'objectType': 'dimension', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'name': 'Context', 'engineObjectId': 'afc42dfc-6800-44cd-b8f3-3d4bdc452a96', 'contentHash': 'I/6\"EOJR+P7/$1\\'.?T+@3[;/D`;IZ\"#%,_Q0J!-S6O,', 'privileges': None}, {'id': 'a03292eb-7d48-4126-894c-d5175b6aad96', 'engineObjectType': '', 'description': '', 'objectType': 'dimension', 'publishTime': '1753-01-01T00:00:00",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_apidescription/",
+            "text": "Description\n\n\nReturns the API endpoints for the Qlik Sense Repository Service\n\n\nEndpoint\n\n\n/qrs/about/api/description?extended=true&method={method}&format=JSON\n\n\nUsage\n\n\n\"\"\"\n:param method: HTTP Methods (GET, POST, DELETE, PUT)\n\"\"\"\nqrs.get_apidescription('GET')\n\n\n\n\nReturns\n\n\n'{\"method\":\"GET\",\"path\":\"/qrs/about\",\"extended\":\"[resource=manual, bodytype=Void, returntype=About]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/analyzeraccessgroup?listentries={listentries}\",\"extended\":\"[resource=manual, bodytype=Void, returntype=LicenseAnalyzerAccessGroup, optional=listentries]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/analyzeraccesstype?listentries={listentries}\",\"extended\":\"[resource=manual, bodytype=Void, returntype=LicenseAnalyzerAccessType, optional=listentries]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/analyzeraccessusage?listentries={listentries}\",\"extended\":\"[resource=manual, bodytype=Void, returntype=LicenseAnalyzerAccessUsage, optional=listentries]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/app?listentries={listentries}\",\"extended\":\"[resource=manual, bodyty",
+            "title": "get apidescription"
+        },
+        {
+            "location": "/user-guide/get_apidescription/#description",
+            "text": "Returns the API endpoints for the Qlik Sense Repository Service",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_apidescription/#endpoint",
+            "text": "/qrs/about/api/description?extended=true&method={method}&format=JSON",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_apidescription/#usage",
+            "text": "\"\"\"\n:param method: HTTP Methods (GET, POST, DELETE, PUT)\n\"\"\"\nqrs.get_apidescription('GET')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_apidescription/#returns",
+            "text": "'{\"method\":\"GET\",\"path\":\"/qrs/about\",\"extended\":\"[resource=manual, bodytype=Void, returntype=About]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/analyzeraccessgroup?listentries={listentries}\",\"extended\":\"[resource=manual, bodytype=Void, returntype=LicenseAnalyzerAccessGroup, optional=listentries]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/analyzeraccesstype?listentries={listentries}\",\"extended\":\"[resource=manual, bodytype=Void, returntype=LicenseAnalyzerAccessType, optional=listentries]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/analyzeraccessusage?listentries={listentries}\",\"extended\":\"[resource=manual, bodytype=Void, returntype=LicenseAnalyzerAccessUsage, optional=listentries]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/app?listentries={listentries}\",\"extended\":\"[resource=manual, bodyty",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/export_app/",
+            "text": "Description\n\n\nExports an application to a qvf file\n\n\nEndpoint\n\n\nqrs/download/app/{appid}/{exportticket}/{filename}\n\n\nUsage\n\n\n\"\"\"\n:param appid: The application id name to export\n:param filepath: The path to the file\n:param filename: The path and filename to export the application to\n\"\"\"\nqrs.export_app('8dadc1f4-6c70-4708-9ad7-8eda34da0106', 'c:/some/folder/', 'exportedapp.qvf')\n\n\n\n\nReturns\n\n\nApplication: exportedapp.qvf written to c:/some/folder/",
+            "title": "export app"
+        },
+        {
+            "location": "/user-guide/export_app/#description",
+            "text": "Exports an application to a qvf file",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/export_app/#endpoint",
+            "text": "qrs/download/app/{appid}/{exportticket}/{filename}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/export_app/#usage",
+            "text": "\"\"\"\n:param appid: The application id name to export\n:param filepath: The path to the file\n:param filename: The path and filename to export the application to\n\"\"\"\nqrs.export_app('8dadc1f4-6c70-4708-9ad7-8eda34da0106', 'c:/some/folder/', 'exportedapp.qvf')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/export_app/#returns",
+            "text": "Application: exportedapp.qvf written to c:/some/folder/",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/publish_app/",
+            "text": "Description\n\n\nPublishes an application to a stream\n\n\nEndpoint\n\n\nqrs/app/{appid}/publish?stream={streamid}&name={new app name}\n\n\nUsage\n\n\n\"\"\"\n:param appid: ID of the application to publish\n:param stream: Stream name to publish the application to\n:param name: Name of application once published\n\"\"\"\nqrs.publish_app('00ee092c-3bf0-4818-b3bd-61fe45846d00', '91176367-ce28-4ece-bd0c-668b13ab03dd', 'NewApp')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "publish app"
+        },
+        {
+            "location": "/user-guide/publish_app/#description",
+            "text": "Publishes an application to a stream",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/publish_app/#endpoint",
+            "text": "qrs/app/{appid}/publish?stream={streamid}&name={new app name}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/publish_app/#usage",
+            "text": "\"\"\"\n:param appid: ID of the application to publish\n:param stream: Stream name to publish the application to\n:param name: Name of application once published\n\"\"\"\nqrs.publish_app('00ee092c-3bf0-4818-b3bd-61fe45846d00', '91176367-ce28-4ece-bd0c-668b13ab03dd', 'NewApp')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/publish_app/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/migrate_app/",
+            "text": "Description\n\n\nThis process is usually automatically performed after upgrades, however if the automated process fails this function can be used.\n\n\nEndpoint\n\n\n/qrs/app/{appid}/migrate\n\n\nUsage\n\n\n'''\n:param appid: ID of the application to migrate\n'''\nqrs.migrate_app('00ee092c-3bf0-4818-b3bd-61fe45846d00')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "migrate app"
+        },
+        {
+            "location": "/user-guide/migrate_app/#description",
+            "text": "This process is usually automatically performed after upgrades, however if the automated process fails this function can be used.",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/migrate_app/#endpoint",
+            "text": "/qrs/app/{appid}/migrate",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/migrate_app/#usage",
+            "text": "'''\n:param appid: ID of the application to migrate\n'''\nqrs.migrate_app('00ee092c-3bf0-4818-b3bd-61fe45846d00')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/migrate_app/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/publish_appobject/",
+            "text": "Description\n\n\nPublishs an unpublished appobject.  For example a personal sheet to a community sheet.\n\n\nEndpoint\n\n\n/qrs/app/object/{objid}/publish\n\n\nUsage\n\n\nqrs.publish_appobject('00ee092c-3bf0-4818-b3bd-61fe45846d00')\n\n\n\n\nReturns",
+            "title": "publish app object"
+        },
+        {
+            "location": "/user-guide/publish_appobject/#description",
+            "text": "Publishs an unpublished appobject.  For example a personal sheet to a community sheet.",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/publish_appobject/#endpoint",
+            "text": "/qrs/app/object/{objid}/publish",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/publish_appobject/#usage",
+            "text": "qrs.publish_appobject('00ee092c-3bf0-4818-b3bd-61fe45846d00')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/publish_appobject/#returns",
+            "text": "",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/unpublish_appobject/",
+            "text": "Description\n\n\nUnpublishes an app object. For example community sheet to personal sheet\n\n\nEndpoint\n\n\n/qrs/app/object/{objid}/unpublish \n\n\nUsage\n\n\nqrs.unpublish_appobject('00ee092c-3bf0-4818-b3bd-61fe45846d00')\n\n\n\n\nReturns",
+            "title": "unpublish app object"
+        },
+        {
+            "location": "/user-guide/unpublish_appobject/#description",
+            "text": "Unpublishes an app object. For example community sheet to personal sheet",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/unpublish_appobject/#endpoint",
+            "text": "/qrs/app/object/{objid}/unpublish",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/unpublish_appobject/#usage",
+            "text": "qrs.unpublish_appobject('00ee092c-3bf0-4818-b3bd-61fe45846d00')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/unpublish_appobject/#returns",
+            "text": "",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/set_license/",
+            "text": "Description\n\n\nLicenses the Qlik Sense Server.  If the server can reach the internet the LEF can be set to None\n\n\nEndpoint\n\n\n/qrs/license?control={control}\n\n\nUsage\n\n\n:param control: License control number\n:param serial: License serial number\n:param name: License name\n:param organization: License organization\n:lef: Set to None if server is internet connected else format as this\nlef = \"line1{r}{n}line2{r}{n}line3{r}{n}line4{r}{n}line5{r}{n}line6{r}{n}line7\" (remove {})\n\"\"\"\n\n\nqrs.set_license({control}, {serial}, {user}, {organization}, {LEF or None})\n\n\n\n\nReturns\n\n\n{'id': 'c517fae1-adbb-4848-b404-1d8a8d3748ad', 'createdDate': '2017-01-18T21:42:01.955Z', 'modifiedDate': '2017-01-18T21:42:01.955Z', 'modifiedByUserName': 'QLIKLOCAL\\\\administrator', 'lef': 'XXX\\r\\nInternal Qlik License 2017;;;\\r\\nQlik Sense Enterprise;;;\\r\\nPRODUCTLEVEL;50;;2018-01-30\\r\\nTOKENS;XXX;;\\r\\nTIMELIMIT;;;XXX-01-30\\r\\XXX', 'serial': 'XXX', 'check': '1100275618', 'name': 'Qlik', 'organization': 'Qlik', 'product': 2, 'numberOfCores': -1, 'isExpired': False, 'expiredReason': '', 'isBlacklisted': False, 'isInvalid': False, 'privileges': None, 'impactSecurityAccess': False, 'schemaPath': 'License'}",
+            "title": "set license"
+        },
+        {
+            "location": "/user-guide/set_license/#description",
+            "text": "Licenses the Qlik Sense Server.  If the server can reach the internet the LEF can be set to None",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/set_license/#endpoint",
+            "text": "/qrs/license?control={control}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/set_license/#usage",
+            "text": ":param control: License control number\n:param serial: License serial number\n:param name: License name\n:param organization: License organization\n:lef: Set to None if server is internet connected else format as this\nlef = \"line1{r}{n}line2{r}{n}line3{r}{n}line4{r}{n}line5{r}{n}line6{r}{n}line7\" (remove {})\n\"\"\"  qrs.set_license({control}, {serial}, {user}, {organization}, {LEF or None})",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/set_license/#returns",
+            "text": "{'id': 'c517fae1-adbb-4848-b404-1d8a8d3748ad', 'createdDate': '2017-01-18T21:42:01.955Z', 'modifiedDate': '2017-01-18T21:42:01.955Z', 'modifiedByUserName': 'QLIKLOCAL\\\\administrator', 'lef': 'XXX\\r\\nInternal Qlik License 2017;;;\\r\\nQlik Sense Enterprise;;;\\r\\nPRODUCTLEVEL;50;;2018-01-30\\r\\nTOKENS;XXX;;\\r\\nTIMELIMIT;;;XXX-01-30\\r\\XXX', 'serial': 'XXX', 'check': '1100275618', 'name': 'Qlik', 'organization': 'Qlik', 'product': 2, 'numberOfCores': -1, 'isExpired': False, 'expiredReason': '', 'isBlacklisted': False, 'isInvalid': False, 'privileges': None, 'impactSecurityAccess': False, 'schemaPath': 'License'}",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/import_users/",
+            "text": "Description\n\n\nImports users from a text file\n\n\nEndpoint\n\n\n/qrs/users\n\n\nUsage\n\n\n'''\n:param filename: Path and filename to txt or csv file containing users\n        :example import_users(r'c:\\\\some\\\\folder\\\\file.txt')\n'''\nqrs.import_users('c:/some/folder/users.txt')\n\n\n\n\nFile format\n\n\n\n\n\n\n\n\nuserID\n\n\nuserDirectory\n\n\nname\n\n\n\n\n\n\n\n\n\n\nuser1\n\n\nDirectoryName\n\n\nBob Smith\n\n\n\n\n\n\n\n\nReturns\n\n\n[]",
+            "title": "import users"
+        },
+        {
+            "location": "/user-guide/import_users/#description",
+            "text": "Imports users from a text file",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/import_users/#endpoint",
+            "text": "/qrs/users",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/import_users/#usage",
+            "text": "'''\n:param filename: Path and filename to txt or csv file containing users\n        :example import_users(r'c:\\\\some\\\\folder\\\\file.txt')\n'''\nqrs.import_users('c:/some/folder/users.txt')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/import_users/#file-format",
+            "text": "userID  userDirectory  name      user1  DirectoryName  Bob Smith",
+            "title": "File format"
+        },
+        {
+            "location": "/user-guide/import_users/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/import_tag/",
+            "text": "Description\n\n\nImports tags from a text file\n\n\nEndpoint\n\n\n/qrs/tag\n\n\nUsage\n\n\n'''\n:param filename: The path and filename of the text or csv file\n        :example import_tag(r'c:\\\\some\\\\folder\\\\file.txt')\n'''\nqrs.import_tag('c:/some/folder/tag.txt')\n\n\n\n\nFile format\n\n\n\n\n\n\n\n\nname\n\n\n\n\n\n\n\n\n\n\n\n\ntag1\n\n\n\n\n\n\n\n\ntag2\n\n\n\n\n\n\n\n\n\n\nReturns\n\n\n[]",
+            "title": "import tag"
+        },
+        {
+            "location": "/user-guide/import_tag/#description",
+            "text": "Imports tags from a text file",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/import_tag/#endpoint",
+            "text": "/qrs/tag",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/import_tag/#usage",
+            "text": "'''\n:param filename: The path and filename of the text or csv file\n        :example import_tag(r'c:\\\\some\\\\folder\\\\file.txt')\n'''\nqrs.import_tag('c:/some/folder/tag.txt')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/import_tag/#file-format",
+            "text": "name       tag1     tag2",
+            "title": "File format"
+        },
+        {
+            "location": "/user-guide/import_tag/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/start_task/",
+            "text": "Description\n\n\nStart a task (for example, a reload task), identified by {id}, so that it runs on a Qlik                                                               Sense Scheduler Service (QSS).\n\n\nEndpoint\n\n\n/qrs/task/{taskid}/start\n\n\nUsage\n\n\n\"\"\"\n:param taskid: id of the task\n\"\"\"\nqrs.start_task('ce208cb0-ba39-4320-963c-457255cd2d38')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "start task"
+        },
+        {
+            "location": "/user-guide/start_task/#description",
+            "text": "Start a task (for example, a reload task), identified by {id}, so that it runs on a Qlik                                                               Sense Scheduler Service (QSS).",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/start_task/#endpoint",
+            "text": "/qrs/task/{taskid}/start",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/start_task/#usage",
+            "text": "\"\"\"\n:param taskid: id of the task\n\"\"\"\nqrs.start_task('ce208cb0-ba39-4320-963c-457255cd2d38')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/start_task/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/import_extension/",
+            "text": "Description\n\n\nImports the extension to Qlik Sense\n\n\nEndpoint\n\n\n/qrs/extension/upload\n\n\nUsage\n\n\n\"\"\"\n:param filename: The path and filename of the extension (make sure its a zip archive)\n        :usage: import_extension(r'c:\\\\some\\folder\\\\file.zip')\n\"\"\"\nqrs.import_extension(c:/some/folder/extension.zip)\n\n\n\n\nReturns\n\n\n[]",
+            "title": "import extension"
+        },
+        {
+            "location": "/user-guide/import_extension/#description",
+            "text": "Imports the extension to Qlik Sense",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/import_extension/#endpoint",
+            "text": "/qrs/extension/upload",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/import_extension/#usage",
+            "text": "\"\"\"\n:param filename: The path and filename of the extension (make sure its a zip archive)\n        :usage: import_extension(r'c:\\\\some\\folder\\\\file.zip')\n\"\"\"\nqrs.import_extension(c:/some/folder/extension.zip)",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/import_extension/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/copy_app/",
+            "text": "Description\n\n\nCopies an application within Qlik Sense, owner will be SA_Repository\n\n\nEndpoint\n\n\n/qrs/app/{appid}/copy?name={newname}\n\n\nUsage\n\n\n\"\"\"\n:param name: Name of the new application\n:param appid: ID of the Qlik Sense application to copy  \n\"\"\"\nqrs.copy_app('ce208cb0-ba39-4320-963c-457255cd2d38', 'CopyApp')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "copy app"
+        },
+        {
+            "location": "/user-guide/copy_app/#description",
+            "text": "Copies an application within Qlik Sense, owner will be SA_Repository",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/copy_app/#endpoint",
+            "text": "/qrs/app/{appid}/copy?name={newname}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/copy_app/#usage",
+            "text": "\"\"\"\n:param name: Name of the new application\n:param appid: ID of the Qlik Sense application to copy  \n\"\"\"\nqrs.copy_app('ce208cb0-ba39-4320-963c-457255cd2d38', 'CopyApp')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/copy_app/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/new_stream/",
+            "text": "Description\n\n\nCreates a new Stream\n\n\nEndpoint\n\n\n/qrs/stream\n\n\nUsage\n\n\n\"\"\"\n:param name: The name of the new Stream\n\"\"\"\nqrs.new_stream('NewStream')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "new stream"
+        },
+        {
+            "location": "/user-guide/new_stream/#description",
+            "text": "Creates a new Stream",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/new_stream/#endpoint",
+            "text": "/qrs/stream",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/new_stream/#usage",
+            "text": "\"\"\"\n:param name: The name of the new Stream\n\"\"\"\nqrs.new_stream('NewStream')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/new_stream/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/sync_userdirectory/",
+            "text": "Description\n\n\nSynchronises the user directory specified by the id\n\n\nEndpoint\n\n\n/qrs/userdirectoryconnector/syncuserdirectories\n\n\nUsage\n\n\n\"\"\"\n:param id: id of the user directory\n\"\"\"\nqrs.sync_userdirectory('00ee092c-3bf0-4818-b3bd-61fe45846d00')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "sync user directory"
+        },
+        {
+            "location": "/user-guide/sync_userdirectory/#description",
+            "text": "Synchronises the user directory specified by the id",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/sync_userdirectory/#endpoint",
+            "text": "/qrs/userdirectoryconnector/syncuserdirectories",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/sync_userdirectory/#usage",
+            "text": "\"\"\"\n:param id: id of the user directory\n\"\"\"\nqrs.sync_userdirectory('00ee092c-3bf0-4818-b3bd-61fe45846d00')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/sync_userdirectory/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/export_certificates/",
+            "text": "Description\n\n\nExports certificates from the Central Node - saved to C:\\ProgramData\\Qlik\\Sense\\Repository\\Exported Certificates\n\n\nEndpoint\n\n\n/qrs/certificatedistribution/exportcertificates\n\n\nUsage\n\n\n\"\"\"\n:param machinename: Computername to link to the certificates\n:param certificatepassword: Password to secure certificate private key\n:param includesecret: Include private key (True, False)\n:param exportformat: Format of export (Windows, Pem)\n\"\"\"\nqrs.export_certificates('ccsurface', 's', 'True', 'Pem')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "export certificates"
+        },
+        {
+            "location": "/user-guide/export_certificates/#description",
+            "text": "Exports certificates from the Central Node - saved to C:\\ProgramData\\Qlik\\Sense\\Repository\\Exported Certificates",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/export_certificates/#endpoint",
+            "text": "/qrs/certificatedistribution/exportcertificates",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/export_certificates/#usage",
+            "text": "\"\"\"\n:param machinename: Computername to link to the certificates\n:param certificatepassword: Password to secure certificate private key\n:param includesecret: Include private key (True, False)\n:param exportformat: Format of export (Windows, Pem)\n\"\"\"\nqrs.export_certificates('ccsurface', 's', 'True', 'Pem')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/export_certificates/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/new_dataconnection/",
+            "text": "Description\n\n\nAdds a data connection to Qlik Sense\n\n\nEndpoint\n\n\n/qrs/dataconnection/\n\n\nUsage\n\n\n\"\"\"\n:param username: The user the data connection will connect using\n:param password: The password of the user to connect\n:param name: The name of the data connection\n:param connectionstring: The connection string\n:param conntype: The type of connection\n\"\"\"\nqrs.new_dataconnection()\n\n\n\n\nReturns\n\n\n[]",
+            "title": "new dataconnection"
+        },
+        {
+            "location": "/user-guide/new_dataconnection/#description",
+            "text": "Adds a data connection to Qlik Sense",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/new_dataconnection/#endpoint",
+            "text": "/qrs/dataconnection/",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/new_dataconnection/#usage",
+            "text": "\"\"\"\n:param username: The user the data connection will connect using\n:param password: The password of the user to connect\n:param name: The name of the data connection\n:param connectionstring: The connection string\n:param conntype: The type of connection\n\"\"\"\nqrs.new_dataconnection()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/new_dataconnection/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/import_app/",
+            "text": "Description\n\n\nImports a binary QVF Qlik Sense application to Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/app/upload?name={name}\n\n\nUsage\n\n\n\"\"\"\n:param name: The name of the application that will be displayed in Qlik Sense\n:param filename: The path and filename for the QVF file\n\"\"\"\nqrs.import_app('NewApp', 'c:/some/folder/app.qvf')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "import app"
+        },
+        {
+            "location": "/user-guide/import_app/#description",
+            "text": "Imports a binary QVF Qlik Sense application to Qlik Sense Server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/import_app/#endpoint",
+            "text": "/qrs/app/upload?name={name}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/import_app/#usage",
+            "text": "\"\"\"\n:param name: The name of the application that will be displayed in Qlik Sense\n:param filename: The path and filename for the QVF file\n\"\"\"\nqrs.import_app('NewApp', 'c:/some/folder/app.qvf')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/import_app/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/import_customproperty/",
+            "text": "Description\n\n\nImports custom properties into Qlik Sense\n\n\nEndpoint\n\n\n/qrs/custompropertydefinition/many\n\n\nUsage\n\n\n\"\"\"\n:param filename: Path and filename to JSON formatted file\n\"\"\"\nqrs.import_customproperty(r'c:\\\\some\\\\folder\\\\file.txt')\n\n\n\n\nFile Format\n\n\n        {\n            \"name\": \"FOO\",\n            \"valueType\": \"BAR\",\n            \"choiceValues\":\n                [\"FOO\",\n                \"BAR\"],\n            \"objectTypes\":\n                [\"App\",\n                 \"RepositoryService\"]}\n        :usage: \n\n\n\n\nObject Types\n\n\n\"App\",\"ContentLibrary\",\"DataConnection\",\"EngineService\",\"Extension\",\"ProxyService\",\"ReloadTask\",\n        \"RepositoryService\",\"SchedulerService\",\"ServerNodeConfiguration\",\"Stream\",\"User\",\"UserSyncTask\",\n        \"VirtualProxyConfig\"\n\n\n\n\nReturns\n\n\n{'buildVersion': '12.14.0.0', 'buildDate': '9/20/2013 10:09:00 AM', 'databaseProvider': 'Devart.Data.PostgreSql', 'nodeType': 1, 'sharedPersistence': True, 'requiresBootstrap': False, 'schemaPath': 'About'}",
+            "title": "import customproperty"
+        },
+        {
+            "location": "/user-guide/import_customproperty/#description",
+            "text": "Imports custom properties into Qlik Sense",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/import_customproperty/#endpoint",
+            "text": "/qrs/custompropertydefinition/many",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/import_customproperty/#usage",
+            "text": "\"\"\"\n:param filename: Path and filename to JSON formatted file\n\"\"\"\nqrs.import_customproperty(r'c:\\\\some\\\\folder\\\\file.txt')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/import_customproperty/#file-format",
+            "text": "{\n            \"name\": \"FOO\",\n            \"valueType\": \"BAR\",\n            \"choiceValues\":\n                [\"FOO\",\n                \"BAR\"],\n            \"objectTypes\":\n                [\"App\",\n                 \"RepositoryService\"]}\n        :usage:",
+            "title": "File Format"
+        },
+        {
+            "location": "/user-guide/import_customproperty/#object-types",
+            "text": "\"App\",\"ContentLibrary\",\"DataConnection\",\"EngineService\",\"Extension\",\"ProxyService\",\"ReloadTask\",\n        \"RepositoryService\",\"SchedulerService\",\"ServerNodeConfiguration\",\"Stream\",\"User\",\"UserSyncTask\",\n        \"VirtualProxyConfig\"",
+            "title": "Object Types"
+        },
+        {
+            "location": "/user-guide/import_customproperty/#returns",
+            "text": "{'buildVersion': '12.14.0.0', 'buildDate': '9/20/2013 10:09:00 AM', 'databaseProvider': 'Devart.Data.PostgreSql', 'nodeType': 1, 'sharedPersistence': True, 'requiresBootstrap': False, 'schemaPath': 'About'}",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/delete_user/",
+            "text": "Description\n\n\nDeletes the user specified by the userid\n\n\nEndpoint\n\n\nqrs/user/{userid}\n\n\nUsage\n\n\nqrs.delete_user('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "delete user"
+        },
+        {
+            "location": "/user-guide/delete_user/#description",
+            "text": "Deletes the user specified by the userid",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/delete_user/#endpoint",
+            "text": "qrs/user/{userid}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/delete_user/#usage",
+            "text": "qrs.delete_user('011b5fd4-43c2-491d-b137-80a5957b900f')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/delete_user/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/delete_license/",
+            "text": "Description\n\n\nDeletes the license from Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/license/{licenseid}\n\n\nUsage\n\n\nqrs.delete_license()\n\n\n\n\nReturns",
+            "title": "delete license"
+        },
+        {
+            "location": "/user-guide/delete_license/#description",
+            "text": "Deletes the license from Qlik Sense Server",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/delete_license/#endpoint",
+            "text": "/qrs/license/{licenseid}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/delete_license/#usage",
+            "text": "qrs.delete_license()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/delete_license/#returns",
+            "text": "",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/delete_app/",
+            "text": "Description\n\n\nDeletes a Qlik Sense application\n\n\nEndpoint\n\n\n/qrs/app/{appid}\n\n\nUsage\n\n\n\"\"\"\n:param appid: Name of the application to delete\n\"\"\"\n\nqrs.delete_app('ce208cb0-ba39-4320-963c-457255cd2d38')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "delete app"
+        },
+        {
+            "location": "/user-guide/delete_app/#description",
+            "text": "Deletes a Qlik Sense application",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/delete_app/#endpoint",
+            "text": "/qrs/app/{appid}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/delete_app/#usage",
+            "text": "\"\"\"\n:param appid: Name of the application to delete\n\"\"\"\n\nqrs.delete_app('ce208cb0-ba39-4320-963c-457255cd2d38')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/delete_app/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/delete_stream/",
+            "text": "Description\n\n\nRemoves a Stream from the server, applications become unpublished\n\n\nEndpoint\n\n\n/qrs/stream/{streamid}\n\n\nUsage\n\n\n\"\"\"\n:param id: ID of the stream to delete\n\n\"\"\"\nqrs.delete_stream('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "delete stream"
+        },
+        {
+            "location": "/user-guide/delete_stream/#description",
+            "text": "Removes a Stream from the server, applications become unpublished",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/delete_stream/#endpoint",
+            "text": "/qrs/stream/{streamid}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/delete_stream/#usage",
+            "text": "\"\"\"\n:param id: ID of the stream to delete\n\n\"\"\"\nqrs.delete_stream('011b5fd4-43c2-491d-b137-80a5957b900f')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/delete_stream/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/delete_tag/",
+            "text": "Description\n\n\nDeletes the tag identified by the supplied ID\n\n\nEndpoint\n\n\n/qrs/tag/{tagid}\n\n\nUsage\n\n\n\"\"\"\n:param id: ID of the tag to delete\n\"\"\"\nqrs.delete_tag('087cfb97-2d1f-4d74-9500-b180fa0bd4ec')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "delete tag"
+        },
+        {
+            "location": "/user-guide/delete_tag/#description",
+            "text": "Deletes the tag identified by the supplied ID",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/delete_tag/#endpoint",
+            "text": "/qrs/tag/{tagid}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/delete_tag/#usage",
+            "text": "\"\"\"\n:param id: ID of the tag to delete\n\"\"\"\nqrs.delete_tag('087cfb97-2d1f-4d74-9500-b180fa0bd4ec')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/delete_tag/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/delete_customproperty/",
+            "text": "Description\n\n\nDeletes the custom property identified by the supplied ID\n\n\nEndpoint\n\n\n/qrs/custompropertydefinition/{custompropertyid}\n\n\nUsage\n\n\n\"\"\"\n:param id: id of the custom property to delete\n\"\"\"\n\n\"\"\"\nqrs.delete_customproperty('eedec08b-4717-468e-9b19-4353273ee1fc')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "delete customproperty"
+        },
+        {
+            "location": "/user-guide/delete_customproperty/#description",
+            "text": "Deletes the custom property identified by the supplied ID",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/delete_customproperty/#endpoint",
+            "text": "/qrs/custompropertydefinition/{custompropertyid}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/delete_customproperty/#usage",
+            "text": "\"\"\"\n:param id: id of the custom property to delete\n\"\"\"\n\n\"\"\"\nqrs.delete_customproperty('eedec08b-4717-468e-9b19-4353273ee1fc')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/delete_customproperty/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/delete_useraccesstype/",
+            "text": "Description\n\n\nMoves the user access token allocated to the provided user to Quarantine.\n\n\nEndpoint\n\n\n/qrs/aboutqrs/license/useraccesstype/{userID}\n\n\nUsage\n\n\n\"\"\"\n:param id: The ID of the user access\n\"\"\"\nqrs.delete_useraccesstype('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "delete user accesstype"
+        },
+        {
+            "location": "/user-guide/delete_useraccesstype/#description",
+            "text": "Moves the user access token allocated to the provided user to Quarantine.",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/delete_useraccesstype/#endpoint",
+            "text": "/qrs/aboutqrs/license/useraccesstype/{userID}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/delete_useraccesstype/#usage",
+            "text": "\"\"\"\n:param id: The ID of the user access\n\"\"\"\nqrs.delete_useraccesstype('011b5fd4-43c2-491d-b137-80a5957b900f')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/delete_useraccesstype/#returns",
+            "text": "[]",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/delete_appobject/",
+            "text": "Description\n\n\nDeletes the app object identified by the supplied ID.\n\n\nEndpoint\n\n\n/qrs/app/object\n\n\nUsage\n\n\n\"\"\"\n:param: objid: The objectID of the application object (None for all)\n\n\"\"\"\nqrs.delete_appobject('c517fae1-adbb-4848-b404-1d8a8d3748ad')\n\n\n\n\nReturns\n\n\n[]",
+            "title": "delete app object"
+        },
+        {
+            "location": "/user-guide/delete_appobject/#description",
+            "text": "Deletes the app object identified by the supplied ID.",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/delete_appobject/#endpoint",
+            "text": "/qrs/app/object",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/delete_appobject/#usage",
+            "text": "\"\"\"\n:param: objid: The objectID of the application object (None for all)\n\n\"\"\"\nqrs.delete_appobject('c517fae1-adbb-4848-b404-1d8a8d3748ad')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/delete_appobject/#returns",
+            "text": "[]",
+            "title": "Returns"
+        }
+    ]
+}
