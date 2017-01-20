@@ -180,8 +180,8 @@ class ConnectQlik:
             return ('Server not licensed')
 
     def get_lef(self, serial, control, user, organization, filterparam=None, filtervalue=None):
-        return self.get('qrs/license/download?serial=%s&control=%s&user=%s&org=%s' % 
-            (serial, control, user, organization))
+        return (json.loads(self.get('qrs/license/download?serial=%s&control=%s&user=%s&org=%s' % 
+            (serial, control, user, organization))))
     
     def get_appcount(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/app/count')))        
@@ -404,4 +404,3 @@ if __name__ == '__main__':
            'C:/certs/qs2.qliklocal.net/root.pem')
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
-
