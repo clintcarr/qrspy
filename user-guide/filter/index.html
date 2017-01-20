@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>get servernode - QSRpy</title>
+  <title>Filtering - QSRpy</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "get servernode";
-    var mkdocs_page_input_path = "user-guide\\get_servernode.md";
-    var mkdocs_page_url = "/user-guide/get_servernode/";
+    var mkdocs_page_name = "Filtering";
+    var mkdocs_page_input_path = "user-guide\\filter.md";
+    var mkdocs_page_url = "/user-guide/filter/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -78,8 +78,22 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../filter/">Filtering</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Filtering</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#filtering-get-requests">Filtering GET requests</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#examples">Examples</a></li>
+                
+                    <li><a class="toctree-l4" href="#format">Format</a></li>
+                
+                    <li><a class="toctree-l4" href="#operators">Operators</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -183,21 +197,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">get servernode</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#description">Description</a></li>
-                
-                    <li><a class="toctree-l4" href="#endpoint">Endpoint</a></li>
-                
-                    <li><a class="toctree-l4" href="#usage">Usage</a></li>
-                
-                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../get_servernode/">get servernode</a>
         
     </li>
 
@@ -458,7 +459,7 @@
         
       
     
-    <li>get servernode</li>
+    <li>Filtering</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -468,17 +469,61 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="description">Description</h1>
-<p>Returns the server node configuration</p>
-<h2 id="endpoint">Endpoint</h2>
-<p>/qrs/servernodeconfiguration</p>
-<h2 id="usage">Usage</h2>
-<pre><code>qrs.get_servernode()
-</code></pre>
-
-<h2 id="returns">Returns</h2>
-<pre><code>[{'id': 'f1b18c53-825c-429a-a119-84e0ef717fff', 'name': 'Central', 'hostName': 'qs2.qliklocal.net', 'temporaryfilepath': 'C:\\Users\\qservice.QLIKLOCAL\\AppData\\Local\\Temp\\', 'serviceCluster': {'id': '1f8c6d7e-70a0-4f4b-bbf7-b6062666f23d', 'name': 'ServiceCluster', 'privileges': None}, 'privileges': None}]
-</code></pre>
+                <h1 id="filtering-get-requests">Filtering GET requests</h1>
+<p>By default all GET requests return all the information pertaining to the API Endpoint.</p>
+<p>QRSpy supports the use of filtering on most GET functions.</p>
+<p>The following format should be used.</p>
+<h1 id="examples">Examples</h1>
+<p>qrs.get_app('Name eq', 'Operations Monitor')</p>
+<h2 id="format">Format</h2>
+<p>[property] [operator] [value]</p>
+<h2 id="operators">Operators</h2>
+<table>
+<thead>
+<tr>
+<th>operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eq</td>
+<td>equal</td>
+</tr>
+<tr>
+<td>ne</td>
+<td>Not equal</td>
+</tr>
+<tr>
+<td>gt</td>
+<td>Greater than</td>
+</tr>
+<tr>
+<td>ge</td>
+<td>Greater than or equal</td>
+</tr>
+<tr>
+<td>lt</td>
+<td>Less than</td>
+</tr>
+<tr>
+<td>le</td>
+<td>Less than or equal</td>
+</tr>
+<tr>
+<td>sw</td>
+<td>Starts with</td>
+</tr>
+<tr>
+<td>ew</td>
+<td>Ends with</td>
+</tr>
+<tr>
+<td>so</td>
+<td>Substring of</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>
@@ -486,10 +531,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../get_useraccesstype/" class="btn btn-neutral float-right" title="get useraccesstype">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../get_about/" class="btn btn-neutral float-right" title="get about">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../get_stream/" class="btn btn-neutral" title="get stream"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../connecting/" class="btn btn-neutral" title="Connecting to Qlik Sense"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -515,10 +560,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../get_stream/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../connecting/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../get_useraccesstype/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../get_about/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -31,6 +31,31 @@
             "title": "Connecting to Qlik Sense Server"
         },
         {
+            "location": "/user-guide/filter/",
+            "text": "Filtering GET requests\n\n\nBy default all GET requests return all the information pertaining to the API Endpoint.\n\n\nQRSpy supports the use of filtering on most GET functions.\n\n\nThe following format should be used.\n\n\nExamples\n\n\nqrs.get_app('Name eq', 'Operations Monitor')\n\n\nFormat\n\n\n[property] [operator] [value]\n\n\nOperators\n\n\n\n\n\n\n\n\noperator\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\neq\n\n\nequal\n\n\n\n\n\n\nne\n\n\nNot equal\n\n\n\n\n\n\ngt\n\n\nGreater than\n\n\n\n\n\n\nge\n\n\nGreater than or equal\n\n\n\n\n\n\nlt\n\n\nLess than\n\n\n\n\n\n\nle\n\n\nLess than or equal\n\n\n\n\n\n\nsw\n\n\nStarts with\n\n\n\n\n\n\new\n\n\nEnds with\n\n\n\n\n\n\nso\n\n\nSubstring of",
+            "title": "Filtering"
+        },
+        {
+            "location": "/user-guide/filter/#filtering-get-requests",
+            "text": "By default all GET requests return all the information pertaining to the API Endpoint.  QRSpy supports the use of filtering on most GET functions.  The following format should be used.",
+            "title": "Filtering GET requests"
+        },
+        {
+            "location": "/user-guide/filter/#examples",
+            "text": "qrs.get_app('Name eq', 'Operations Monitor')",
+            "title": "Examples"
+        },
+        {
+            "location": "/user-guide/filter/#format",
+            "text": "[property] [operator] [value]",
+            "title": "Format"
+        },
+        {
+            "location": "/user-guide/filter/#operators",
+            "text": "operator  Description      eq  equal    ne  Not equal    gt  Greater than    ge  Greater than or equal    lt  Less than    le  Less than or equal    sw  Starts with    ew  Ends with    so  Substring of",
+            "title": "Operators"
+        },
+        {
             "location": "/user-guide/get_about/",
             "text": "Description\n\n\nReturns information on the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/about\n\n\nUsage\n\n\nqrs.get_about()\n\n\n\n\nReturns\n\n\n{'buildVersion': '12.14.0.0', 'buildDate': '9/20/2013 10:09:00 AM', 'databaseProvider': 'Devart.Data.PostgreSql', 'nodeType': 1, 'sharedPersistence': True, 'requiresBootstrap': False, 'schemaPath': 'About'}",
             "title": "get about"
