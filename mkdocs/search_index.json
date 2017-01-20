@@ -32,7 +32,7 @@
         },
         {
             "location": "/user-guide/usage/",
-            "text": "Examples\n\n\ndisplay a list of QRS API endpoints by method\n\n\n\n\nparameter1 = method\n\n\n\n\nmethod = ['get', 'put', 'post, delete']\n    for i in method:\n        qrs.get_apiendpoints(i)\n\n\n\n\nexport apps in a stream\n\n\n\n\nparameter1 = appid\n\n\nparameter2 = path to export to\n\n\nparameter3 = app name\n\n\n\n\napps = qrs.get_app('stream.name eq', 'Monitoring Apps')\n    for i in range(len(apps)):\n        qrs.export_app(apps[i]['id'], 'c:/dev/export/', r'%s.qvf' % apps[i]['name'])\n\n\n\n\nget a list of applications that are not published to a stream\n\n\napps = qrs.get_app()\nfor i in range(len(apps)):\n    if apps[i]['stream'] is None:\n        print (apps[i]['id'] + ' ' + apps[i]['name'])\n\n\n\n\nget a list of published applications\n\n\napps = qrs.get_app('stream.name ne', None)\nfor i in range(len(apps)):\n    print (apps[i]['id'] + ' ' + apps[i]['name'])\n\n\n\n\nimport the apps in a folder into a server\n\n\n\n\nparameter1 = name of the application\n\n\nparameter2 = path to the file\n\n\n\n\nimport os\ndir = os.listdir('/home/user/Documents/export')\nfor file in dir:\n  if file.endswith('.qvf'):\n      qrs.import_app((os.path.splitext(file)[0]), '/home/user/Documents/export/%s' % file)\n\n\n\n\npublish an application to a stream\n\n\n\n\nparameter1 = appid\n\n\nparameter2 = streamid\n\n\nparameter3 = new application name \n\n\n\n\napps = qrs.get_app('Name eq', 'MapIdevio')\nappid = apps[0]['id']\nstream = qrs.get_stream('Name eq', 'NewStream')\nstreamid = stream[0]['id']\n\nqrs.publish_app(appid, streamid, 'MapsPub')\n\n\n\n\nmigrate applications\n\n\n\n\nparameter1 = appid\n\n\n\n\napps = qrs.get_app()\n    for i in range(len(apps)):\n        qrs.migrate_app(apps[0]['id'])\n\n\n\n\nexport certificates\n\n\n\n\nparameter1 = computer name\n\n\nparameter2 = password secret file\n\n\nparameter3 = include private key (True, False)\n\n\nparameter4 = certificate type (Windows, PEM)\n\n\n\n\nqrs.export_certificates('PC1', 's', True, 'Windows')\n\n\n\n\nset the server license\n\n\n\n\nparameter1 = control number\n\n\nparameter2 = serial number\n\n\nparameter3 = name\n\n\nparameter4 = organization\n\n\nparameter5 = lef\nThe lef is optional, if the server has internet connectivity set parameter5 to None.  Otherwise use the following format\n\"serial\\r\\nLine1;;;\\r\\nQlik Sense Enterprise;;;\\r\\nProductLevel info\\r\\nToken info;;\\r\\ntimelimit\\r\\ncode\"\n\n\n\n\nqrs.set_license(11111, 123456789, 'Foo', 'Bar', None)\n\n\n\n\nimport users from a text file\n\n\n\n\nimport file format\nuserId,userDirectory,name\nhumpty, fairytales, humpty dumpty\npuss, fairytales, puss in boots\n\n\n\n\nqrs.import_users(r'c:\\\\dev\\\\csv\\\\users.txt')\n\n\n\n\nget users id for all users that have user access tokens\n\n\n\n\nparameter1 = id (set to None for all)\n\n\n\n\nx = qrs.get_useraccesstype()\n        for i in range(len(x)):\n        print (x[i]['id'])\n\n\n\n\ndelete all user access tokens\n\n\n\n\nparameter1 = id\n\n\n\n\nx = qrs.get_useraccesstype()\nfor i in range(len(x)):\n    qrs.delete_useraccesstype (x[i]['id'])\n\n\n\n\nimport several extensions (in this example Idevio Maps)\n\n\n\n\nparameter1 = extension path\n\n\n\n\nimport os\ndir = os.listdir('C:\\\\Dev\\\\IdevioMaps-QSS-Extensions-5.7.4\\\\')\nfor file in dir:\n    if file.endswith('.zip'):\n        qrs.import_extension('c:\\\\Dev\\\\IdevioMaps-QSS-Extensions-5.7.4\\\\'+file)\n\n\n\n\nget personal sheets\n\n\n\n\nparameter1 = objId (leave empty for all)\n\n\n\n\nappobj = qrs.get_appobject()\n\n\n\n\npublish personal sheet called 'Test Sheet'\n\n\nappobj = qrs.get_appobject()\n    for i in range(len(appobj)):\n        if appobj[i]['name'] == 'Test Sheet':\n            qrs.publish_appobject(appobj[i]['id'])\n\n\n\n\nunpublish sheet called 'Test Sheet'\n\n\nappobj = qrs.get_appobject()\n    for i in range(len(appobj)):\n        if appobj[i]['name'] == 'Test Sheet':\n            qrs.unpublish_appobject(o[i]['id'])\n            qrs.delete_appobject(o[i]['id'])\n\n\n\n\ndelete appobject called 'Test Sheet'\n\n\nappobj = qrs.get_appobject()\n    for i in range(len(appobj)):\n        if appobj[i]['name'] == 'Test Sheet':\n            qrs.delete_appobject(o[i]['id'])",
+            "text": "Examples\n\n\ndisplay a list of QRS API endpoints by method\n\n\n\n\nparameter1 = method\n\n\n\n\nmethod = ['get', 'put', 'post, delete']\n    for i in method:\n        qrs.get_apiendpoints(i)\n\n\n\n\nexport apps in a stream\n\n\n\n\nparameter1 = appid\n\n\nparameter2 = path to export to\n\n\nparameter3 = app name\n\n\n\n\napps = qrs.get_app('stream.name eq', 'Monitoring Apps')\n    for i in range(len(apps)):\n        qrs.export_app(apps[i]['id'], 'c:/dev/export/', r'%s.qvf' % apps[i]['name'])\n\n\n\n\nget a list of applications that are not published to a stream\n\n\napps = qrs.get_app()\nfor i in range(len(apps)):\n    if apps[i]['stream'] is None:\n        print (apps[i]['id'] + ' ' + apps[i]['name'])\n\n\n\n\nget a list of published applications\n\n\napps = qrs.get_app('stream.name ne', None)\nfor i in range(len(apps)):\n    print (apps[i]['id'] + ' ' + apps[i]['name'])\n\n\n\n\nimport the apps in a folder into a server\n\n\n\n\nparameter1 = name of the application\n\n\nparameter2 = path to the file\n\n\n\n\nimport os\ndir = os.listdir('/home/user/Documents/export')\nfor file in dir:\n  if file.endswith('.qvf'):\n      qrs.import_app((os.path.splitext(file)[0]), '/home/user/Documents/export/%s' % file)\n\n\n\n\npublish an application to a stream\n\n\n\n\nparameter1 = appid\n\n\nparameter2 = streamid\n\n\nparameter3 = new application name \n\n\n\n\napps = qrs.get_app('Name eq', 'MapIdevio')\nappid = apps[0]['id']\nstream = qrs.get_stream('Name eq', 'NewStream')\nstreamid = stream[0]['id']\nqrs.publish_app(appid, streamid, 'MapsPub')\n\n\n\n\nmigrate applications\n\n\n\n\nparameter1 = appid\n\n\n\n\napps = qrs.get_app()\n    for i in range(len(apps)):\n        qrs.migrate_app(apps[0]['id'])\n\n\n\n\nexport certificates\n\n\n\n\nparameter1 = computer name\n\n\nparameter2 = password secret file\n\n\nparameter3 = include private key (True, False)\n\n\nparameter4 = certificate type (Windows, PEM)\n\n\n\n\nqrs.export_certificates('PC1', 's', True, 'Windows')\n\n\n\n\nset the server license\n\n\n\n\nparameter1 = control number\n\n\nparameter2 = serial number\n\n\nparameter3 = name\n\n\nparameter4 = organization\n\n\nparameter5 = lef\nThe lef is optional, if the server has internet connectivity set parameter5 to None.  Otherwise use the following format\n\"serial\\r\\nLine1;;;\\r\\nQlik Sense Enterprise;;;\\r\\nProductLevel info\\r\\nToken info;;\\r\\ntimelimit\\r\\ncode\"\n\n\n\n\nqrs.set_license(11111, 123456789, 'Foo', 'Bar', None)\n\n\n\n\nimport users from a text file\n\n\n\n\nimport file format\nuserId,userDirectory,name\nhumpty, fairytales, humpty dumpty\npuss, fairytales, puss in boots\n\n\n\n\nqrs.import_users(r'c:\\\\dev\\\\csv\\\\users.txt')\n\n\n\n\nget users id for all users that have user access tokens\n\n\n\n\nparameter1 = id (set to None for all)\n\n\n\n\nx = qrs.get_useraccesstype()\n        for i in range(len(x)):\n        print (x[i]['id'])\n\n\n\n\ndelete all user access tokens\n\n\n\n\nparameter1 = id\n\n\n\n\nx = qrs.get_useraccesstype()\nfor i in range(len(x)):\n    qrs.delete_useraccesstype (x[i]['id'])\n\n\n\n\nimport several extensions (in this example Idevio Maps)\n\n\n\n\nparameter1 = extension path\n\n\n\n\nimport os\ndir = os.listdir('C:\\\\Dev\\\\IdevioMaps-QSS-Extensions-5.7.4\\\\')\nfor file in dir:\n    if file.endswith('.zip'):\n        qrs.import_extension('c:\\\\Dev\\\\IdevioMaps-QSS-Extensions-5.7.4\\\\'+file)\n\n\n\n\nget personal sheets\n\n\n\n\nparameter1 = objId (leave empty for all)\n\n\n\n\nprint(qrs.get_appobject())\n\n\n\n\npublish personal sheet called 'Test Sheet'\n\n\nappobj = qrs.get_appobject()\n    for i in range(len(appobj)):\n        if appobj[i]['name'] == 'Test Sheet':\n            qrs.publish_appobject(appobj[i]['id'])\n\n\n\n\nunpublish sheet called 'Test Sheet'\n\n\nappobj = qrs.get_appobject()\n    for i in range(len(appobj)):\n        if appobj[i]['name'] == 'Test Sheet':\n            qrs.unpublish_appobject(o[i]['id'])\n            qrs.delete_appobject(o[i]['id'])\n\n\n\n\ndelete appobject called 'Test Sheet'\n\n\nappobj = qrs.get_appobject()\n    for i in range(len(appobj)):\n        if appobj[i]['name'] == 'Test Sheet':\n            qrs.delete_appobject(o[i]['id'])",
             "title": "Examples"
         },
         {
@@ -67,7 +67,7 @@
         },
         {
             "location": "/user-guide/usage/#publish-an-application-to-a-stream",
-            "text": "parameter1 = appid  parameter2 = streamid  parameter3 = new application name    apps = qrs.get_app('Name eq', 'MapIdevio')\nappid = apps[0]['id']\nstream = qrs.get_stream('Name eq', 'NewStream')\nstreamid = stream[0]['id']\n\nqrs.publish_app(appid, streamid, 'MapsPub')",
+            "text": "parameter1 = appid  parameter2 = streamid  parameter3 = new application name    apps = qrs.get_app('Name eq', 'MapIdevio')\nappid = apps[0]['id']\nstream = qrs.get_stream('Name eq', 'NewStream')\nstreamid = stream[0]['id']\nqrs.publish_app(appid, streamid, 'MapsPub')",
             "title": "publish an application to a stream"
         },
         {
@@ -107,7 +107,7 @@
         },
         {
             "location": "/user-guide/usage/#get-personal-sheets",
-            "text": "parameter1 = objId (leave empty for all)   appobj = qrs.get_appobject()",
+            "text": "parameter1 = objId (leave empty for all)   print(qrs.get_appobject())",
             "title": "get personal sheets"
         },
         {
@@ -152,7 +152,7 @@
         },
         {
             "location": "/user-guide/get_about/",
-            "text": "Description\n\n\nReturns information on the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/about\n\n\nUsage\n\n\nqrs.get_about()\n\n\n\n\nReturns\n\n\n{'buildVersion': '12.14.0.0', 'buildDate': '9/20/2013 10:09:00 AM', 'databaseProvider': 'Devart.Data.PostgreSql', 'nodeType': 1, 'sharedPersistence': True, 'requiresBootstrap': False, 'schemaPath': 'About'}",
+            "text": "Description\n\n\nReturns information on the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/about\n\n\nSupports filter\n\n\nFalse\n\n\nUsage\n\n\nqrs.get_about()\n\n\n\n\nReturns\n\n\n{'buildVersion': '12.14.0.0', 'buildDate': '9/20/2013 10:09:00 AM', 'databaseProvider': 'Devart.Data.PostgreSql', 'nodeType': 1, 'sharedPersistence': True, 'requiresBootstrap': False, 'schemaPath': 'About'}",
             "title": "get about"
         },
         {
@@ -166,6 +166,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_about/#supports-filter",
+            "text": "False",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_about/#usage",
             "text": "qrs.get_about()",
             "title": "Usage"
@@ -177,7 +182,7 @@
         },
         {
             "location": "/user-guide/get_app/",
-            "text": "Description\n\n\nReturns the list of applications on the server\n\n\nEndpoint\n\n\n/qrs/app\n\n\nUsage\n\n\nqrs.get_app()\n\n\n\n\nReturns\n\n\n[{'id': '8882427d-de1f-4d1a-a30f-4d8bb99258fc', 'name': 'License Monitor', 'appId': '', 'publishTime': '2017-01-18T21:41:25.689Z', 'published': True, 'stream': {'id': 'a70ca8a5-1d59-4cc9-b5fa-6e207978dcaf', 'name': 'Monitoring apps', 'privileges': None}, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': 'bbba08d3-42a8-42aa-8fe8-6660eb4edeed', 'name': 'Operations Monitor', 'appId': '', 'publishTime': '2017-01-18T21:41:38.860Z', 'published': True, 'stream': {'id': 'a70ca8a5-1d59-4cc9-b5fa-6e207978dcaf', 'name': 'Monitoring apps', 'privileges': None}, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': '3ca17181-0cad-4769-a037-b79c4664bd2c', 'name': 'Contentx', 'appId': '', 'publishTime': '2017-01-19T03:46:31.277Z', 'published': True, 'stream': {'id': 'aaec8d41-5201-43ab-809f-3063750dfafd', 'name': 'Everyone', 'privileges': None}, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': '00ee092c-3bf0-4818-b3bd-61fe45846d00', 'name': 'SampleApp', 'appId': '', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'stream': None, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': 'ef1dd8f6-0638-41e5-a473-ce939e708cd8', 'name': 'Sales Dashboard', 'appId': '', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'stream': None, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': '899c4d4f-d8f9-4b2f-b100-274df7387a5e', 'name': '100m', 'appId': '', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'stream': None, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}]",
+            "text": "Description\n\n\nReturns the list of applications on the server\n\n\nEndpoint\n\n\n/qrs/app\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_app()\n\n\n\n\nReturns\n\n\n[{'id': '8882427d-de1f-4d1a-a30f-4d8bb99258fc', 'name': 'License Monitor', 'appId': '', 'publishTime': '2017-01-18T21:41:25.689Z', 'published': True, 'stream': {'id': 'a70ca8a5-1d59-4cc9-b5fa-6e207978dcaf', 'name': 'Monitoring apps', 'privileges': None}, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': 'bbba08d3-42a8-42aa-8fe8-6660eb4edeed', 'name': 'Operations Monitor', 'appId': '', 'publishTime': '2017-01-18T21:41:38.860Z', 'published': True, 'stream': {'id': 'a70ca8a5-1d59-4cc9-b5fa-6e207978dcaf', 'name': 'Monitoring apps', 'privileges': None}, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': '3ca17181-0cad-4769-a037-b79c4664bd2c', 'name': 'Contentx', 'appId': '', 'publishTime': '2017-01-19T03:46:31.277Z', 'published': True, 'stream': {'id': 'aaec8d41-5201-43ab-809f-3063750dfafd', 'name': 'Everyone', 'privileges': None}, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': '00ee092c-3bf0-4818-b3bd-61fe45846d00', 'name': 'SampleApp', 'appId': '', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'stream': None, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': 'ef1dd8f6-0638-41e5-a473-ce939e708cd8', 'name': 'Sales Dashboard', 'appId': '', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'stream': None, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}, {'id': '899c4d4f-d8f9-4b2f-b100-274df7387a5e', 'name': '100m', 'appId': '', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'stream': None, 'savedInProductVersion': '12.2.1', 'migrationHash': '82b8362010f6f32f12217392e08c75194db0d4fc', 'availabilityStatus': 0, 'privileges': None}]",
             "title": "get app"
         },
         {
@@ -191,6 +196,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_app/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_app/#usage",
             "text": "qrs.get_app()",
             "title": "Usage"
@@ -202,7 +212,7 @@
         },
         {
             "location": "/user-guide/get_appcount/",
-            "text": "Description\n\n\nReturns a count of the applications on the server\n\n\nEndpoint\n\n\n/qrs/app/count\n\n\nUsage\n\n\nqrs.get_appcount()\n\n\n\n\nReturns\n\n\n{'value': 6}",
+            "text": "Description\n\n\nReturns a count of the applications on the server\n\n\nEndpoint\n\n\n/qrs/app/count\n\n\nSupports filter\n\n\nTrue\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_appcount()\n\n\n\n\nReturns\n\n\n{'value': 6}",
             "title": "get appcount"
         },
         {
@@ -216,6 +226,16 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_appcount/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
+            "location": "/user-guide/get_appcount/#supports-filter_1",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_appcount/#usage",
             "text": "qrs.get_appcount()",
             "title": "Usage"
@@ -227,7 +247,7 @@
         },
         {
             "location": "/user-guide/get_dataconnection/",
-            "text": "Description\n\n\nReturns the data connections from the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/dataconnection\n\n\nUsage\n\n\nqrs.get_dataconnection()\n\n\n\n\nReturns\n\n\n[{'id': 'eedec08b-4717-468e-9b19-4353273ee1fc', 'name': 'qvd', 'connectionstring': 'd:\\\\Scalability Tests\\\\QVD\\\\', 'type': 'folder', 'engineObjectId': 'eedec08b-4717-468e-9b19-4353273ee1fc', 'username': '', 'password': '', 'logOn': 0, 'architecture': 0, 'privileges': None}, {'id': 'c682b800-bbdd-45e0-a26e-329db38471f3', 'name': 'ValueAdd', 'connectionstring': 'd:\\\\Scalability Tests\\\\Apps\\\\ValueAddedData\\\\', 'type': 'folder', 'engineObjectId': 'c682b800-bbdd-45e0-a26e-329db38471f3', 'username': '', 'password': '', 'logOn': 0, 'architecture': 0, 'privileges': None}, {'id': '4065146f-a3e8-4ef7-a6f7-2d8429dd2aff', 'name': 'qrs_task', 'connectionstring': 'CUSTOM CONNECT TO \"provider=QvRestConnector.exe;url=https://localhost/qrs/task/full;timeout=180;method=GET;autoDetectResponseType=true;keyGenerationStrategy=0;useWindowsAuthentication=true;forceAuthenticationType=false;useCertificate=No;certificateStoreLocation=CurrentUser;certificateStoreName=My;queryParameters=xrfkey%20000000000000000;queryHeaders=X-Qlik-XrfKey%20000000000000000",
+            "text": "Description\n\n\nReturns the data connections from the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/dataconnection\n\n\nSupports filter\n\n\nTrue\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_dataconnection()\n\n\n\n\nReturns\n\n\n[{'id': 'eedec08b-4717-468e-9b19-4353273ee1fc', 'name': 'qvd', 'connectionstring': 'd:\\\\Scalability Tests\\\\QVD\\\\', 'type': 'folder', 'engineObjectId': 'eedec08b-4717-468e-9b19-4353273ee1fc', 'username': '', 'password': '', 'logOn': 0, 'architecture': 0, 'privileges': None}, {'id': 'c682b800-bbdd-45e0-a26e-329db38471f3', 'name': 'ValueAdd', 'connectionstring': 'd:\\\\Scalability Tests\\\\Apps\\\\ValueAddedData\\\\', 'type': 'folder', 'engineObjectId': 'c682b800-bbdd-45e0-a26e-329db38471f3', 'username': '', 'password': '', 'logOn': 0, 'architecture': 0, 'privileges': None}, {'id': '4065146f-a3e8-4ef7-a6f7-2d8429dd2aff', 'name': 'qrs_task', 'connectionstring': 'CUSTOM CONNECT TO \"provider=QvRestConnector.exe;url=https://localhost/qrs/task/full;timeout=180;method=GET;autoDetectResponseType=true;keyGenerationStrategy=0;useWindowsAuthentication=true;forceAuthenticationType=false;useCertificate=No;certificateStoreLocation=CurrentUser;certificateStoreName=My;queryParameters=xrfkey%20000000000000000;queryHeaders=X-Qlik-XrfKey%20000000000000000",
             "title": "get dataconnection"
         },
         {
@@ -241,6 +261,16 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_dataconnection/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
+            "location": "/user-guide/get_dataconnection/#supports-filter_1",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_dataconnection/#usage",
             "text": "qrs.get_dataconnection()",
             "title": "Usage"
@@ -252,7 +282,7 @@
         },
         {
             "location": "/user-guide/get_lef/",
-            "text": "Description\n\n\nReturns the lef information from the supplied license details.  Requires internet access.\n\n\nEndpoint\n\n\nqrs/license/download?serial=%{serial}&control={control}}&user={user}}&org={organization}\n\n\nUsage\n\n\nqrs.get_lef()\n\n\n\n\nReturns\n\n\nXXXXX\n\nInternal Qlik License 2017;;;\n\nQlik Sense Enterprise;;;\n\nPRODUCTLEVEL;50;;2018-01-30\n\nTOKENS;XXX;;\n\nTIMELIMIT;;;XXX\n\nXXX",
+            "text": "Description\n\n\nReturns the lef information from the supplied license details.  Requires internet access.\n\n\nEndpoint\n\n\nqrs/license/download?serial=%{serial}&control={control}}&user={user}}&org={organization}\n\n\nSupports filter\n\n\nFalse\n\n\nUsage\n\n\nqrs.get_lef()\n\n\n\n\nReturns\n\n\nXXXXX\n\nInternal Qlik License 2017;;;\n\nQlik Sense Enterprise;;;\n\nPRODUCTLEVEL;50;;2018-01-30\n\nTOKENS;XXX;;\n\nTIMELIMIT;;;XXX\n\nXXX",
             "title": "get lef"
         },
         {
@@ -266,6 +296,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_lef/#supports-filter",
+            "text": "False",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_lef/#usage",
             "text": "qrs.get_lef()",
             "title": "Usage"
@@ -277,7 +312,7 @@
         },
         {
             "location": "/user-guide/get_license/",
-            "text": "Description\n\n\nReturns the license that is configured on the server\n\n\nEndpoint\n\n\n/qrs/license\n\n\nUsage\n\n\nqrs.get_license()\n\n\n\n\nReturns\n\n\n{'id': 'c517fae1-adbb-4848-b404-1d8a8d3748ad', 'createdDate': '2017-01-18T21:42:01.955Z', 'modifiedDate': '2017-01-18T21:42:01.955Z', 'modifiedByUserName': 'QLIKLOCAL\\\\administrator', 'lef': 'XXX\\r\\nInternal Qlik License 2017;;;\\r\\nQlik Sense Enterprise;;;\\r\\nPRODUCTLEVEL;50;;2018-01-30\\r\\nTOKENS;XXX;;\\r\\nTIMELIMIT;;;XXX-01-30\\r\\XXX', 'serial': 'XXX', 'check': '1100275618', 'name': 'Qlik', 'organization': 'Qlik', 'product': 2, 'numberOfCores': -1, 'isExpired': False, 'expiredReason': '', 'isBlacklisted': False, 'isInvalid': False, 'privileges': None, 'impactSecurityAccess': False, 'schemaPath': 'License'}",
+            "text": "Description\n\n\nReturns the license that is configured on the server\n\n\nEndpoint\n\n\n/qrs/license\n\n\nSupports filter\n\n\nFalse\n\n\nUsage\n\n\nqrs.get_license()\n\n\n\n\nReturns\n\n\n{'id': 'c517fae1-adbb-4848-b404-1d8a8d3748ad', 'createdDate': '2017-01-18T21:42:01.955Z', 'modifiedDate': '2017-01-18T21:42:01.955Z', 'modifiedByUserName': 'QLIKLOCAL\\\\administrator', 'lef': 'XXX\\r\\nInternal Qlik License 2017;;;\\r\\nQlik Sense Enterprise;;;\\r\\nPRODUCTLEVEL;50;;2018-01-30\\r\\nTOKENS;XXX;;\\r\\nTIMELIMIT;;;XXX-01-30\\r\\XXX', 'serial': 'XXX', 'check': '1100275618', 'name': 'Qlik', 'organization': 'Qlik', 'product': 2, 'numberOfCores': -1, 'isExpired': False, 'expiredReason': '', 'isBlacklisted': False, 'isInvalid': False, 'privileges': None, 'impactSecurityAccess': False, 'schemaPath': 'License'}",
             "title": "get license"
         },
         {
@@ -291,6 +326,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_license/#supports-filter",
+            "text": "False",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_license/#usage",
             "text": "qrs.get_license()",
             "title": "Usage"
@@ -302,7 +342,7 @@
         },
         {
             "location": "/user-guide/get_user/",
-            "text": "Description\n\n\nReturns information on the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/user\n\n\nUsage\n\n\nqrs.get_user()\n\n\n\n\nReturns\n\n\n[{'id': '28ec6c2f-0a4a-432c-9349-8e9fa643f9a1', 'userId': 'sa_converter', 'userDirectory': 'INTERNAL', 'name': 'sa_converter', 'privileges': None}, {'id': '3f31c076-a60f-438a-b0d4-c16370f5d367', 'userId': 'sa_hub', 'userDirectory': 'INTERNAL', 'name': 'sa_hub', 'privileges': None}, {'id': '424b0fe2-9e61-4ed5-9613-8fc314e2b840', 'userId': 'sa_api', 'userDirectory': 'INTERNAL', 'name': 'sa_api', 'privileges': None}, {'id': '44a51447-54d9-4f7a-be8b-9b92f5ec3bc1', 'userId': 'sa_proxy', 'userDirectory': 'INTERNAL', 'name': 'sa_proxy', 'privileges': None}, {'id': '5b1efea7-f03a-48fb-b54b-4055f1056ac8', 'userId': 'sa_qlikview', 'userDirectory': 'INTERNAL', 'name': 'sa_qlikview', 'privileges': None}, {'id': '5db92ecf-00a1-4510-ab9c-8870fa57a82f', 'userId': 'sa_scheduler', 'userDirectory': 'INTERNAL', 'name': 'sa_scheduler', 'privileges': None}, {'id': '74bd3579-8f51-4f7a-bfbb-21d4b9368d7f', 'userId': 'sa_reporting', 'userDirectory': 'INTERNAL', 'name': 'sa_reporting', 'privileges': None}, {'id': '9615d134-06de-4184-8f20-ea63ddeeb73f', 'userId': 'sa_repository', 'userDirectory': 'INTERNAL', 'name': 'sa_repository', 'privileges': None}, {'id': 'cc8cc42e-fca3-408d-ae00-aa19d66b71f0', 'userId': 'sa_printing', 'userDirectory': 'INTERNAL', 'name': 'sa_printing', 'privileges': None}, {'id': 'dbdcd493-4281-430e-8223-625a40a8cf6d', 'userId': 'sa_engine', 'userDirectory': 'INTERNAL', 'name': 'sa_engine', 'privileges': None}, {'id': '3797cd0e-a0fe-4bc1-8409-94f3a7af7a63', 'userId': 'administrator', 'userDirectory': 'QLIKLOCAL', 'name': 'Administrator', 'privileges': None}, {'id': '725a3fc3-c6fe-4048-a55f-d7b80b233564', 'userId': 'dev1', 'userDirectory': 'QLIKLOCAL', 'name': 'dev1', 'privileges': None}, {'id': '4423be9a-70d6-43b2-92b7-65b6ec1a9961', 'userId': 'clint', 'userDirectory': 'SURFACECC', 'name': 'clint', 'privileges': None}, {'id': 'a1eea94c-156a-4852-ab2b-8c5c71364d3e', 'userId': 'qservice', 'userDirectory': 'QLIKLOCAL', 'name': 'qservice', 'privileges': None}]",
+            "text": "Description\n\n\nReturns information on the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/user\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_user()\n\n\n\n\nReturns\n\n\n[{'id': '28ec6c2f-0a4a-432c-9349-8e9fa643f9a1', 'userId': 'sa_converter', 'userDirectory': 'INTERNAL', 'name': 'sa_converter', 'privileges': None}, {'id': '3f31c076-a60f-438a-b0d4-c16370f5d367', 'userId': 'sa_hub', 'userDirectory': 'INTERNAL', 'name': 'sa_hub', 'privileges': None}, {'id': '424b0fe2-9e61-4ed5-9613-8fc314e2b840', 'userId': 'sa_api', 'userDirectory': 'INTERNAL', 'name': 'sa_api', 'privileges': None}, {'id': '44a51447-54d9-4f7a-be8b-9b92f5ec3bc1', 'userId': 'sa_proxy', 'userDirectory': 'INTERNAL', 'name': 'sa_proxy', 'privileges': None}, {'id': '5b1efea7-f03a-48fb-b54b-4055f1056ac8', 'userId': 'sa_qlikview', 'userDirectory': 'INTERNAL', 'name': 'sa_qlikview', 'privileges': None}, {'id': '5db92ecf-00a1-4510-ab9c-8870fa57a82f', 'userId': 'sa_scheduler', 'userDirectory': 'INTERNAL', 'name': 'sa_scheduler', 'privileges': None}, {'id': '74bd3579-8f51-4f7a-bfbb-21d4b9368d7f', 'userId': 'sa_reporting', 'userDirectory': 'INTERNAL', 'name': 'sa_reporting', 'privileges': None}, {'id': '9615d134-06de-4184-8f20-ea63ddeeb73f', 'userId': 'sa_repository', 'userDirectory': 'INTERNAL', 'name': 'sa_repository', 'privileges': None}, {'id': 'cc8cc42e-fca3-408d-ae00-aa19d66b71f0', 'userId': 'sa_printing', 'userDirectory': 'INTERNAL', 'name': 'sa_printing', 'privileges': None}, {'id': 'dbdcd493-4281-430e-8223-625a40a8cf6d', 'userId': 'sa_engine', 'userDirectory': 'INTERNAL', 'name': 'sa_engine', 'privileges': None}, {'id': '3797cd0e-a0fe-4bc1-8409-94f3a7af7a63', 'userId': 'administrator', 'userDirectory': 'QLIKLOCAL', 'name': 'Administrator', 'privileges': None}, {'id': '725a3fc3-c6fe-4048-a55f-d7b80b233564', 'userId': 'dev1', 'userDirectory': 'QLIKLOCAL', 'name': 'dev1', 'privileges': None}, {'id': '4423be9a-70d6-43b2-92b7-65b6ec1a9961', 'userId': 'clint', 'userDirectory': 'SURFACECC', 'name': 'clint', 'privileges': None}, {'id': 'a1eea94c-156a-4852-ab2b-8c5c71364d3e', 'userId': 'qservice', 'userDirectory': 'QLIKLOCAL', 'name': 'qservice', 'privileges': None}]",
             "title": "get user"
         },
         {
@@ -316,6 +356,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_user/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_user/#usage",
             "text": "qrs.get_user()",
             "title": "Usage"
@@ -327,7 +372,7 @@
         },
         {
             "location": "/user-guide/get_customproperty/",
-            "text": "Description\n\n\nReturns the custom properties from the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/custompropertydefinition\n\n\nUsage\n\n\nqrs.qrs_customproperty()\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nReturns the custom properties from the Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/custompropertydefinition\n\n\nSupports filter\n\n\nTrue\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.qrs_customproperty()\n\n\n\n\nReturns\n\n\n[]",
             "title": "get customproperty"
         },
         {
@@ -341,6 +386,16 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_customproperty/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
+            "location": "/user-guide/get_customproperty/#supports-filter_1",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_customproperty/#usage",
             "text": "qrs.qrs_customproperty()",
             "title": "Usage"
@@ -352,7 +407,7 @@
         },
         {
             "location": "/user-guide/get_tag/",
-            "text": "Description\n\n\nReturns the tags on the server\n\n\nEndpoint\n\n\n/qrs/tag\n\n\nUsage\n\n\nqrs.get_tag()\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nReturns the tags on the server\n\n\nEndpoint\n\n\n/qrs/tag\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_tag()\n\n\n\n\nReturns\n\n\n[]",
             "title": "get tag"
         },
         {
@@ -366,6 +421,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_tag/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_tag/#usage",
             "text": "qrs.get_tag()",
             "title": "Usage"
@@ -377,7 +437,7 @@
         },
         {
             "location": "/user-guide/get_task/",
-            "text": "Description\n\n\nReturns the tasks\n\n\nEndpoint\n\n\n/qrs/task\n\n\nUsage\n\n\nqrs.get_task()\n\n\n\n\nReturns\n\n\n[{'id': '96e580be-8d71-4bbb-8a7f-0609633e4ebc', 'operational': {'id': 'f6fe824b-271b-4980-ad27-e6751ec953fc', 'lastExecutionResult': {'id': '9c100694-6369-4eb7-8537-3dc2e62ed4ef', 'executingNodeName': '', 'status': 7, 'startTime': '2017-01-20T01:46:27.831Z', 'stopTime': '2017-01-20T01:47:17.615Z', 'duration': 49784, 'fileReferenceID': '2030ee32-cd06-4bb6-8960-37320c7eb68a', 'scriptLogAvailable': False, 'details': [{'id': 'e8e2dd10-3930-46ca-babf-5afcde9e0886', 'detailsType': 2, 'message': 'Changing task state to Triggered', 'detailCreatedDate': '2017-01-20T01:46:28.645Z', 'privileges': None}, {'id': 'e2db88ed-4b81-404c-8964-a3b2ca2a569d', 'detailsType': 2, 'message': 'Trying to start task. Sending task to slave-node qs2.qliklocal.net', 'detailCreatedDate': '2017-01-20T01:46:28.869Z', 'privileges': None}, {'id': 'b695ead8-4d6a-42fd-a79d-0313b3db9e5b', 'detailsType': 2, 'message': 'Changing task state",
+            "text": "Description\n\n\nReturns the tasks\n\n\nEndpoint\n\n\n/qrs/task\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_task()\n\n\n\n\nReturns\n\n\n[{'id': '96e580be-8d71-4bbb-8a7f-0609633e4ebc', 'operational': {'id': 'f6fe824b-271b-4980-ad27-e6751ec953fc', 'lastExecutionResult': {'id': '9c100694-6369-4eb7-8537-3dc2e62ed4ef', 'executingNodeName': '', 'status': 7, 'startTime': '2017-01-20T01:46:27.831Z', 'stopTime': '2017-01-20T01:47:17.615Z', 'duration': 49784, 'fileReferenceID': '2030ee32-cd06-4bb6-8960-37320c7eb68a', 'scriptLogAvailable': False, 'details': [{'id': 'e8e2dd10-3930-46ca-babf-5afcde9e0886', 'detailsType': 2, 'message': 'Changing task state to Triggered', 'detailCreatedDate': '2017-01-20T01:46:28.645Z', 'privileges': None}, {'id': 'e2db88ed-4b81-404c-8964-a3b2ca2a569d', 'detailsType': 2, 'message': 'Trying to start task. Sending task to slave-node qs2.qliklocal.net', 'detailCreatedDate': '2017-01-20T01:46:28.869Z', 'privileges': None}, {'id': 'b695ead8-4d6a-42fd-a79d-0313b3db9e5b', 'detailsType': 2, 'message': 'Changing task state",
             "title": "get task"
         },
         {
@@ -391,6 +451,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_task/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_task/#usage",
             "text": "qrs.get_task()",
             "title": "Usage"
@@ -402,7 +467,7 @@
         },
         {
             "location": "/user-guide/get_securityrule/",
-            "text": "Description\n\n\nReturns the rules\n\n\nEndpoint\n\n\n/qrs/systemrule\n\n\nUsage\n\n\nqrs.get_securityrule()\n\n\n\n\nReturns\n\n\n[{'id': '087cfb97-2d1f-4d74-9500-b180fa0bd4ec', 'category': 'Security', 'type': 'Default', 'name': 'StreamEveryoneAnonymous', 'rule': 'user.IsAnonymous()', 'resourceFilter': 'Stream_aaec8d41-5201-43ab-809f-3063750dfafd', 'actions': 2, 'comment': 'The default stream called Everyone should be visible for anonymous users', 'disabled': False, 'privileges': None}, {'id': '0911753c-58c2-4088-a82b-c0a71ac37956', 'category': 'Security', 'type': 'Default', 'name': 'SecurityAdminServerNodeConfiguration', 'rule': 'user.roles = \"SecurityAdmin\"', 'resourceFilter': 'ServerNodeConfiguration_*', 'actio",
+            "text": "Description\n\n\nReturns the rules\n\n\nEndpoint\n\n\n/qrs/systemrule\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_securityrule()\n\n\n\n\nReturns\n\n\n[{'id': '087cfb97-2d1f-4d74-9500-b180fa0bd4ec', 'category': 'Security', 'type': 'Default', 'name': 'StreamEveryoneAnonymous', 'rule': 'user.IsAnonymous()', 'resourceFilter': 'Stream_aaec8d41-5201-43ab-809f-3063750dfafd', 'actions': 2, 'comment': 'The default stream called Everyone should be visible for anonymous users', 'disabled': False, 'privileges': None}, {'id': '0911753c-58c2-4088-a82b-c0a71ac37956', 'category': 'Security', 'type': 'Default', 'name': 'SecurityAdminServerNodeConfiguration', 'rule': 'user.roles = \"SecurityAdmin\"', 'resourceFilter': 'ServerNodeConfiguration_*', 'actio",
             "title": "get securityrule"
         },
         {
@@ -416,6 +481,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_securityrule/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_securityrule/#usage",
             "text": "qrs.get_securityrule()",
             "title": "Usage"
@@ -427,7 +497,7 @@
         },
         {
             "location": "/user-guide/get_userdirectory/",
-            "text": "Description\n\n\nReturns the user directories on the server\n\n\nEndpoint\n\n\n/qrs/userdirectory\n\n\nUsage\n\n\nqrs.get_userdirectory()\n\n\n\n\nReturns\n\n\n[{'id': 'ce208cb0-ba39-4320-963c-457255cd2d38', 'name': 'qliklocal', 'type': 'Repository.UserDirectoryConnectors.LDAP.ActiveDirectory', 'privileges': None}]",
+            "text": "Description\n\n\nReturns the user directories on the server\n\n\nEndpoint\n\n\n/qrs/userdirectory\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_userdirectory()\n\n\n\n\nReturns\n\n\n[{'id': 'ce208cb0-ba39-4320-963c-457255cd2d38', 'name': 'qliklocal', 'type': 'Repository.UserDirectoryConnectors.LDAP.ActiveDirectory', 'privileges': None}]",
             "title": "get userdirectory"
         },
         {
@@ -441,6 +511,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_userdirectory/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_userdirectory/#usage",
             "text": "qrs.get_userdirectory()",
             "title": "Usage"
@@ -452,7 +527,7 @@
         },
         {
             "location": "/user-guide/get_extension/",
-            "text": "Description\n\n\nReturns the extensions on the server\n\n\nEndpoint\n\n\n/qrs/extension\n\n\nUsage\n\n\nqrs.get_extension()\n\n\n\n\nReturns\n\n\n[{'id': '011b5fd4-43c2-491d-b137-80a5957b900f', 'name': 'basic-mashup-template', 'privileges': None}]",
+            "text": "Description\n\n\nReturns the extensions on the server\n\n\nEndpoint\n\n\n/qrs/extension\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_extension()\n\n\n\n\nReturns\n\n\n[{'id': '011b5fd4-43c2-491d-b137-80a5957b900f', 'name': 'basic-mashup-template', 'privileges': None}]",
             "title": "get extension"
         },
         {
@@ -466,6 +541,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_extension/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_extension/#usage",
             "text": "qrs.get_extension()",
             "title": "Usage"
@@ -477,7 +557,7 @@
         },
         {
             "location": "/user-guide/get_stream/",
-            "text": "Description\n\n\nReturns the streams on the server\n\n\nEndpoint\n\n\n/qrs/stream\n\n\nUsage\n\n\nqrs.get_stream()\n\n\n\n\nReturns\n\n\n[{'id': 'a70ca8a5-1d59-4cc9-b5fa-6e207978dcaf', 'name': 'Monitoring apps', 'privileges': None}, {'id': 'aaec8d41-5201-43ab-809f-3063750dfafd', 'name': 'Everyone', 'privileges': None}]",
+            "text": "Description\n\n\nReturns the streams on the server\n\n\nEndpoint\n\n\n/qrs/stream\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_stream()\n\n\n\n\nReturns\n\n\n[{'id': 'a70ca8a5-1d59-4cc9-b5fa-6e207978dcaf', 'name': 'Monitoring apps', 'privileges': None}, {'id': 'aaec8d41-5201-43ab-809f-3063750dfafd', 'name': 'Everyone', 'privileges': None}]",
             "title": "get stream"
         },
         {
@@ -491,6 +571,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_stream/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_stream/#usage",
             "text": "qrs.get_stream()",
             "title": "Usage"
@@ -502,7 +587,7 @@
         },
         {
             "location": "/user-guide/get_servernode/",
-            "text": "Description\n\n\nReturns the server node configuration\n\n\nEndpoint\n\n\n/qrs/servernodeconfiguration\n\n\nUsage\n\n\nqrs.get_servernode()\n\n\n\n\nReturns\n\n\n[{'id': 'f1b18c53-825c-429a-a119-84e0ef717fff', 'name': 'Central', 'hostName': 'qs2.qliklocal.net', 'temporaryfilepath': 'C:\\\\Users\\\\qservice.QLIKLOCAL\\\\AppData\\\\Local\\\\Temp\\\\', 'serviceCluster': {'id': '1f8c6d7e-70a0-4f4b-bbf7-b6062666f23d', 'name': 'ServiceCluster', 'privileges': None}, 'privileges': None}]",
+            "text": "Description\n\n\nReturns the server node configuration\n\n\nEndpoint\n\n\n/qrs/servernodeconfiguration\n\n\nSupports filter\n\n\nFalse\n\n\nUsage\n\n\nqrs.get_servernode()\n\n\n\n\nReturns\n\n\n[{'id': 'f1b18c53-825c-429a-a119-84e0ef717fff', 'name': 'Central', 'hostName': 'qs2.qliklocal.net', 'temporaryfilepath': 'C:\\\\Users\\\\qservice.QLIKLOCAL\\\\AppData\\\\Local\\\\Temp\\\\', 'serviceCluster': {'id': '1f8c6d7e-70a0-4f4b-bbf7-b6062666f23d', 'name': 'ServiceCluster', 'privileges': None}, 'privileges': None}]",
             "title": "get servernode"
         },
         {
@@ -516,6 +601,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_servernode/#supports-filter",
+            "text": "False",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_servernode/#usage",
             "text": "qrs.get_servernode()",
             "title": "Usage"
@@ -527,7 +617,7 @@
         },
         {
             "location": "/user-guide/get_useraccesstype/",
-            "text": "Description\n\n\nReturns a list of users with a user access type token\n\n\nEndpoint\n\n\n/qrs/license/useraccesstype\n\n\nUsage\n\n\nqrs.get_useraccesstype()\n\n\n\n\nReturns\n\n\n[{'id': '5ef788e3-63ff-4aaf-b769-416f5b9da695', 'privileges': None}, {'id': 'f22d9856-45af-431c-8082-2d91e7469fb2', 'privileges': None}]",
+            "text": "Description\n\n\nReturns a list of users with a user access type token\n\n\nEndpoint\n\n\n/qrs/license/useraccesstype\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_useraccesstype()\n\n\n\n\nReturns\n\n\n[{'id': '5ef788e3-63ff-4aaf-b769-416f5b9da695', 'privileges': None}, {'id': 'f22d9856-45af-431c-8082-2d91e7469fb2', 'privileges': None}]",
             "title": "get useraccesstype"
         },
         {
@@ -541,6 +631,11 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_useraccesstype/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_useraccesstype/#usage",
             "text": "qrs.get_useraccesstype()",
             "title": "Usage"
@@ -552,7 +647,7 @@
         },
         {
             "location": "/user-guide/get_appobject/",
-            "text": "Description\n\n\nReturns the application objects on the server (Sheets etc)\n\n\nEndpoint\n\n\n/qrs/app/object\n\n\nUsage\n\n\nqrs.get_appobject()\n\n\n\n\nReturns\n\n\n[{'id': 'd912d981-386a-4a12-a1d9-c29a328c26f3', 'engineObjectType': '', 'description': '', 'objectType': 'GenericVariableEntry', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'name': '', 'engineObjectId': '715f7f03-687d-4c13-b8b5-da55827ae2fa', 'contentHash': \"FJA.B-ZK,P$I1/OW#3&KY6K!8%7/%9Q)(UI'=YJ'PU^\", 'privileges': None}, {'id': '08d19e2c-25a0-4fd3-a272-d594f1aebfa0', 'engineObjectType': '', 'description': '', 'objectType': 'dimension', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'name': 'Context', 'engineObjectId': 'afc42dfc-6800-44cd-b8f3-3d4bdc452a96', 'contentHash': 'I/6\"EOJR+P7/$1\\'.?T+@3[;/D`;IZ\"#%,_Q0J!-S6O,', 'privileges': None}, {'id': 'a03292eb-7d48-4126-894c-d5175b6aad96', 'engineObjectType': '', 'description': '', 'objectType': 'dimension', 'publishTime': '1753-01-01T00:00:00",
+            "text": "Description\n\n\nReturns the application objects on the server (Sheets etc)\n\n\nEndpoint\n\n\n/qrs/app/object\n\n\nSupports filter\n\n\nTrue\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_appobject()\n\n\n\n\nReturns\n\n\n[{'id': 'd912d981-386a-4a12-a1d9-c29a328c26f3', 'engineObjectType': '', 'description': '', 'objectType': 'GenericVariableEntry', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'name': '', 'engineObjectId': '715f7f03-687d-4c13-b8b5-da55827ae2fa', 'contentHash': \"FJA.B-ZK,P$I1/OW#3&KY6K!8%7/%9Q)(UI'=YJ'PU^\", 'privileges': None}, {'id': '08d19e2c-25a0-4fd3-a272-d594f1aebfa0', 'engineObjectType': '', 'description': '', 'objectType': 'dimension', 'publishTime': '1753-01-01T00:00:00.000Z', 'published': False, 'name': 'Context', 'engineObjectId': 'afc42dfc-6800-44cd-b8f3-3d4bdc452a96', 'contentHash': 'I/6\"EOJR+P7/$1\\'.?T+@3[;/D`;IZ\"#%,_Q0J!-S6O,', 'privileges': None}, {'id': 'a03292eb-7d48-4126-894c-d5175b6aad96', 'engineObjectType': '', 'description': '', 'objectType': 'dimension', 'publishTime': '1753-01-01T00:00:00",
             "title": "get appobject"
         },
         {
@@ -566,6 +661,16 @@
             "title": "Endpoint"
         },
         {
+            "location": "/user-guide/get_appobject/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
+            "location": "/user-guide/get_appobject/#supports-filter_1",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
             "location": "/user-guide/get_appobject/#usage",
             "text": "qrs.get_appobject()",
             "title": "Usage"
@@ -577,7 +682,7 @@
         },
         {
             "location": "/user-guide/get_apidescription/",
-            "text": "Description\n\n\nReturns the API endpoints for the Qlik Sense Repository Service\n\n\nEndpoint\n\n\n/qrs/about/api/description?extended=true&method={method}&format=JSON\n\n\nUsage\n\n\n\"\"\"\n:param method: HTTP Methods (GET, POST, DELETE, PUT)\n\"\"\"\nqrs.get_apidescription('GET')\n\n\n\n\nReturns\n\n\n'{\"method\":\"GET\",\"path\":\"/qrs/about\",\"extended\":\"[resource=manual, bodytype=Void, returntype=About]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/analyzeraccessgroup?listentries={listentries}\",\"extended\":\"[resource=manual, bodytype=Void, returntype=LicenseAnalyzerAccessGroup, optional=listentries]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/analyzeraccesstype?listentries={listentries}\",\"extended\":\"[resource=manual, bodytype=Void, returntype=LicenseAnalyzerAccessType, optional=listentries]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/analyzeraccessusage?listentries={listentries}\",\"extended\":\"[resource=manual, bodytype=Void, returntype=LicenseAnalyzerAccessUsage, optional=listentries]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/app?listentries={listentries}\",\"extended\":\"[resource=manual, bodyty",
+            "text": "Description\n\n\nReturns the API endpoints for the Qlik Sense Repository Service\n\n\nEndpoint\n\n\n/qrs/about/api/description?extended=true&method={method}&format=JSON\n\n\nSupports filter\n\n\nFalse\n\n\nUsage\n\n\n\"\"\"\n:param method: HTTP Methods (GET, POST, DELETE, PUT)\n\"\"\"\nqrs.get_apidescription('GET')\n\n\n\n\nReturns\n\n\n'{\"method\":\"GET\",\"path\":\"/qrs/about\",\"extended\":\"[resource=manual, bodytype=Void, returntype=About]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/analyzeraccessgroup?listentries={listentries}\",\"extended\":\"[resource=manual, bodytype=Void, returntype=LicenseAnalyzerAccessGroup, optional=listentries]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/analyzeraccesstype?listentries={listentries}\",\"extended\":\"[resource=manual, bodytype=Void, returntype=LicenseAnalyzerAccessType, optional=listentries]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/analyzeraccessusage?listentries={listentries}\",\"extended\":\"[resource=manual, bodytype=Void, returntype=LicenseAnalyzerAccessUsage, optional=listentries]\"}', '{\"method\":\"GET\",\"path\":\"/qrs/about/api/default/app?listentries={listentries}\",\"extended\":\"[resource=manual, bodyty",
             "title": "get apidescription"
         },
         {
@@ -589,6 +694,11 @@
             "location": "/user-guide/get_apidescription/#endpoint",
             "text": "/qrs/about/api/description?extended=true&method={method}&format=JSON",
             "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_apidescription/#supports-filter",
+            "text": "False",
+            "title": "Supports filter"
         },
         {
             "location": "/user-guide/get_apidescription/#usage",

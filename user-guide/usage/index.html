@@ -504,7 +504,7 @@
 <ul>
 <li>parameter1 = method</li>
 </ul>
-<pre><code>method = ['get', 'put', 'post, delete']
+<pre><code class="python">method = ['get', 'put', 'post, delete']
     for i in method:
         qrs.get_apiendpoints(i)
 </code></pre>
@@ -515,20 +515,20 @@
 <li>parameter2 = path to export to</li>
 <li>parameter3 = app name</li>
 </ul>
-<pre><code>apps = qrs.get_app('stream.name eq', 'Monitoring Apps')
+<pre><code class="python">apps = qrs.get_app('stream.name eq', 'Monitoring Apps')
     for i in range(len(apps)):
         qrs.export_app(apps[i]['id'], 'c:/dev/export/', r'%s.qvf' % apps[i]['name'])
 </code></pre>
 
 <h2 id="get-a-list-of-applications-that-are-not-published-to-a-stream">get a list of applications that are not published to a stream</h2>
-<pre><code>apps = qrs.get_app()
+<pre><code class="python">apps = qrs.get_app()
 for i in range(len(apps)):
     if apps[i]['stream'] is None:
         print (apps[i]['id'] + ' ' + apps[i]['name'])
 </code></pre>
 
 <h2 id="get-a-list-of-published-applications">get a list of published applications</h2>
-<pre><code>apps = qrs.get_app('stream.name ne', None)
+<pre><code class="python">apps = qrs.get_app('stream.name ne', None)
 for i in range(len(apps)):
     print (apps[i]['id'] + ' ' + apps[i]['name'])
 </code></pre>
@@ -538,7 +538,7 @@ for i in range(len(apps)):
 <li>parameter1 = name of the application</li>
 <li>parameter2 = path to the file</li>
 </ul>
-<pre><code>import os
+<pre><code class="python">import os
 dir = os.listdir('/home/user/Documents/export')
 for file in dir:
   if file.endswith('.qvf'):
@@ -551,11 +551,10 @@ for file in dir:
 <li>parameter2 = streamid</li>
 <li>parameter3 = new application name </li>
 </ul>
-<pre><code>apps = qrs.get_app('Name eq', 'MapIdevio')
+<pre><code class="python">apps = qrs.get_app('Name eq', 'MapIdevio')
 appid = apps[0]['id']
 stream = qrs.get_stream('Name eq', 'NewStream')
 streamid = stream[0]['id']
-
 qrs.publish_app(appid, streamid, 'MapsPub')
 </code></pre>
 
@@ -563,7 +562,7 @@ qrs.publish_app(appid, streamid, 'MapsPub')
 <ul>
 <li>parameter1 = appid</li>
 </ul>
-<pre><code>apps = qrs.get_app()
+<pre><code class="python">apps = qrs.get_app()
     for i in range(len(apps)):
         qrs.migrate_app(apps[0]['id'])
 </code></pre>
@@ -575,7 +574,7 @@ qrs.publish_app(appid, streamid, 'MapsPub')
 <li>parameter3 = include private key (True, False)</li>
 <li>parameter4 = certificate type (Windows, PEM)</li>
 </ul>
-<pre><code>qrs.export_certificates('PC1', 's', True, 'Windows')
+<pre><code class="python">qrs.export_certificates('PC1', 's', True, 'Windows')
 </code></pre>
 
 <h2 id="set-the-server-license">set the server license</h2>
@@ -588,7 +587,7 @@ qrs.publish_app(appid, streamid, 'MapsPub')
 The lef is optional, if the server has internet connectivity set parameter5 to None.  Otherwise use the following format
 "serial\r\nLine1;;;\r\nQlik Sense Enterprise;;;\r\nProductLevel info\r\nToken info;;\r\ntimelimit\r\ncode"</li>
 </ul>
-<pre><code>qrs.set_license(11111, 123456789, 'Foo', 'Bar', None)
+<pre><code class="python">qrs.set_license(11111, 123456789, 'Foo', 'Bar', None)
 </code></pre>
 
 <h2 id="import-users-from-a-text-file">import users from a text file</h2>
@@ -598,14 +597,14 @@ userId,userDirectory,name
 humpty, fairytales, humpty dumpty
 puss, fairytales, puss in boots</li>
 </ul>
-<pre><code>qrs.import_users(r'c:\\dev\\csv\\users.txt')
+<pre><code class="python">qrs.import_users(r'c:\\dev\\csv\\users.txt')
 </code></pre>
 
 <h2 id="get-users-id-for-all-users-that-have-user-access-tokens">get users id for all users that have user access tokens</h2>
 <ul>
 <li>parameter1 = id (set to None for all)</li>
 </ul>
-<pre><code>x = qrs.get_useraccesstype()
+<pre><code class="python">x = qrs.get_useraccesstype()
         for i in range(len(x)):
         print (x[i]['id'])
 </code></pre>
@@ -614,7 +613,7 @@ puss, fairytales, puss in boots</li>
 <ul>
 <li>parameter1 = id</li>
 </ul>
-<pre><code>x = qrs.get_useraccesstype()
+<pre><code class="python">x = qrs.get_useraccesstype()
 for i in range(len(x)):
     qrs.delete_useraccesstype (x[i]['id'])
 </code></pre>
@@ -623,7 +622,7 @@ for i in range(len(x)):
 <ul>
 <li>parameter1 = extension path</li>
 </ul>
-<pre><code>import os
+<pre><code class="python">import os
 dir = os.listdir('C:\\Dev\\IdevioMaps-QSS-Extensions-5.7.4\\')
 for file in dir:
     if file.endswith('.zip'):
@@ -634,18 +633,18 @@ for file in dir:
 <ul>
 <li>parameter1 = objId (leave empty for all)</li>
 </ul>
-<pre><code>appobj = qrs.get_appobject()
+<pre><code class="python">print(qrs.get_appobject())
 </code></pre>
 
 <h2 id="publish-personal-sheet-called-test-sheet">publish personal sheet called 'Test Sheet'</h2>
-<pre><code>appobj = qrs.get_appobject()
+<pre><code class="python">appobj = qrs.get_appobject()
     for i in range(len(appobj)):
         if appobj[i]['name'] == 'Test Sheet':
             qrs.publish_appobject(appobj[i]['id'])
 </code></pre>
 
 <h2 id="unpublish-sheet-called-test-sheet">unpublish sheet called 'Test Sheet'</h2>
-<pre><code>appobj = qrs.get_appobject()
+<pre><code class="python">appobj = qrs.get_appobject()
     for i in range(len(appobj)):
         if appobj[i]['name'] == 'Test Sheet':
             qrs.unpublish_appobject(o[i]['id'])
@@ -653,7 +652,7 @@ for file in dir:
 </code></pre>
 
 <h2 id="delete-appobject-called-test-sheet">delete appobject called 'Test Sheet'</h2>
-<pre><code>appobj = qrs.get_appobject()
+<pre><code class="python">appobj = qrs.get_appobject()
     for i in range(len(appobj)):
         if appobj[i]['name'] == 'Test Sheet':
             qrs.delete_appobject(o[i]['id'])
