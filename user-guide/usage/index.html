@@ -78,15 +78,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#qrspy-qlik-sense-repository-python">qrspy (Qlik Sense Repository Python)</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#instructions">Instructions</a></li>
-                
-            
                 <li class="toctree-l3"><a href="#examples">Examples</a></li>
-                
-                    <li><a class="toctree-l4" href="#instantiate-the-connectqlik-class">Instantiate the ConnectQlik class</a></li>
                 
                     <li><a class="toctree-l4" href="#display-a-list-of-qrs-api-endpoints-by-method">display a list of QRS API endpoints by method</a></li>
                 
@@ -505,25 +497,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="qrspy-qlik-sense-repository-python">qrspy (Qlik Sense Repository Python)</h1>
-<p>Python wrapper for Qlik Sense Repository Service.</p>
-<h1 id="instructions">Instructions</h1>
-<ol>
-<li>ensure requests is installed (pip install requests)</li>
-<li>export the qlik sense certificates in PEM format to a local folder</li>
-<li>launch python</li>
-<li>import qrspy</li>
-</ol>
-<h1 id="examples">Examples</h1>
-<h2 id="instantiate-the-connectqlik-class">Instantiate the ConnectQlik class</h2>
-<h3 id="linux">Linux</h3>
-<pre><code>qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242', ('/home/user/Documents/certs/qs2/client.pem', '/home/user/Documents/certs/qs2/client_key.pem'), '/home/user/Documents/certs/qs2/root.pem')
-</code></pre>
-
-<h3 id="windows">Windows</h3>
-<pre><code>qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242', ('c:/certs/qs2/client.pem', 'c:/certs/qs2/client_key.pem'), 'c:/certs/qs2/root.pem')
-</code></pre>
-
+                <h1 id="examples">Examples</h1>
 <h2 id="display-a-list-of-qrs-api-endpoints-by-method">display a list of QRS API endpoints by method</h2>
 <ul>
 <li>parameter1 = method</li>
