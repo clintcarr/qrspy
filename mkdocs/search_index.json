@@ -622,7 +622,7 @@
         },
         {
             "location": "/user-guide/publish_app/",
-            "text": "Description\n\n\nPublishes an application to a stream\n\n\nEndpoint\n\n\nqrs/app/{appid}/publish?stream={streamid}&name={new app name}\n\n\nUsage\n\n\n\"\"\"\n:param appid: ID of the application to publish\n:param stream: Stream name to publish the application to\n:param name: Name of application once published\n\"\"\"\nqrs.publish_app('00ee092c-3bf0-4818-b3bd-61fe45846d00', '91176367-ce28-4ece-bd0c-668b13ab03dd', 'NewApp')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nPublishes an application to a stream\n\n\nEndpoint\n\n\nqrs/app/{appid}/publish?stream={streamid}&name={new app name}\n\n\nUsage\n\n\n\"\"\"\n:param appid: ID of the application to publish\n:param stream: Stream name to publish the application to\n:param name: Name of application once published\n\"\"\"\nqrs.publish_app('00ee092c-3bf0-4818-b3bd-61fe45846d00', '91176367-ce28-4ece-bd0c-668b13ab03dd', 'NewApp')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "publish app"
         },
         {
@@ -642,12 +642,12 @@
         },
         {
             "location": "/user-guide/publish_app/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/migrate_app/",
-            "text": "Description\n\n\nThis process is usually automatically performed after upgrades, however if the automated process fails this function can be used.\n\n\nEndpoint\n\n\n/qrs/app/{appid}/migrate\n\n\nUsage\n\n\n'''\n:param appid: ID of the application to migrate\n'''\nqrs.migrate_app('00ee092c-3bf0-4818-b3bd-61fe45846d00')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nThis process is usually automatically performed after upgrades, however if the automated process fails this function can be used.\n\n\nEndpoint\n\n\n/qrs/app/{appid}/migrate\n\n\nUsage\n\n\n'''\n:param appid: ID of the application to migrate\n'''\nqrs.migrate_app('00ee092c-3bf0-4818-b3bd-61fe45846d00')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "migrate app"
         },
         {
@@ -667,12 +667,12 @@
         },
         {
             "location": "/user-guide/migrate_app/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/publish_appobject/",
-            "text": "Description\n\n\nPublishs an unpublished appobject.  For example a personal sheet to a community sheet.\n\n\nEndpoint\n\n\n/qrs/app/object/{objid}/publish\n\n\nUsage\n\n\nqrs.publish_appobject('00ee092c-3bf0-4818-b3bd-61fe45846d00')\n\n\n\n\nReturns",
+            "text": "Description\n\n\nPublishs an unpublished appobject.  For example a personal sheet to a community sheet.\n\n\nEndpoint\n\n\n/qrs/app/object/{objid}/publish\n\n\nUsage\n\n\nqrs.publish_appobject('00ee092c-3bf0-4818-b3bd-61fe45846d00')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "publish app object"
         },
         {
@@ -692,12 +692,12 @@
         },
         {
             "location": "/user-guide/publish_appobject/#returns",
-            "text": "",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/unpublish_appobject/",
-            "text": "Description\n\n\nUnpublishes an app object. For example community sheet to personal sheet\n\n\nEndpoint\n\n\n/qrs/app/object/{objid}/unpublish \n\n\nUsage\n\n\nqrs.unpublish_appobject('00ee092c-3bf0-4818-b3bd-61fe45846d00')\n\n\n\n\nReturns",
+            "text": "Description\n\n\nUnpublishes an app object. For example community sheet to personal sheet\n\n\nEndpoint\n\n\n/qrs/app/object/{objid}/unpublish \n\n\nUsage\n\n\nqrs.unpublish_appobject('00ee092c-3bf0-4818-b3bd-61fe45846d00')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "unpublish app object"
         },
         {
@@ -717,12 +717,12 @@
         },
         {
             "location": "/user-guide/unpublish_appobject/#returns",
-            "text": "",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/set_license/",
-            "text": "Description\n\n\nLicenses the Qlik Sense Server.  If the server can reach the internet the LEF can be set to None\n\n\nEndpoint\n\n\n/qrs/license?control={control}\n\n\nUsage\n\n\n:param control: License control number\n:param serial: License serial number\n:param name: License name\n:param organization: License organization\n:lef: Set to None if server is internet connected else format as this\nlef = \"line1{r}{n}line2{r}{n}line3{r}{n}line4{r}{n}line5{r}{n}line6{r}{n}line7\" (remove {})\n\"\"\"\n\n\nqrs.set_license({control}, {serial}, {user}, {organization}, {LEF or None})\n\n\n\n\nReturns\n\n\n{'id': 'c517fae1-adbb-4848-b404-1d8a8d3748ad', 'createdDate': '2017-01-18T21:42:01.955Z', 'modifiedDate': '2017-01-18T21:42:01.955Z', 'modifiedByUserName': 'QLIKLOCAL\\\\administrator', 'lef': 'XXX\\r\\nInternal Qlik License 2017;;;\\r\\nQlik Sense Enterprise;;;\\r\\nPRODUCTLEVEL;50;;2018-01-30\\r\\nTOKENS;XXX;;\\r\\nTIMELIMIT;;;XXX-01-30\\r\\XXX', 'serial': 'XXX', 'check': '1100275618', 'name': 'Qlik', 'organization': 'Qlik', 'product': 2, 'numberOfCores': -1, 'isExpired': False, 'expiredReason': '', 'isBlacklisted': False, 'isInvalid': False, 'privileges': None, 'impactSecurityAccess': False, 'schemaPath': 'License'}",
+            "text": "Description\n\n\nLicenses the Qlik Sense Server.  If the server can reach the internet the LEF can be set to None\n\n\nEndpoint\n\n\n/qrs/license?control={control}\n\n\nUsage\n\n\n:param control: License control number\n:param serial: License serial number\n:param name: License name\n:param organization: License organization\n:lef: Set to None if server is internet connected else format as this\nlef = \"line1{r}{n}line2{r}{n}line3{r}{n}line4{r}{n}line5{r}{n}line6{r}{n}line7\" (remove {})\n\"\"\"\n\n\nqrs.set_license({control}, {serial}, {user}, {organization}, {LEF or None})\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "set license"
         },
         {
@@ -742,12 +742,12 @@
         },
         {
             "location": "/user-guide/set_license/#returns",
-            "text": "{'id': 'c517fae1-adbb-4848-b404-1d8a8d3748ad', 'createdDate': '2017-01-18T21:42:01.955Z', 'modifiedDate': '2017-01-18T21:42:01.955Z', 'modifiedByUserName': 'QLIKLOCAL\\\\administrator', 'lef': 'XXX\\r\\nInternal Qlik License 2017;;;\\r\\nQlik Sense Enterprise;;;\\r\\nPRODUCTLEVEL;50;;2018-01-30\\r\\nTOKENS;XXX;;\\r\\nTIMELIMIT;;;XXX-01-30\\r\\XXX', 'serial': 'XXX', 'check': '1100275618', 'name': 'Qlik', 'organization': 'Qlik', 'product': 2, 'numberOfCores': -1, 'isExpired': False, 'expiredReason': '', 'isBlacklisted': False, 'isInvalid': False, 'privileges': None, 'impactSecurityAccess': False, 'schemaPath': 'License'}",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/import_users/",
-            "text": "Description\n\n\nImports users from a text file\n\n\nEndpoint\n\n\n/qrs/users\n\n\nUsage\n\n\n'''\n:param filename: Path and filename to txt or csv file containing users\n        :example import_users(r'c:\\\\some\\\\folder\\\\file.txt')\n'''\nqrs.import_users('c:/some/folder/users.txt')\n\n\n\n\nFile format\n\n\n\n\n\n\n\n\nuserID\n\n\nuserDirectory\n\n\nname\n\n\n\n\n\n\n\n\n\n\nuser1\n\n\nDirectoryName\n\n\nBob Smith\n\n\n\n\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nImports users from a text file\n\n\nEndpoint\n\n\n/qrs/users\n\n\nUsage\n\n\n'''\n:param filename: Path and filename to txt or csv file containing users\n        :example import_users(r'c:\\\\some\\\\folder\\\\file.txt')\n'''\nqrs.import_users('c:/some/folder/users.txt')\n\n\n\n\nFile format\n\n\n\n\n\n\n\n\nuserID\n\n\nuserDirectory\n\n\nname\n\n\n\n\n\n\n\n\n\n\nuser1\n\n\nDirectoryName\n\n\nBob Smith\n\n\n\n\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "import users"
         },
         {
@@ -772,12 +772,12 @@
         },
         {
             "location": "/user-guide/import_users/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/import_tag/",
-            "text": "Description\n\n\nImports tags from a text file\n\n\nEndpoint\n\n\n/qrs/tag\n\n\nUsage\n\n\n'''\n:param filename: The path and filename of the text or csv file\n        :example import_tag(r'c:\\\\some\\\\folder\\\\file.txt')\n'''\nqrs.import_tag('c:/some/folder/tag.txt')\n\n\n\n\nFile format\n\n\n\n\n\n\n\n\nname\n\n\n\n\n\n\n\n\n\n\n\n\ntag1\n\n\n\n\n\n\n\n\ntag2\n\n\n\n\n\n\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nImports tags from a text file\n\n\nEndpoint\n\n\n/qrs/tag\n\n\nUsage\n\n\n'''\n:param filename: The path and filename of the text or csv file\n        :example import_tag(r'c:\\\\some\\\\folder\\\\file.txt')\n'''\nqrs.import_tag('c:/some/folder/tag.txt')\n\n\n\n\nFile format\n\n\n\n\n\n\n\n\nname\n\n\n\n\n\n\n\n\n\n\n\n\ntag1\n\n\n\n\n\n\n\n\ntag2\n\n\n\n\n\n\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "import tag"
         },
         {
@@ -802,12 +802,12 @@
         },
         {
             "location": "/user-guide/import_tag/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/start_task/",
-            "text": "Description\n\n\nStart a task (for example, a reload task), identified by {id}, so that it runs on a Qlik                                                               Sense Scheduler Service (QSS).\n\n\nEndpoint\n\n\n/qrs/task/{taskid}/start\n\n\nUsage\n\n\n\"\"\"\n:param taskid: id of the task\n\"\"\"\nqrs.start_task('ce208cb0-ba39-4320-963c-457255cd2d38')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nStart a task (for example, a reload task), identified by {id}, so that it runs on a Qlik                                                               Sense Scheduler Service (QSS).\n\n\nEndpoint\n\n\n/qrs/task/{taskid}/start\n\n\nUsage\n\n\n\"\"\"\n:param taskid: id of the task\n\"\"\"\nqrs.start_task('ce208cb0-ba39-4320-963c-457255cd2d38')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "start task"
         },
         {
@@ -827,12 +827,12 @@
         },
         {
             "location": "/user-guide/start_task/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/import_extension/",
-            "text": "Description\n\n\nImports the extension to Qlik Sense\n\n\nEndpoint\n\n\n/qrs/extension/upload\n\n\nUsage\n\n\n\"\"\"\n:param filename: The path and filename of the extension (make sure its a zip archive)\n        :usage: import_extension(r'c:\\\\some\\folder\\\\file.zip')\n\"\"\"\nqrs.import_extension(c:/some/folder/extension.zip)\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nImports the extension to Qlik Sense\n\n\nEndpoint\n\n\n/qrs/extension/upload\n\n\nUsage\n\n\n\"\"\"\n:param filename: The path and filename of the extension (make sure its a zip archive)\n        :usage: import_extension(r'c:\\\\some\\folder\\\\file.zip')\n\"\"\"\nqrs.import_extension(c:/some/folder/extension.zip)\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "import extension"
         },
         {
@@ -852,12 +852,12 @@
         },
         {
             "location": "/user-guide/import_extension/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/copy_app/",
-            "text": "Description\n\n\nCopies an application within Qlik Sense, owner will be SA_Repository\n\n\nEndpoint\n\n\n/qrs/app/{appid}/copy?name={newname}\n\n\nUsage\n\n\n\"\"\"\n:param name: Name of the new application\n:param appid: ID of the Qlik Sense application to copy  \n\"\"\"\nqrs.copy_app('ce208cb0-ba39-4320-963c-457255cd2d38', 'CopyApp')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nCopies an application within Qlik Sense, owner will be SA_Repository\n\n\nEndpoint\n\n\n/qrs/app/{appid}/copy?name={newname}\n\n\nUsage\n\n\n\"\"\"\n:param name: Name of the new application\n:param appid: ID of the Qlik Sense application to copy  \n\"\"\"\nqrs.copy_app('ce208cb0-ba39-4320-963c-457255cd2d38', 'CopyApp')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "copy app"
         },
         {
@@ -877,12 +877,12 @@
         },
         {
             "location": "/user-guide/copy_app/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/new_stream/",
-            "text": "Description\n\n\nCreates a new Stream\n\n\nEndpoint\n\n\n/qrs/stream\n\n\nUsage\n\n\n\"\"\"\n:param name: The name of the new Stream\n\"\"\"\nqrs.new_stream('NewStream')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nCreates a new Stream\n\n\nEndpoint\n\n\n/qrs/stream\n\n\nUsage\n\n\n\"\"\"\n:param name: The name of the new Stream\n\"\"\"\nqrs.new_stream('NewStream')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "new stream"
         },
         {
@@ -902,12 +902,12 @@
         },
         {
             "location": "/user-guide/new_stream/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/sync_userdirectory/",
-            "text": "Description\n\n\nSynchronises the user directory specified by the id\n\n\nEndpoint\n\n\n/qrs/userdirectoryconnector/syncuserdirectories\n\n\nUsage\n\n\n\"\"\"\n:param id: id of the user directory\n\"\"\"\nqrs.sync_userdirectory('00ee092c-3bf0-4818-b3bd-61fe45846d00')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nSynchronises the user directory specified by the id\n\n\nEndpoint\n\n\n/qrs/userdirectoryconnector/syncuserdirectories\n\n\nUsage\n\n\n\"\"\"\n:param id: id of the user directory\n\"\"\"\nqrs.sync_userdirectory('00ee092c-3bf0-4818-b3bd-61fe45846d00')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "sync user directory"
         },
         {
@@ -927,12 +927,12 @@
         },
         {
             "location": "/user-guide/sync_userdirectory/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/export_certificates/",
-            "text": "Description\n\n\nExports certificates from the Central Node - saved to C:\\ProgramData\\Qlik\\Sense\\Repository\\Exported Certificates\n\n\nEndpoint\n\n\n/qrs/certificatedistribution/exportcertificates\n\n\nUsage\n\n\n\"\"\"\n:param machinename: Computername to link to the certificates\n:param certificatepassword: Password to secure certificate private key\n:param includesecret: Include private key (True, False)\n:param exportformat: Format of export (Windows, Pem)\n\"\"\"\nqrs.export_certificates('ccsurface', 's', 'True', 'Pem')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nExports certificates from the Central Node - saved to C:\\ProgramData\\Qlik\\Sense\\Repository\\Exported Certificates\n\n\nEndpoint\n\n\n/qrs/certificatedistribution/exportcertificates\n\n\nUsage\n\n\n\"\"\"\n:param machinename: Computername to link to the certificates\n:param certificatepassword: Password to secure certificate private key\n:param includesecret: Include private key (True, False)\n:param exportformat: Format of export (Windows, Pem)\n\"\"\"\nqrs.export_certificates('ccsurface', 's', 'True', 'Pem')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "export certificates"
         },
         {
@@ -952,12 +952,12 @@
         },
         {
             "location": "/user-guide/export_certificates/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/new_dataconnection/",
-            "text": "Description\n\n\nAdds a data connection to Qlik Sense\n\n\nEndpoint\n\n\n/qrs/dataconnection/\n\n\nUsage\n\n\n\"\"\"\n:param username: The user the data connection will connect using\n:param password: The password of the user to connect\n:param name: The name of the data connection\n:param connectionstring: The connection string\n:param conntype: The type of connection\n\"\"\"\nqrs.new_dataconnection()\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nAdds a data connection to Qlik Sense\n\n\nEndpoint\n\n\n/qrs/dataconnection/\n\n\nUsage\n\n\n\"\"\"\n:param username: The user the data connection will connect using\n:param password: The password of the user to connect\n:param name: The name of the data connection\n:param connectionstring: The connection string\n:param conntype: The type of connection\n\"\"\"\nqrs.new_dataconnection()\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "new dataconnection"
         },
         {
@@ -977,12 +977,12 @@
         },
         {
             "location": "/user-guide/new_dataconnection/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/import_app/",
-            "text": "Description\n\n\nImports a binary QVF Qlik Sense application to Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/app/upload?name={name}\n\n\nUsage\n\n\n\"\"\"\n:param name: The name of the application that will be displayed in Qlik Sense\n:param filename: The path and filename for the QVF file\n\"\"\"\nqrs.import_app('NewApp', 'c:/some/folder/app.qvf')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nImports a binary QVF Qlik Sense application to Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/app/upload?name={name}\n\n\nUsage\n\n\n\"\"\"\n:param name: The name of the application that will be displayed in Qlik Sense\n:param filename: The path and filename for the QVF file\n\"\"\"\nqrs.import_app('NewApp', 'c:/some/folder/app.qvf')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "import app"
         },
         {
@@ -1002,12 +1002,12 @@
         },
         {
             "location": "/user-guide/import_app/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/import_customproperty/",
-            "text": "Description\n\n\nImports custom properties into Qlik Sense\n\n\nEndpoint\n\n\n/qrs/custompropertydefinition/many\n\n\nUsage\n\n\n\"\"\"\n:param filename: Path and filename to JSON formatted file\n\"\"\"\nqrs.import_customproperty(r'c:\\\\some\\\\folder\\\\file.txt')\n\n\n\n\nFile Format\n\n\n        {\n            \"name\": \"FOO\",\n            \"valueType\": \"BAR\",\n            \"choiceValues\":\n                [\"FOO\",\n                \"BAR\"],\n            \"objectTypes\":\n                [\"App\",\n                 \"RepositoryService\"]}\n        :usage: \n\n\n\n\nObject Types\n\n\n\"App\",\"ContentLibrary\",\"DataConnection\",\"EngineService\",\"Extension\",\"ProxyService\",\"ReloadTask\",\n        \"RepositoryService\",\"SchedulerService\",\"ServerNodeConfiguration\",\"Stream\",\"User\",\"UserSyncTask\",\n        \"VirtualProxyConfig\"\n\n\n\n\nReturns\n\n\n{'buildVersion': '12.14.0.0', 'buildDate': '9/20/2013 10:09:00 AM', 'databaseProvider': 'Devart.Data.PostgreSql', 'nodeType': 1, 'sharedPersistence': True, 'requiresBootstrap': False, 'schemaPath': 'About'}",
+            "text": "Description\n\n\nImports custom properties into Qlik Sense\n\n\nEndpoint\n\n\n/qrs/custompropertydefinition/many\n\n\nUsage\n\n\n\"\"\"\n:param filename: Path and filename to JSON formatted file\n\"\"\"\nqrs.import_customproperty(r'c:\\\\some\\\\folder\\\\file.txt')\n\n\n\n\nFile Format\n\n\n        {\n            \"name\": \"FOO\",\n            \"valueType\": \"BAR\",\n            \"choiceValues\":\n                [\"FOO\",\n                \"BAR\"],\n            \"objectTypes\":\n                [\"App\",\n                 \"RepositoryService\"]}\n        :usage: \n\n\n\n\nObject Types\n\n\n\"App\",\"ContentLibrary\",\"DataConnection\",\"EngineService\",\"Extension\",\"ProxyService\",\"ReloadTask\",\n        \"RepositoryService\",\"SchedulerService\",\"ServerNodeConfiguration\",\"Stream\",\"User\",\"UserSyncTask\",\n        \"VirtualProxyConfig\"\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "import customproperty"
         },
         {
@@ -1037,12 +1037,12 @@
         },
         {
             "location": "/user-guide/import_customproperty/#returns",
-            "text": "{'buildVersion': '12.14.0.0', 'buildDate': '9/20/2013 10:09:00 AM', 'databaseProvider': 'Devart.Data.PostgreSql', 'nodeType': 1, 'sharedPersistence': True, 'requiresBootstrap': False, 'schemaPath': 'About'}",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/delete_user/",
-            "text": "Description\n\n\nDeletes the user specified by the userid\n\n\nEndpoint\n\n\nqrs/user/{userid}\n\n\nUsage\n\n\nqrs.delete_user('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nDeletes the user specified by the userid\n\n\nEndpoint\n\n\nqrs/user/{userid}\n\n\nUsage\n\n\nqrs.delete_user('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "delete user"
         },
         {
@@ -1062,12 +1062,12 @@
         },
         {
             "location": "/user-guide/delete_user/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/delete_license/",
-            "text": "Description\n\n\nDeletes the license from Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/license/{licenseid}\n\n\nUsage\n\n\nqrs.delete_license()\n\n\n\n\nReturns",
+            "text": "Description\n\n\nDeletes the license from Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/license/{licenseid}\n\n\nUsage\n\n\nqrs.delete_license()\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "delete license"
         },
         {
@@ -1087,12 +1087,12 @@
         },
         {
             "location": "/user-guide/delete_license/#returns",
-            "text": "",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/delete_app/",
-            "text": "Description\n\n\nDeletes a Qlik Sense application\n\n\nEndpoint\n\n\n/qrs/app/{appid}\n\n\nUsage\n\n\n\"\"\"\n:param appid: Name of the application to delete\n\"\"\"\n\nqrs.delete_app('ce208cb0-ba39-4320-963c-457255cd2d38')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nDeletes a Qlik Sense application\n\n\nEndpoint\n\n\n/qrs/app/{appid}\n\n\nUsage\n\n\n\"\"\"\n:param appid: Name of the application to delete\n\"\"\"\n\nqrs.delete_app('ce208cb0-ba39-4320-963c-457255cd2d38')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "delete app"
         },
         {
@@ -1112,12 +1112,12 @@
         },
         {
             "location": "/user-guide/delete_app/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/delete_stream/",
-            "text": "Description\n\n\nRemoves a Stream from the server, applications become unpublished\n\n\nEndpoint\n\n\n/qrs/stream/{streamid}\n\n\nUsage\n\n\n\"\"\"\n:param id: ID of the stream to delete\n\n\"\"\"\nqrs.delete_stream('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nRemoves a Stream from the server, applications become unpublished\n\n\nEndpoint\n\n\n/qrs/stream/{streamid}\n\n\nUsage\n\n\n\"\"\"\n:param id: ID of the stream to delete\n\n\"\"\"\nqrs.delete_stream('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "delete stream"
         },
         {
@@ -1137,12 +1137,12 @@
         },
         {
             "location": "/user-guide/delete_stream/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/delete_tag/",
-            "text": "Description\n\n\nDeletes the tag identified by the supplied ID\n\n\nEndpoint\n\n\n/qrs/tag/{tagid}\n\n\nUsage\n\n\n\"\"\"\n:param id: ID of the tag to delete\n\"\"\"\nqrs.delete_tag('087cfb97-2d1f-4d74-9500-b180fa0bd4ec')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nDeletes the tag identified by the supplied ID\n\n\nEndpoint\n\n\n/qrs/tag/{tagid}\n\n\nUsage\n\n\n\"\"\"\n:param id: ID of the tag to delete\n\"\"\"\nqrs.delete_tag('087cfb97-2d1f-4d74-9500-b180fa0bd4ec')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "delete tag"
         },
         {
@@ -1162,7 +1162,7 @@
         },
         {
             "location": "/user-guide/delete_tag/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
@@ -1192,7 +1192,7 @@
         },
         {
             "location": "/user-guide/delete_useraccesstype/",
-            "text": "Description\n\n\nMoves the user access token allocated to the provided user to Quarantine.\n\n\nEndpoint\n\n\n/qrs/aboutqrs/license/useraccesstype/{userID}\n\n\nUsage\n\n\n\"\"\"\n:param id: The ID of the user access\n\"\"\"\nqrs.delete_useraccesstype('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nMoves the user access token allocated to the provided user to Quarantine.\n\n\nEndpoint\n\n\n/qrs/aboutqrs/license/useraccesstype/{userID}\n\n\nUsage\n\n\n\"\"\"\n:param id: The ID of the user access\n\"\"\"\nqrs.delete_useraccesstype('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "delete user accesstype"
         },
         {
@@ -1212,12 +1212,12 @@
         },
         {
             "location": "/user-guide/delete_useraccesstype/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         },
         {
             "location": "/user-guide/delete_appobject/",
-            "text": "Description\n\n\nDeletes the app object identified by the supplied ID.\n\n\nEndpoint\n\n\n/qrs/app/object\n\n\nUsage\n\n\n\"\"\"\n:param: objid: The objectID of the application object (None for all)\n\n\"\"\"\nqrs.delete_appobject('c517fae1-adbb-4848-b404-1d8a8d3748ad')\n\n\n\n\nReturns\n\n\n[]",
+            "text": "Description\n\n\nDeletes the app object identified by the supplied ID.\n\n\nEndpoint\n\n\n/qrs/app/object\n\n\nUsage\n\n\n\"\"\"\n:param: objid: The objectID of the application object (None for all)\n\n\"\"\"\nqrs.delete_appobject('c517fae1-adbb-4848-b404-1d8a8d3748ad')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "delete app object"
         },
         {
@@ -1237,7 +1237,7 @@
         },
         {
             "location": "/user-guide/delete_appobject/#returns",
-            "text": "[]",
+            "text": "HTTP Status Code",
             "title": "Returns"
         }
     ]
