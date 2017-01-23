@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>get userdirectory - QRSpy</title>
+  <title>delete library content - QRSpy</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "get userdirectory";
-    var mkdocs_page_input_path = "user-guide\\get_userdirectory.md";
-    var mkdocs_page_url = "/user-guide/get_userdirectory/";
+    var mkdocs_page_name = "delete library content";
+    var mkdocs_page_input_path = "user-guide\\delete_librarycontent.md";
+    var mkdocs_page_url = "/user-guide/delete_librarycontent/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -169,23 +169,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">get userdirectory</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#description">Description</a></li>
-                
-                    <li><a class="toctree-l4" href="#endpoint">Endpoint</a></li>
-                
-                    <li><a class="toctree-l4" href="#supports-filter">Supports filter</a></li>
-                
-                    <li><a class="toctree-l4" href="#usage">Usage</a></li>
-                
-                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../get_userdirectory/">get userdirectory</a>
         
     </li>
 
@@ -446,8 +431,21 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../delete_librarycontent/">delete library content</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">delete library content</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#description">Description</a></li>
+                
+                    <li><a class="toctree-l4" href="#endpoint">Endpoint</a></li>
+                
+                    <li><a class="toctree-l4" href="#usage">Usage</a></li>
+                
+                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -506,11 +504,11 @@
         
       
         
-          <li>HTTP GET &raquo;</li>
+          <li>HTTP DELETE &raquo;</li>
         
       
     
-    <li>get userdirectory</li>
+    <li>delete library content</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -521,18 +519,20 @@
             <div class="section">
               
                 <h1 id="description">Description</h1>
-<p>Returns the user directories on the server</p>
+<p>Deletes content from a specified content library</p>
 <h2 id="endpoint">Endpoint</h2>
-<p>/qrs/userdirectory</p>
-<h2 id="supports-filter">Supports filter</h2>
-<p>True</p>
+<p>/qrs/contentlibrary/{libraryname}/deletecontent?externalpath={contentname}</p>
 <h2 id="usage">Usage</h2>
-<pre><code>qrs.get_userdirectory()
+<pre><code>&quot;&quot;&quot;
+:param: libraryname: The name of the library to delete the content from
+:param: contentname: The name of the content to deleye
+
+&quot;&quot;&quot;
+qrs.delete_librarycontent('Library', 'Pic.gif')
 </code></pre>
 
 <h2 id="returns">Returns</h2>
-<pre><code>[{'id': 'ce208cb0-ba39-4320-963c-457255cd2d38', 'name': 'qliklocal', 'type': 'Repository.UserDirectoryConnectors.LDAP.ActiveDirectory', 'privileges': None}]
-
+<pre><code>HTTP Status Code
 </code></pre>
               
             </div>
@@ -541,10 +541,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../get_extension/" class="btn btn-neutral float-right" title="get extension">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../delete_contentlibrary/" class="btn btn-neutral float-right" title="delete content library">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../get_securityrule/" class="btn btn-neutral" title="get securityrule"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../delete_appobject/" class="btn btn-neutral" title="delete app object"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -570,10 +570,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../get_securityrule/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../delete_appobject/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../get_extension/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../delete_contentlibrary/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

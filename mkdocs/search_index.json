@@ -736,6 +736,36 @@
             "title": "Returns"
         },
         {
+            "location": "/user-guide/get_contentlibrary/",
+            "text": "Description\n\n\nReturns a list of content libraries\n\n\nEndpoint\n\n\nqrs/contentlibrary\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\nqrs.get_contentlibrary()\n\n\n\n\nReturns\n\n\n[{'id': '365cddf2-1181-4204-8800-e9a46fe3b127', 'name': 'Default', 'type': 'Media', 'privileges': None}]",
+            "title": "get content library"
+        },
+        {
+            "location": "/user-guide/get_contentlibrary/#description",
+            "text": "Returns a list of content libraries",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_contentlibrary/#endpoint",
+            "text": "qrs/contentlibrary",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_contentlibrary/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
+            "location": "/user-guide/get_contentlibrary/#usage",
+            "text": "qrs.get_contentlibrary()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_contentlibrary/#returns",
+            "text": "[{'id': '365cddf2-1181-4204-8800-e9a46fe3b127', 'name': 'Default', 'type': 'Media', 'privileges': None}]",
+            "title": "Returns"
+        },
+        {
             "location": "/user-guide/publish_app/",
             "text": "Description\n\n\nPublishes an application to a stream\n\n\nEndpoint\n\n\nqrs/app/{appid}/publish?stream={streamid}&name={new app name}\n\n\nUsage\n\n\n\"\"\"\n:param appid: ID of the application to publish\n:param stream: Stream name to publish the application to\n:param name: Name of application once published\n\"\"\"\nqrs.publish_app('00ee092c-3bf0-4818-b3bd-61fe45846d00', '91176367-ce28-4ece-bd0c-668b13ab03dd', 'NewApp')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "publish app"
@@ -1156,6 +1186,31 @@
             "title": "Returns"
         },
         {
+            "location": "/user-guide/import_librarycontent/",
+            "text": "Description\n\n\nImports content to specified content library\n\n\nEndpoint\n\n\n/qrs/contentlibrary/{libraryname}/uploadfile?externalpath={contentname}\n\n\nUsage\n\n\n\"\"\"\n:param: libraryname: The name of the library to import the content into\n:param: contentname: The name of the content that will be called in the content library\n:param: filename: The file to be imported\n\n\"\"\"\nqrs.import_librarycontent('Library', 'c:/some/folder/pic.gif', 'Picture.gif')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
+            "title": "import library content"
+        },
+        {
+            "location": "/user-guide/import_librarycontent/#description",
+            "text": "Imports content to specified content library",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/import_librarycontent/#endpoint",
+            "text": "/qrs/contentlibrary/{libraryname}/uploadfile?externalpath={contentname}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/import_librarycontent/#usage",
+            "text": "\"\"\"\n:param: libraryname: The name of the library to import the content into\n:param: contentname: The name of the content that will be called in the content library\n:param: filename: The file to be imported\n\n\"\"\"\nqrs.import_librarycontent('Library', 'c:/some/folder/pic.gif', 'Picture.gif')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/import_librarycontent/#returns",
+            "text": "HTTP Status Code",
+            "title": "Returns"
+        },
+        {
             "location": "/user-guide/delete_user/",
             "text": "Description\n\n\nDeletes the user specified by the userid\n\n\nEndpoint\n\n\nqrs/user/{userid}\n\n\nUsage\n\n\nqrs.delete_user('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "delete user"
@@ -1352,6 +1407,56 @@
         },
         {
             "location": "/user-guide/delete_appobject/#returns",
+            "text": "HTTP Status Code",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/delete_librarycontent/",
+            "text": "Description\n\n\nDeletes content from a specified content library\n\n\nEndpoint\n\n\n/qrs/contentlibrary/{libraryname}/deletecontent?externalpath={contentname}\n\n\nUsage\n\n\n\"\"\"\n:param: libraryname: The name of the library to delete the content from\n:param: contentname: The name of the content to deleye\n\n\"\"\"\nqrs.delete_librarycontent('Library', 'Pic.gif')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
+            "title": "delete library content"
+        },
+        {
+            "location": "/user-guide/delete_librarycontent/#description",
+            "text": "Deletes content from a specified content library",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/delete_librarycontent/#endpoint",
+            "text": "/qrs/contentlibrary/{libraryname}/deletecontent?externalpath={contentname}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/delete_librarycontent/#usage",
+            "text": "\"\"\"\n:param: libraryname: The name of the library to delete the content from\n:param: contentname: The name of the content to deleye\n\n\"\"\"\nqrs.delete_librarycontent('Library', 'Pic.gif')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/delete_librarycontent/#returns",
+            "text": "HTTP Status Code",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/delete_contentlibrary/",
+            "text": "Description\n\n\nDeletes a content library\n\n\nEndpoint\n\n\n/qrs/contentlibrary/{libraryid}\n\n\nUsage\n\n\n\"\"\"\n:param appid: ID of the Library to delete\n\"\"\"\n\nqrs.delete_contentlibrary('ce208cb0-ba39-4320-963c-457255cd2d38')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
+            "title": "delete content library"
+        },
+        {
+            "location": "/user-guide/delete_contentlibrary/#description",
+            "text": "Deletes a content library",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/delete_contentlibrary/#endpoint",
+            "text": "/qrs/contentlibrary/{libraryid}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/delete_contentlibrary/#usage",
+            "text": "\"\"\"\n:param appid: ID of the Library to delete\n\"\"\"\n\nqrs.delete_contentlibrary('ce208cb0-ba39-4320-963c-457255cd2d38')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/delete_contentlibrary/#returns",
             "text": "HTTP Status Code",
             "title": "Returns"
         },
