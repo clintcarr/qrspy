@@ -101,9 +101,14 @@ class ConnectQlik:
         Function that performs DELETE method to Qlik Repository Service endpoints
         :param endpoint: API endpoint path
         """
-        response = requests.delete('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
-                                        headers=headers, verify=self.root, cert=self.certificate)
-        return (response.status_code)
+        if '?' in endpoint: 
+            response = requests.delete('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                                            headers=headers, verify=self.root, cert=self.certificate)
+            return (response.status_code)
+        else:
+            response = requests.delete('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                                            headers=headers, verify=self.root, cert=self.certificate)
+            return (response.status_code)
 
     def put(self, endpoint):
         """
@@ -202,9 +207,8 @@ class ConnectQlik:
         return (json.loads(self.get('qrs/userdirectory', filterparam, filtervalue)))
 
     def get_exportappticket(self, appid, filterparam=None, filtervalue=None):
-        response = (json.loads(self.get('qrs/app/%s/export' % appid)))
-        return response
-
+        return (json.loads(self.get('qrs/app/%s/export' % appid)))
+        
     def get_extension(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/extension', filterparam, filtervalue)))
 
@@ -229,6 +233,9 @@ class ConnectQlik:
 
     def get_emptyserverconfigurationcontainer(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/servernodeconfiguration/local'))) 
+
+    def get_contentlibrary(self, filterparam=None, filtervalue=None):
+        return (json.loads(self.get('qrs/contentlibrary', filterparam, filtervalue)))
 
     def delete_user(self, userid):
          return self.delete('qrs/user/%s' % userid)
@@ -361,6 +368,16 @@ class ConnectQlik:
             data = json.dumps(properties)
             return self.post('qrs/custompropertydefinition/many', data)
 
+    def import_librarycontent(self, library, filepath, contentname):
+        with open(filepath, 'rb') as data:
+            return self.post('qrs/contentlibrary/%s/uploadfile?externalpath=%s' % (library, filename), data)
+
+    def delete_librarycontent(self, library, contentname):
+        return self.delete('qrs/contentlibrary/%s/deletecontent?externalpath=%s' % (library, contentname))
+
+    def delete_contentlibrary(self, library):
+        return self.delete('qrs/contentlibrary/%s' % library)
+
     def export_app(self, appid, filepath, filename):
         exportticket = self.get_exportappticket(appid)
         ticket = (exportticket['value'])
@@ -380,4 +397,3 @@ if __name__ == '__main__':
            'C:/certs/qs2.qliklocal.net/root.pem')
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
-
