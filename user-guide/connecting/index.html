@@ -73,6 +73,8 @@
             
                 <li class="toctree-l3"><a href="#connecting-to-qlik-sense-server">Connecting to Qlik Sense Server</a></li>
                 
+                    <li><a class="toctree-l4" href="#optional">Optional</a></li>
+                
             
             </ul>
         
@@ -238,6 +240,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_appprivileges/">get app privileges</a>
+        
+    </li>
+
+        
     </ul>
 
         
@@ -270,6 +279,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../unpublish_appobject/">unpublish app object</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../replace_app/">replace app</a>
         
     </li>
 
@@ -517,6 +533,12 @@
 </ol>
 <pre><code>qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),
 'c:/certs/qs2.qliklocal.net/root.pem')
+</code></pre>
+
+<h2 id="optional">Optional</h2>
+<p>The userdirectory and userid may be specified in the instantiation of the ConnectQlik class.  If these arguments are left blank it will default to 'INTERNAL', 'SA_REPOSITORY'</p>
+<pre><code>qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),
+'c:/certs/qs2.qliklocal.net/root.pem', 'QLIK', 'Administrator')
 </code></pre>
               
             </div>

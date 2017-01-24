@@ -12,23 +12,28 @@
         },
         {
             "location": "/user-guide/summary/",
-            "text": "Summary\n\n\nThe functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.\n\n\nThe following table outlines the currently supported processes.\n\n\n\n\n\n\n\n\nGET\n\n\nPUT\n\n\nPOST\n\n\nDELETE\n\n\n\n\n\n\n\n\n\n\nget_about\n\n\npublish_app\n\n\nset_license\n\n\ndelete_user\n\n\n\n\n\n\nget_app\n\n\nmigrate_app\n\n\nimport_users\n\n\ndelete_license\n\n\n\n\n\n\nget_dataconnection\n\n\npublish_appobject\n\n\nimport_tag\n\n\ndelete_app\n\n\n\n\n\n\nget_user\n\n\nunpublish_appobject\n\n\nstart_task\n\n\ndelete_stream\n\n\n\n\n\n\nget_license\n\n\n\n\nimport_extension\n\n\ndelete_tag\n\n\n\n\n\n\nget_lef\n\n\n\n\ncopy_app\n\n\ndelete_customproperty\n\n\n\n\n\n\nget_appcount\n\n\n\n\nnew_stream\n\n\ndelete_useraccesstype\n\n\n\n\n\n\nget_customproperty\n\n\n\n\nsync_userdirectory\n\n\ndelete_appobject\n\n\n\n\n\n\nget_tag\n\n\n\n\nexport_certificates\n\n\ndelete_librarycontent\n\n\n\n\n\n\nget_task\n\n\n\n\nnew_dataconnection\n\n\ndelete_contentlibrary\n\n\n\n\n\n\nget_securityrule\n\n\n\n\nimport_app\n\n\n\n\n\n\n\n\nget_userdirectory\n\n\n\n\nimport_customproperty\n\n\n\n\n\n\n\n\nget_extension\n\n\n\n\nimport_librarycontent\n\n\n\n\n\n\n\n\nget_stream\n\n\n\n\n\n\n\n\n\n\n\n\nget_servernode\n\n\n\n\n\n\n\n\n\n\n\n\nget_useraccesstype\n\n\n\n\n\n\n\n\n\n\n\n\nget_appobject\n\n\n\n\n\n\n\n\n\n\n\n\nget_apidescription\n\n\n\n\n\n\n\n\n\n\n\n\nexport_app\n\n\n\n\n\n\n\n\n\n\n\n\nget_contentlibrary",
+            "text": "Summary\n\n\nThe functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.\n\n\nThe following table outlines the currently supported processes.\n\n\n\n\n\n\n\n\nGET\n\n\nPUT\n\n\nPOST\n\n\nDELETE\n\n\n\n\n\n\n\n\n\n\nget_about\n\n\npublish_app\n\n\nset_license\n\n\ndelete_user\n\n\n\n\n\n\nget_app\n\n\nmigrate_app\n\n\nimport_users\n\n\ndelete_license\n\n\n\n\n\n\nget_dataconnection\n\n\npublish_appobject\n\n\nimport_tag\n\n\ndelete_app\n\n\n\n\n\n\nget_user\n\n\nunpublish_appobject\n\n\nstart_task\n\n\ndelete_stream\n\n\n\n\n\n\nget_license\n\n\nreplace_app\n\n\nimport_extension\n\n\ndelete_tag\n\n\n\n\n\n\nget_lef\n\n\n\n\ncopy_app\n\n\ndelete_customproperty\n\n\n\n\n\n\nget_appcount\n\n\n\n\nnew_stream\n\n\ndelete_useraccesstype\n\n\n\n\n\n\nget_customproperty\n\n\n\n\nsync_userdirectory\n\n\ndelete_appobject\n\n\n\n\n\n\nget_tag\n\n\n\n\nexport_certificates\n\n\ndelete_librarycontent\n\n\n\n\n\n\nget_task\n\n\n\n\nnew_dataconnection\n\n\ndelete_contentlibrary\n\n\n\n\n\n\nget_securityrule\n\n\n\n\nimport_app\n\n\n\n\n\n\n\n\nget_userdirectory\n\n\n\n\nimport_customproperty\n\n\n\n\n\n\n\n\nget_extension\n\n\n\n\nimport_librarycontent\n\n\n\n\n\n\n\n\nget_stream\n\n\n\n\n\n\n\n\n\n\n\n\nget_servernode\n\n\n\n\n\n\n\n\n\n\n\n\nget_useraccesstype\n\n\n\n\n\n\n\n\n\n\n\n\nget_appobject\n\n\n\n\n\n\n\n\n\n\n\n\nget_apidescription\n\n\n\n\n\n\n\n\n\n\n\n\nexport_app\n\n\n\n\n\n\n\n\n\n\n\n\nget_contentlibrary\n\n\n\n\n\n\n\n\n\n\n\n\nget_appprivileges",
             "title": "Summary"
         },
         {
             "location": "/user-guide/summary/#summary",
-            "text": "The functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.  The following table outlines the currently supported processes.     GET  PUT  POST  DELETE      get_about  publish_app  set_license  delete_user    get_app  migrate_app  import_users  delete_license    get_dataconnection  publish_appobject  import_tag  delete_app    get_user  unpublish_appobject  start_task  delete_stream    get_license   import_extension  delete_tag    get_lef   copy_app  delete_customproperty    get_appcount   new_stream  delete_useraccesstype    get_customproperty   sync_userdirectory  delete_appobject    get_tag   export_certificates  delete_librarycontent    get_task   new_dataconnection  delete_contentlibrary    get_securityrule   import_app     get_userdirectory   import_customproperty     get_extension   import_librarycontent     get_stream       get_servernode       get_useraccesstype       get_appobject       get_apidescription       export_app       get_contentlibrary",
+            "text": "The functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.  The following table outlines the currently supported processes.     GET  PUT  POST  DELETE      get_about  publish_app  set_license  delete_user    get_app  migrate_app  import_users  delete_license    get_dataconnection  publish_appobject  import_tag  delete_app    get_user  unpublish_appobject  start_task  delete_stream    get_license  replace_app  import_extension  delete_tag    get_lef   copy_app  delete_customproperty    get_appcount   new_stream  delete_useraccesstype    get_customproperty   sync_userdirectory  delete_appobject    get_tag   export_certificates  delete_librarycontent    get_task   new_dataconnection  delete_contentlibrary    get_securityrule   import_app     get_userdirectory   import_customproperty     get_extension   import_librarycontent     get_stream       get_servernode       get_useraccesstype       get_appobject       get_apidescription       export_app       get_contentlibrary       get_appprivileges",
             "title": "Summary"
         },
         {
             "location": "/user-guide/connecting/",
-            "text": "Connecting to Qlik Sense Server\n\n\n\n\nFrom Powershell or Command Line run Python\n\n\nImport qrspy\n\nImport qrspy\n\n\nInstantiate the class qrspy\n\n\n\n\nqrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem')",
+            "text": "Connecting to Qlik Sense Server\n\n\n\n\nFrom Powershell or Command Line run Python\n\n\nImport qrspy\n\nImport qrspy\n\n\nInstantiate the class qrspy\n\n\n\n\nqrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem')\n\n\n\n\nOptional\n\n\nThe userdirectory and userid may be specified in the instantiation of the ConnectQlik class.  If these arguments are left blank it will default to 'INTERNAL', 'SA_REPOSITORY'\n\n\nqrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem', 'QLIK', 'Administrator')",
             "title": "Connecting to Qlik Sense"
         },
         {
             "location": "/user-guide/connecting/#connecting-to-qlik-sense-server",
             "text": "From Powershell or Command Line run Python  Import qrspy Import qrspy  Instantiate the class qrspy   qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem')",
             "title": "Connecting to Qlik Sense Server"
+        },
+        {
+            "location": "/user-guide/connecting/#optional",
+            "text": "The userdirectory and userid may be specified in the instantiation of the ConnectQlik class.  If these arguments are left blank it will default to 'INTERNAL', 'SA_REPOSITORY'  qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem', 'QLIK', 'Administrator')",
+            "title": "Optional"
         },
         {
             "location": "/user-guide/usage/",
@@ -766,6 +771,36 @@
             "title": "Returns"
         },
         {
+            "location": "/user-guide/get_appprivileges/",
+            "text": "Description\n\n\nReturns the privilages on the app specified\n\n\nEndpoint\n\n\nqrs/app/{appid}/privilages\n\n\nSupports filter\n\n\nTrue\n\n\nUsage\n\n\n\"\"\"\n:param: appid: The appid to return the privilages for\n\n\"\"\"\nqrs.get_appprivilages('c517fae1-adbb-4848-b404-1d8a8d3748ad')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
+            "title": "get app privileges"
+        },
+        {
+            "location": "/user-guide/get_appprivileges/#description",
+            "text": "Returns the privilages on the app specified",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_appprivileges/#endpoint",
+            "text": "qrs/app/{appid}/privilages",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_appprivileges/#supports-filter",
+            "text": "True",
+            "title": "Supports filter"
+        },
+        {
+            "location": "/user-guide/get_appprivileges/#usage",
+            "text": "\"\"\"\n:param: appid: The appid to return the privilages for\n\n\"\"\"\nqrs.get_appprivilages('c517fae1-adbb-4848-b404-1d8a8d3748ad')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_appprivileges/#returns",
+            "text": "HTTP Status Code",
+            "title": "Returns"
+        },
+        {
             "location": "/user-guide/publish_app/",
             "text": "Description\n\n\nPublishes an application to a stream\n\n\nEndpoint\n\n\nqrs/app/{appid}/publish?stream={streamid}&name={new app name}\n\n\nUsage\n\n\n\"\"\"\n:param appid: ID of the application to publish\n:param stream: Stream name to publish the application to\n:param name: Name of application once published\n\"\"\"\nqrs.publish_app('00ee092c-3bf0-4818-b3bd-61fe45846d00', '91176367-ce28-4ece-bd0c-668b13ab03dd', 'NewApp')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "publish app"
@@ -862,6 +897,31 @@
         },
         {
             "location": "/user-guide/unpublish_appobject/#returns",
+            "text": "HTTP Status Code",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/replace_app/",
+            "text": "Description\n\n\nReplaces app 1 with app 2 (app 1 is not removed)\n\n\nEndpoint\n\n\nqrs/app/{appid}/replace?app={replaceappid}\n\n\nUsage\n\n\n\"\"\"\n:param appid: ID of the app to duplicate\n:param replaceappid: ID of the app that is to be replaced\n\"\"\"\n\nqrs.replaceapp('ce208cb0-ba39-4320-963c-457255cd2d38', 'fasdscb0-ba39-4320-963c-457d55cd2328')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
+            "title": "replace app"
+        },
+        {
+            "location": "/user-guide/replace_app/#description",
+            "text": "Replaces app 1 with app 2 (app 1 is not removed)",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/replace_app/#endpoint",
+            "text": "qrs/app/{appid}/replace?app={replaceappid}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/replace_app/#usage",
+            "text": "\"\"\"\n:param appid: ID of the app to duplicate\n:param replaceappid: ID of the app that is to be replaced\n\"\"\"\n\nqrs.replaceapp('ce208cb0-ba39-4320-963c-457255cd2d38', 'fasdscb0-ba39-4320-963c-457d55cd2328')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/replace_app/#returns",
             "text": "HTTP Status Code",
             "title": "Returns"
         },
@@ -1127,7 +1187,7 @@
         },
         {
             "location": "/user-guide/import_app/",
-            "text": "Description\n\n\nImports a binary QVF Qlik Sense application to Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/app/upload?name={name}\n\n\nUsage\n\n\n\"\"\"\n:param name: The name of the application that will be displayed in Qlik Sense\n:param filename: The path and filename for the QVF file\n\"\"\"\nqrs.import_app('NewApp', 'c:/some/folder/app.qvf')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
+            "text": "Description\n\n\nImports a binary QVF Qlik Sense application to Qlik Sense Server\n\n\nEndpoint\n\n\n/qrs/app/upload?name={name}\n\n\nUsage\n\n\n\"\"\"\n:param name: The name of the application that will be displayed in Qlik Sense\n:param filename: The path and filename for the QVF file\n\"\"\"\nqrs.import_app('NewApp', 'c:/some/folder/app.qvf')\n\n\n\n\nReturns\n\n\nHTTP Status Code\n\n\n\n\nNote\n\n\nIf the application should be owned by a specific user, include the userdirectory and userid in the instantiation of the class.",
             "title": "import app"
         },
         {
@@ -1149,6 +1209,11 @@
             "location": "/user-guide/import_app/#returns",
             "text": "HTTP Status Code",
             "title": "Returns"
+        },
+        {
+            "location": "/user-guide/import_app/#note",
+            "text": "If the application should be owned by a specific user, include the userdirectory and userid in the instantiation of the class.",
+            "title": "Note"
         },
         {
             "location": "/user-guide/import_customproperty/",
