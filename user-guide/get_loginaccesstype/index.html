@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>replace app - QRSpy</title>
+  <title>get loginaccesstype - QRSpy</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "replace app";
-    var mkdocs_page_input_path = "user-guide\\replace_app.md";
-    var mkdocs_page_url = "/user-guide/replace_app/";
+    var mkdocs_page_name = "get loginaccesstype";
+    var mkdocs_page_input_path = "user-guide\\get_loginaccesstype.md";
+    var mkdocs_page_url = "/user-guide/get_loginaccesstype/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -204,8 +204,23 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../get_loginaccesstype/">get loginaccesstype</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">get loginaccesstype</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#description">Description</a></li>
+                
+                    <li><a class="toctree-l4" href="#endpoint">Endpoint</a></li>
+                
+                    <li><a class="toctree-l4" href="#supports-filter">Supports filter</a></li>
+                
+                    <li><a class="toctree-l4" href="#usage">Usage</a></li>
+                
+                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -282,21 +297,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">replace app</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#description">Description</a></li>
-                
-                    <li><a class="toctree-l4" href="#endpoint">Endpoint</a></li>
-                
-                    <li><a class="toctree-l4" href="#usage">Usage</a></li>
-                
-                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../replace_app/">replace app</a>
         
     </li>
 
@@ -539,11 +541,11 @@
         
       
         
-          <li>HTTP PUT &raquo;</li>
+          <li>HTTP GET &raquo;</li>
         
       
     
-    <li>replace app</li>
+    <li>get loginaccesstype</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -554,20 +556,17 @@
             <div class="section">
               
                 <h1 id="description">Description</h1>
-<p>Replaces app 1 with app 2 (app 1 is not removed)</p>
+<p>Returns a list of login access rules</p>
 <h2 id="endpoint">Endpoint</h2>
-<p>qrs/app/{appid}/replace?app={replaceappid}</p>
+<p>/qrs/license/loginaccesstype</p>
+<h2 id="supports-filter">Supports filter</h2>
+<p>True</p>
 <h2 id="usage">Usage</h2>
-<pre><code>&quot;&quot;&quot;
-:param appid: ID of the app to duplicate
-:param replaceappid: ID of the app that is to be replaced
-&quot;&quot;&quot;
-
-qrs.replaceapp('ce208cb0-ba39-4320-963c-457255cd2d38', 'fasdscb0-ba39-4320-963c-457d55cd2328')
+<pre><code>qrs.get_loginaccesstype()
 </code></pre>
 
 <h2 id="returns">Returns</h2>
-<pre><code>HTTP Status Code
+<pre><code>[{'id': '5ef788e3-63ff-4aaf-b769-416f5b9da695', 'privileges': None}, {'id': 'f22d9856-45af-431c-8082-2d91e7469fb2', 'privileges': None}]
 </code></pre>
               
             </div>
@@ -576,10 +575,10 @@ qrs.replaceapp('ce208cb0-ba39-4320-963c-457255cd2d38', 'fasdscb0-ba39-4320-963c-
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../set_license/" class="btn btn-neutral float-right" title="set license">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../get_appobject/" class="btn btn-neutral float-right" title="get appobject">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../unpublish_appobject/" class="btn btn-neutral" title="unpublish app object"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../get_useraccesstype/" class="btn btn-neutral" title="get useraccesstype"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -605,10 +604,10 @@ qrs.replaceapp('ce208cb0-ba39-4320-963c-457255cd2d38', 'fasdscb0-ba39-4320-963c-
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../unpublish_appobject/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../get_useraccesstype/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../set_license/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../get_appobject/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
