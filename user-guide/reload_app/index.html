@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>delete tag - QRSpy</title>
+  <title>reload app - QRSpy</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "delete tag";
-    var mkdocs_page_input_path = "user-guide\\delete_tag.md";
-    var mkdocs_page_url = "/user-guide/delete_tag/";
+    var mkdocs_page_name = "reload app";
+    var mkdocs_page_input_path = "user-guide\\reload_app.md";
+    var mkdocs_page_url = "/user-guide/reload_app/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -381,8 +381,21 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../reload_app/">reload app</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">reload app</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#description">Description</a></li>
+                
+                    <li><a class="toctree-l4" href="#endpoint">Endpoint</a></li>
+                
+                    <li><a class="toctree-l4" href="#usage">Usage</a></li>
+                
+                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -424,21 +437,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">delete tag</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#description">Description</a></li>
-                
-                    <li><a class="toctree-l4" href="#endpoint">Endpoint</a></li>
-                
-                    <li><a class="toctree-l4" href="#usage">Usage</a></li>
-                
-                    <li><a class="toctree-l4" href="#returns">Returns</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_tag/">delete tag</a>
         
     </li>
 
@@ -525,11 +525,11 @@
         
       
         
-          <li>HTTP DELETE &raquo;</li>
+          <li>HTTP POST &raquo;</li>
         
       
     
-    <li>delete tag</li>
+    <li>reload app</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -540,14 +540,11 @@
             <div class="section">
               
                 <h1 id="description">Description</h1>
-<p>Deletes the tag identified by the supplied ID</p>
+<p>Reloads the application identified by the appid</p>
 <h2 id="endpoint">Endpoint</h2>
-<p>/qrs/tag/{tagid}</p>
+<p>qrs/app/{appid}/reload</p>
 <h2 id="usage">Usage</h2>
-<pre><code>&quot;&quot;&quot;
-:param id: ID of the tag to delete
-&quot;&quot;&quot;
-qrs.delete_tag('087cfb97-2d1f-4d74-9500-b180fa0bd4ec')
+<pre><code>qrs.reload_app('011b5fd4-43c2-491d-b137-80a5957b900f')
 </code></pre>
 
 <h2 id="returns">Returns</h2>
@@ -560,10 +557,10 @@ qrs.delete_tag('087cfb97-2d1f-4d74-9500-b180fa0bd4ec')
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../delete_customproperty/" class="btn btn-neutral float-right" title="delete customproperty">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../delete_user/" class="btn btn-neutral float-right" title="delete user">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../delete_stream/" class="btn btn-neutral" title="delete stream"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../import_librarycontent/" class="btn btn-neutral" title="import library content"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -589,10 +586,10 @@ qrs.delete_tag('087cfb97-2d1f-4d74-9500-b180fa0bd4ec')
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../delete_stream/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../import_librarycontent/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../delete_customproperty/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../delete_user/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
