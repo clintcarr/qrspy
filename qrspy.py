@@ -221,6 +221,9 @@ class ConnectQlik:
     def get_useraccesstype(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/license/useraccesstype', filterparam, filtervalue)))
 
+    def get_loginaccesstype(self, filterparam=None, filtervalue=None):
+        return (json.loads(self.get('qrs/license/loginaccesstype', filterparam, filtervalue)))
+
     def get_appobject(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/app/object', filterparam, filtervalue)))
 
@@ -265,6 +268,9 @@ class ConnectQlik:
 
     def delete_appobject(self, objectid):
         return self.delete('qrs/app/object/{0}'.format (objectid))
+
+    def delete_loginaccesstype(self, ruleid):
+        return self.delete('qrs/license/loginaccesstype/{0}'.format (ruleid))
 
     def publish_app(self, appid, streamid, name):
         return self.put('qrs/app/{0}/publish?stream={1}&name={2}'.format (appid, streamid, name))
@@ -403,7 +409,7 @@ class ConnectQlik:
 if __name__ == '__main__':
     qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:/certs/qs2.qliklocal.net/client.pem',
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
-           'C:/certs/qs2.qliklocal.net/root.pem')
+           'C:/certs/qs2.qliklocal.net/root.pem', 'QLIKLOCAL', 'administrator')
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
 
