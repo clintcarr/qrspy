@@ -237,7 +237,7 @@ class ConnectQlik:
     def get_contentlibrary(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/contentlibrary', filterparam, filtervalue)))
 
-    def get_appprivilages(self, appid, filterparam=None, filtervalue=None):
+    def get_appprivileges(self, appid, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/app/{0}/privileges'.format (appid) , filterparam, filtervalue)))
 
     def delete_user(self, userid):
@@ -378,6 +378,9 @@ class ConnectQlik:
         with open(filepath, 'rb') as data:
             return self.post('qrs/contentlibrary/{0}/uploadfile?externalpath={1}'.format (library, filename), data)
 
+    def reload_app(self, appid):
+        return self.post('qrs/app/{0}/reload'.format (appid))
+
     def delete_librarycontent(self, library, contentname):
         return self.delete('qrs/contentlibrary/{0}/deletecontent?externalpath={1}'.format (library, contentname))
 
@@ -404,4 +407,3 @@ if __name__ == '__main__':
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
 
-    
