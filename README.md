@@ -10,6 +10,12 @@ Python wrapper for Qlik Sense Repository Service.
 #Examples
 
 ## Instantiate the ConnectQlik class
+- parameter1 = server and port
+- parameter2 = (pem certificate, pem key)
+- parameter3 = (pem root certificate)
+- parameter4 = userdirectory (this is optional, if left blank will default to 'INTERNAL')
+- parameter5 = userid (this is optional, if left blank will default to 'SA_Repository')
+
 ### Linux
 ```
 qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242', ('/home/user/Documents/certs/qs2/client.pem', '/home/user/Documents/certs/qs2/client_key.pem'), '/home/user/Documents/certs/qs2/root.pem')
