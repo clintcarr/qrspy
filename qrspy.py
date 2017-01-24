@@ -23,7 +23,7 @@ class ConnectQlik:
     Instantiates the Qlik Repository Service Class
     """
 
-    def __init__(self, server, certificate, root):
+    def __init__(self, server, certificate, root, userdirectory=False, userid=False):
         """
         Establishes connectivity with Qlik Sense Repository Service
         :param server: servername.domain:4242
@@ -33,6 +33,8 @@ class ConnectQlik:
         self.server = server
         self.certificate = certificate
         self.root = root
+        if userdirectory is not False:
+            headers["X-Qlik-User"] = "UserDirectory={0};UserID={1}".format(userdirectory, userid)
     
     @staticmethod
     def csvrowcount(filename):
@@ -83,15 +85,15 @@ class ConnectQlik:
         """
         if filterparam is None:
             if '?' in endpoint:
-                response = requests.get('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                response = requests.get('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
                 return (response.content)
             else:
-                response = requests.get('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                response = requests.get('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
                 return (response.content)
         else:
-            response = requests.get("https://%s/%s?filter=%s '%s'&xrfkey=%s" % 
+            response = requests.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
                 (self.server, endpoint, filterparam, filtervalue, xrf), 
                 headers=headers, verify=self.root, cert=self.certificate)
             return (response.content)
@@ -102,11 +104,11 @@ class ConnectQlik:
         :param endpoint: API endpoint path
         """
         if '?' in endpoint: 
-            response = requests.delete('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+            response = requests.delete('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
             return (response.status_code)
         else:
-            response = requests.delete('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+            response = requests.delete('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
             return (response.status_code)
 
@@ -116,11 +118,11 @@ class ConnectQlik:
         :param endpoint: API endpoint path
         """
         if '?' in endpoint:
-            response = requests.put('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+            response = requests.put('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
             return (response.status_code)
         else:
-            response = requests.put('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+            response = requests.put('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
             return (response.status_code)
 
@@ -132,23 +134,23 @@ class ConnectQlik:
         """
         if '?' in endpoint:
             if data is None:
-                response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                response = requests.post('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.status_code)
             else:
-                response = requests.post('https://%s/%s&xrfkey=%s' % (self.server, endpoint, xrf),
+                response = requests.post('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.status_code)
         else:
             if data is None:
-                response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                response = requests.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.status_code)
             else:
-                response = requests.post('https://%s/%s?xrfkey=%s' % (self.server, endpoint, xrf),
+                response = requests.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.status_code)
@@ -157,12 +159,10 @@ class ConnectQlik:
         """
         Function that performs GET method to Qlik Proxy Service endpoints
         :param endpoint: API endpoint path
-        :param filterparam: Filter for endpoint, use None for no filtering
-        :param filtervalue: Value to filter on, use None for no filtering
         """
         server = self.server
         qps = server[:server.index(':')]
-        response = requests.get('https://%s/%s?xrfkey=%s' % (qps, endpoint, xrf),
+        response = requests.get('https://{0}/{1}?xrfkey={2}'.format (qps, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
         return (response.status_code)
 
@@ -185,7 +185,7 @@ class ConnectQlik:
             return ('Server not licensed')
 
     def get_lef(self, serial, control, user, organization, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/license/download?serial=%s&control=%s&user=%s&org=%s' % 
+        return (json.loads(self.get('qrs/license/download?serial={0}&control={1}&user={2}&org={3}'.format 
             (serial, control, user, organization))))
     
     def get_appcount(self, filterparam=None, filtervalue=None):
@@ -207,7 +207,7 @@ class ConnectQlik:
         return (json.loads(self.get('qrs/userdirectory', filterparam, filtervalue)))
 
     def get_exportappticket(self, appid, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/app/%s/export' % appid)))
+        return (json.loads(self.get('qrs/app/{0}/export'.format(appid))))
         
     def get_extension(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/extension', filterparam, filtervalue)))
@@ -225,8 +225,8 @@ class ConnectQlik:
         return (json.loads(self.get('qrs/app/object', filterparam, filtervalue)))
 
     def get_apidescription(self, method, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/about/api/description?extended=true&method=%s&format=JSON' 
-            % method)))
+        return (json.loads(self.get('qrs/about/api/description?extended=true&method={0}&format=JSON'.format 
+             (method))))
 
     def get_serverconfig(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/servernodeconfiguration/local'))) 
@@ -237,43 +237,49 @@ class ConnectQlik:
     def get_contentlibrary(self, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/contentlibrary', filterparam, filtervalue)))
 
+    def get_appprivilages(self, appid, filterparam=None, filtervalue=None):
+        return (json.loads(self.get('qrs/app/{0}/privileges'.format (appid) , filterparam, filtervalue)))
+
     def delete_user(self, userid):
-         return self.delete('qrs/user/%s' % userid)
+         return self.delete('qrs/user/{0}'.format (userid))
 
     def delete_license(self):
         license = self.get_license()
         licenseid = license['id']
-        return self.delete('qrs/license/%s' % licenseid)
+        return self.delete('qrs/license/{0}'.format (licenseid))
 
     def delete_app(self, appid):
-        return self.delete('qrs/app/%s' % appid)
+        return self.delete('qrs/app/{0}'.format (appid))
 
     def delete_stream(self, streamid):
-        return self.delete('qrs/stream/%s' % streamid)
+        return self.delete('qrs/stream/{0}'.format (streamid))
 
     def delete_tag(self, tagid):
-        return self.delete('qrs/tag/%s' % tagid)
+        return self.delete('qrs/tag/{0}'.format (tagid))
 
     def delete_customproperty(self, custompropertyid):
-        return self.delete('qrs/custompropertydefinition/%s' % custompropertyid)
+        return self.delete('qrs/custompropertydefinition/{0}'.format (custompropertyid))
 
     def delete_useraccesstype(self, useraccessid):
-        return self.delete('qrs/license/useraccesstype/%s' % useraccessid)
+        return self.delete('qrs/license/useraccesstype/{0}'.format (useraccessid))
 
     def delete_appobject(self, objectid):
-        return self.delete('qrs/app/object/%s' % objectid)
+        return self.delete('qrs/app/object/{0}'.format (objectid))
 
     def publish_app(self, appid, streamid, name):
-        return self.put('qrs/app/%s/publish?stream=%s&name=%s' % (appid, streamid, name))
+        return self.put('qrs/app/{0}/publish?stream={1}&name={2}'.format (appid, streamid, name))
 
     def migrate_app(self, appid):
-        return self.put('qrs/app/%s/migrate' % appid  ) 
+        return self.put('qrs/app/{0}/migrate'.format (appid)) 
 
     def publish_appobject(self, objid):
-        return self.put('qrs/app/object/%s/publish' % objid)
+        return self.put('qrs/app/object/{0}/publish'.format (objid))
 
     def unpublish_appobject(self, objid):
-        return self.put('qrs/app/object/%s/unpublish' % objid)
+        return self.put('qrs/app/object/{0}/unpublish'.format (objid))
+
+    def replace_app(self, appid, replaceappid):
+        return self.put('qrs/app/{0}/replace?app={1}'.format(appid, replaceappid))
 
     def set_license(self, control, serial, name, organization, lef):
         if lef is None:
@@ -283,7 +289,7 @@ class ConnectQlik:
                 "organization": organization
             }
             data = json.dumps(license)
-            return self.post('qrs/license?control=%s' % control, data)
+            return self.post('qrs/license?control={0}'.format (control), data)
         else:
             license = {
                 "serial": serial,
@@ -292,7 +298,7 @@ class ConnectQlik:
                 "lef": lef
             }
             data = json.dumps(license)
-            return self.post('qrs/license?control=%s' % control, data)
+            return self.post('qrs/license?control={0}'.format (control), data)
 
     def import_users(self, filename):
         if self.csvrowcount(filename) == 1:
@@ -311,14 +317,14 @@ class ConnectQlik:
                 return self.post('qrs/tag/many', tags)
 
     def start_task(self, taskid):
-        return self.post('qrs/task/%s/start' % taskid)
+        return self.post('qrs/task/{0}/start'.format (taskid))
 
     def import_extension(self, filename):
         with open(filename, 'rb') as extension:
             return self.post('qrs/extension/upload', extension)
 
     def copy_app(self, appid, name):
-        return self.post('qrs/app/%s/copy?name=%s' % (appid, name))
+        return self.post('qrs/app/{0}/copy?name={1}'.format (appid, name))
 
     def new_stream(self, name):
         stream = {'name': name}
@@ -326,7 +332,7 @@ class ConnectQlik:
         return self.post('qrs/stream', data)
 
     def sync_userdirectory(self, userdirectoryid):
-        udid = '["%s"]' % userdirectoryid
+        udid = '["{0}"]'.format (userdirectoryid)
         return self.post('qrs/userdirectoryconnector/syncuserdirectories', udid)
 
     def export_certificates(self, machinename, certificatepassword, includesecret, exportformat):
@@ -360,7 +366,7 @@ class ConnectQlik:
         headers["Content-Type"] = "application/vnd.qlik.sense.app"
         headers["Connection"] = "Keep-Alive"
         with open(filename, 'rb') as app:
-            return self.post('qrs/app/upload?name=%s' % name, app)
+            return self.post('qrs/app/upload?name={0}'.format(name), app)
 
     def import_customproperty(self, filename):
         with open(filename) as customproperties:
@@ -370,20 +376,20 @@ class ConnectQlik:
 
     def import_librarycontent(self, library, filepath, contentname):
         with open(filepath, 'rb') as data:
-            return self.post('qrs/contentlibrary/%s/uploadfile?externalpath=%s' % (library, filename), data)
+            return self.post('qrs/contentlibrary/{0}/uploadfile?externalpath={1}'.format (library, filename), data)
 
     def delete_librarycontent(self, library, contentname):
-        return self.delete('qrs/contentlibrary/%s/deletecontent?externalpath=%s' % (library, contentname))
+        return self.delete('qrs/contentlibrary/{0}/deletecontent?externalpath={1}'.format (library, contentname))
 
     def delete_contentlibrary(self, library):
-        return self.delete('qrs/contentlibrary/%s' % library)
+        return self.delete('qrs/contentlibrary/{0}'.format (library))
 
     def export_app(self, appid, filepath, filename):
         exportticket = self.get_exportappticket(appid)
         ticket = (exportticket['value'])
         with open(filepath + filename, 'wb') as file:
-            file.write(self.get('qrs/download/app/%s/%s/%s' % (appid, ticket, filename)))
-        return ('Application: %s written to %s' % (filename, filepath))
+            file.write(self.get('qrs/download/app/{0}/{1}/{2}'.format (appid, ticket, filename)))
+        return ('Application: {0} written to {1}'.format (filename, filepath))
 
     def ping_proxy(self):
         try:
@@ -397,3 +403,5 @@ if __name__ == '__main__':
            'C:/certs/qs2.qliklocal.net/root.pem')
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
+
+    
