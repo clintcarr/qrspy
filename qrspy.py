@@ -433,9 +433,7 @@ if __name__ == '__main__':
     qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
                     certificate=('C:/certs/qs2.qliklocal.net/client.pem',
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
-                    root='C:/certs/qs2.qliklocal.net/root.pem', 
-                    userdirectory='QLIKLOCAL', 
-                    userid='administrator')
+                    root='C:/certs/qs2.qliklocal.net/root.pem')
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
 
