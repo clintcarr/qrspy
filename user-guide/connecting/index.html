@@ -552,20 +552,20 @@
 <code>Import qrspy</code></li>
 <li>Instantiate the class qrspy and authenticate using certificates</li>
 </ol>
-<pre><code>qrs = qrspy.ConnectQlik(server='qs2.qliklocal.net:4242',certificates=('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),
+<pre><code class="python">qrs = qrspy.ConnectQlik(server='qs2.qliklocal.net:4242',certificate=('c:/certs/qs2.qliklocal.net/client.pem',root=c:/certs/qs2.qliklocal.net/client_key.pem'),
 root='c:/certs/qs2.qliklocal.net/root.pem')
 </code></pre>
 
 <h2 id="optional">Optional</h2>
 <p>The userdirectory and userid may be specified in the instantiation of the ConnectQlik class.  If these arguments are left blank it will default to 'INTERNAL', 'SA_REPOSITORY'</p>
-<pre><code>qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),
-'c:/certs/qs2.qliklocal.net/root.pem', 'QLIK', 'Administrator')
+<pre><code class="python">qrs = qrspy.ConnectQlik(server='qs2.qliklocal.net:4242',certificate=('c:/certs/qs2.qliklocal.net/client.pem',root=c:/certs/qs2.qliklocal.net/client_key.pem'),
+'c:/certs/qs2.qliklocal.net/root.pem', userdirectory='QLIK', userid='Administrator')
 </code></pre>
 
 <ol>
 <li>Instantiate the class qrspy and authenticate using Windows Authentication (NTLM)</li>
 </ol>
-<pre><code>qrs = qrspy.ConnectQlik(server='qs2.qliklocal.net:4242',credential='domain\userid',
+<pre><code class="python">qrs = qrspy.ConnectQlik(server='qs2.qliklocal.net:4242',credential='domain\\userid',
 password='password')
 </code></pre>
               
