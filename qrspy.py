@@ -95,20 +95,19 @@ class ConnectQlik:
         """
         if self.credential is not False:
             session.auth = HttpNtlmAuth(self.credential, self.password, session)
+            headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
         if filterparam is None:
             if '?' in endpoint:
                 initialconnection = session.get('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
-                redirecturl = initialconnection.url.replace('form', 'windows_authentication')
-                authenticate = session.get(redirecturl, headers=headers, verify=False)
+                authenticate = session.get(initialconnection.url, headers=headers, verify=False)
                 response = session.get('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
                 return (response.content)
             else:
                 initialconnection = session.get('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
-                redirecturl = initialconnection.url.replace('form', 'windows_authentication')
-                authenticate = session.get(redirecturl, headers=headers, verify=False)
+                authenticate = session.get(initialconnection.url, headers=headers, verify=False)
                 response = session.get('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
                 return (response.content)
@@ -116,8 +115,7 @@ class ConnectQlik:
             initialconnection = session.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
                                     (self.server, endpoint, filterparam, filtervalue, xrf), 
                                     headers=headers, verify=self.root, cert=self.certificate)
-            redirecturl = initialconnection.url.replace('form', 'windows_authentication')
-            authenticate = session.get(redirecturl, headers=headers, verify=False)
+            authenticate = session.get(initialconnection.url, headers=headers, verify=False)
             response = session.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
                                     (self.server, endpoint, filterparam, filtervalue, xrf), 
                                     headers=headers, verify=self.root, cert=self.certificate)
@@ -436,4 +434,3 @@ if __name__ == '__main__':
                     root='C:/certs/qs2.qliklocal.net/root.pem')
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
-
