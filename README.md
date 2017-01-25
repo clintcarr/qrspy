@@ -3,9 +3,10 @@ Python wrapper for Qlik Sense Repository Service.
 
 # Instructions
 1. ensure requests is installed (pip install requests)
-2. export the qlik sense certificates in PEM format to a local folder
-3. launch python
-4. import qrspy
+2. ensure requests_ntlm is installed (pip install requests_ntlm)
+3. export the qlik sense certificates in PEM format to a local folder
+4. launch python
+5. import qrspy
 
 #Examples
 
