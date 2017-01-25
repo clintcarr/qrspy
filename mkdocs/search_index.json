@@ -22,17 +22,17 @@
         },
         {
             "location": "/user-guide/connecting/",
-            "text": "Connecting to Qlik Sense Server\n\n\n\n\nFrom Powershell or Command Line run Python\n\n\nImport qrspy\n\nImport qrspy\n\n\nInstantiate the class qrspy\n\n\n\n\nqrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem')\n\n\n\n\nOptional\n\n\nThe userdirectory and userid may be specified in the instantiation of the ConnectQlik class.  If these arguments are left blank it will default to 'INTERNAL', 'SA_REPOSITORY'\n\n\nqrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem', 'QLIK', 'Administrator')",
+            "text": "Connecting to Qlik Sense Server\n\n\n\n\nFrom Powershell or Command Line run Python\n\n\nImport qrspy\n\nImport qrspy\n\n\nInstantiate the class qrspy and authenticate using certificates\n\n\n\n\nqrs = qrspy.ConnectQlik(server='qs2.qliklocal.net:4242',certificates=('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\nroot='c:/certs/qs2.qliklocal.net/root.pem')\n\n\n\n\nOptional\n\n\nThe userdirectory and userid may be specified in the instantiation of the ConnectQlik class.  If these arguments are left blank it will default to 'INTERNAL', 'SA_REPOSITORY'\n\n\nqrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem', 'QLIK', 'Administrator')\n\n\n\n\n\n\nInstantiate the class qrspy and authenticate using Windows Authentication (NTLM)\n\n\n\n\nqrs = qrspy.ConnectQlik(server='qs2.qliklocal.net:4242',credential='domain\\userid',\npassword='password')",
             "title": "Connecting to Qlik Sense"
         },
         {
             "location": "/user-guide/connecting/#connecting-to-qlik-sense-server",
-            "text": "From Powershell or Command Line run Python  Import qrspy Import qrspy  Instantiate the class qrspy   qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem')",
+            "text": "From Powershell or Command Line run Python  Import qrspy Import qrspy  Instantiate the class qrspy and authenticate using certificates   qrs = qrspy.ConnectQlik(server='qs2.qliklocal.net:4242',certificates=('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\nroot='c:/certs/qs2.qliklocal.net/root.pem')",
             "title": "Connecting to Qlik Sense Server"
         },
         {
             "location": "/user-guide/connecting/#optional",
-            "text": "The userdirectory and userid may be specified in the instantiation of the ConnectQlik class.  If these arguments are left blank it will default to 'INTERNAL', 'SA_REPOSITORY'  qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem', 'QLIK', 'Administrator')",
+            "text": "The userdirectory and userid may be specified in the instantiation of the ConnectQlik class.  If these arguments are left blank it will default to 'INTERNAL', 'SA_REPOSITORY'  qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242',('c:/certs/qs2.qliklocal.net/client.pem',c:/certs/qs2.qliklocal.net/client_key.pem'),\n'c:/certs/qs2.qliklocal.net/root.pem', 'QLIK', 'Administrator')   Instantiate the class qrspy and authenticate using Windows Authentication (NTLM)   qrs = qrspy.ConnectQlik(server='qs2.qliklocal.net:4242',credential='domain\\userid',\npassword='password')",
             "title": "Optional"
         },
         {
