@@ -12,8 +12,8 @@ Python wrapper for Qlik Sense Repository Service.
 
 ## Instantiate the ConnectQlik class
 - parameter1 = server and port
-- parameter2 = (pem certificate, pem key), leave blank for windows authentication
-- parameter3 = (pem root certificate), leave blank for windows authentication
+- parameter2 = certificate (pem certificate, pem key), leave blank for windows authentication
+- parameter3 = root (pem root certificate), leave blank for windows authentication
 - parameter4 = userdirectory (this is optional, if left blank will default to 'INTERNAL')
 - parameter5 = userid (this is optional, if left blank will default to 'SA_Repository')
 - parameter6 = credential (windows domain and userid to authenticate as), leave blank for certificate auth
@@ -21,12 +21,12 @@ Python wrapper for Qlik Sense Repository Service.
 
 ### Linux
 ```
-qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242', ('/home/user/Documents/certs/qs2/client.pem', '/home/user/Documents/certs/qs2/client_key.pem'), '/home/user/Documents/certs/qs2/root.pem')
+qrs = qrspy.ConnectQlik(server='qs2.qliklocal.net:4242', certificate=('/home/user/Documents/certs/qs2/client.pem', '/home/user/Documents/certs/qs2/client_key.pem'), root='/home/user/Documents/certs/qs2/root.pem')
 ```
 ### Windows authenticate with certificates
 ```
 qrs = qrspy.ConnectQlik(server = 'qs2.qliklocal.net:4242', 
-                        certificates = ('c:/certs/qs2/client.pem', 'c:/certs/qs2/client_key.pem'), 
+                        certificate = ('c:/certs/qs2/client.pem', 'c:/certs/qs2/client_key.pem'), 
                         root = 'c:/certs/qs2/root.pem')
 ```
 ### Windows authenticate with Windows Authentication (NTLM)
