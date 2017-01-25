@@ -1,4 +1,5 @@
 import requests
+from requests_ntlm import HttpNtlmAuth
 import json
 import csv
 import random
@@ -18,24 +19,33 @@ headers = {"X-Qlik-XrfKey": xrf,
             "X-Qlik-User": "UserDirectory=Internal;UserID=sa_repository",
             "Content-Type": "application/json"}
 
+session = requests.session()
+
 class ConnectQlik:
     """
     Instantiates the Qlik Repository Service Class
     """
 
-    def __init__(self, server, certificate, root, userdirectory=False, userid=False):
+    def __init__(self, server, certificate=False, root=False
+        , userdirectory=False, userid=False, credential=False, password=False):
         """
         Establishes connectivity with Qlik Sense Repository Service
         :param server: servername.domain:4242
         :param certificate: path to client.pem and client_key.pem certificates
         :param root: path to root.pem certificate
+        :param userdirectory: userdirectory to use for queries
+        :param userid: user to use for queries
+        :param credential: domain\\username for Windows Authentication
+        :param password: password of windows credential
         """
         self.server = server
         self.certificate = certificate
         self.root = root
         if userdirectory is not False:
             headers["X-Qlik-User"] = "UserDirectory={0};UserID={1}".format(userdirectory, userid)
-    
+        self.credential = credential
+        self.password = password
+
     @staticmethod
     def csvrowcount(filename):
         """
@@ -83,19 +93,34 @@ class ConnectQlik:
         :param filterparam: Filter for endpoint, use None for no filtering
         :param filtervalue: Value to filter on, use None for no filtering
         """
+        if self.credential is not False:
+            session.auth = HttpNtlmAuth(self.credential, self.password, session)
         if filterparam is None:
             if '?' in endpoint:
-                response = requests.get('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
+                initialconnection = session.get('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
+                                        headers=headers, verify=self.root, cert=self.certificate)
+                redirecturl = initialconnection.url.replace('form', 'windows_authentication')
+                authenticate = session.get(redirecturl, headers=headers, verify=False)
+                response = session.get('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
                 return (response.content)
             else:
-                response = requests.get('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
+                initialconnection = session.get('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
+                                        headers=headers, verify=self.root, cert=self.certificate)
+                redirecturl = initialconnection.url.replace('form', 'windows_authentication')
+                authenticate = session.get(redirecturl, headers=headers, verify=False)
+                response = session.get('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
                 return (response.content)
         else:
-            response = requests.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
-                (self.server, endpoint, filterparam, filtervalue, xrf), 
-                headers=headers, verify=self.root, cert=self.certificate)
+            initialconnection = session.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
+                                    (self.server, endpoint, filterparam, filtervalue, xrf), 
+                                    headers=headers, verify=self.root, cert=self.certificate)
+            redirecturl = initialconnection.url.replace('form', 'windows_authentication')
+            authenticate = session.get(redirecturl, headers=headers, verify=False)
+            response = session.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
+                                    (self.server, endpoint, filterparam, filtervalue, xrf), 
+                                    headers=headers, verify=self.root, cert=self.certificate)
             return (response.content)
 
     def delete(self, endpoint):
@@ -104,11 +129,11 @@ class ConnectQlik:
         :param endpoint: API endpoint path
         """
         if '?' in endpoint: 
-            response = requests.delete('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
+            response = session.delete('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
             return (response.status_code)
         else:
-            response = requests.delete('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
+            response = session.delete('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
             return (response.status_code)
 
@@ -118,11 +143,11 @@ class ConnectQlik:
         :param endpoint: API endpoint path
         """
         if '?' in endpoint:
-            response = requests.put('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
+            response = session.put('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
             return (response.status_code)
         else:
-            response = requests.put('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
+            response = session.put('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
             return (response.status_code)
 
@@ -134,23 +159,23 @@ class ConnectQlik:
         """
         if '?' in endpoint:
             if data is None:
-                response = requests.post('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
+                response = session.post('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.status_code)
             else:
-                response = requests.post('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
+                response = session.post('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.status_code)
         else:
             if data is None:
-                response = requests.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
+                response = session.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.status_code)
             else:
-                response = requests.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
+                response = session.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
                 return (response.status_code)
@@ -162,7 +187,7 @@ class ConnectQlik:
         """
         server = self.server
         qps = server[:server.index(':')]
-        response = requests.get('https://{0}/{1}?xrfkey={2}'.format (qps, endpoint, xrf),
+        response = session.get('https://{0}/{1}?xrfkey={2}'.format (qps, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
         return (response.status_code)
 
@@ -179,10 +204,8 @@ class ConnectQlik:
         return (json.loads(self.get('qrs/user', filterparam, filtervalue)))
 
     def get_license(self, filterparam=None, filtervalue=None):
-        try:
-            return (json.loads(self.get('qrs/license')))
-        except TypeError:
-            return ('Server not licensed')
+        return (json.loads(self.get('qrs/license')))
+
 
     def get_lef(self, serial, control, user, organization, filterparam=None, filtervalue=None):
         return (json.loads(self.get('qrs/license/download?serial={0}&control={1}&user={2}&org={3}'.format 
@@ -407,9 +430,12 @@ class ConnectQlik:
             return ('Qlik Sense Proxy down')
 
 if __name__ == '__main__':
-    qrs = ConnectQlik('qs2.qliklocal.net:4242', ('C:/certs/qs2.qliklocal.net/client.pem',
+    qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
+                    certificate=('C:/certs/qs2.qliklocal.net/client.pem',
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
-           'C:/certs/qs2.qliklocal.net/root.pem', 'QLIKLOCAL', 'administrator')
+                    root='C:/certs/qs2.qliklocal.net/root.pem', 
+                    userdirectory='QLIKLOCAL', 
+                    userid='administrator')
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
 

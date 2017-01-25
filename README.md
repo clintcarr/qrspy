@@ -11,19 +11,30 @@ Python wrapper for Qlik Sense Repository Service.
 
 ## Instantiate the ConnectQlik class
 - parameter1 = server and port
-- parameter2 = (pem certificate, pem key)
-- parameter3 = (pem root certificate)
+- parameter2 = (pem certificate, pem key), leave blank for windows authentication
+- parameter3 = (pem root certificate), leave blank for windows authentication
 - parameter4 = userdirectory (this is optional, if left blank will default to 'INTERNAL')
 - parameter5 = userid (this is optional, if left blank will default to 'SA_Repository')
+- parameter6 = credential (windows domain and userid to authenticate as), leave blank for certificate auth
+- parameter7 = password (windows password), leave blank for certificate auth
 
 ### Linux
 ```
 qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242', ('/home/user/Documents/certs/qs2/client.pem', '/home/user/Documents/certs/qs2/client_key.pem'), '/home/user/Documents/certs/qs2/root.pem')
 ```
-### Windows
+### Windows authenticate with certificates
 ```
-qrs = qrspy.ConnectQlik('qs2.qliklocal.net:4242', ('c:/certs/qs2/client.pem', 'c:/certs/qs2/client_key.pem'), 'c:/certs/qs2/root.pem')
+qrs = qrspy.ConnectQlik(server = 'qs2.qliklocal.net:4242', 
+                        certificates = ('c:/certs/qs2/client.pem', 'c:/certs/qs2/client_key.pem'), 
+                        root = 'c:/certs/qs2/root.pem')
 ```
+### Windows authenticate with Windows Authentication (NTLM)
+```
+qrs = qrspy.ConnectQlik(server = 'qs2.qliklocal.net:4242', 
+                        credential = 'qliklocal\\administrator', 
+                        password = 'Qlik1234')
+```
+
 ## display a list of QRS API endpoints by method
 - parameter1 = method
 ```
