@@ -26,8 +26,8 @@ class ConnectQlik:
     Instantiates the Qlik Repository Service Class
     """
 
-    def __init__(self, server, certificate=False, root=False
-        , userdirectory=False, userid=False, credential=False, password=False):
+    def __init__(self, server, certificate = False, root = False
+        ,userdirectory = False, userid = False, credential = False, password = False):
         """
         Establishes connectivity with Qlik Sense Repository Service
         :param server: servername.domain:4242
@@ -100,16 +100,16 @@ class ConnectQlik:
             if '?' in endpoint:
                 response = session.get('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
-                return (response.content)
+                return response.content
             else:
                 response = session.get('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
-                return (response.content)
+                return response.content
         else:
             response = session.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
                                     (self.server, endpoint, filterparam, filtervalue, xrf), 
                                     headers=headers, verify=self.root, cert=self.certificate)
-            return (response.content)
+            return response.content
 
     def delete(self, endpoint):
         """
@@ -119,11 +119,11 @@ class ConnectQlik:
         if '?' in endpoint: 
             response = session.delete('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
-            return (response.status_code)
+            return response.status_code
         else:
             response = session.delete('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
-            return (response.status_code)
+            return response.status_code
 
     def put(self, endpoint):
         """
@@ -133,11 +133,11 @@ class ConnectQlik:
         if '?' in endpoint:
             response = session.put('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
-            return (response.status_code)
+            return response.status_code
         else:
             response = session.put('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
-            return (response.status_code)
+            return response.status_code
 
     def post(self, endpoint, data=None):
         """
@@ -150,23 +150,23 @@ class ConnectQlik:
                 response = session.post('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, 
                                                 verify=self.root, cert=self.certificate)
-                return (response.status_code)
+                return response.status_code
             else:
                 response = session.post('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
-                return (response.status_code)
+                return response.status_code
         else:
             if data is None:
                 response = session.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, 
                                                 verify=self.root, cert=self.certificate)
-                return (response.status_code)
+                return response.status_code
             else:
                 response = session.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
-                return (response.status_code)
+                return response.status_code
 
     def get_qps(self, endpoint):
         """
@@ -177,89 +177,89 @@ class ConnectQlik:
         qps = server[:server.index(':')]
         response = session.get('https://{0}/{1}?xrfkey={2}'.format (qps, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
-        return (response.status_code)
+        return response.status_code
 
-    def get_about(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/about')))
+    def get_about(self):
+        return json.loads(self.get('qrs/about'))
 
     def get_app(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/app', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/app', filterparam, filtervalue))
 
     def get_dataconnection(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/dataconnection', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/dataconnection', filterparam, filtervalue))
 
     def get_user(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/user', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/user', filterparam, filtervalue))
 
-    def get_license(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/license')))
+    def get_license(self):
+        return json.loads(self.get('qrs/license'))
 
 
-    def get_lef(self, serial, control, user, organization, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/license/download?serial={0}&control={1}&user={2}&org={3}'.format 
-            (serial, control, user, organization))))
+    def get_lef(self, serial, control, user, organization):
+        return json.loads(self.get('qrs/license/download?serial={0}&control={1}&user={2}&org={3}'.format 
+            (serial, control, user, organization)))
     
     def get_appcount(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/app/count')))        
+        return json.loads(self.get('qrs/app/count', filterparam, filtervalue))       
 
     def get_customproperty(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/custompropertydefinition', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/custompropertydefinition', filterparam, filtervalue))
 
     def get_tag(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/tag', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/tag', filterparam, filtervalue))
     
     def get_task(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/task', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/task', filterparam, filtervalue))
 
     def get_systemrule(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/systemrule', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/systemrule', filterparam, filtervalue))
 
     def get_userdirectory(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/userdirectory', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/userdirectory', filterparam, filtervalue))
 
-    def get_exportappticket(self, appid, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/app/{0}/export'.format(appid))))
+    def get_exportappticket(self, appid):
+        return json.loads(self.get('qrs/app/{0}/export'.format(appid)))
         
     def get_extension(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/extension', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/extension', filterparam, filtervalue))
 
     def get_stream(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/stream', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/stream', filterparam, filtervalue))
 
     def get_servernode(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/servernodeconfiguration', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/servernodeconfiguration', filterparam, filtervalue))
 
     def get_useraccesstype(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/license/useraccesstype', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/license/useraccesstype', filterparam, filtervalue))
 
     def get_loginaccesstype(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/license/loginaccesstype', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/license/loginaccesstype', filterparam, filtervalue))
 
     def get_appobject(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/app/object', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/app/object', filterparam, filtervalue))
 
-    def get_apidescription(self, method, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/about/api/description?extended=true&method={0}&format=JSON'.format 
-             (method))))
+    def get_apidescription(self, method):
+        return json.loads(self.get('qrs/about/api/description?extended=true&method={0}&format=JSON'.format 
+             (method)))
 
-    def get_serverconfig(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/servernodeconfiguration/local'))) 
+    def get_serverconfig(self):
+        return json.loads(self.get('qrs/servernodeconfiguration/local')) 
 
-    def get_emptyserverconfigurationcontainer(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/servernodeconfiguration/local'))) 
+    def get_emptyserverconfigurationcontainer(self):
+        return json.loads(self.get('qrs/servernodeconfiguration/local')) 
 
     def get_contentlibrary(self, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/contentlibrary', filterparam, filtervalue)))
+        return json.loads(self.get('qrs/contentlibrary', filterparam, filtervalue))
 
     def get_appprivileges(self, appid, filterparam=None, filtervalue=None):
-        return (json.loads(self.get('qrs/app/{0}/privileges'.format (appid) , filterparam, filtervalue)))
+        return json.loads(self.get('qrs/app/{0}/privileges'.format (appid) , filterparam, filtervalue))
 
     def delete_user(self, userid):
          return self.delete('qrs/user/{0}'.format (userid))
 
     def delete_license(self):
-        license = self.get_license()
-        licenseid = license['id']
+        qliklicense = self.get_license()
+        licenseid = qliklicense['id']
         return self.delete('qrs/license/{0}'.format (licenseid))
 
     def delete_app(self, appid):
@@ -300,21 +300,21 @@ class ConnectQlik:
 
     def set_license(self, control, serial, name, organization, lef):
         if lef is None:
-            license = {
+            qliklicense = {
                 "serial": serial,
                 "name": name,
                 "organization": organization
             }
-            data = json.dumps(license)
+            data = json.dumps(qliklicense)
             return self.post('qrs/license?control={0}'.format (control), data)
         else:
-            license = {
+            qliklicense = {
                 "serial": serial,
                 "name": name,
                 "organization": organization,
                 "lef": lef
             }
-            data = json.dumps(license)
+            data = json.dumps(qliklicense)
             return self.post('qrs/license?control={0}'.format (control), data)
 
     def import_users(self, filename):
@@ -391,7 +391,7 @@ class ConnectQlik:
             data = json.dumps(properties)
             return self.post('qrs/custompropertydefinition/many', data)
 
-    def import_librarycontent(self, library, filepath, contentname):
+    def import_librarycontent(self, library, filepath):
         with open(filepath, 'rb') as data:
             return self.post('qrs/contentlibrary/{0}/uploadfile?externalpath={1}'.format (library, filepath), data)
 
@@ -410,13 +410,13 @@ class ConnectQlik:
         data = self.get('qrs/download/app/{0}/{1}/{2}'.format (appid, ticket, filename))
         with open(filepath + filename, 'wb') as file:
             file.write(data)
-        return ('Application: {0} written to {1}'.format (filename, filepath))
+        return 'Application: {0} written to {1}'.format (filename, filepath)
 
     def ping_proxy(self):
         try:
-            return (self.get_qps('qps/user'))
+            return self.get_qps('qps/user')
         except requests.exceptions.RequestException as exception:
-            return ('Qlik Sense Proxy down')
+            return 'Qlik Sense Proxy down'
 
     def new_systemrule(self, filename):
         with open(self.concsvjson(filename), 'rb') as systemrule:
