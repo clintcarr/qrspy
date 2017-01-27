@@ -393,7 +393,7 @@ class ConnectQlik:
 
     def import_librarycontent(self, library, filepath, contentname):
         with open(filepath, 'rb') as data:
-            return self.post('qrs/contentlibrary/{0}/uploadfile?externalpath={1}'.format (library, filename), data)
+            return self.post('qrs/contentlibrary/{0}/uploadfile?externalpath={1}'.format (library, filepath), data)
 
     def reload_app(self, appid):
         return self.post('qrs/app/{0}/reload'.format (appid))
