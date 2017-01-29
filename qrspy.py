@@ -392,7 +392,7 @@ class ConnectQlik:
         :param userid: user ID to delete
         :returns: HTTP Status Code
         """
-         return self.delete('qrs/user/{0}'.format (userid))
+        return self.delete('qrs/user/{0}'.format (userid))
 
     def delete_license(self):
         """
@@ -486,7 +486,8 @@ class ConnectQlik:
         """
         return self.put('qrs/app/object/{0}/unpublish'.format (objid))
 
-    def replace_app(self, appid, replaceappid):"""
+    def replace_app(self, appid, replaceappid):
+        """
         Replaces an application
         :param appid: Application ID to copy
         :param replaceappid: Application ID that is being replaced
