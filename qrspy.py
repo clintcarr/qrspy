@@ -143,7 +143,7 @@ class ConnectQlik:
         """
         Function that performs POST method to Qlik Repository Service endpoints
         :param endpoint: API endpoint path
-        :param data: Data that is posted as either JSON encoded or not.
+        :param data: Data that is posted in body of request.
         """
         if '?' in endpoint:
             if data is None:
@@ -180,81 +180,218 @@ class ConnectQlik:
         return response.status_code
 
     def get_about(self):
+        """
+        Returns system information
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/about'))
 
     def get_app(self, filterparam=None, filtervalue=None):
+        """
+        Returns the applications
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/app', filterparam, filtervalue))
 
     def get_dataconnection(self, filterparam=None, filtervalue=None):
+        """
+        Returns the dataconnections
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/dataconnection', filterparam, filtervalue))
 
     def get_user(self, filterparam=None, filtervalue=None):
+        """
+        Returns the users
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/user', filterparam, filtervalue))
 
     def get_license(self):
+        """
+        Returns the License
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/license'))
 
 
     def get_lef(self, serial, control, user, organization):
+        """
+        Gets the LEF from the Qlik license server
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/license/download?serial={0}&control={1}&user={2}&org={3}'.format 
             (serial, control, user, organization)))
     
     def get_appcount(self, filterparam=None, filtervalue=None):
+        """
+        Returns the applications count
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/app/count', filterparam, filtervalue))       
 
     def get_customproperty(self, filterparam=None, filtervalue=None):
+        """
+        Returns the custom properties
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/custompropertydefinition', filterparam, filtervalue))
 
     def get_tag(self, filterparam=None, filtervalue=None):
+        """
+        Returns the tags
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/tag', filterparam, filtervalue))
     
     def get_task(self, filterparam=None, filtervalue=None):
+        """
+        Returns the tasks
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/task', filterparam, filtervalue))
 
     def get_systemrule(self, filterparam=None, filtervalue=None):
+        """
+        Returns the system rules
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/systemrule', filterparam, filtervalue))
 
     def get_userdirectory(self, filterparam=None, filtervalue=None):
+        """
+        Returns the user directory
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/userdirectory', filterparam, filtervalue))
 
     def get_exportappticket(self, appid):
+        """
+        Returns the an app export ticket for use in export_app
+        :param appid: Application ID for export
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/app/{0}/export'.format(appid)))
         
     def get_extension(self, filterparam=None, filtervalue=None):
+        """
+        Returns the extensions
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/extension', filterparam, filtervalue))
 
     def get_stream(self, filterparam=None, filtervalue=None):
+        """
+        Returns the streams
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/stream', filterparam, filtervalue))
 
     def get_servernode(self, filterparam=None, filtervalue=None):
+        """
+        Returns the server node
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/servernodeconfiguration', filterparam, filtervalue))
 
     def get_useraccesstype(self, filterparam=None, filtervalue=None):
+        """
+        Returns the users with user access type
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/license/useraccesstype', filterparam, filtervalue))
 
     def get_loginaccesstype(self, filterparam=None, filtervalue=None):
+        """
+        Returns the login access type rule
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/license/loginaccesstype', filterparam, filtervalue))
 
     def get_appobject(self, filterparam=None, filtervalue=None):
+        """
+        Returns the application objects
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/app/object', filterparam, filtervalue))
 
     def get_apidescription(self, method):
+        """
+        Returns the APIs of the QRS
+        :param method: Method to return (get, put, post, delete)
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/about/api/description?extended=true&method={0}&format=JSON'.format 
              (method)))
 
     def get_serverconfig(self):
+        """
+        Returns the server configuration
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/servernodeconfiguration/local')) 
 
     def get_emptyserverconfigurationcontainer(self):
+        """
+        Returns an empty server configuration
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/servernodeconfiguration/local')) 
 
     def get_contentlibrary(self, filterparam=None, filtervalue=None):
+        """
+        Returns the content library
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/contentlibrary', filterparam, filtervalue))
 
     def get_appprivileges(self, appid, filterparam=None, filtervalue=None):
+        """
+        Returns the privileges
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
         return json.loads(self.get('qrs/app/{0}/privileges'.format (appid) , filterparam, filtervalue))
 
     def delete_user(self, userid):
+        """
+        Deletes users
+        :param userid: user ID to delete
+        :returns: JSON
+        """
          return self.delete('qrs/user/{0}'.format (userid))
 
     def delete_license(self):
@@ -433,3 +570,4 @@ if __name__ == '__main__':
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
 
+        print (qrs.new_systemrule('c:/dev/rule.txt'))
