@@ -390,52 +390,120 @@ class ConnectQlik:
         """
         Deletes users
         :param userid: user ID to delete
-        :returns: JSON
+        :returns: HTTP Status Code
         """
          return self.delete('qrs/user/{0}'.format (userid))
 
     def delete_license(self):
+        """
+        Deletes the server license
+        :returns: HTTP Status Code
+        """
         qliklicense = self.get_license()
         licenseid = qliklicense['id']
         return self.delete('qrs/license/{0}'.format (licenseid))
 
     def delete_app(self, appid):
+        """
+        Deletes an application
+        :returns: HTTP Status Code
+        """
         return self.delete('qrs/app/{0}'.format (appid))
 
     def delete_stream(self, streamid):
+        """
+        Deletes a stream
+        :returns: HTTP Status Code
+        """
         return self.delete('qrs/stream/{0}'.format (streamid))
 
     def delete_tag(self, tagid):
+        """
+        Deletes an Tag
+        :returns: HTTP Status Code
+        """
         return self.delete('qrs/tag/{0}'.format (tagid))
 
     def delete_customproperty(self, custompropertyid):
+        """
+        Deletes a custom property
+        :returns: HTTP Status Code
+        """
         return self.delete('qrs/custompropertydefinition/{0}'.format (custompropertyid))
 
     def delete_useraccesstype(self, useraccessid):
+        """
+        Deletes a user access token (quarantine)
+        :returns: HTTP Status Code
+        """
         return self.delete('qrs/license/useraccesstype/{0}'.format (useraccessid))
 
     def delete_appobject(self, objectid):
+        """
+        Deletes an application object
+        :returns: HTTP Status Code
+        """
         return self.delete('qrs/app/object/{0}'.format (objectid))
 
     def delete_loginaccesstype(self, ruleid):
+        """
+        Deletes a login access rule
+        :returns: HTTP Status Code
+        """
         return self.delete('qrs/license/loginaccesstype/{0}'.format (ruleid))
 
     def publish_app(self, appid, streamid, name):
+        """
+        Publishes an application to a stream
+        :param appid: Application ID to publish
+        :param streamid: Steam ID of stream to publish application
+        :param name: Name of application once published
+        :returns: HTTP Status Code
+        """
         return self.put('qrs/app/{0}/publish?stream={1}&name={2}'.format (appid, streamid, name))
 
     def migrate_app(self, appid):
+        """
+        Migrates an application (usually automatically performed)
+        :param appid: Application ID to migrate
+        :returns: HTTP Status Code
+        """
         return self.put('qrs/app/{0}/migrate'.format (appid)) 
 
     def publish_appobject(self, objid):
+        """
+        Publishes an application object
+        :param objid: Object ID to publish
+        :returns: HTTP Status Code
+        """
         return self.put('qrs/app/object/{0}/publish'.format (objid))
 
     def unpublish_appobject(self, objid):
+        """
+        Unpublishes an application object
+        :param objid: Object ID to publish
+        :returns: HTTP Status Code
+        """
         return self.put('qrs/app/object/{0}/unpublish'.format (objid))
 
-    def replace_app(self, appid, replaceappid):
+    def replace_app(self, appid, replaceappid):"""
+        Replaces an application
+        :param appid: Application ID to copy
+        :param replaceappid: Application ID that is being replaced
+        :returns: HTTP Status Code
+        """
         return self.put('qrs/app/{0}/replace?app={1}'.format(appid, replaceappid))
 
     def set_license(self, control, serial, name, organization, lef):
+        """
+        Sets the Qlik Sense License (if connected to internet omit LEF)
+        :param control: Control number of license
+        :param serial: Serial Number
+        :param name: Name to license to
+        :param organization: Organization to license to
+        :param lef: LEF in JSON or leave as None to retrieve from Qlik License Server
+        :returns: HTTP Status Code
+        """
         if lef is None:
             qliklicense = {
                 "serial": serial,
@@ -455,6 +523,11 @@ class ConnectQlik:
             return self.post('qrs/license?control={0}'.format (control), data)
 
     def import_users(self, filename):
+        """
+        Imports users from a text file in comma separated format
+        :param filename: filename containing users
+        :returns: HTTP Status Code
+        """
         if self.csvrowcount(filename) == 1:
             with open(self.concsvjson(filename), 'rb') as users:
                 return self.post('qrs/user', users)
@@ -463,6 +536,11 @@ class ConnectQlik:
                 return self.post('qrs/user/many', users)
 
     def import_tag(self, filename):
+        """
+        Imports tags from a text file in comma separated format
+        :param filename: filename containing tags
+        :returns: HTTP Status Code
+        """
         if self.csvrowcount(filename) == 1:
             with open(self.concsvjson(filename), 'rb') as tags:
                 return self.post('qrs/tag', tags)
@@ -471,31 +549,68 @@ class ConnectQlik:
                 return self.post('qrs/tag/many', tags)
 
     def start_task(self, taskid):
+        """
+        Starts a task
+        :param taskid: Task ID to start
+        :returns: HTTP Status Code
+        """
         return self.post('qrs/task/{0}/start'.format (taskid))
 
     def import_extension(self, filename):
+        """
+        Imports extensions from a zip file
+        :param filename: filename containing extension objects
+        :returns: HTTP Status Code
+        """
         with open(filename, 'rb') as extension:
             return self.post('qrs/extension/upload', extension)
 
     def copy_app(self, appid, name):
+        """
+        Copies an existing application
+        :param appid: Application ID to copy
+        :param name: Name of new copy
+        :returns: HTTP Status Code
+        """
         return self.post('qrs/app/{0}/copy?name={1}'.format (appid, name))
 
     def new_stream(self, name):
+        """
+        Creates a new stream
+        :param name: Name of stream
+        :returns: HTTP Status Code
+        """
         stream = {'name': name}
         data = json.dumps(stream)
         return self.post('qrs/stream', data)
 
     def sync_userdirectory(self, userdirectoryid):
+        """
+        Synchronizes a user directory
+        :param userdirectoryid: Userdirectory ID to synchronize
+        :returns: HTTP Status Code
+        """
         udid = '["{0}"]'.format (userdirectoryid)
         return self.post('qrs/userdirectoryconnector/syncuserdirectories', udid)
 
     def export_certificates(self, machinename, certificatepassword, includesecret, exportformat):
+        """
+        Exports the Certificates from the Server
+        :param machinename: name of the machine to create the certificates for
+        :param: certificatepassword: password to secure certificates
+        :param includesecret: Boolean for including secret or not
+        :param exportformat: Windows or PEM format
+        :returns: HTTP Status Code
+        """
         certificateinfo = {"machineNames": [machinename], "certificatePassword": certificatepassword,
                             "includeSecretsKey": includesecret, "ExportFormat": exportformat}
         data = json.dumps(certificateinfo)
         return self.post('qrs/certificatedistribution/exportcertificates', data)
 
     def new_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
+        """
+        Create a new node (not operational)
+        """
         nodedata = {"configuration": {"name": name, "hostName": hostname, "engineEnabled": engineenabled,
                                   "proxyEnabled": proxyenabled, "schedulerEnabled": schedulerenabled,
                                   "printingEnabled": printingenabled}}
@@ -506,6 +621,15 @@ class ConnectQlik:
         # return jdata["configuration"]["id"]
 
     def new_dataconnection(self, username, password, name, connectionstring, conntype):
+        """
+        Creates a new data connection
+        :param username: username to run connection string as
+        :param password: password of user
+        :param name: name of connection string
+        :param connectionstring: connection string
+        :param conntype: type of connection string
+        :returns: HTTP Status Code
+        """
         dataconnection = {
                             "username": username,
                             "password": password,
@@ -517,31 +641,71 @@ class ConnectQlik:
         return self.post('qrs/dataconnection', data)
   
     def import_app(self, name, filename):
+        """
+        Imports an application
+        :param name: Name of application to import
+        :param filename: Path and file of qvf
+        :returns: HTTP Status Code
+        """
         headers["Content-Type"] = "application/vnd.qlik.sense.app"
         headers["Connection"] = "Keep-Alive"
         with open(filename, 'rb') as app:
             return self.post('qrs/app/upload?name={0}'.format(name), app)
 
     def import_customproperty(self, filename):
+        """
+        Creates custom properties from file
+        :param filename: File containing properties
+        :returns: HTTP Status Code
+        """
         with open(filename) as customproperties:
             properties = json.loads(customproperties.read())
             data = json.dumps(properties)
             return self.post('qrs/custompropertydefinition/many', data)
 
     def import_librarycontent(self, library, filepath):
+        """
+        Imports content into a content library
+        :param library: library to import content into
+        :param filepath: content to import
+        :returns: HTTP Status Code
+        """
         with open(filepath, 'rb') as data:
             return self.post('qrs/contentlibrary/{0}/uploadfile?externalpath={1}'.format (library, filepath), data)
 
     def reload_app(self, appid):
+        """
+        Reloads an application
+        :param appid: Application ID to reload
+        :returns: HTTP Status Code
+        """
         return self.post('qrs/app/{0}/reload'.format (appid))
 
     def delete_librarycontent(self, library, contentname):
+        """
+        Deletes content from a content library
+        :param library: library to delete content from
+        :param contentname: content to delete
+        :returns: HTTP Status Code
+        """
         return self.delete('qrs/contentlibrary/{0}/deletecontent?externalpath={1}'.format (library, contentname))
 
     def delete_contentlibrary(self, library):
+        """
+        Deletes a content library
+        :param library: library to delete
+        :returns: HTTP Status Code
+        """
         return self.delete('qrs/contentlibrary/{0}'.format (library))
 
     def export_app(self, appid, filepath, filename):
+        """
+        Exports an application to the filepath
+        :param appid: application id to export
+        :param filepath: location to store the exported app
+        :param filename: name of file
+        :returns: HTTP Status Code
+        """
         exportticket = self.get_exportappticket(appid)
         ticket = (exportticket['value'])
         data = self.get('qrs/download/app/{0}/{1}/{2}'.format (appid, ticket, filename))
@@ -550,12 +714,21 @@ class ConnectQlik:
         return 'Application: {0} written to {1}'.format (filename, filepath)
 
     def ping_proxy(self):
+        """
+        Returns status code of Proxy service
+        :returns: HTTP Status Code
+        """
         try:
             return self.get_qps('qps/user')
         except requests.exceptions.RequestException as exception:
             return 'Qlik Sense Proxy down'
 
     def new_systemrule(self, filename):
+        """
+        Imports system rule (not operational)
+        :param filename: file containing rule
+        :returns: HTTP Status Code
+        """
         with open(self.concsvjson(filename), 'rb') as systemrule:
             rule = json.loads(systemrule.read())
             data = json.dumps(rule)
@@ -570,4 +743,3 @@ if __name__ == '__main__':
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
 
-        print (qrs.new_systemrule('c:/dev/rule.txt'))
