@@ -12,12 +12,12 @@
         },
         {
             "location": "/user-guide/summary/",
-            "text": "Summary\n\n\nThe functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.\n\n\nThe following table outlines the currently supported processes.\n\n\n\n\n\n\n\n\nGET\n\n\nPUT\n\n\nPOST\n\n\nDELETE\n\n\n\n\n\n\n\n\n\n\nget_about\n\n\npublish_app\n\n\nset_license\n\n\ndelete_user\n\n\n\n\n\n\nget_app\n\n\nmigrate_app\n\n\nimport_users\n\n\ndelete_license\n\n\n\n\n\n\nget_dataconnection\n\n\npublish_appobject\n\n\nimport_tag\n\n\ndelete_app\n\n\n\n\n\n\nget_user\n\n\nunpublish_appobject\n\n\nstart_task\n\n\ndelete_stream\n\n\n\n\n\n\nget_license\n\n\nreplace_app\n\n\nimport_extension\n\n\ndelete_tag\n\n\n\n\n\n\nget_lef\n\n\n\n\ncopy_app\n\n\ndelete_customproperty\n\n\n\n\n\n\nget_appcount\n\n\n\n\nnew_stream\n\n\ndelete_useraccesstype\n\n\n\n\n\n\nget_customproperty\n\n\n\n\nsync_userdirectory\n\n\ndelete_appobject\n\n\n\n\n\n\nget_tag\n\n\n\n\nexport_certificates\n\n\ndelete_librarycontent\n\n\n\n\n\n\nget_task\n\n\n\n\nnew_dataconnection\n\n\ndelete_contentlibrary\n\n\n\n\n\n\nget_securityrule\n\n\n\n\nimport_app\n\n\ndelete_loginaccesstype\n\n\n\n\n\n\nget_userdirectory\n\n\n\n\nimport_customproperty\n\n\n\n\n\n\n\n\nget_extension\n\n\n\n\nimport_librarycontent\n\n\n\n\n\n\n\n\nget_stream\n\n\n\n\nreload_app\n\n\n\n\n\n\n\n\nget_servernode\n\n\n\n\n\n\n\n\n\n\n\n\nget_useraccesstype\n\n\n\n\n\n\n\n\n\n\n\n\nget_appobject\n\n\n\n\n\n\n\n\n\n\n\n\nget_apidescription\n\n\n\n\n\n\n\n\n\n\n\n\nexport_app\n\n\n\n\n\n\n\n\n\n\n\n\nget_contentlibrary\n\n\n\n\n\n\n\n\n\n\n\n\nget_appprivileges\n\n\n\n\n\n\n\n\n\n\n\n\nget_loginaccesstype",
+            "text": "Summary\n\n\nThe functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.\n\n\nThe following table outlines the currently supported processes.\n\n\n\n\n\n\n\n\nGET\n\n\nPUT\n\n\nPOST\n\n\nDELETE\n\n\n\n\n\n\n\n\n\n\nget_about\n\n\npublish_app\n\n\nset_license\n\n\ndelete_user\n\n\n\n\n\n\nget_app\n\n\nmigrate_app\n\n\nimport_users\n\n\ndelete_license\n\n\n\n\n\n\nget_dataconnection\n\n\npublish_appobject\n\n\nimport_tag\n\n\ndelete_app\n\n\n\n\n\n\nget_user\n\n\nunpublish_appobject\n\n\nstart_task\n\n\ndelete_stream\n\n\n\n\n\n\nget_license\n\n\nreplace_app\n\n\nimport_extension\n\n\ndelete_tag\n\n\n\n\n\n\nget_lef\n\n\n\n\ncopy_app\n\n\ndelete_customproperty\n\n\n\n\n\n\nget_appcount\n\n\n\n\nnew_stream\n\n\ndelete_useraccesstype\n\n\n\n\n\n\nget_customproperty\n\n\n\n\nsync_userdirectory\n\n\ndelete_appobject\n\n\n\n\n\n\nget_tag\n\n\n\n\nexport_certificates\n\n\ndelete_librarycontent\n\n\n\n\n\n\nget_task\n\n\n\n\nnew_dataconnection\n\n\ndelete_contentlibrary\n\n\n\n\n\n\nget_securityrule\n\n\n\n\nimport_app\n\n\ndelete_loginaccesstype\n\n\n\n\n\n\nget_userdirectory\n\n\n\n\nimport_customproperty\n\n\ndelete_userdirectoryandusers\n\n\n\n\n\n\nget_extension\n\n\n\n\nimport_librarycontent\n\n\n\n\n\n\n\n\nget_stream\n\n\n\n\nreload_app\n\n\n\n\n\n\n\n\nget_servernode\n\n\n\n\n\n\n\n\n\n\n\n\nget_useraccesstype\n\n\n\n\n\n\n\n\n\n\n\n\nget_appobject\n\n\n\n\n\n\n\n\n\n\n\n\nget_apidescription\n\n\n\n\n\n\n\n\n\n\n\n\nexport_app\n\n\n\n\n\n\n\n\n\n\n\n\nget_contentlibrary\n\n\n\n\n\n\n\n\n\n\n\n\nget_appprivileges\n\n\n\n\n\n\n\n\n\n\n\n\nget_loginaccesstype",
             "title": "Summary"
         },
         {
             "location": "/user-guide/summary/#summary",
-            "text": "The functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.  The following table outlines the currently supported processes.     GET  PUT  POST  DELETE      get_about  publish_app  set_license  delete_user    get_app  migrate_app  import_users  delete_license    get_dataconnection  publish_appobject  import_tag  delete_app    get_user  unpublish_appobject  start_task  delete_stream    get_license  replace_app  import_extension  delete_tag    get_lef   copy_app  delete_customproperty    get_appcount   new_stream  delete_useraccesstype    get_customproperty   sync_userdirectory  delete_appobject    get_tag   export_certificates  delete_librarycontent    get_task   new_dataconnection  delete_contentlibrary    get_securityrule   import_app  delete_loginaccesstype    get_userdirectory   import_customproperty     get_extension   import_librarycontent     get_stream   reload_app     get_servernode       get_useraccesstype       get_appobject       get_apidescription       export_app       get_contentlibrary       get_appprivileges       get_loginaccesstype",
+            "text": "The functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.  The following table outlines the currently supported processes.     GET  PUT  POST  DELETE      get_about  publish_app  set_license  delete_user    get_app  migrate_app  import_users  delete_license    get_dataconnection  publish_appobject  import_tag  delete_app    get_user  unpublish_appobject  start_task  delete_stream    get_license  replace_app  import_extension  delete_tag    get_lef   copy_app  delete_customproperty    get_appcount   new_stream  delete_useraccesstype    get_customproperty   sync_userdirectory  delete_appobject    get_tag   export_certificates  delete_librarycontent    get_task   new_dataconnection  delete_contentlibrary    get_securityrule   import_app  delete_loginaccesstype    get_userdirectory   import_customproperty  delete_userdirectoryandusers    get_extension   import_librarycontent     get_stream   reload_app     get_servernode       get_useraccesstype       get_appobject       get_apidescription       export_app       get_contentlibrary       get_appprivileges       get_loginaccesstype",
             "title": "Summary"
         },
         {
@@ -1507,12 +1507,12 @@
         },
         {
             "location": "/user-guide/delete_loginaccesstype/",
-            "text": "Description\n\n\nMoves the login access rule specified by the rule id.\n\n\nEndpoint\n\n\n/qrs/license/loginaccesstype/{loginruleid}\n\n\nUsage\n\n\n\"\"\"\n:param id: The ID of the user access\n\"\"\"\nqrs.delete_loginaccesstype('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
+            "text": "Description\n\n\nRemoves the login access rule specified by the rule id.\n\n\nEndpoint\n\n\n/qrs/license/loginaccesstype/{loginruleid}\n\n\nUsage\n\n\n\"\"\"\n:param id: The ID of the user access\n\"\"\"\nqrs.delete_loginaccesstype('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "delete login accesstype rule"
         },
         {
             "location": "/user-guide/delete_loginaccesstype/#description",
-            "text": "Moves the login access rule specified by the rule id.",
+            "text": "Removes the login access rule specified by the rule id.",
             "title": "Description"
         },
         {
@@ -1602,6 +1602,31 @@
         },
         {
             "location": "/user-guide/delete_contentlibrary/#returns",
+            "text": "HTTP Status Code",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/delete_userdirectoryandusers/",
+            "text": "Description\n\n\nRemoves the user directory and all users contained\n\n\nEndpoint\n\n\n/qrs/userdirectoryconnector/deleteudandusers?userdirectoryid={userdirectoryid}\n\n\nUsage\n\n\n\"\"\"\n:param userdirectoryid: ID of user directory\n\"\"\"\nqrs.delete_userdirectoryandusers('011b5fd4-43c2-491d-b137-80a5957b900f')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
+            "title": "delete user directory and users"
+        },
+        {
+            "location": "/user-guide/delete_userdirectoryandusers/#description",
+            "text": "Removes the user directory and all users contained",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/delete_userdirectoryandusers/#endpoint",
+            "text": "/qrs/userdirectoryconnector/deleteudandusers?userdirectoryid={userdirectoryid}",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/delete_userdirectoryandusers/#usage",
+            "text": "\"\"\"\n:param userdirectoryid: ID of user directory\n\"\"\"\nqrs.delete_userdirectoryandusers('011b5fd4-43c2-491d-b137-80a5957b900f')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/delete_userdirectoryandusers/#returns",
             "text": "HTTP Status Code",
             "title": "Returns"
         },
