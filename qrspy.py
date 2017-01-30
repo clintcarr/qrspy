@@ -714,6 +714,14 @@ class ConnectQlik:
             file.write(data)
         return 'Application: {0} written to {1}'.format (filename, filepath)
 
+    def delete_userdirectoryandusers(self, userdirectoryid):
+        """
+        Deletes specified user directory and all users within
+        :param userdirectoryid: ID of user directory to delete
+        :returns: HTTP Status Code
+        """
+        return self.delete('qrs/userdirectoryconnector/deleteudandusers?userdirectoryid={0}'.format (userdirectoryid))
+
     def ping_proxy(self):
         """
         Returns status code of Proxy service
