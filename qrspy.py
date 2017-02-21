@@ -125,19 +125,29 @@ class ConnectQlik:
                                             headers=headers, verify=self.root, cert=self.certificate)
             return response.status_code
 
-    def put(self, endpoint):
+    def put(self, endpoint, data=None):
         """
         Function that performs PUT method to Qlik Repository Service endpoints
         :param endpoint: API endpoint path
         """
         if '?' in endpoint:
-            response = session.put('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
-                                            headers=headers, verify=self.root, cert=self.certificate)
-            return response.status_code
+            if data is None:
+                response = session.put('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
+                                                headers=headers, verify=self.root, cert=self.certificate)
+                return response.status_code
+            else:
+                response = session.put('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
+                                                headers=headers, data=data,verify=self.root, cert=self.certificate)
+                return response.status_code
         else:
-            response = session.put('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
-                                            headers=headers, verify=self.root, cert=self.certificate)
-            return response.status_code
+            if data is None:
+                response = session.put('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
+                                                headers=headers, verify=self.root, cert=self.certificate)
+                return response.status_code
+            else:
+                response = session.put('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
+                                                headers=headers, data=data, verify=self.root, cert=self.certificate)
+                return response.status_code
 
     def post(self, endpoint, data=None):
         """
@@ -179,55 +189,65 @@ class ConnectQlik:
                                         headers=headers, verify=self.root, cert=self.certificate)
         return response.status_code
 
-    def get_about(self):
+    def get_about(self,full=None):
         """
         Returns system information
         :returns: JSON
         """
-        return json.loads(self.get('qrs/about'))
+        path = 'qrs/about'
+        return json.loads(self.get(path))
 
-    def get_app(self, filterparam=None, filtervalue=None):
+    def get_app(self, opt=None,filterparam=None, filtervalue=None):
         """
         Returns the applications
         :param filterparam: Property and operator of the filter
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/app', filterparam, filtervalue))
+        path = 'qrs/app'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
-    def get_dataconnection(self, filterparam=None, filtervalue=None):
+    def get_dataconnection(self, opt=None, filterparam=None, filtervalue=None):
         """
         Returns the dataconnections
         :param filterparam: Property and operator of the filter
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/dataconnection', filterparam, filtervalue))
+        path = 'qrs/dataconnection'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
-    def get_user(self, filterparam=None, filtervalue=None):
+    def get_user(self, opt=None, filterparam=None, filtervalue=None):
         """
         Returns the users
         :param filterparam: Property and operator of the filter
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/user', filterparam, filtervalue))
+        path = 'qrs/user'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
     def get_license(self):
         """
         Returns the License
         :returns: JSON
         """
-        return json.loads(self.get('qrs/license'))
-
+        path = 'qrs/license'
+        return json.loads(self.get(path))
 
     def get_lef(self, serial, control, user, organization):
         """
         Gets the LEF from the Qlik license server
         :returns: JSON
         """
-        return json.loads(self.get('qrs/license/download?serial={0}&control={1}&user={2}&org={3}'.format 
-            (serial, control, user, organization)))
+        path = 'qrs/license/download?serial={0}&control={1}&user={2}&org={3}'.format (serial, control, user, organization)
+        return json.loads(self.get(path))
     
     def get_appcount(self, filterparam=None, filtervalue=None):
         """
@@ -236,52 +256,68 @@ class ConnectQlik:
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/app/count', filterparam, filtervalue))       
+        path = 'qrs/app/count'
+        return json.loads(self.get(path, filterparam, filtervalue))       
 
-    def get_customproperty(self, filterparam=None, filtervalue=None):
+    def get_customproperty(self, opt=None, filterparam=None, filtervalue=None):
         """
         Returns the custom properties
         :param filterparam: Property and operator of the filter
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/custompropertydefinition', filterparam, filtervalue))
+        path = 'qrs/custompropertydefinition'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
-    def get_tag(self, filterparam=None, filtervalue=None):
+    def get_tag(self, opt= None, filterparam=None, filtervalue=None):
         """
         Returns the tags
         :param filterparam: Property and operator of the filter
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/tag', filterparam, filtervalue))
+        path = 'qrs/tag'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue))
     
-    def get_task(self, filterparam=None, filtervalue=None):
+    def get_task(self, opt=None, filterparam=None, filtervalue=None):
         """
         Returns the tasks
         :param filterparam: Property and operator of the filter
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/task', filterparam, filtervalue))
+        path = 'qrs/task'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
-    def get_systemrule(self, filterparam=None, filtervalue=None):
+    def get_systemrule(self, opt=None, filterparam=None, filtervalue=None):
         """
         Returns the system rules
         :param filterparam: Property and operator of the filter
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/systemrule', filterparam, filtervalue))
+        path = 'qrs/systemrule'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
-    def get_userdirectory(self, filterparam=None, filtervalue=None):
+    def get_userdirectory(self, opt=None, filterparam=None, filtervalue=None):
         """
         Returns the user directory
         :param filterparam: Property and operator of the filter
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/userdirectory', filterparam, filtervalue))
+        path = 'qrs/userdirectory'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
     def get_exportappticket(self, appid):
         """
@@ -291,23 +327,29 @@ class ConnectQlik:
         """
         return json.loads(self.get('qrs/app/{0}/export'.format(appid)))
         
-    def get_extension(self, filterparam=None, filtervalue=None):
+    def get_extension(self, opt=None, filterparam=None, filtervalue=None):
         """
         Returns the extensions
         :param filterparam: Property and operator of the filter
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/extension', filterparam, filtervalue))
+        path = 'qrs/extension'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
-    def get_stream(self, filterparam=None, filtervalue=None):
+    def get_stream(self, opt=None, filterparam=None, filtervalue=None):
         """
         Returns the streams
         :param filterparam: Property and operator of the filter
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/stream', filterparam, filtervalue))
+        path = 'qrs/stream'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
     def get_servernode(self, filterparam=None, filtervalue=None):
         """
@@ -316,7 +358,8 @@ class ConnectQlik:
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/servernodeconfiguration', filterparam, filtervalue))
+        path = 'qrs/servernodeconfiguration'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
     def get_useraccesstype(self, filterparam=None, filtervalue=None):
         """
@@ -325,7 +368,8 @@ class ConnectQlik:
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/license/useraccesstype', filterparam, filtervalue))
+        path = 'qrs/license/useraccesstype'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
     def get_loginaccesstype(self, filterparam=None, filtervalue=None):
         """
@@ -334,16 +378,20 @@ class ConnectQlik:
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/license/loginaccesstype', filterparam, filtervalue))
+        path = 'qrs/license/loginaccesstype'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
-    def get_appobject(self, filterparam=None, filtervalue=None):
+    def get_appobject(self, opt=None, filterparam=None, filtervalue=None):
         """
         Returns the application objects
         :param filterparam: Property and operator of the filter
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/app/object', filterparam, filtervalue))
+        path = 'qrs/app/object'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
     def get_apidescription(self, method):
         """
@@ -744,11 +792,20 @@ class ConnectQlik:
             print (data)
             return self.post('qrs/systemrule', data)
 
+    def get_virtualproxy(self, filterparam=None, filtervalue=None):
+        return json.loads(self.get('qrs/virtualproxyconfig', filterparam, filtervalue))
+
 if __name__ == '__main__':
     qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
                     certificate=('C:/certs/qs2.qliklocal.net/client.pem',
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
                     root='C:/certs/qs2.qliklocal.net/root.pem')
-    if qrs.ping_proxy() == 200:
-        print(qrs.get_about())
 
+    qrsntlm = ConnectQlik(server='qs2.qliklocal.net', 
+                    credential='qliklocal\\administrator',
+                    password='Qlik1234')
+    
+    if qrs.ping_proxy() == 200:
+        print(qrs.get_about())     
+        
+        
