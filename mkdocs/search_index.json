@@ -132,8 +132,13 @@
         },
         {
             "location": "/user-guide/filter/",
-            "text": "Filtering GET requests\n\n\nBy default all GET requests return all the information pertaining to the API Endpoint.\n\n\nQRSpy supports the use of filtering on most GET functions.\n\n\nThe following format should be used.\n\n\nExamples\n\n\nqrs.get_app('Name eq', 'Operations Monitor')\n\n\nFormat\n\n\n[property] [operator] [value]\n\n\nOperators\n\n\n\n\n\n\n\n\noperator\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\neq\n\n\nequal\n\n\n\n\n\n\nne\n\n\nNot equal\n\n\n\n\n\n\ngt\n\n\nGreater than\n\n\n\n\n\n\nge\n\n\nGreater than or equal\n\n\n\n\n\n\nlt\n\n\nLess than\n\n\n\n\n\n\nle\n\n\nLess than or equal\n\n\n\n\n\n\nsw\n\n\nStarts with\n\n\n\n\n\n\new\n\n\nEnds with\n\n\n\n\n\n\nso\n\n\nSubstring of",
+            "text": "Optional Parameters\n\n\nFiltering GET requests\n\n\nBy default all GET requests return all the information pertaining to the API Endpoint.\n\n\nQRSpy supports the use of filtering on most GET functions.\n\n\nThe following format should be used.\n\n\nExamples\n\n\nqrs.get_app(filterparam='Name eq', filtervalue='Operations Monitor')\n\n\nFormat\n\n\n[property] [operator] [value]\n\n\nOperators\n\n\n\n\n\n\n\n\noperator\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\neq\n\n\nequal\n\n\n\n\n\n\nne\n\n\nNot equal\n\n\n\n\n\n\ngt\n\n\nGreater than\n\n\n\n\n\n\nge\n\n\nGreater than or equal\n\n\n\n\n\n\nlt\n\n\nLess than\n\n\n\n\n\n\nle\n\n\nLess than or equal\n\n\n\n\n\n\nsw\n\n\nStarts with\n\n\n\n\n\n\new\n\n\nEnds with\n\n\n\n\n\n\nso\n\n\nSubstring of\n\n\n\n\n\n\n\n\nRetrieve all details\n\n\nBy default the APIs will return summarised information.\n\n\nQRSpy supports the use of retrieving full details.\n\n\nExamples\n\n\nqrs.get_app(opt='full')",
             "title": "Filtering"
+        },
+        {
+            "location": "/user-guide/filter/#optional-parameters",
+            "text": "",
+            "title": "Optional Parameters"
         },
         {
             "location": "/user-guide/filter/#filtering-get-requests",
@@ -142,7 +147,7 @@
         },
         {
             "location": "/user-guide/filter/#examples",
-            "text": "qrs.get_app('Name eq', 'Operations Monitor')",
+            "text": "qrs.get_app(filterparam='Name eq', filtervalue='Operations Monitor')",
             "title": "Examples"
         },
         {
@@ -154,6 +159,16 @@
             "location": "/user-guide/filter/#operators",
             "text": "operator  Description      eq  equal    ne  Not equal    gt  Greater than    ge  Greater than or equal    lt  Less than    le  Less than or equal    sw  Starts with    ew  Ends with    so  Substring of",
             "title": "Operators"
+        },
+        {
+            "location": "/user-guide/filter/#retrieve-all-details",
+            "text": "By default the APIs will return summarised information.  QRSpy supports the use of retrieving full details.",
+            "title": "Retrieve all details"
+        },
+        {
+            "location": "/user-guide/filter/#examples_1",
+            "text": "qrs.get_app(opt='full')",
+            "title": "Examples"
         },
         {
             "location": "/user-guide/get_about/",
