@@ -399,22 +399,24 @@ class ConnectQlik:
         :param method: Method to return (get, put, post, delete)
         :returns: JSON
         """
-        return json.loads(self.get('qrs/about/api/description?extended=true&method={0}&format=JSON'.format 
-             (method)))
+        path = 'qrs/about/api/description?extended=true&method={0}&format=JSON'.format (method)
+        return json.loads(self.get(path))
 
     def get_serverconfig(self):
         """
         Returns the server configuration
         :returns: JSON
         """
-        return json.loads(self.get('qrs/servernodeconfiguration/local')) 
+        path = 'qrs/servernodeconfiguration/local'
+        return json.loads(self.get(path)) 
 
     def get_emptyserverconfigurationcontainer(self):
         """
         Returns an empty server configuration
         :returns: JSON
         """
-        return json.loads(self.get('qrs/servernodeconfiguration/local')) 
+        path = 'qrs/servernodeconfiguration/local'
+        return json.loads(self.get(path)) 
 
     def get_contentlibrary(self, filterparam=None, filtervalue=None):
         """
@@ -423,7 +425,8 @@ class ConnectQlik:
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/contentlibrary', filterparam, filtervalue))
+        path = 'qrs/contentlibrary'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
     def get_appprivileges(self, appid, filterparam=None, filtervalue=None):
         """
@@ -432,7 +435,8 @@ class ConnectQlik:
         :param filtervalue: Value of the filter
         :returns: JSON
         """
-        return json.loads(self.get('qrs/app/{0}/privileges'.format (appid) , filterparam, filtervalue))
+        path = 'qrs/app/{0}/privileges'.format (appid)
+        return json.loads(self.get(path , filterparam, filtervalue))
 
     def delete_user(self, userid):
         """
@@ -440,7 +444,8 @@ class ConnectQlik:
         :param userid: user ID to delete
         :returns: HTTP Status Code
         """
-        return self.delete('qrs/user/{0}'.format (userid))
+        path = 'qrs/user/{0}'.format (userid)
+        return self.delete(path)
 
     def delete_license(self):
         """
@@ -449,56 +454,64 @@ class ConnectQlik:
         """
         qliklicense = self.get_license()
         licenseid = qliklicense['id']
-        return self.delete('qrs/license/{0}'.format (licenseid))
+        path = 'qrs/license/{0}'.format (licenseid)
+        return self.delete(path)
 
     def delete_app(self, appid):
         """
         Deletes an application
         :returns: HTTP Status Code
         """
-        return self.delete('qrs/app/{0}'.format (appid))
+        path = 'qrs/app/{0}'.format (appid)
+        return self.delete(path)
 
     def delete_stream(self, streamid):
         """
         Deletes a stream
         :returns: HTTP Status Code
         """
-        return self.delete('qrs/stream/{0}'.format (streamid))
+        path = 'qrs/stream/{0}'.format (streamid)
+        return self.delete(path)
 
     def delete_tag(self, tagid):
         """
         Deletes an Tag
         :returns: HTTP Status Code
         """
-        return self.delete('qrs/tag/{0}'.format (tagid))
+        path = 'qrs/tag/{0}'.format (tagid)
+        return self.delete(path)
 
     def delete_customproperty(self, custompropertyid):
         """
         Deletes a custom property
         :returns: HTTP Status Code
         """
-        return self.delete('qrs/custompropertydefinition/{0}'.format (custompropertyid))
+        path = 'qrs/custompropertydefinition/{0}'.format (custompropertyid)
+        return self.delete(path)
 
     def delete_useraccesstype(self, useraccessid):
         """
         Deletes a user access token (quarantine)
         :returns: HTTP Status Code
         """
-        return self.delete('qrs/license/useraccesstype/{0}'.format (useraccessid))
+        path = 'qrs/license/useraccesstype/{0}'.format (useraccessid)
+        return self.delete(path)
 
     def delete_appobject(self, objectid):
         """
         Deletes an application object
         :returns: HTTP Status Code
         """
-        return self.delete('qrs/app/object/{0}'.format (objectid))
+        path = 'qrs/app/object/{0}'.format (objectid)
+        return self.delete(path)
 
     def delete_loginaccesstype(self, ruleid):
         """
         Deletes a login access rule
         :returns: HTTP Status Code
         """
-        return self.delete('qrs/license/loginaccesstype/{0}'.format (ruleid))
+        path = 'qrs/license/loginaccesstype/{0}'.format (ruleid)
+        return self.delete(path)
 
     def publish_app(self, appid, streamid, name):
         """
@@ -508,7 +521,8 @@ class ConnectQlik:
         :param name: Name of application once published
         :returns: HTTP Status Code
         """
-        return self.put('qrs/app/{0}/publish?stream={1}&name={2}'.format (appid, streamid, name))
+        path = 'qrs/app/{0}/publish?stream={1}&name={2}'.format (appid, streamid, name)
+        return self.put(path)
 
     def migrate_app(self, appid):
         """
@@ -516,7 +530,8 @@ class ConnectQlik:
         :param appid: Application ID to migrate
         :returns: HTTP Status Code
         """
-        return self.put('qrs/app/{0}/migrate'.format (appid)) 
+        path = 'qrs/app/{0}/migrate'.format (appid)
+        return self.put(path) 
 
     def publish_appobject(self, objid):
         """
@@ -524,7 +539,8 @@ class ConnectQlik:
         :param objid: Object ID to publish
         :returns: HTTP Status Code
         """
-        return self.put('qrs/app/object/{0}/publish'.format (objid))
+        path = 'qrs/app/object/{0}/publish'.format (objid)
+        return self.put(path)
 
     def unpublish_appobject(self, objid):
         """
@@ -532,7 +548,8 @@ class ConnectQlik:
         :param objid: Object ID to publish
         :returns: HTTP Status Code
         """
-        return self.put('qrs/app/object/{0}/unpublish'.format (objid))
+        path = 'qrs/app/object/{0}/unpublish'.format (objid)
+        return self.put(path)
 
     def replace_app(self, appid, replaceappid):
         """
@@ -541,7 +558,8 @@ class ConnectQlik:
         :param replaceappid: Application ID that is being replaced
         :returns: HTTP Status Code
         """
-        return self.put('qrs/app/{0}/replace?app={1}'.format(appid, replaceappid))
+        path = 'qrs/app/{0}/replace?app={1}'.format(appid, replaceappid)
+        return self.put(path)
 
     def set_license(self, control, serial, name, organization, lef):
         """
@@ -553,6 +571,7 @@ class ConnectQlik:
         :param lef: LEF in JSON or leave as None to retrieve from Qlik License Server
         :returns: HTTP Status Code
         """
+        path = 'qrs/license?control={0}'.format (control)
         if lef is None:
             qliklicense = {
                 "serial": serial,
@@ -560,7 +579,7 @@ class ConnectQlik:
                 "organization": organization
             }
             data = json.dumps(qliklicense)
-            return self.post('qrs/license?control={0}'.format (control), data)
+            return self.post(path, data)
         else:
             qliklicense = {
                 "serial": serial,
@@ -569,7 +588,7 @@ class ConnectQlik:
                 "lef": lef
             }
             data = json.dumps(qliklicense)
-            return self.post('qrs/license?control={0}'.format (control), data)
+            return self.post(path, data)
 
     def import_users(self, filename):
         """
@@ -603,7 +622,8 @@ class ConnectQlik:
         :param taskid: Task ID to start
         :returns: HTTP Status Code
         """
-        return self.post('qrs/task/{0}/start'.format (taskid))
+        path = 'qrs/task/{0}/start'.format (taskid)
+        return self.post(path)
 
     def import_extension(self, filename):
         """
@@ -611,8 +631,9 @@ class ConnectQlik:
         :param filename: filename containing extension objects
         :returns: HTTP Status Code
         """
+        path = 'qrs/extension/upload'
         with open(filename, 'rb') as extension:
-            return self.post('qrs/extension/upload', extension)
+            return self.post(path, extension)
 
     def copy_app(self, appid, name):
         """
@@ -621,7 +642,8 @@ class ConnectQlik:
         :param name: Name of new copy
         :returns: HTTP Status Code
         """
-        return self.post('qrs/app/{0}/copy?name={1}'.format (appid, name))
+        path = 'qrs/app/{0}/copy?name={1}'.format (appid, name)
+        return self.post(path)
 
     def new_stream(self, name):
         """
@@ -629,9 +651,10 @@ class ConnectQlik:
         :param name: Name of stream
         :returns: HTTP Status Code
         """
+        path = 'qrs/stream'
         stream = {'name': name}
         data = json.dumps(stream)
-        return self.post('qrs/stream', data)
+        return self.post(path, data)
 
     def sync_userdirectory(self, userdirectoryid):
         """
@@ -639,8 +662,9 @@ class ConnectQlik:
         :param userdirectoryid: Userdirectory ID to synchronize
         :returns: HTTP Status Code
         """
+        path = 'qrs/userdirectoryconnector/syncuserdirectories'
         udid = '["{0}"]'.format (userdirectoryid)
-        return self.post('qrs/userdirectoryconnector/syncuserdirectories', udid)
+        return self.post(path, udid)
 
     def export_certificates(self, machinename, certificatepassword, includesecret, exportformat):
         """
@@ -651,20 +675,22 @@ class ConnectQlik:
         :param exportformat: Windows or PEM format
         :returns: HTTP Status Code
         """
+        path = 'qrs/certificatedistribution/exportcertificates'
         certificateinfo = {"machineNames": [machinename], "certificatePassword": certificatepassword,
                             "includeSecretsKey": includesecret, "ExportFormat": exportformat}
         data = json.dumps(certificateinfo)
-        return self.post('qrs/certificatedistribution/exportcertificates', data)
+        return self.post(path, data)
 
     def new_node(self, name, hostname, engineenabled, proxyenabled, schedulerenabled, printingenabled):
         """
         Create a new node (not operational)
         """
+        path = 'qrs/servernodeconfiguration/container'
         nodedata = {"configuration": {"name": name, "hostName": hostname, "engineEnabled": engineenabled,
                                   "proxyEnabled": proxyenabled, "schedulerEnabled": schedulerenabled,
                                   "printingEnabled": printingenabled}}
         data = json.dumps(nodedata)
-        return self.post('qrs/servernodeconfiguration/container', data)
+        return self.post(path, data)
         # data = container.text
         # jdata = json.loads(data)
         # return jdata["configuration"]["id"]
@@ -679,6 +705,7 @@ class ConnectQlik:
         :param conntype: type of connection string
         :returns: HTTP Status Code
         """
+        path = 'qrs/dataconnection'
         dataconnection = {
                             "username": username,
                             "password": password,
@@ -687,7 +714,7 @@ class ConnectQlik:
                             "type": conntype
                         }
         data = json.dumps(dataconnection)
-        return self.post('qrs/dataconnection', data)
+        return self.post(path, data)
   
     def import_app(self, name, filename):
         """
@@ -696,10 +723,11 @@ class ConnectQlik:
         :param filename: Path and file of qvf
         :returns: HTTP Status Code
         """
+        path = 'qrs/app/upload?name={0}'.format(name)
         headers["Content-Type"] = "application/vnd.qlik.sense.app"
         headers["Connection"] = "Keep-Alive"
         with open(filename, 'rb') as app:
-            return self.post('qrs/app/upload?name={0}'.format(name), app)
+            return self.post(path, app)
 
     def import_customproperty(self, filename):
         """
@@ -707,10 +735,11 @@ class ConnectQlik:
         :param filename: File containing properties
         :returns: HTTP Status Code
         """
+        path = 'qrs/custompropertydefinition/many'
         with open(filename) as customproperties:
             properties = json.loads(customproperties.read())
             data = json.dumps(properties)
-            return self.post('qrs/custompropertydefinition/many', data)
+            return self.post(path, data)
 
     def import_librarycontent(self, library, filepath):
         """
@@ -719,8 +748,9 @@ class ConnectQlik:
         :param filepath: content to import
         :returns: HTTP Status Code
         """
+        path = 'qrs/contentlibrary/{0}/uploadfile?externalpath={1}'.format (library, filepath)
         with open(filepath, 'rb') as data:
-            return self.post('qrs/contentlibrary/{0}/uploadfile?externalpath={1}'.format (library, filepath), data)
+            return self.post(path, data)
 
     def reload_app(self, appid):
         """
@@ -728,7 +758,8 @@ class ConnectQlik:
         :param appid: Application ID to reload
         :returns: HTTP Status Code
         """
-        return self.post('qrs/app/{0}/reload'.format (appid))
+        path = 'qrs/app/{0}/reload'.format (appid)
+        return self.post(path)
 
     def delete_librarycontent(self, library, contentname):
         """
@@ -737,7 +768,8 @@ class ConnectQlik:
         :param contentname: content to delete
         :returns: HTTP Status Code
         """
-        return self.delete('qrs/contentlibrary/{0}/deletecontent?externalpath={1}'.format (library, contentname))
+        path = 'qrs/contentlibrary/{0}/deletecontent?externalpath={1}'.format (library, contentname)
+        return self.delete(path)
 
     def delete_contentlibrary(self, library):
         """
@@ -745,7 +777,8 @@ class ConnectQlik:
         :param library: library to delete
         :returns: HTTP Status Code
         """
-        return self.delete('qrs/contentlibrary/{0}'.format (library))
+        path = 'qrs/contentlibrary/{0}'.format (library)
+        return self.delete(path)
 
     def export_app(self, appid, filepath, filename):
         """
@@ -755,9 +788,10 @@ class ConnectQlik:
         :param filename: name of file
         :returns: HTTP Status Code
         """
+        path = 'qrs/download/app/{0}/{1}/{2}'.format (appid, ticket, filename)
         exportticket = self.get_exportappticket(appid)
         ticket = (exportticket['value'])
-        data = self.get('qrs/download/app/{0}/{1}/{2}'.format (appid, ticket, filename))
+        data = self.get(path)
         with open(filepath + filename, 'wb') as file:
             file.write(data)
         return 'Application: {0} written to {1}'.format (filename, filepath)
@@ -768,15 +802,17 @@ class ConnectQlik:
         :param userdirectoryid: ID of user directory to delete
         :returns: HTTP Status Code
         """
-        return self.delete('qrs/userdirectoryconnector/deleteudandusers?userdirectoryid={0}'.format (userdirectoryid))
+        path = 'qrs/userdirectoryconnector/deleteudandusers?userdirectoryid={0}'.format (userdirectoryid)
+        return self.delete(path)
 
     def ping_proxy(self):
         """
         Returns status code of Proxy service
         :returns: HTTP Status Code
         """
+        path = 'qps/user'
         try:
-            return self.get_qps('qps/user')
+            return self.get_qps(path)
         except requests.exceptions.RequestException as exception:
             return 'Qlik Sense Proxy down'
 
@@ -786,14 +822,18 @@ class ConnectQlik:
         :param filename: file containing rule
         :returns: HTTP Status Code
         """
+        path = 'qrs/systemrule'
         with open(self.concsvjson(filename), 'rb') as systemrule:
             rule = json.loads(systemrule.read())
             data = json.dumps(rule)
             print (data)
-            return self.post('qrs/systemrule', data)
+            return self.post(path, data)
 
-    def get_virtualproxy(self, filterparam=None, filtervalue=None):
-        return json.loads(self.get('qrs/virtualproxyconfig', filterparam, filtervalue))
+    def get_virtualproxy(self, opt=None, filterparam=None, filtervalue=None):
+        path = 'qrs/virtualproxyconfig'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue))
 
 if __name__ == '__main__':
     qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
@@ -806,6 +846,6 @@ if __name__ == '__main__':
                     password='Qlik1234')
     
     if qrs.ping_proxy() == 200:
-        print(qrs.get_about())     
-        
+        print(qrs.get_about())
+            
         
