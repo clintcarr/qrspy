@@ -109,6 +109,7 @@ class ConnectQlik:
             response = session.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
                                     (self.server, endpoint, filterparam, filtervalue, xrf), 
                                     headers=headers, verify=self.root, cert=self.certificate)
+            print (response.url)
             return response.content
 
     def delete(self, endpoint):
@@ -818,16 +819,22 @@ class ConnectQlik:
 
     def new_systemrule(self, filename):
         """
-        Imports system rule (not operational)
         :param filename: file containing rule
         :returns: HTTP Status Code
         """
-        path = 'qrs/systemrule'
-        with open(self.concsvjson(filename), 'rb') as systemrule:
-            rule = json.loads(systemrule.read())
-            data = json.dumps(rule)
-            print (data)
-            return self.post(path, data)
+        if self.csvrowcount(filename) == 1:
+            path = 'qrs/systemrule'
+            with open(self.concsvjson(filename), 'rb') as systemrule:
+                response = json.loads(systemrule.read())
+                print (response)
+                data = (json.dumps(response[0]))
+                return self.post(path, data)
+        else:
+            path = 'qrs/systemrule/many'
+            with open(self.concsvjson(filename), 'rb') as systemrule:
+                rule = json.loads(systemrule.read())
+                data = json.dumps(rule)
+                return self.post(path, data)
 
     def get_virtualproxy(self, opt=None, filterparam=None, filtervalue=None):
         path = 'qrs/virtualproxyconfig'
@@ -846,8 +853,5 @@ if __name__ == '__main__':
                     password='Qlik1234')
     
     if qrs.ping_proxy() == 200:
-        print(qrs.get_about())
+        print (qrs.get_about())   
 
-
-
-        
