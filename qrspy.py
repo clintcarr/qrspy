@@ -189,7 +189,7 @@ class ConnectQlik:
                                         headers=headers, verify=self.root, cert=self.certificate)
         return response.status_code
 
-    def get_about(self,full=None):
+    def get_about(self,opt=None):
         """
         Returns system information
         :returns: JSON
@@ -847,5 +847,7 @@ if __name__ == '__main__':
     
     if qrs.ping_proxy() == 200:
         print(qrs.get_about())
-            
+
+
+
         
