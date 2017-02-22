@@ -109,7 +109,7 @@ class ConnectQlik:
             response = session.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
                                     (self.server, endpoint, filterparam, filtervalue, xrf), 
                                     headers=headers, verify=self.root, cert=self.certificate)
-            print (response.url)
+            
             return response.content
 
     def delete(self, endpoint):
@@ -186,9 +186,23 @@ class ConnectQlik:
         """
         server = self.server
         qps = server[:server.index(':')]
+
         response = session.get('https://{0}/{1}?xrfkey={2}'.format (qps, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
         return response.status_code
+
+    def get_health(self):
+        """
+        Function to GET the health information from the server
+        :returns: JSON data
+        """
+        server = self.server
+        engine = server[:server.index(':')]
+        engine += ':4747'
+        endpoint = 'healthcheck'
+        response = session.get('https://{0}/{1}?xrfkey={2}'.format (engine, endpoint, xrf),
+                                        headers=headers, verify=self.root, cert=self.certificate)
+        return json.loads(response.text)
 
     def get_about(self,opt=None):
         """
@@ -853,5 +867,4 @@ if __name__ == '__main__':
                     password='Qlik1234')
     
     if qrs.ping_proxy() == 200:
-        print (qrs.get_about())   
-
+        print (qrs.get_about())
