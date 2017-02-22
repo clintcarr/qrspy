@@ -12,12 +12,12 @@
         },
         {
             "location": "/user-guide/summary/",
-            "text": "Summary\n\n\nThe functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.\n\n\nThe following table outlines the currently supported processes.\n\n\n\n\n\n\n\n\nGET\n\n\nPUT\n\n\nPOST\n\n\nDELETE\n\n\n\n\n\n\n\n\n\n\nget_about\n\n\npublish_app\n\n\nset_license\n\n\ndelete_user\n\n\n\n\n\n\nget_app\n\n\nmigrate_app\n\n\nimport_users\n\n\ndelete_license\n\n\n\n\n\n\nget_dataconnection\n\n\npublish_appobject\n\n\nimport_tag\n\n\ndelete_app\n\n\n\n\n\n\nget_user\n\n\nunpublish_appobject\n\n\nstart_task\n\n\ndelete_stream\n\n\n\n\n\n\nget_license\n\n\nreplace_app\n\n\nimport_extension\n\n\ndelete_tag\n\n\n\n\n\n\nget_lef\n\n\n\n\ncopy_app\n\n\ndelete_customproperty\n\n\n\n\n\n\nget_appcount\n\n\n\n\nnew_stream\n\n\ndelete_useraccesstype\n\n\n\n\n\n\nget_customproperty\n\n\n\n\nsync_userdirectory\n\n\ndelete_appobject\n\n\n\n\n\n\nget_tag\n\n\n\n\nexport_certificates\n\n\ndelete_librarycontent\n\n\n\n\n\n\nget_task\n\n\n\n\nnew_dataconnection\n\n\ndelete_contentlibrary\n\n\n\n\n\n\nget_securityrule\n\n\n\n\nimport_app\n\n\ndelete_loginaccesstype\n\n\n\n\n\n\nget_userdirectory\n\n\n\n\nimport_customproperty\n\n\ndelete_userdirectoryandusers\n\n\n\n\n\n\nget_extension\n\n\n\n\nimport_librarycontent\n\n\n\n\n\n\n\n\nget_stream\n\n\n\n\nreload_app\n\n\n\n\n\n\n\n\nget_servernode\n\n\n\n\n\n\n\n\n\n\n\n\nget_useraccesstype\n\n\n\n\n\n\n\n\n\n\n\n\nget_appobject\n\n\n\n\n\n\n\n\n\n\n\n\nget_apidescription\n\n\n\n\n\n\n\n\n\n\n\n\nexport_app\n\n\n\n\n\n\n\n\n\n\n\n\nget_contentlibrary\n\n\n\n\n\n\n\n\n\n\n\n\nget_appprivileges\n\n\n\n\n\n\n\n\n\n\n\n\nget_loginaccesstype",
+            "text": "Summary\n\n\nThe functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.\n\n\nThe following table outlines the currently supported processes.\n\n\n\n\n\n\n\n\nGET\n\n\nPUT\n\n\nPOST\n\n\nDELETE\n\n\n\n\n\n\n\n\n\n\nget_about\n\n\npublish_app\n\n\nset_license\n\n\ndelete_user\n\n\n\n\n\n\nget_app\n\n\nmigrate_app\n\n\nimport_users\n\n\ndelete_license\n\n\n\n\n\n\nget_dataconnection\n\n\npublish_appobject\n\n\nimport_tag\n\n\ndelete_app\n\n\n\n\n\n\nget_user\n\n\nunpublish_appobject\n\n\nstart_task\n\n\ndelete_stream\n\n\n\n\n\n\nget_license\n\n\nreplace_app\n\n\nimport_extension\n\n\ndelete_tag\n\n\n\n\n\n\nget_lef\n\n\n\n\ncopy_app\n\n\ndelete_customproperty\n\n\n\n\n\n\nget_appcount\n\n\n\n\nnew_stream\n\n\ndelete_useraccesstype\n\n\n\n\n\n\nget_customproperty\n\n\n\n\nsync_userdirectory\n\n\ndelete_appobject\n\n\n\n\n\n\nget_tag\n\n\n\n\nexport_certificates\n\n\ndelete_librarycontent\n\n\n\n\n\n\nget_task\n\n\n\n\nnew_dataconnection\n\n\ndelete_contentlibrary\n\n\n\n\n\n\nget_securityrule\n\n\n\n\nimport_app\n\n\ndelete_loginaccesstype\n\n\n\n\n\n\nget_userdirectory\n\n\n\n\nimport_customproperty\n\n\ndelete_userdirectoryandusers\n\n\n\n\n\n\nget_extension\n\n\n\n\nimport_librarycontent\n\n\n\n\n\n\n\n\nget_stream\n\n\n\n\nreload_app\n\n\n\n\n\n\n\n\nget_servernode\n\n\n\n\nnew_system_rule\n\n\n\n\n\n\n\n\nget_useraccesstype\n\n\n\n\n\n\n\n\n\n\n\n\nget_appobject\n\n\n\n\n\n\n\n\n\n\n\n\nget_apidescription\n\n\n\n\n\n\n\n\n\n\n\n\nexport_app\n\n\n\n\n\n\n\n\n\n\n\n\nget_contentlibrary\n\n\n\n\n\n\n\n\n\n\n\n\nget_appprivileges\n\n\n\n\n\n\n\n\n\n\n\n\nget_loginaccesstype\n\n\n\n\n\n\n\n\n\n\n\n\nget_health\n\n\n\n\n\n\n\n\n\n\n\n\nget_virtual_proxy",
             "title": "Summary"
         },
         {
             "location": "/user-guide/summary/#summary",
-            "text": "The functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.  The following table outlines the currently supported processes.     GET  PUT  POST  DELETE      get_about  publish_app  set_license  delete_user    get_app  migrate_app  import_users  delete_license    get_dataconnection  publish_appobject  import_tag  delete_app    get_user  unpublish_appobject  start_task  delete_stream    get_license  replace_app  import_extension  delete_tag    get_lef   copy_app  delete_customproperty    get_appcount   new_stream  delete_useraccesstype    get_customproperty   sync_userdirectory  delete_appobject    get_tag   export_certificates  delete_librarycontent    get_task   new_dataconnection  delete_contentlibrary    get_securityrule   import_app  delete_loginaccesstype    get_userdirectory   import_customproperty  delete_userdirectoryandusers    get_extension   import_librarycontent     get_stream   reload_app     get_servernode       get_useraccesstype       get_appobject       get_apidescription       export_app       get_contentlibrary       get_appprivileges       get_loginaccesstype",
+            "text": "The functionality of QRSpy is broken up by the HTTP Method the API endpoint requires.  The following table outlines the currently supported processes.     GET  PUT  POST  DELETE      get_about  publish_app  set_license  delete_user    get_app  migrate_app  import_users  delete_license    get_dataconnection  publish_appobject  import_tag  delete_app    get_user  unpublish_appobject  start_task  delete_stream    get_license  replace_app  import_extension  delete_tag    get_lef   copy_app  delete_customproperty    get_appcount   new_stream  delete_useraccesstype    get_customproperty   sync_userdirectory  delete_appobject    get_tag   export_certificates  delete_librarycontent    get_task   new_dataconnection  delete_contentlibrary    get_securityrule   import_app  delete_loginaccesstype    get_userdirectory   import_customproperty  delete_userdirectoryandusers    get_extension   import_librarycontent     get_stream   reload_app     get_servernode   new_system_rule     get_useraccesstype       get_appobject       get_apidescription       export_app       get_contentlibrary       get_appprivileges       get_loginaccesstype       get_health       get_virtual_proxy",
             "title": "Summary"
         },
         {
@@ -846,6 +846,56 @@
             "title": "Returns"
         },
         {
+            "location": "/user-guide/get_virtualproxy/",
+            "text": "Description\n\n\nGets the information on the virtual proxy\n\n\nEndpoint\n\n\nqrs/virtualproxyconfig\n\n\nUsage\n\n\n\nqrs.get_virtualproxy()\n\n\n\n\nReturns\n\n\nJSON containing virtual proxy information",
+            "title": "get virtual proxy"
+        },
+        {
+            "location": "/user-guide/get_virtualproxy/#description",
+            "text": "Gets the information on the virtual proxy",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_virtualproxy/#endpoint",
+            "text": "qrs/virtualproxyconfig",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_virtualproxy/#usage",
+            "text": "qrs.get_virtualproxy()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_virtualproxy/#returns",
+            "text": "JSON containing virtual proxy information",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/get_health/",
+            "text": "Description\n\n\nGets the system health\n\n\nEndpoint\n\n\n:4747/engine/healthcheck\n\n\nUsage\n\n\n\nqrs.get_health()\n\n\n\n\nReturns\n\n\n{'version': '12.2.1', 'started': '20170221T171446.000+1100', 'mem': {'comitted': 83.68359375, 'allocated': 219.8203125, 'free': 2444.64453125}, 'cpu': {'total': 0}, 'session': {'active': 0, 'total': 0}, 'apps': {'active_docs': [], 'loaded_docs': [], 'calls': 3039, 'selections': 1}, 'users': {'active': 0, 'total': 0}, 'cache': {'hits': 0, 'lookups': 0, 'added': 0, 'replaced': 0, 'bytes_added': 0}}\n[Finished in 0.7s]",
+            "title": "get system health"
+        },
+        {
+            "location": "/user-guide/get_health/#description",
+            "text": "Gets the system health",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/get_health/#endpoint",
+            "text": ":4747/engine/healthcheck",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/get_health/#usage",
+            "text": "qrs.get_health()",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/get_health/#returns",
+            "text": "{'version': '12.2.1', 'started': '20170221T171446.000+1100', 'mem': {'comitted': 83.68359375, 'allocated': 219.8203125, 'free': 2444.64453125}, 'cpu': {'total': 0}, 'session': {'active': 0, 'total': 0}, 'apps': {'active_docs': [], 'loaded_docs': [], 'calls': 3039, 'selections': 1}, 'users': {'active': 0, 'total': 0}, 'cache': {'hits': 0, 'lookups': 0, 'added': 0, 'replaced': 0, 'bytes_added': 0}}\n[Finished in 0.7s]",
+            "title": "Returns"
+        },
+        {
             "location": "/user-guide/publish_app/",
             "text": "Description\n\n\nPublishes an application to a stream\n\n\nEndpoint\n\n\nqrs/app/{appid}/publish?stream={streamid}&name={new app name}\n\n\nUsage\n\n\n\"\"\"\n:param appid: ID of the application to publish\n:param stream: Stream name to publish the application to\n:param name: Name of application once published\n\"\"\"\nqrs.publish_app('00ee092c-3bf0-4818-b3bd-61fe45846d00', '91176367-ce28-4ece-bd0c-668b13ab03dd', 'NewApp')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
             "title": "publish app"
@@ -1342,6 +1392,36 @@
         },
         {
             "location": "/user-guide/reload_app/#returns",
+            "text": "HTTP Status Code",
+            "title": "Returns"
+        },
+        {
+            "location": "/user-guide/new_systemrule/",
+            "text": "Description\n\n\nCreates a new System rule\n\n\nEndpoint\n\n\nqrs/systemrule\n\n\nfile format\n\n\n\n\n\n\n\n\ncategory\n\n\ntype\n\n\nname\n\n\nrule\n\n\nresourceFilter\n\n\nactions\n\n\ncomment\n\n\ndisabled\n\n\n\n\n\n\n\n\n\n\nSecurity\n\n\nCustom\n\n\nClintRule4\n\n\n!user.Anonymous()\n\n\nApp_*\n\n\n34\n\n\nClints new rule\n\n\nFalse\n\n\n\n\n\n\n\n\nUsage\n\n\n\"\"\"\n:param filename: file containing rule\n\"\"\"\n\nqrs.new_systemrule('c:\\\\some\\\\folder\\\\systemrule.txt')\n\n\n\n\nReturns\n\n\nHTTP Status Code",
+            "title": "new system rule"
+        },
+        {
+            "location": "/user-guide/new_systemrule/#description",
+            "text": "Creates a new System rule",
+            "title": "Description"
+        },
+        {
+            "location": "/user-guide/new_systemrule/#endpoint",
+            "text": "qrs/systemrule",
+            "title": "Endpoint"
+        },
+        {
+            "location": "/user-guide/new_systemrule/#file-format",
+            "text": "category  type  name  rule  resourceFilter  actions  comment  disabled      Security  Custom  ClintRule4  !user.Anonymous()  App_*  34  Clints new rule  False",
+            "title": "file format"
+        },
+        {
+            "location": "/user-guide/new_systemrule/#usage",
+            "text": "\"\"\"\n:param filename: file containing rule\n\"\"\"\n\nqrs.new_systemrule('c:\\\\some\\\\folder\\\\systemrule.txt')",
+            "title": "Usage"
+        },
+        {
+            "location": "/user-guide/new_systemrule/#returns",
             "text": "HTTP Status Code",
             "title": "Returns"
         },
