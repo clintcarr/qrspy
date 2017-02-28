@@ -199,7 +199,7 @@ class ConnectQlik:
         server = self.server
         engine = server[:server.index(':')]
         engine += ':4747'
-        endpoint = 'healthcheck'
+        endpoint = 'engine/healthcheck'
         response = session.get('https://{0}/{1}?xrfkey={2}'.format (engine, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
         return json.loads(response.text)
@@ -820,6 +820,15 @@ class ConnectQlik:
         path = 'qrs/userdirectoryconnector/deleteudandusers?userdirectoryid={0}'.format (userdirectoryid)
         return self.delete(path)
 
+    def delete_userdirectory(self, userdirectoryid):
+        """
+        Deletes specified user directory
+        :param userdirectoryid: ID of userdirectory to delete
+        :returns: HTTP Status Code
+        """
+        path = 'qrs/userdirectory/userdirectoryid={0}'.format (userdirectoryid)
+        return self.delete(path)
+
     def ping_proxy(self):
         """
         Returns status code of Proxy service
@@ -855,6 +864,12 @@ class ConnectQlik:
         if opt:
             path += '/full'
         return json.loads(self.get(path, filterparam, filtervalue))
+
+    def get_proxycertificate(self, opt=None):
+        path = 'qrs/proxyservicecertificate'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path))
 
 if __name__ == '__main__':
     qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
