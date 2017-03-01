@@ -884,5 +884,3 @@ if __name__ == '__main__':
     
     if qrs.ping_proxy() == 200:
         print (qrs.get_about())
-
-        qrs.export_certificates('np1.qliklocal.net', 's', True, 'Windows')
