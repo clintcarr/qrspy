@@ -124,6 +124,7 @@ class ConnectQlik:
         else:
             response = session.delete('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
+            print (response.url)
             return response.status_code
 
     def put(self, endpoint, data=None):
@@ -826,7 +827,7 @@ class ConnectQlik:
         :param userdirectoryid: ID of userdirectory to delete
         :returns: HTTP Status Code
         """
-        path = 'qrs/userdirectory/userdirectoryid={0}'.format (userdirectoryid)
+        path = 'qrs/userdirectory/{0}'.format (userdirectoryid)
         return self.delete(path)
 
     def ping_proxy(self):
@@ -878,8 +879,10 @@ if __name__ == '__main__':
                     root='C:/certs/qs2.qliklocal.net/root.pem')
 
     qrsntlm = ConnectQlik(server='qs2.qliklocal.net', 
-                    credential='qliklocal\\administrator',
+                    credential='qliklocal\\dev1',
                     password='Qlik1234')
     
     if qrs.ping_proxy() == 200:
         print (qrs.get_about())
+
+        qrs.export_certificates('np1.qliklocal.net', 's', True, 'Windows')

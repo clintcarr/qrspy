@@ -8,6 +8,9 @@ Python wrapper for Qlik Sense Repository Service.
 4. launch python
 5. import qrspy
 
+# Documentation
+Please browse for full documentation https://clintcarr.github.io/qrspy/
+
 #Examples
 
 ## Instantiate the ConnectQlik class
