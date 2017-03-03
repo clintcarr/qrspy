@@ -124,7 +124,6 @@ class ConnectQlik:
         else:
             response = session.delete('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                             headers=headers, verify=self.root, cert=self.certificate)
-            print (response.url)
             return response.status_code
 
     def put(self, endpoint, data=None):
@@ -140,6 +139,7 @@ class ConnectQlik:
             else:
                 response = session.put('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, data=data,verify=self.root, cert=self.certificate)
+
                 return response.status_code
         else:
             if data is None:
@@ -843,6 +843,7 @@ class ConnectQlik:
 
     def new_systemrule(self, filename):
         """
+        Creates system rules from provided text file
         :param filename: file containing rule
         :returns: HTTP Status Code
         """
@@ -872,6 +873,24 @@ class ConnectQlik:
             path += '/full'
         return json.loads(self.get(path))
 
+    def update_userrole(self, user, role):
+        """
+        Adds the specified role to the specified user
+        :param user: The username to update
+        :param role: The role to add ('RootAdmin', 'ContentAdmin', 'DeploymentAdmin', 'AuditAdmin', 'SecurityAdmin')
+        :returns: HTTP Status Code
+        """
+        roles = ['RootAdmin', 'ContentAdmin', 'DeploymentAdmin', 'AuditAdmin', 'SecurityAdmin']  
+        if role in roles:   
+            data = self.get_user(filterparam='name eq', filtervalue=user, opt='full')
+            userid = data[0]['id']
+            path = 'qrs/user/{0}'.format (userid)
+            data[0]['roles'] = ["{0}".format (role)]
+            json_data = json.dumps(data[0])
+            return self.put(path, json_data)
+        else:
+            return ('Nonexistent role.')
+
 if __name__ == '__main__':
     qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
                     certificate=('C:/certs/qs2.qliklocal.net/client.pem',
@@ -879,8 +898,9 @@ if __name__ == '__main__':
                     root='C:/certs/qs2.qliklocal.net/root.pem')
 
     qrsntlm = ConnectQlik(server='qs2.qliklocal.net', 
-                    credential='qliklocal\\dev1',
+                    credential='qliklocal\\administrator',
                     password='Qlik1234')
     
     if qrs.ping_proxy() == 200:
         print (qrs.get_about())
+
