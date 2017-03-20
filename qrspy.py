@@ -377,7 +377,7 @@ class ConnectQlik:
         path = 'qrs/servernodeconfiguration'
         return json.loads(self.get(path, filterparam, filtervalue))
 
-    def get_useraccesstype(self, filterparam=None, filtervalue=None):
+    def get_useraccesstype(self, opt=None,filterparam=None, filtervalue=None):
         """
         Returns the users with user access type
         :param filterparam: Property and operator of the filter
@@ -385,9 +385,11 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/license/useraccesstype'
+        if opt:
+            path += '/full'
         return json.loads(self.get(path, filterparam, filtervalue))
 
-    def get_loginaccesstype(self, filterparam=None, filtervalue=None):
+    def get_loginaccesstype(self, opt=None,filterparam=None, filtervalue=None):
         """
         Returns the login access type rule
         :param filterparam: Property and operator of the filter
@@ -395,6 +397,8 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/license/loginaccesstype'
+        if opt:
+            path += '/full'
         return json.loads(self.get(path, filterparam, filtervalue))
 
     def get_appobject(self, opt=None, filterparam=None, filtervalue=None):
@@ -917,6 +921,4 @@ if __name__ == '__main__':
     
     if qrs.ping_proxy() == 200:
         print (qrs.get_about())
-
-    print(qrsntlm.get_license())
 
