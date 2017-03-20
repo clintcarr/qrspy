@@ -873,6 +873,12 @@ class ConnectQlik:
             path += '/full'
         return json.loads(self.get(path))
 
+    def get_taskoperational(self, opt=None):
+        path = 'qrs/taskoperational'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path))
+
     def update_userrole(self, user, role):
         """
         Adds the specified role to the specified user
@@ -890,6 +896,14 @@ class ConnectQlik:
             return self.put(path, json_data)
         else:
             return ('Nonexistent role.')
+    
+    def get_enum(self, opt=None):
+        """
+        Return the enums from the about endpoint
+        :returns: JSON enum information
+        """
+        path = 'qrs/about/api/enums'
+        return self.get(path)
 
 if __name__ == '__main__':
     qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
@@ -903,4 +917,6 @@ if __name__ == '__main__':
     
     if qrs.ping_proxy() == 200:
         print (qrs.get_about())
+
+        print(qrs.get_enum())
 
