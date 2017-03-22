@@ -879,14 +879,13 @@ class ConnectQlik:
             if self.csvrowcount(filename) == 1:
                 with open(self.concsvjson(filename), 'rb') as systemrule:
                     response = json.loads(systemrule.read())
-                    print (response)
                     data = (json.dumps(response[0]))
                     return self.post(path, data)
             else:
                 path += '/many'
                 with open(self.concsvjson(filename), 'rb') as systemrule:
-                    rule = json.loads(systemrule.read())
-                    data = json.dumps(rule)
+                    response = json.loads(systemrule.read())
+                    data = json.dumps(response)
                     return self.post(path, data)
 
     def get_virtualproxy(self, opt=None, filterparam=None, filtervalue=None):
