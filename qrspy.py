@@ -616,12 +616,14 @@ class ConnectQlik:
         :param filename: filename containing users
         :returns: HTTP Status Code
         """
+        path = 'qrs/user'
         if self.csvrowcount(filename) == 1:
             with open(self.concsvjson(filename), 'rb') as users:
-                return self.post('qrs/user', users)
+                return self.post(path, users)
         else:
+            path += '/many'
             with open(self.concsvjson(filename), 'rb') as users:
-                return self.post('qrs/user/many', users)
+                return self.post(path, users)
 
     def import_tag(self, filename):
         """
@@ -629,12 +631,14 @@ class ConnectQlik:
         :param filename: filename containing tags
         :returns: HTTP Status Code
         """
+        path = 'qrs/tag'
         if self.csvrowcount(filename) == 1:
             with open(self.concsvjson(filename), 'rb') as tags:
-                return self.post('qrs/tag', tags)
+                return self.post(path, tags)
         else:
+            path += '/many'
             with open(self.concsvjson(filename), 'rb') as tags:
-                return self.post('qrs/tag/many', tags)
+                return self.post(path, tags)
 
     def start_task(self, taskid):
         """
@@ -845,25 +849,45 @@ class ConnectQlik:
         except requests.exceptions.RequestException as exception:
             return 'Qlik Sense Proxy down'
 
-    def new_systemrule(self, filename):
+    def new_systemrule(self, filename=None, category=None, name=None,
+                        rule=None, resourcefilter=None, actions=None, comment=None, disabled=None):
         """
         Creates system rules from provided text file
-        :param filename: file containing rule
+        :param filename: file containing rule (optional)
+        :param category: category of rule (Security, Sync, License)
+        :param name: Name of the rule
+        :param rule: Conditions of the rule
+        :param resourcefilter: Resource filter to apply
+        :param actions: Actions for rule (INT)
+        :param comment: Comment
+        :param disabled: Boolean
         :returns: HTTP Status Code
         """
-        if self.csvrowcount(filename) == 1:
-            path = 'qrs/systemrule'
-            with open(self.concsvjson(filename), 'rb') as systemrule:
-                response = json.loads(systemrule.read())
-                print (response)
-                data = (json.dumps(response[0]))
-                return self.post(path, data)
+        path = 'qrs/systemrule'
+        if filename is None:
+            data = {"category": category, 
+                    "type": "Custom", 
+                    "name": name, 
+                    "rule": rule, 
+                    "resourceFilter": resourcefilter, 
+                    "actions": actions, 
+                    "comment": comment, 
+                    "disabled": disabled}
+            json_data = json.dumps(data)
+            return self.post(path, json_data)
         else:
-            path = 'qrs/systemrule/many'
-            with open(self.concsvjson(filename), 'rb') as systemrule:
-                rule = json.loads(systemrule.read())
-                data = json.dumps(rule)
-                return self.post(path, data)
+            if self.csvrowcount(filename) == 1:
+                with open(self.concsvjson(filename), 'rb') as systemrule:
+                    response = json.loads(systemrule.read())
+                    print (response)
+                    data = (json.dumps(response[0]))
+                    return self.post(path, data)
+            else:
+                path += '/many'
+                with open(self.concsvjson(filename), 'rb') as systemrule:
+                    rule = json.loads(systemrule.read())
+                    data = json.dumps(rule)
+                    return self.post(path, data)
 
     def get_virtualproxy(self, opt=None, filterparam=None, filtervalue=None):
         path = 'qrs/virtualproxyconfig'
@@ -950,5 +974,4 @@ if __name__ == '__main__':
     
     if qrs.ping_proxy() == 200:
         print (qrs.get_about())
-
 
