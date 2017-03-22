@@ -912,8 +912,9 @@ class ConnectQlik:
     def update_systemrule(self, rule, disabled=None, tag_name=None):
         """
         Updates system rule specified
-        :param disabled: True -disables rule Fals -enables rule
+        :param disabled: True -disables rule False -enables rule
         :param tag: associates Tag to rule
+        :returns: http status
         """
         data = self.get_systemrule(filterparam='name eq', filtervalue=rule, opt='full')
         ruleid = data[0]['id']
@@ -925,6 +926,17 @@ class ConnectQlik:
             data[0]['tags'] = tag
         json_data = json.dumps(data[0])
         return self.put(path,json_data)
+
+    def get_systeminfo(self, opt=None):
+        """
+        Returns the system information
+        :param opt: Allows the retrieval of full json response
+        :returns: json response
+        """
+        path = 'qrs/systeminfo'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path))
 
 if __name__ == '__main__':
     qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
@@ -938,4 +950,5 @@ if __name__ == '__main__':
     
     if qrs.ping_proxy() == 200:
         print (qrs.get_about())
+
 
