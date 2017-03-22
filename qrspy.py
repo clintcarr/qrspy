@@ -916,8 +916,6 @@ class ConnectQlik:
         :param tag: associates Tag to rule
         """
         data = self.get_systemrule(filterparam='name eq', filtervalue=rule, opt='full')
-        if tag_name:
-            tag = self.get_tag(filterparam='name eq', filtervalue=tag_name)
         ruleid = data[0]['id']
         path = 'qrs/systemrule/{0}'.format(ruleid)
         if disabled is not None:
