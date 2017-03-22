@@ -413,13 +413,13 @@ class ConnectQlik:
             path += '/full'
         return json.loads(self.get(path, filterparam, filtervalue))
 
-    def get_apidescription(self, method):
+    def get_apidescription(self, method, filterparam=None, filtervalue=None):
         """
         Returns the APIs of the QRS
         :param method: Method to return (get, put, post, delete)
         :returns: JSON
         """
-        path = 'qrs/about/api/description?extended=true&method={0}&format=JSON'.format (method)
+        path = 'qrs/about/api/description?extended=true&method={0}&format=JSON'.format (method, filterparam, filtervalue)
         return json.loads(self.get(path))
 
     def get_serverconfig(self):
@@ -908,6 +908,26 @@ class ConnectQlik:
         """
         path = 'qrs/about/api/enums'
         return self.get(path)
+
+    def update_systemrule(self, rule, disabled=None, tag_name=None):
+        """
+        Updates system rule specified
+        :param disabled: True -disables rule Fals -enables rule
+        :param tag: associates Tag to rule
+        """
+        data = self.get_systemrule(filterparam='name eq', filtervalue=rule, opt='full')
+        if tag_name:
+            tag = self.get_tag(filterparam='name eq', filtervalue=tag_name)
+        ruleid = data[0]['id']
+        path = 'qrs/systemrule/{0}'.format(ruleid)
+        if disabled is not None:
+            data[0]['disabled'] = disabled
+        if tag_name is not None:
+            tag = self.get_tag(filterparam='name eq', filtervalue=tag_name)
+            data[0]['tags'] = tag
+        print(data)
+        json_data = json.dumps(data[0])
+        return self.put(path,json_data)
 
 if __name__ == '__main__':
     qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
