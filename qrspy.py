@@ -925,7 +925,6 @@ class ConnectQlik:
         if tag_name is not None:
             tag = self.get_tag(filterparam='name eq', filtervalue=tag_name)
             data[0]['tags'] = tag
-        print(data)
         json_data = json.dumps(data[0])
         return self.put(path,json_data)
 
