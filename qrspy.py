@@ -211,7 +211,7 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/about'
-        return json.loads(self.get(path))
+        return json.loads(self.get(path).decode('utf-8'))
 
     def get_app(self, opt=None,filterparam=None, filtervalue=None):
         """
@@ -223,7 +223,7 @@ class ConnectQlik:
         path = 'qrs/app'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_dataconnection(self, opt=None, filterparam=None, filtervalue=None):
         """
@@ -235,7 +235,7 @@ class ConnectQlik:
         path = 'qrs/dataconnection'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_user(self, opt=None, filterparam=None, filtervalue=None):
         """
@@ -247,7 +247,7 @@ class ConnectQlik:
         path = 'qrs/user'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_license(self):
         """
@@ -255,7 +255,7 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/license'
-        return json.loads(self.get(path))
+        return json.loads(self.get(path).decode('utf-8'))
 
     def get_lef(self, serial, control, user, organization):
         """
@@ -263,7 +263,7 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/license/download?serial={0}&control={1}&user={2}&org={3}'.format (serial, control, user, organization)
-        return json.loads(self.get(path))
+        return json.loads(self.get(path).decode('utf-8'))
     
     def get_appcount(self, filterparam=None, filtervalue=None):
         """
@@ -273,7 +273,7 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/app/count'
-        return json.loads(self.get(path, filterparam, filtervalue))       
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))       
 
     def get_customproperty(self, opt=None, filterparam=None, filtervalue=None):
         """
@@ -285,7 +285,7 @@ class ConnectQlik:
         path = 'qrs/custompropertydefinition'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_tag(self, opt= None, filterparam=None, filtervalue=None):
         """
@@ -297,7 +297,7 @@ class ConnectQlik:
         path = 'qrs/tag'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
     
     def get_task(self, opt=None, filterparam=None, filtervalue=None):
         """
@@ -309,7 +309,7 @@ class ConnectQlik:
         path = 'qrs/task'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_systemrule(self, opt=None, filterparam=None, filtervalue=None):
         """
@@ -321,7 +321,7 @@ class ConnectQlik:
         path = 'qrs/systemrule'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_userdirectory(self, opt=None, filterparam=None, filtervalue=None):
         """
@@ -333,7 +333,7 @@ class ConnectQlik:
         path = 'qrs/userdirectory'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_exportappticket(self, appid):
         """
@@ -341,7 +341,8 @@ class ConnectQlik:
         :param appid: Application ID for export
         :returns: JSON
         """
-        return json.loads(self.get('qrs/app/{0}/export'.format(appid)))
+        path = 'qrs/app/{0}/export'.format(appid)
+        return json.loads(self.get(path).decode('utf-8'))
         
     def get_extension(self, opt=None, filterparam=None, filtervalue=None):
         """
@@ -353,7 +354,7 @@ class ConnectQlik:
         path = 'qrs/extension'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_stream(self, opt=None, filterparam=None, filtervalue=None):
         """
@@ -365,7 +366,7 @@ class ConnectQlik:
         path = 'qrs/stream'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_servernode(self, filterparam=None, filtervalue=None):
         """
@@ -375,7 +376,7 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/servernodeconfiguration'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_useraccesstype(self, opt=None,filterparam=None, filtervalue=None):
         """
@@ -387,7 +388,7 @@ class ConnectQlik:
         path = 'qrs/license/useraccesstype'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_loginaccesstype(self, opt=None,filterparam=None, filtervalue=None):
         """
@@ -399,7 +400,7 @@ class ConnectQlik:
         path = 'qrs/license/loginaccesstype'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_appobject(self, opt=None, filterparam=None, filtervalue=None):
         """
@@ -411,7 +412,7 @@ class ConnectQlik:
         path = 'qrs/app/object'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_apidescription(self, method, filterparam=None, filtervalue=None):
         """
@@ -420,7 +421,7 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/about/api/description?extended=true&method={0}&format=JSON'.format (method, filterparam, filtervalue)
-        return json.loads(self.get(path))
+        return json.loads(self.get(path).decode('utf-8'))
 
     def get_serverconfig(self):
         """
@@ -428,7 +429,7 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/servernodeconfiguration/local'
-        return json.loads(self.get(path)) 
+        return json.loads(self.get(path).decode('utf-8')) 
 
     def get_emptyserverconfigurationcontainer(self):
         """
@@ -436,7 +437,7 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/servernodeconfiguration/local'
-        return json.loads(self.get(path)) 
+        return json.loads(self.get(path).decode('utf-8')) 
 
     def get_contentlibrary(self, filterparam=None, filtervalue=None):
         """
@@ -446,7 +447,7 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/contentlibrary'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_appprivileges(self, appid, filterparam=None, filtervalue=None):
         """
@@ -456,7 +457,7 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/app/{0}/privileges'.format (appid)
-        return json.loads(self.get(path , filterparam, filtervalue))
+        return json.loads(self.get(path , filterparam, filtervalue).decode('utf-8'))
 
     def delete_user(self, userid):
         """
@@ -892,19 +893,19 @@ class ConnectQlik:
         path = 'qrs/virtualproxyconfig'
         if opt:
             path += '/full'
-        return json.loads(self.get(path, filterparam, filtervalue))
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_proxycertificate(self, opt=None):
         path = 'qrs/proxyservicecertificate'
         if opt:
             path += '/full'
-        return json.loads(self.get(path))
+        return json.loads(self.get(path).decode('utf-8'))
 
     def get_taskoperational(self, opt=None):
         path = 'qrs/taskoperational'
         if opt:
             path += '/full'
-        return json.loads(self.get(path))
+        return json.loads(self.get(path).decode('utf-8'))
 
     def update_userrole(self, user, role):
         """
@@ -959,7 +960,25 @@ class ConnectQlik:
         path = 'qrs/systeminfo'
         if opt:
             path += '/full'
-        return json.loads(self.get(path))
+        return json.loads(self.get(path).decode('utf-8'))
+
+    def get_engine(self, opt=None):
+        path = 'qrs/engineservice'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path).decode('utf-8'))
+
+    def get_proxy(self, opt=None):
+        path = 'qrs/proxyservice'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path).decode('utf-8'))
+
+    def get_scheduler(self, opt=None):
+        path = 'qrs/schedulerservice'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path).decode('utf-8'))
 
 if __name__ == '__main__':
     qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
@@ -972,5 +991,6 @@ if __name__ == '__main__':
                     password='Qlik1234')
     
     if qrs.ping_proxy() == 200:
+
         print (qrs.get_about())
 
