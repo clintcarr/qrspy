@@ -1,0 +1,35 @@
+Hi everyone, welcome to this session on DevOps with Qlik Sense, how good has Qonnections been so far? Awesome location and great content.
+
+This is Adam Haydon (adam introduces himself)
+And my name is Clint Carr,  i am a member of the Global Enterprise Architecture and Research team at Qlik, i've been at Qlik for four years next month and have had a number of roles before I joined the Global team, from presales through to consulting services.
+
+It is important to note that this presentation covers content that is not supported by Qlik,  in this session we will talk about various solutions that can be utilised by DevOps teams to integrate Qlik Sense into their value chain.  We will cover a great deal around the art of the possible, thanks to the open nature of Qlik Sense and the great many APIs that are available Qlik Sense is a great fit in DevOps.  We view this as one of our core differentiators,  you will hear or perhaps have heard this concept of Qlik Sense as a Platform,  the key ingredient to this concept is the open nature of the APIs.  This is absolutely evident when looking at Qlik Sense Enterprise which is built on the Qlik Analytics Platform (QAP), what we add is a client - the Hub.
+
+We dont want to spend a great amount of time on the what in this session.  We think most people understand what DevOps is, and we are likely all familiar with the acronyms that come with it.  What we intend to do instead is examine the culture that DevOps is aimed at,  as that is what DevOps is at its heart.  It brings a cultural shift in an organisation.  Sure its a bundle of technology as well, and we will cover that too.  But how does Qlik Sense fit in all of this.
+
+CAMS is an acronym that defines the core values of DevOps created by DevOps pioneers John Willis and and Damon Edwards, this is the why, why do organisations want to use DevOps.
+
+First is culture, the removal of silos, breaking down barriers between teams.  In the Qlik Sense world these teams often comprise of the data folks (owners of the warehouse / source systems), the operations people (creating users, granting access), security teams, business users, BI developers. It works on dev so it isn't my code it must be infrastructure isnt helpful or productive.  Why doesn't my app load anymore has the underlying datasource changed?  It is often forgotten that the individual teams are there to perform a task that really needs to be united.
+
+When we covered earth in garbage and took for into Space the Final Frontier.
+Its five-year mission: to explore strange, new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.
+We left behind automations or robots to clean up the place, I may be mixing films up here (or suggesting an awesome crossover).  This had the benefit of consistency.  Ask my wife if I consistently clean the house.  Computers are built for this very thing.  Ensuring that tests are performed consistently, the same way everytime, produces the same result means that less time can be spent on mundane tasks and more time can be done doing innovative things.  When creating a new application in Qlik Sense, how do we ensure the numbers are acurate and can be relied on, when we deploy a new environment with Qlik Sense how can we be sure that the configuration that has been defined is adhered to.
+
+Ok, we have automated that server deployment, or that test task of the creation of an application.  How do we know it derived success.  Decisions on progress should be made on Data and that data should be available to all,  too often decisions are made on instinct or gut,  measuring success is all about facts,  its transparent and needs to be meaningful.  Installing Qlik Sense Enterprise is a five minute task, double click the downloaded install binary and click a few times and voila! installed.  Automating this process is clearly going to take longer.  But if I want the deployment to be exactly per the runscript, if I am installing several nodes in several sites what is the consequence of the wrong thing being done?  How long will I be troubleshooting?  What if we have a DR event? 
+
+Sharing is hard, whether it be knowledge or play doh.  But sharing increases productivity, it increases opportunities, if one team has had great results in xyz sharing this could and should mean other teams and the whole organisation have great results.  At Qlik we view the concept of sharing as absolutely vital,  you only need to see the efforts we are making in open source (enigma.js and after-work) to see what we are attempting to do.  Likewise Branch.Qlik.Com is fostering the concept of sharing by encouraging both internal staff and our partners and customer to build great stuff that others can then leverage.
+
+Ok so based on what we've said I think its safe to say Qlik Sense can fit and does site nicely into a DevOps process.  
+
+To to automate infrastructure to accommodate the large load required each monday morning (Elasticity) and then have the added infrastructure removed when it isnt used to reduce costs.
+
+The automation of testing, ensuring the numbers presented are correct, ensuring applications are built for purpose (synthetic keys, number of rows, size of data) to ensure the shared infrastructure is used appropriately.
+
+Creating applications based on rules, think internet banking, or your fitbit dashboard.  The ability to log on, generate an application and visualisations on the fly.  Ensure these applications are tested, and proven.
+
+Integrating Qlik Sense into Source Control like git or SVN to protect work and encourage sharing.
+
+Documenting applications in an automated process.  These are just some of the possibilities available within Qlik Sense now.
+
+There are several different systems that automate infrastructure and its not the role of this session to play favourites for one or the other.  Ensuring servers have set configurations (desired state), that the user exists and is an administrator (although this isn't a requirement for Qlik Sense anymore).  Standardise the deployments, have another server that requires Qlik Sense? add the details of this server to the run list and it will be installed to the exact details specified.  Ensuring no user error hits the deployment.
+

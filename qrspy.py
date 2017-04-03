@@ -428,7 +428,7 @@ class ConnectQlik:
         Returns the server configuration
         :returns: JSON
         """
-        path = 'qrs/servernodeconfiguration/local'
+        path = 'qrs/servernodeconfiguration'
         return json.loads(self.get(path).decode('utf-8')) 
 
     def get_emptyserverconfigurationcontainer(self):
@@ -931,7 +931,7 @@ class ConnectQlik:
         :returns: JSON enum information
         """
         path = 'qrs/about/api/enums'
-        return self.get(path)
+        return json.loads(self.get(path).decode('utf-8'))
 
     def update_systemrule(self, rule, disabled=None, tag_name=None):
         """
@@ -980,6 +980,10 @@ class ConnectQlik:
             path += '/full'
         return json.loads(self.get(path).decode('utf-8'))
 
+    def get_servicecluster(self, opt=None):
+        path = 'qrs/servicecluster/full'
+        return json.loads(self.get(path).decode('utf-8'))
+
 if __name__ == '__main__':
     qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
                     certificate=('C:/certs/qs2.qliklocal.net/client.pem',
@@ -993,4 +997,3 @@ if __name__ == '__main__':
     if qrs.ping_proxy() == 200:
 
         print (qrs.get_about())
-

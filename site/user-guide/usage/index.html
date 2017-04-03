@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Examples - QRSpy</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Examples";
+    var mkdocs_page_input_path = "user-guide\\usage.md";
+    var mkdocs_page_url = "/user-guide/usage/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> QRSpy</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>User Guide</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../summary/">Summary</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../connecting/">Connecting to Qlik Sense</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Examples</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#examples">Examples</a></li>
+                
+                    <li><a class="toctree-l4" href="#display-a-list-of-qrs-api-endpoints-by-method">display a list of QRS API endpoints by method</a></li>
+                
+                    <li><a class="toctree-l4" href="#export-apps-in-a-stream">export apps in a stream</a></li>
+                
+                    <li><a class="toctree-l4" href="#get-a-list-of-applications-that-are-not-published-to-a-stream">get a list of applications that are not published to a stream</a></li>
+                
+                    <li><a class="toctree-l4" href="#get-a-list-of-published-applications">get a list of published applications</a></li>
+                
+                    <li><a class="toctree-l4" href="#import-the-apps-in-a-folder-into-a-server">import the apps in a folder into a server</a></li>
+                
+                    <li><a class="toctree-l4" href="#publish-an-application-to-a-stream">publish an application to a stream</a></li>
+                
+                    <li><a class="toctree-l4" href="#migrate-applications">migrate applications</a></li>
+                
+                    <li><a class="toctree-l4" href="#export-certificates">export certificates</a></li>
+                
+                    <li><a class="toctree-l4" href="#set-the-server-license">set the server license</a></li>
+                
+                    <li><a class="toctree-l4" href="#import-users-from-a-text-file">import users from a text file</a></li>
+                
+                    <li><a class="toctree-l4" href="#get-users-id-for-all-users-that-have-user-access-tokens">get users id for all users that have user access tokens</a></li>
+                
+                    <li><a class="toctree-l4" href="#delete-all-user-access-tokens">delete all user access tokens</a></li>
+                
+                    <li><a class="toctree-l4" href="#import-several-extensions-in-this-example-idevio-maps">import several extensions (in this example Idevio Maps)</a></li>
+                
+                    <li><a class="toctree-l4" href="#get-personal-sheets">get personal sheets</a></li>
+                
+                    <li><a class="toctree-l4" href="#publish-personal-sheet-called-test-sheet">publish personal sheet called 'Test Sheet'</a></li>
+                
+                    <li><a class="toctree-l4" href="#unpublish-sheet-called-test-sheet">unpublish sheet called 'Test Sheet'</a></li>
+                
+                    <li><a class="toctree-l4" href="#delete-appobject-called-test-sheet">delete appobject called 'Test Sheet'</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>HTTP GET</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../filter/">Filtering</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_about/">get about</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_app/">get app</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_appcount/">get appcount</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_dataconnection/">get dataconnection</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_lef/">get lef</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_license/">get license</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_user/">get user</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_customproperty/">get customproperty</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_tag/">get tag</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_task/">get task</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_systemrule/">get systemrule</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_userdirectory/">get userdirectory</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_extension/">get extension</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_stream/">get stream</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_servernode/">get servernode</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_useraccesstype/">get useraccesstype</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_loginaccesstype/">get loginaccesstype</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_appobject/">get appobject</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_apidescription/">get apidescription</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../export_app/">export app</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_contentlibrary/">get content library</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_appprivileges/">get app privileges</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_virtualproxy/">get virtual proxy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../get_health/">get system health</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>HTTP PUT</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../publish_app/">publish app</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../migrate_app/">migrate app</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../publish_appobject/">publish app object</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../unpublish_appobject/">unpublish app object</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../replace_app/">replace app</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../add_usertorole/">Add user to role</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>HTTP POST</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../set_license/">set license</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../import_users/">import users</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../import_tag/">import tag</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../start_task/">start task</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../import_extension/">import extension</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../copy_app/">copy app</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../new_stream/">new stream</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../sync_userdirectory/">sync user directory</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../export_certificates/">export certificates</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../new_dataconnection/">new dataconnection</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../import_app/">import app</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../import_customproperty/">import customproperty</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../import_librarycontent/">import library content</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../reload_app/">reload app</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../new_systemrule/">new system rule</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>HTTP DELETE</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_user/">delete user</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_license/">delete license</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_app/">delete app</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_stream/">delete stream</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_tag/">delete tag</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_customproperty/">delete customproperty</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_useraccesstype/">delete user accesstype</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_loginaccesstype/">delete login accesstype rule</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_appobject/">delete app object</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_librarycontent/">delete library content</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_contentlibrary/">delete content library</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../delete_userdirectoryandusers/">delete user directory and users</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>About</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../about/license/">License</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">QRSpy</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>User Guide &raquo;</li>
+        
+      
+    
+    <li>Examples</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="examples">Examples</h1>
+<h2 id="display-a-list-of-qrs-api-endpoints-by-method">display a list of QRS API endpoints by method</h2>
+<ul>
+<li>parameter1 = method</li>
+</ul>
+<pre><code class="python">method = ['get', 'put', 'post, delete']
+    for i in method:
+        qrs.get_apiendpoints(i)
+</code></pre>
+
+<h2 id="export-apps-in-a-stream">export apps in a stream</h2>
+<ul>
+<li>parameter1 = appid</li>
+<li>parameter2 = path to export to</li>
+<li>parameter3 = app name</li>
+</ul>
+<pre><code class="python">apps = qrs.get_app('stream.name eq', 'Monitoring Apps')
+    for i in range(len(apps)):
+        qrs.export_app(apps[i]['id'], 'c:/dev/export/', r'%s.qvf' % apps[i]['name'])
+</code></pre>
+
+<h2 id="get-a-list-of-applications-that-are-not-published-to-a-stream">get a list of applications that are not published to a stream</h2>
+<pre><code class="python">apps = qrs.get_app()
+for i in range(len(apps)):
+    if apps[i]['stream'] is None:
+        print (apps[i]['id'] + ' ' + apps[i]['name'])
+</code></pre>
+
+<h2 id="get-a-list-of-published-applications">get a list of published applications</h2>
+<pre><code class="python">apps = qrs.get_app('stream.name ne', None)
+for i in range(len(apps)):
+    print (apps[i]['id'] + ' ' + apps[i]['name'])
+</code></pre>
+
+<h2 id="import-the-apps-in-a-folder-into-a-server">import the apps in a folder into a server</h2>
+<ul>
+<li>parameter1 = name of the application</li>
+<li>parameter2 = path to the file</li>
+</ul>
+<pre><code class="python">import os
+dir = os.listdir('/home/user/Documents/export')
+for file in dir:
+  if file.endswith('.qvf'):
+      qrs.import_app((os.path.splitext(file)[0]), '/home/user/Documents/export/%s' % file)
+</code></pre>
+
+<h2 id="publish-an-application-to-a-stream">publish an application to a stream</h2>
+<ul>
+<li>parameter1 = appid</li>
+<li>parameter2 = streamid</li>
+<li>parameter3 = new application name </li>
+</ul>
+<pre><code class="python">apps = qrs.get_app('Name eq', 'MapIdevio')
+appid = apps[0]['id']
+stream = qrs.get_stream('Name eq', 'NewStream')
+streamid = stream[0]['id']
+qrs.publish_app(appid, streamid, 'MapsPub')
+</code></pre>
+
+<h2 id="migrate-applications">migrate applications</h2>
+<ul>
+<li>parameter1 = appid</li>
+</ul>
+<pre><code class="python">apps = qrs.get_app()
+    for i in range(len(apps)):
+        qrs.migrate_app(apps[0]['id'])
+</code></pre>
+
+<h2 id="export-certificates">export certificates</h2>
+<ul>
+<li>parameter1 = computer name</li>
+<li>parameter2 = password secret file</li>
+<li>parameter3 = include private key (True, False)</li>
+<li>parameter4 = certificate type (Windows, PEM)</li>
+</ul>
+<pre><code class="python">qrs.export_certificates('PC1', 's', True, 'Windows')
+</code></pre>
+
+<h2 id="set-the-server-license">set the server license</h2>
+<ul>
+<li>parameter1 = control number</li>
+<li>parameter2 = serial number</li>
+<li>parameter3 = name</li>
+<li>parameter4 = organization</li>
+<li>parameter5 = lef
+The lef is optional, if the server has internet connectivity set parameter5 to None.  Otherwise use the following format
+"serial\r\nLine1;;;\r\nQlik Sense Enterprise;;;\r\nProductLevel info\r\nToken info;;\r\ntimelimit\r\ncode"</li>
+</ul>
+<pre><code class="python">qrs.set_license(11111, 123456789, 'Foo', 'Bar', None)
+</code></pre>
+
+<h2 id="import-users-from-a-text-file">import users from a text file</h2>
+<ul>
+<li>import file format
+userId,userDirectory,name
+humpty, fairytales, humpty dumpty
+puss, fairytales, puss in boots</li>
+</ul>
+<pre><code class="python">qrs.import_users(r'c:\\dev\\csv\\users.txt')
+</code></pre>
+
+<h2 id="get-users-id-for-all-users-that-have-user-access-tokens">get users id for all users that have user access tokens</h2>
+<ul>
+<li>parameter1 = id (set to None for all)</li>
+</ul>
+<pre><code class="python">x = qrs.get_useraccesstype()
+        for i in range(len(x)):
+        print (x[i]['id'])
+</code></pre>
+
+<h2 id="delete-all-user-access-tokens">delete all user access tokens</h2>
+<ul>
+<li>parameter1 = id</li>
+</ul>
+<pre><code class="python">x = qrs.get_useraccesstype()
+for i in range(len(x)):
+    qrs.delete_useraccesstype (x[i]['id'])
+</code></pre>
+
+<h2 id="import-several-extensions-in-this-example-idevio-maps">import several extensions (in this example Idevio Maps)</h2>
+<ul>
+<li>parameter1 = extension path</li>
+</ul>
+<pre><code class="python">import os
+dir = os.listdir('C:\\Dev\\IdevioMaps-QSS-Extensions-5.7.4\\')
+for file in dir:
+    if file.endswith('.zip'):
+        qrs.import_extension('c:\\Dev\\IdevioMaps-QSS-Extensions-5.7.4\\'+file)
+</code></pre>
+
+<h2 id="get-personal-sheets">get personal sheets</h2>
+<ul>
+<li>parameter1 = objId (leave empty for all)</li>
+</ul>
+<pre><code class="python">print(qrs.get_appobject())
+</code></pre>
+
+<h2 id="publish-personal-sheet-called-test-sheet">publish personal sheet called 'Test Sheet'</h2>
+<pre><code class="python">appobj = qrs.get_appobject()
+    for i in range(len(appobj)):
+        if appobj[i]['name'] == 'Test Sheet':
+            qrs.publish_appobject(appobj[i]['id'])
+</code></pre>
+
+<h2 id="unpublish-sheet-called-test-sheet">unpublish sheet called 'Test Sheet'</h2>
+<pre><code class="python">appobj = qrs.get_appobject()
+    for i in range(len(appobj)):
+        if appobj[i]['name'] == 'Test Sheet':
+            qrs.unpublish_appobject(o[i]['id'])
+            qrs.delete_appobject(o[i]['id'])
+</code></pre>
+
+<h2 id="delete-appobject-called-test-sheet">delete appobject called 'Test Sheet'</h2>
+<pre><code class="python">appobj = qrs.get_appobject()
+    for i in range(len(appobj)):
+        if appobj[i]['name'] == 'Test Sheet':
+            qrs.delete_appobject(o[i]['id'])
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../filter/" class="btn btn-neutral float-right" title="Filtering">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../connecting/" class="btn btn-neutral" title="Connecting to Qlik Sense"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../connecting/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../filter/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
