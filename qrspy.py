@@ -995,5 +995,4 @@ if __name__ == '__main__':
                     password='Qlik1234')
     
     if qrs.ping_proxy() == 200:
-
         print (qrs.get_about())
