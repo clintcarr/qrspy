@@ -429,6 +429,14 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/servernodeconfiguration'
+        return json.loads(self.get(path).decode('utf-8'))
+
+    def get_nodeconfig(self, configid):
+        """
+        Returns the server configuration based on the id provided
+        :returns: JSON
+        """
+        path = 'qrs/servernodeconfiguration/{0}'.format (configid)
         return json.loads(self.get(path).decode('utf-8')) 
 
     def get_emptyserverconfigurationcontainer(self):
@@ -996,3 +1004,4 @@ if __name__ == '__main__':
     
     if qrs.ping_proxy() == 200:
         print (qrs.get_about())
+
