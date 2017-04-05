@@ -998,10 +998,37 @@ if __name__ == '__main__':
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
                     root='C:/certs/qs2.qliklocal.net/root.pem')
 
-    qrsntlm = ConnectQlik(server='qs2.qliklocal.net', 
+    qrsntlm = ConnectQlik(server='qs4.qliklocal.net', 
                     credential='qliklocal\\administrator',
                     password='Qlik1234')
     
     if qrs.ping_proxy() == 200:
-        print (qrs.get_about())
+        qrs.get_about()
 
+
+virtualproxies = qrs.get_proxy(opt='full')
+alist = []
+for node in range(len(virtualproxies)):
+    for vp in range(len(virtualproxies[node]['settings']['virtualProxies'])):
+        for lb in range(len(virtualproxies[node]['settings']['virtualProxies'][vp]['loadBalancingServerNodes'])):
+            alist.append([virtualproxies[node]['settings']['virtualProxies'][vp]['loadBalancingServerNodes'][lb]['hostName'],
+                        virtualproxies[node]['settings']['virtualProxies'][vp]['loadBalancingServerNodes'][lb]['name'],
+                        virtualproxies[node]['settings']['virtualProxies'][vp]['description']
+                        ])
+sortkeyfn = key=lambda s:s[2]
+input = alist
+input.sort(key=sortkeyfn)
+
+from itertools import groupby
+result = []
+for key, valuesiter in groupby(input, key=sortkeyfn):
+    result.append(dict(type=key, items=list(v[0]for v in valuesiter)))
+aresult = {}
+for key, valuesiter in groupby(input, key=sortkeyfn):
+    aresult[key] = list(v[0] for v in valuesiter)
+print (result)
+
+for node in range(len(virtualproxies)):
+    for vp in range(len(virtualproxies[node]['settings']['virtualProxies'])):
+        # for lb in range(len(virtualproxies[node]['settings']['virtualProxies'][vp]['loadBalancingServerNodes'])):
+        print (virtualproxies[node]['settings']['virtualProxies'][vp])
