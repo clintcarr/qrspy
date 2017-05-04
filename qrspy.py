@@ -104,12 +104,18 @@ class ConnectQlik:
             else:
                 response = session.get('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
+                
                 return response.content
         else:
-            response = session.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
-                                    (self.server, endpoint, filterparam, filtervalue, xrf), 
-                                    headers=headers, verify=self.root, cert=self.certificate)
-            
+            if filtervalue in [True, False]:
+                response = session.get("https://{0}/{1}?filter={2} {3}&xrfkey={4}".format 
+                                        (self.server, endpoint, filterparam, filtervalue, xrf), 
+                                        headers=headers, verify=self.root, cert=self.certificate)
+            else:
+                response = session.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
+                                        (self.server, endpoint, filterparam, filtervalue, xrf), 
+                                        headers=headers, verify=self.root, cert=self.certificate)
+            print(response.url)
             return response.content
 
     def delete(self, endpoint):
@@ -167,6 +173,7 @@ class ConnectQlik:
                 response = session.post('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
+                print (response.url)
                 return response.status_code
         else:
             if data is None:
@@ -178,6 +185,7 @@ class ConnectQlik:
                 response = session.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
+                print (response.url)
                 return response.status_code
 
     def get_qps(self, endpoint):
@@ -368,7 +376,7 @@ class ConnectQlik:
             path += '/full'
         return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
-    def get_servernode(self, filterparam=None, filtervalue=None):
+    def get_servernode(self, opt=None, filterparam=None, filtervalue=None):
         """
         Returns the server node
         :param filterparam: Property and operator of the filter
@@ -376,6 +384,8 @@ class ConnectQlik:
         :returns: JSON
         """
         path = 'qrs/servernodeconfiguration'
+        if opt:
+            path += '/full'
         return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
 
     def get_useraccesstype(self, opt=None,filterparam=None, filtervalue=None):
@@ -428,15 +438,7 @@ class ConnectQlik:
         Returns the server configuration
         :returns: JSON
         """
-        path = 'qrs/servernodeconfiguration'
-        return json.loads(self.get(path).decode('utf-8'))
-
-    def get_nodeconfig(self, configid):
-        """
-        Returns the server configuration based on the id provided
-        :returns: JSON
-        """
-        path = 'qrs/servernodeconfiguration/{0}'.format (configid)
+        path = 'qrs/servernodeconfiguration/local'
         return json.loads(self.get(path).decode('utf-8')) 
 
     def get_emptyserverconfigurationcontainer(self):
@@ -971,25 +973,65 @@ class ConnectQlik:
         return json.loads(self.get(path).decode('utf-8'))
 
     def get_engine(self, opt=None):
+        """
+        Returns the engine information
+        :param opt: Allows the retrieval of full json response
+        :returns: json response
+        """
         path = 'qrs/engineservice'
         if opt:
             path += '/full'
         return json.loads(self.get(path).decode('utf-8'))
 
     def get_proxy(self, opt=None):
+        """
+        Returns the proxy information
+        :param opt: Allows the retrieval of full json response
+        :returns: json response
+        """
         path = 'qrs/proxyservice'
         if opt:
             path += '/full'
         return json.loads(self.get(path).decode('utf-8'))
 
     def get_scheduler(self, opt=None):
+        """
+        Returns the scheduler information
+        :param opt: Allows the retrieval of full json response
+        :returns: json response
+        """
         path = 'qrs/schedulerservice'
         if opt:
             path += '/full'
         return json.loads(self.get(path).decode('utf-8'))
 
     def get_servicecluster(self, opt=None):
+        """
+        Returns the service cluster information (Shared Persistence)
+        :param opt: Allows the retrieval of full json response
+        :returns: json response
+        """
         path = 'qrs/servicecluster/full'
+        return json.loads(self.get(path).decode('utf-8'))
+
+    def get_systemruleaudit(self, opt=None):
+        """
+        Generates CSV files on the central node containing all audit information
+        :param opt: Allows the retrieval of full json response
+        :returns: json response
+        """
+        path = 'qrs/systemrule/security/audit/export'
+        return json.loads(self.get(path).decode('utf-8'))
+        
+    def get_repositoryservice(self, opt=None):
+        """
+        Returns the repository service information
+        :param opt: Allows the retrieval of full json response
+        :returns: json response
+        """
+        path = 'qrs/repositoryservice'
+        if opt:
+            path+= '/full'
         return json.loads(self.get(path).decode('utf-8'))
 
 if __name__ == '__main__':
@@ -998,37 +1040,7 @@ if __name__ == '__main__':
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
                     root='C:/certs/qs2.qliklocal.net/root.pem')
 
-    qrsntlm = ConnectQlik(server='qs4.qliklocal.net', 
+    qrsntlm = ConnectQlik(server='qs2.qliklocal.net', 
                     credential='qliklocal\\administrator',
                     password='Qlik1234')
     
-    if qrs.ping_proxy() == 200:
-        qrs.get_about()
-
-
-virtualproxies = qrs.get_proxy(opt='full')
-alist = []
-for node in range(len(virtualproxies)):
-    for vp in range(len(virtualproxies[node]['settings']['virtualProxies'])):
-        for lb in range(len(virtualproxies[node]['settings']['virtualProxies'][vp]['loadBalancingServerNodes'])):
-            alist.append([virtualproxies[node]['settings']['virtualProxies'][vp]['loadBalancingServerNodes'][lb]['hostName'],
-                        virtualproxies[node]['settings']['virtualProxies'][vp]['loadBalancingServerNodes'][lb]['name'],
-                        virtualproxies[node]['settings']['virtualProxies'][vp]['description']
-                        ])
-sortkeyfn = key=lambda s:s[2]
-input = alist
-input.sort(key=sortkeyfn)
-
-from itertools import groupby
-result = []
-for key, valuesiter in groupby(input, key=sortkeyfn):
-    result.append(dict(type=key, items=list(v[0]for v in valuesiter)))
-aresult = {}
-for key, valuesiter in groupby(input, key=sortkeyfn):
-    aresult[key] = list(v[0] for v in valuesiter)
-print (result)
-
-for node in range(len(virtualproxies)):
-    for vp in range(len(virtualproxies[node]['settings']['virtualProxies'])):
-        # for lb in range(len(virtualproxies[node]['settings']['virtualProxies'][vp]['loadBalancingServerNodes'])):
-        print (virtualproxies[node]['settings']['virtualProxies'][vp])
