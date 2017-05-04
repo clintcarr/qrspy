@@ -1043,8 +1043,3 @@ if __name__ == '__main__':
     qrsntlm = ConnectQlik(server='qs2.qliklocal.net', 
                     credential='qliklocal\\administrator',
                     password='Qlik1234')
-<<<<<<< HEAD
-    
-=======
->>>>>>> 6abb0a3dece3b3e9d24632758a6676fa1aa36148
-    
