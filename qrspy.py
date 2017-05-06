@@ -15,9 +15,9 @@ def set_xrf():
 xrf = set_xrf()
 
 headers = {"X-Qlik-XrfKey": xrf,
-            "Accept": "application/json",
-            "X-Qlik-User": "UserDirectory=Internal;UserID=sa_repository",
-            "Content-Type": "application/json"}
+           "Accept": "application/json",
+           "X-Qlik-User": "UserDirectory=Internal;UserID=sa_repository",
+           "Content-Type": "application/json"}
 
 session = requests.session()
 
@@ -26,8 +26,8 @@ class ConnectQlik:
     Instantiates the Qlik Repository Service Class
     """
 
-    def __init__(self, server, certificate = False, root = False
-        ,userdirectory = False, userid = False, credential = False, password = False):
+    def __init__(self, server, certificate=False, root=False,
+                 userdirectory=False, userid=False, credential=False, password=False):
         """
         Establishes connectivity with Qlik Sense Repository Service
         :param server: servername.domain:4242
@@ -86,7 +86,7 @@ class ConnectQlik:
                 jf.write(data)
         return json_file
 
-    def get(self,endpoint,filterparam=None, filtervalue=None):
+    def get(self, endpoint, filterparam=None, filtervalue=None):
         """
         Function that performs GET method to Qlik Repository Service endpoints
         :param endpoint: API endpoint path
@@ -113,7 +113,7 @@ class ConnectQlik:
                                         headers=headers, verify=self.root, cert=self.certificate)
             else:
                 response = session.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
-                                        (self.server, endpoint, filterparam, filtervalue, xrf), 
+                                       (self.server, endpoint, filterparam, filtervalue, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
             print(response.url)
             return response.content
@@ -1034,6 +1034,26 @@ class ConnectQlik:
             path+= '/full'
         return json.loads(self.get(path).decode('utf-8'))
 
+    def update_central(self, serverid):
+        """
+        Allows update of the central node 
+        :param opt: Allows the retrieval of full json response
+        :returns: json response
+        """
+        path = 'qrs/failover/tonode/{0}'.format (serverid)
+        return self.post(path)
+    
+    def get_printing(self, opt=None):
+        """
+        Returns the printing service information
+        :param opt: Allows the retrieval of the full json response
+        :returns: json response
+        """
+        path = 'qrs/printingservice'
+        if opt:
+            path+= '/full'
+        return json.loads(self.get(path).decode('utf-8'))
+
 if __name__ == '__main__':
     qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
                     certificate=('C:/certs/qs2.qliklocal.net/client.pem',
@@ -1043,3 +1063,8 @@ if __name__ == '__main__':
     qrsntlm = ConnectQlik(server='qs2.qliklocal.net', 
                     credential='qliklocal\\administrator',
                     password='Qlik1234')
+
+    x = (qrs.get_virtualproxy(opt='full'))
+
+    for i in range(len(x)):
+        print (x[i])
