@@ -1064,7 +1064,3 @@ if __name__ == '__main__':
                     credential='qliklocal\\administrator',
                     password='Qlik1234')
 
-    x = (qrs.get_virtualproxy(opt='full'))
-
-    for i in range(len(x)):
-        print (x[i])
