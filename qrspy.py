@@ -4,6 +4,7 @@ import json
 import csv
 import random
 import string
+import datetime
 
 
 requests.packages.urllib3.disable_warnings()
@@ -115,7 +116,6 @@ class ConnectQlik:
                 response = session.get("https://{0}/{1}?filter={2} '{3}'&xrfkey={4}".format 
                                        (self.server, endpoint, filterparam, filtervalue, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
-            print(response.url)
             return response.content
 
     def delete(self, endpoint):
@@ -180,13 +180,12 @@ class ConnectQlik:
                 response = session.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, 
                                                 verify=self.root, cert=self.certificate)
-                return response.status_code
+                return response.status_code, response.content
             else:
                 response = session.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
-                print (response.url)
-                return response.status_code
+                return response.status_code, response.content
 
     def get_qps(self, endpoint):
         """
@@ -1054,13 +1053,43 @@ class ConnectQlik:
             path+= '/full'
         return json.loads(self.get(path).decode('utf-8'))
 
+    def update_appowener(self, app_name, user):
+        year = datetime.date.today().year
+        month = datetime.date.today().month
+        day = datetime.date.today().day
+        hour = datetime.datetime.now().hour
+        minute = datetime.datetime.now().minute
+        seconds = datetime.datetime.now().second
+        mseconds = 123
+        if month <= 9:
+            month = ('0'+str(month))
+        else:
+            month
+        if day <= 9:
+            day  = ('0' + str(day))
+        else:
+            day
+        moddate = ('{0}-{1}-{2}T{3}:{4}:{5}.{6}Z'.format(year, month, day,hour,minute,seconds,mseconds))
+        app_data = qrs.get_app(filterparam='Name eq', filtervalue=app_name, opt='full')
+        appid = app_data[0]['id']
+        user_data = qrs.get_user(filterparam='Name eq', filtervalue=user)
+        user = user_data[0]
+        path = 'qrs/app/{0}'.format(appid)
+        app_data[0]['modifiedDate'] = moddate
+        app_data[0]['owner'] = user
+        jdata = json.dumps(app_data[0])
+        return self.put(path, jdata)
+
+
+
 if __name__ == '__main__':
     qrs = ConnectQlik(server='qs2.qliklocal.net:4242', 
                     certificate=('C:/certs/qs2.qliklocal.net/client.pem',
                                       'C:/certs/qs2.qliklocal.net/client_key.pem'),
-                    root='C:/certs/qs2.qliklocal.net/root.pem')
+                    root='C:/certs/qs2.qliklocal.net/root.pem',
+                    userdirectory='qliklocal',
+                    userid='administrator')
 
     qrsntlm = ConnectQlik(server='qs2.qliklocal.net', 
                     credential='qliklocal\\administrator',
                     password='Qlik1234')
-
