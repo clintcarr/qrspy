@@ -71,6 +71,26 @@ class ConnectQlik:
                 jsonfieldnames.append(row)
         return jsonfieldnames[0]
 
+    @staticmethod
+    def current_time():
+        year = datetime.date.today().year
+        month = datetime.date.today().month
+        day = datetime.date.today().day
+        hour = datetime.datetime.now().hour
+        minute = datetime.datetime.now().minute
+        seconds = datetime.datetime.now().second
+        mseconds = 123
+        if month <= 9:
+            month = ('0'+str(month))
+        else:
+            month
+        if day <= 9:
+            day  = ('0' + str(day))
+        else:
+            day
+
+        return ('{0}-{1}-{2}T{3}:{4}:{5}.{6}Z'.format(year, month, day,hour,minute,seconds,mseconds))
+    
     def concsvjson(self, filename):
         """
         Converts the text or csv file to a JSON file and returns the path and name of the file
@@ -1053,23 +1073,8 @@ class ConnectQlik:
             path+= '/full'
         return json.loads(self.get(path).decode('utf-8'))
 
-    def update_appowener(self, app_name, user):
-        year = datetime.date.today().year
-        month = datetime.date.today().month
-        day = datetime.date.today().day
-        hour = datetime.datetime.now().hour
-        minute = datetime.datetime.now().minute
-        seconds = datetime.datetime.now().second
-        mseconds = 123
-        if month <= 9:
-            month = ('0'+str(month))
-        else:
-            month
-        if day <= 9:
-            day  = ('0' + str(day))
-        else:
-            day
-        moddate = ('{0}-{1}-{2}T{3}:{4}:{5}.{6}Z'.format(year, month, day,hour,minute,seconds,mseconds))
+    def update_appowner(self, app_name, user):
+        moddate = self.current_time()
         app_data = qrs.get_app(filterparam='Name eq', filtervalue=app_name, opt='full')
         appid = app_data[0]['id']
         user_data = qrs.get_user(filterparam='Name eq', filtervalue=user)
@@ -1093,3 +1098,4 @@ if __name__ == '__main__':
     qrsntlm = ConnectQlik(server='qs2.qliklocal.net', 
                     credential='qliklocal\\administrator',
                     password='Qlik1234')
+    print (qrs.update_appowner('newapp1', 'mila'))
