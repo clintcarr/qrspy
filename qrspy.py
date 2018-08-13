@@ -1042,9 +1042,9 @@ class ConnectQlik:
         path = 'qrs/systemrule/security/audit/export'
         return json.loads(self.get(path).decode('utf-8'))
     
-    def get_auditrulesmatrix(self, resource_type=None, resource_filter="", subject_resource_filter="",
-                             actions=46, environment_attributes="", resource_properties=["name"], 
-                             subject_properties=["name", "userid", "userdirectory"], audit_limit=1000,
+    def get_auditrulesmatrix(self, resource_type=None, resource_filter="", subject_resource_filter="", actions=8191,
+                             environment_attributes="", resource_properties=["name"],
+                             subject_properties=["name", "userid", "userdirectory"], audit_limit=1000, 
                              output_objects_privileges=15, preview_rule="", condition=""):
         """
         Perform an audit of the access control system. The audit results are returned in a matrix.
