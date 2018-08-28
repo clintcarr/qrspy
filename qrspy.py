@@ -852,6 +852,14 @@ class ConnectQlik:
         return 'Application: {0} written to {1}'.format (filename, filepath)
 
     def new_export_app(self, appid, filepath, filename, skipdata='true'):
+        """
+        Exports an application to the filepath based on new Qlik API endpoint
+        :param appid: application id to export
+        :param filepath: location to store the exported app
+        :param filename: name of file
+        :param skipdata: set 'true' or 'false' to ex- or include data from export
+        :returns: HTTP Status Code
+        """
         token = str(uuid.uuid4())
         path = 'qrs/app/{0}/export/{1}?skipdata={2}'.format (appid, token, skipdata)
         data = self.post(path)
