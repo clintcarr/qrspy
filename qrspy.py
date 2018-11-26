@@ -5,6 +5,7 @@ import csv
 import random
 import string
 import datetime
+import uuid
 
 
 requests.packages.urllib3.disable_warnings()
@@ -188,13 +189,13 @@ class ConnectQlik:
                 response = session.post('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, 
                                                 verify=self.root, cert=self.certificate)
-                return response.status_code
+                return response.status_code, response.content
             else:
                 response = session.post('https://{0}/{1}&xrfkey={2}'.format (self.server, endpoint, xrf),
                                                 headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
                 print (response.url)
-                return response.status_code
+                return response.status_codem, response.content
         else:
             if data is None:
                 response = session.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
@@ -217,7 +218,7 @@ class ConnectQlik:
 
         response = session.get('https://{0}/{1}?xrfkey={2}'.format (qps, endpoint, xrf),
                                         headers=headers, verify=self.root, cert=self.certificate)
-        return response.status_code
+        return response.status_code, response.content
 
     def get_health(self):
         """
@@ -842,12 +843,32 @@ class ConnectQlik:
         :param filename: name of file
         :returns: HTTP Status Code
         """
-        path = 'qrs/download/app/{0}/{1}/{2}'.format (appid, ticket, filename)
         exportticket = self.get_exportappticket(appid)
         ticket = (exportticket['value'])
+        path = 'qrs/download/app/{0}/{1}/{2}'.format (appid, ticket, filename)
         data = self.get(path)
         with open(filepath + filename, 'wb') as file:
             file.write(data)
+        return 'Application: {0} written to {1}'.format (filename, filepath)
+
+    def new_export_app(self, appid, filepath, filename, skipdata='true'):
+        """
+        Exports an application to the filepath based on new Qlik API endpoint
+        :param appid: application id to export
+        :param filepath: location to store the exported app
+        :param filename: name of file
+        :param skipdata: set 'true' or 'false' to ex- or include data from export
+        :returns: HTTP Status Code
+        """
+        token = str(uuid.uuid4())
+        path = 'qrs/app/{0}/export/{1}?skipdata={2}'.format (appid, token, skipdata)
+        data = self.post(path)
+        data = json.loads(data[1])
+        downloadpath = '{0}'.format(data['downloadPath'])
+        downloadpath = downloadpath[1::]
+        appdata = self.get(downloadpath)
+        with open(filepath + filename, 'wb') as file:
+            file.write(appdata)
         return 'Application: {0} written to {1}'.format (filename, filepath)
 
     def delete_userdirectoryandusers(self, userdirectoryid):
