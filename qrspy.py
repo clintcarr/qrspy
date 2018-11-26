@@ -1062,6 +1062,33 @@ class ConnectQlik:
         """
         path = 'qrs/systemrule/security/audit/export'
         return json.loads(self.get(path).decode('utf-8'))
+    
+    def get_auditrulesmatrix(self, resource_type=None, resource_filter="", subject_resource_filter="", actions=8191,
+                             environment_attributes="", resource_properties=["name"],
+                             subject_properties=["name", "userid", "userdirectory"], audit_limit=1000, 
+                             output_objects_privileges=15, preview_rule="", condition=""):
+        """
+        Perform an audit of the access control system. The audit results are returned in a matrix.
+        :param opt: Allows the retrieval of full json response
+        :other parameters: Refer to the API reference at https://help.qlik.com/en-US/sense-developer
+        :returns: json response
+        """
+        path = 'qrs/systemrule/security/audit/matrix'
+        
+        data = {"resourceType": resource_type, 
+                "resourceRef": {"resourceFilter": resource_filter},
+                "subjectRef": {"resourceFilter": subject_resource_filter},
+                "actions": actions, 
+                "environmentAttributes": environment_attributes, 
+                "resourceProperties": resource_properties, 
+                "subjectProperties": subject_properties, 
+                "auditLimit": audit_limit, 
+                "outputObjectsPrivileges": output_objects_privileges,
+                "previewRule": preview_rule,
+                "condition": condition}
+        json_data = json.dumps(data)
+        
+        return json.loads(self.post(path, json_data)[1])
         
     def get_repositoryservice(self, opt=None):
         """
