@@ -195,7 +195,7 @@ class ConnectQlik:
                                                 headers=headers, data=data, 
                                                 verify=self.root, cert=self.certificate)
                 print (response.url)
-                return response.status_codem, response.content
+                return response.status_code, response.content
         else:
             if data is None:
                 response = session.post('https://{0}/{1}?xrfkey={2}'.format (self.server, endpoint, xrf),
