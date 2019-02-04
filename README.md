@@ -38,6 +38,8 @@ qrs = qrspy.ConnectQlik(server = 'qs2.qliklocal.net:4242',
                         credential = 'qliklocal\\administrator', 
                         password = 'Qlik1234')
 ```
+### Note:
+If you are experience a SSL Error which states that the hostnames do not match. Try removing the ```root``` certificate from your ```ConnectQlik``` function. This will set the SSL verify to False which bypasses certificate validation completely.
 
 ## display a list of QRS API endpoints by method
 - parameter1 = method
