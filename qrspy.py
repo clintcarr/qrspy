@@ -796,14 +796,16 @@ class ConnectQlik:
             data = json.dumps(properties)
             return self.post(path, data)
 
-    def import_librarycontent(self, library, filepath):
+    def import_librarycontent(self, library, externalpath, filepath, overwrite=False):
         """
         Imports content into a content library
         :param library: library to import content into
+        :param externalpath: filename to be used in content repository
         :param filepath: content to import
+        :param overwrite: (true|false) flag to overwrite content with same name in content repository.
         :returns: HTTP Status Code
         """
-        path = 'qrs/contentlibrary/{0}/uploadfile?externalpath={1}'.format (library, filepath)
+        path = 'qrs/contentlibrary/{0}/uploadfile?externalpath={1}&overwrite={2}'.format (library, externalpath, overwrite)
         with open(filepath, 'rb') as data:
             return self.post(path, data)
 
