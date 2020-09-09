@@ -419,7 +419,19 @@ class ConnectQlik:
         if opt:
             path += '/full'
         return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
-
+    
+    def get_analyzeraccesstype(self, opt=None,filterparam=None, filtervalue=None):
+        """
+        Returns the users with analyzer access type
+        :param filterparam: Property and operator of the filter
+        :param filtervalue: Value of the filter
+        :returns: JSON
+        """
+        path = 'qrs/license/analyzeraccesstype'
+        if opt:
+            path += '/full'
+        return json.loads(self.get(path, filterparam, filtervalue).decode('utf-8'))
+    
     def get_loginaccesstype(self, opt=None,filterparam=None, filtervalue=None):
         """
         Returns the login access type rule
@@ -546,6 +558,14 @@ class ConnectQlik:
         :returns: HTTP Status Code
         """
         path = 'qrs/license/useraccesstype/{0}'.format (useraccessid)
+        return self.delete(path)
+
+    def delete_analyzeraccesstype(self, useraccessid):
+        """
+        Deletes a analyzer access token (quarantine)
+        :returns: HTTP Status Code
+        """
+        path = 'qrs/license/analyzeraccesstype/{0}'.format (useraccessid)
         return self.delete(path)
 
     def delete_appobject(self, objectid):
